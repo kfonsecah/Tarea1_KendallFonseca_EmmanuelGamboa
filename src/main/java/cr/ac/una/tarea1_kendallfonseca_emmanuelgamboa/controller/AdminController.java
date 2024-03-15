@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,12 +16,12 @@ import javafx.stage.Stage;
 import io.github.palexdev.materialfx.controls.MFXButton;
 
 
-public class PrincipalController extends Controller implements Initializable {
-    @FXML
-    private MFXButton btnAdmin;
-
-    @FXML
-    private BorderPane root;
+/**
+ * FXML Controller class
+ *
+ * @author Kendall Fonseca
+ */
+public class AdminController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -29,12 +30,6 @@ public class PrincipalController extends Controller implements Initializable {
     @Override
     public void initialize() {
 
-    }
-
-    @FXML
-    private void onActionBtnAdmin(ActionEvent event){
-        System.out.println("Admin");
-        FlowController.getInstance().goView("AdminView");
-    }
+    }  
     
 }
