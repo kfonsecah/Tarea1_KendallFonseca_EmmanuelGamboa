@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -22,10 +23,15 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private BorderPane root;
 
+    @FXML
+    private ImageView imvFondo;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
     }
+
     @Override
     public void initialize() {
 
@@ -35,6 +41,7 @@ public class PrincipalController extends Controller implements Initializable {
     private void onActionBtnAdmin(ActionEvent event){
         System.out.println("Admin");
         FlowController.getInstance().goView("AdminView");
+
     }
     
 }

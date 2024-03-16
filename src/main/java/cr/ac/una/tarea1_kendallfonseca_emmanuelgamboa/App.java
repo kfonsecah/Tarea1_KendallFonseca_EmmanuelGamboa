@@ -19,7 +19,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.setTitle("UNA");
-        FlowController.getInstance().goViewInWindow("PrincipalView");
+        FlowController.getInstance().goMain();
+
 
     }
 

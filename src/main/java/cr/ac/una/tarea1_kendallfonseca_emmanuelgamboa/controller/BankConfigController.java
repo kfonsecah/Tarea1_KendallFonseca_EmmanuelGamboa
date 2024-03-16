@@ -2,18 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+
 
 
 
@@ -22,19 +21,16 @@ import io.github.palexdev.materialfx.controls.MFXButton;
  *
  * @author Kendall Fonseca
  */
-public class AdminController extends Controller implements Initializable {
-
-
-    @FXML
-    private MFXButton btnAccountsTypeConfig;
+public class BankConfigController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnBankConfig;
+    private MFXButton btnAccept;
 
     @FXML
     private AnchorPane root;
 
-
+    @FXML
+    private MFXTextField spcTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -43,16 +39,6 @@ public class AdminController extends Controller implements Initializable {
     @Override
     public void initialize() {
 
-    }
-
-    @FXML
-    private void onActionBtnBankConfig(ActionEvent event) {
-        FlowController.getInstance().goView("BankConfigView");
-    }
-
-    @FXML
-    private void onActionBtnAccountsTypeConfig(ActionEvent event) {
-        FlowController.getInstance().goView("AccountsTypeConfigView");
     }
     
 }
