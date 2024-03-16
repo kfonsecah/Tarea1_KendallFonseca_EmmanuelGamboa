@@ -159,6 +159,10 @@ public class FlowController {
         Stage stage = new Stage();
         //stage.getIcons().add(new Image("cr/ac/una/tareaprogra/resources/logo.png"));
         //stage.setTitle("UNA PLANILLA");
+
+        stage.getIcons().clear();
+
+
         stage.setResizable(resizable);
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
@@ -189,6 +193,14 @@ public class FlowController {
 
     public void salir() {
         this.mainStage.close();
+    }
+
+    public static void iconChanger(Stage stage, Image image){
+        stage.getIcons().clear();
+        stage.getIcons().add(image);
+    }
+    public static void nameChanger(Stage stage, String name){
+        stage.setTitle(name);
     }
 
 }

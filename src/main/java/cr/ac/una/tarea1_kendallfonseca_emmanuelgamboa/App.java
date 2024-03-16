@@ -21,7 +21,6 @@ public class App extends Application {
         stage.setTitle("UNA");
         FlowController.getInstance().goMain();
 
-
     }
 
 

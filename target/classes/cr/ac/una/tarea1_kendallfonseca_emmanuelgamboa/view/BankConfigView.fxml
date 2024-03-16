@@ -14,14 +14,19 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <MFXTextField prefHeight="39.0" prefWidth="258.0" VBox.vgrow="ALWAYS">
+                  <MFXTextField fx:id="txtBankName" prefHeight="39.0" prefWidth="258.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets left="180.0" top="170.0" />
                      </VBox.margin>
                   </MFXTextField>
-                  <MFXButton text="Aceptar">
+                  <MFXButton onAction="#onActionBtnAceptar" text="Aceptar">
                      <VBox.margin>
                         <Insets left="280.0" top="50.0" />
+                     </VBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="btnChangeIcon" onAction="#onActionBtnChangeIcon" text="Cambiar Icono">
+                     <VBox.margin>
+                        <Insets left="260.0" top="55.0" />
                      </VBox.margin>
                   </MFXButton>
                </children>

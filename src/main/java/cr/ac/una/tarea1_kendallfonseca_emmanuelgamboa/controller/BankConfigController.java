@@ -6,14 +6,23 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 
-
+import java.io.File;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+import javafx.scene.control.TextField;
 
 
 /**
@@ -23,14 +32,22 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
  */
 public class BankConfigController extends Controller implements Initializable {
 
-    @FXML
-    private MFXButton btnAccept;
+
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private MFXTextField spcTextField;
+    private MFXButton btnChangeIcon;
+
+    @FXML
+    private MFXButton btnAccept;
+
+    @FXML
+    private MFXTextField txtBankName;
+
+    @FXML
+    private ImageView imageView;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,6 +56,27 @@ public class BankConfigController extends Controller implements Initializable {
     @Override
     public void initialize() {
 
+    }
+
+    public void onActionBtnChangeIcon(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Imágenes (*.png, *.jpg)", "*.png", "*.jpg");
+        fileChooser.getExtensionFilters().add(filter);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null && file.exists()) {
+            Image image = new Image(file.toURI().toString());
+            FlowController.iconChanger(getStage(), image);
+
+        }
+
+    }
+
+    public void onActionBtnAceptar(ActionEvent event) {
+        String newName = txtBankName.getText();
+        if (!newName.isEmpty()) {
+            String currentName = System.getProperty("java.class.title");
+            FlowController.nameChanger(getStage(), newName);
+        }
     }
     
 }
