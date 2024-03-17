@@ -20,7 +20,6 @@ public class App extends Application {
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.setTitle("UNA");
         FlowController.getInstance().goMain();
-
     }
 
 

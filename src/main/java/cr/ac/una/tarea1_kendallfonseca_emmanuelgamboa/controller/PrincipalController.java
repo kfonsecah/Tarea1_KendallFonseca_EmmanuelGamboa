@@ -21,7 +21,13 @@ public class PrincipalController extends Controller implements Initializable {
     private MFXButton btnAdmin;
 
     @FXML
+    private MFXButton btnWorker;
+
+    @FXML
     private BorderPane root;
+
+    @FXML
+    private MFXButton btnAssociate;
 
     @FXML
     private ImageView imvFondo;
@@ -31,17 +37,25 @@ public class PrincipalController extends Controller implements Initializable {
         // TODO
 
     }
-
     @Override
     public void initialize() {
 
     }
-
     @FXML
     private void onActionBtnAdmin(ActionEvent event){
-        System.out.println("Admin");
+        //System.out.println("Admin");
         FlowController.getInstance().goView("AdminView");
+    }
+    @FXML
+    private void onActionBtnWorker(ActionEvent event){
+        //System.out.println("Worker");
+        FlowController.getInstance().goView("WorkerView");
+    }
 
+    @FXML
+    private void onActionBtnAssociate(ActionEvent event){
+        //System.out.println("Associate");
+        FlowController.getInstance().goView("AssociateView");
     }
     
 }
