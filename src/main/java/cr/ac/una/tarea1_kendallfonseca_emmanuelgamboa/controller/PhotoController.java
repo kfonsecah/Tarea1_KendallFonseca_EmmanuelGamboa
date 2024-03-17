@@ -6,16 +6,13 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.Initializable;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTextField;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
-import javafx.event.ActionEvent;
+import com.github.sarxos.webcam.Webcam;
+import javafx.scene.image.ImageView;
+
+
 
 
 /**
@@ -23,16 +20,11 @@ import javafx.event.ActionEvent;
  *
  * @author Kendall Fonseca
  */
-public class RegisterController extends Controller implements Initializable {
-
-    MFXButton btnRegister;
-    private MFXTextField txtName;
-
-    @FXML
-    private MFXButton btnPhoto;
+public class PhotoController extends Controller implements Initializable {
 
     @FXML
     private AnchorPane root;
+
 
     /**
      * Initializes the controller class.
@@ -44,17 +36,10 @@ public class RegisterController extends Controller implements Initializable {
     @Override
     public void initialize() {
 
-    }
-
-    @FXML
-    private void onActionBtnRegister(ActionEvent event) {
-
-    }
-    @FXML
-    private void onActionBtnPhoto(ActionEvent event) {
-        FlowController.getInstance().goView("PhotoView");
-        }
+        Webcam webcam = Webcam.getDefault();
+        ImageView imageView = new ImageView();
+        webcam.open();
     }
 
     
-
+}
