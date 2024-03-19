@@ -34,9 +34,6 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -52,7 +49,7 @@ public class RegisterController extends Controller implements Initializable {
     }
     @FXML
     private void onActionBtnPhoto(ActionEvent event) {
-        FlowController.getInstance().goView("PhotoView");
+        FlowController.getInstance().goViewInStage("WebCamView",getStage());
         }
     }
 
