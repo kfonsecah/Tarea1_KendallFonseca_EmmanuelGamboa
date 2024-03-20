@@ -6,19 +6,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AdminController">
    <children>
       <BorderPane layoutX="178.0" layoutY="81.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="380.0" prefWidth="272.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <MFXButton fx:id="btnBankConfig" onAction="#onActionBtnBankConfig" text="Configuración de la Cooperativa" VBox.vgrow="ALWAYS">
+                  <MFXButton fx:id="btnBankConfig" onAction="#onActionBtnBankConfig" text="Mantenimiento de la Cooperativa" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnAccountsConfig" onAction="#onActionBtnAccountsConfig" text="Tipo de Cuentas" VBox.vgrow="ALWAYS">
+                  <MFXButton fx:id="btnAccountsConfig" onAction="#onActionBtnAccountsConfig" text="Mantenimiento de Cuentas" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

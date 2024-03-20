@@ -7,6 +7,10 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
@@ -14,6 +18,15 @@ import javafx.fxml.Initializable;
  * @author Kendall Fonseca
  */
 public class AccountsConfigController extends Controller implements Initializable {
+
+    @FXML
+    private MFXButton btnCancel;
+
+    @FXML
+    private MFXButton btnSave;
+
+    @FXML
+    private AnchorPane root;
 
     /**
      * Initializes the controller class.
@@ -26,5 +39,16 @@ public class AccountsConfigController extends Controller implements Initializabl
     public void initialize() {
 
     }
-    
+
+    @FXML
+    void onActionBtnCancel(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionBtnSave(ActionEvent event) {
+
+    }
+
+
 }

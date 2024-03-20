@@ -51,8 +51,7 @@ public class AdminController extends Controller implements Initializable {
     }
 
     @FXML
-    private void onActionBtnAccountsConfig(ActionEvent event) {
-        FlowController.getInstance().goView("AccountsConfigView");
+    private void onActionBtnAccountsConfig(ActionEvent event) {FlowController.getInstance().goView("AccountsConfigView");
     }
     
 }
