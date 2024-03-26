@@ -4,19 +4,16 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
-
 import java.io.File;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
@@ -24,15 +21,12 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.scene.control.TextField;
 
-
 /**
  * FXML Controller class
  *
  * @author Kendall Fonseca
  */
 public class BankConfigController extends Controller implements Initializable {
-
-
 
     @FXML
     private AnchorPane root;
@@ -46,16 +40,14 @@ public class BankConfigController extends Controller implements Initializable {
     @FXML
     private MFXTextField txtBankName;
 
-    @FXML
-    private ImageView imageView;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @Override
     public void initialize() {
-
+        // TODO
     }
 
     public void onActionBtnChangeIcon(ActionEvent event) {
@@ -66,9 +58,7 @@ public class BankConfigController extends Controller implements Initializable {
         if (file != null && file.exists()) {
             Image image = new Image(file.toURI().toString());
             FlowController.iconChanger(getStage(), image);
-
         }
-
     }
 
     public void onActionBtnAceptar(ActionEvent event) {
@@ -78,5 +68,5 @@ public class BankConfigController extends Controller implements Initializable {
             FlowController.nameChanger(getStage(), newName);
         }
     }
-    
 }
+

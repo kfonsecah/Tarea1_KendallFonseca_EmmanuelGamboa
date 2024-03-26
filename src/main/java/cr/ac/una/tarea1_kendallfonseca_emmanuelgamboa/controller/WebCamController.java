@@ -7,7 +7,6 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.WebCam;
 import javafx.fxml.Initializable;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -21,42 +20,43 @@ import javafx.scene.image.ImageView;
  * @author Kendall Fonseca
  */
 public class WebCamController extends Controller implements Initializable {
+
     @FXML
     private MFXButton btnTakePhoto;
 
     @FXML
     private ImageView imageView;
 
-    WebCam webcam;
-
+    private WebCam webcam;
 
     @FXML
     private AnchorPane root;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // TODO
     }
+
     @Override
     public void initialize() {
-
-
+        // TODO
     }
-    public void onBtnActivateCamera(ActionEvent event){
+
+    @FXML
+    private void onBtnActivateCamera(ActionEvent event) {
         webcam = new WebCam(imageView);
-
         webcam.start();
-
         webcam.updateImageView();
     }
+
     @FXML
     private void onActionBtnTakePhoto(ActionEvent event) {
-
         webcam.takePhoto();
     }
+
     @FXML
     private void onActionBtnStopCam(ActionEvent event) {
-       webcam.stop();
+        webcam.stop();
     }
-
-    
 }
+

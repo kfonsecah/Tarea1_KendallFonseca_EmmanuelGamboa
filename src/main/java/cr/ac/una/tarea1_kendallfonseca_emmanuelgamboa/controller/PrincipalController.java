@@ -14,8 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
-
-
 public class PrincipalController extends Controller implements Initializable {
 
     @FXML
@@ -36,24 +34,26 @@ public class PrincipalController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
     }
+
     @Override
     public void initialize() {
-
-    }
-    @FXML
-    private void onActionBtnAdmin(ActionEvent event){
-        FlowController.getInstance().goView("AdminView");
-    }
-    @FXML
-    private void onActionBtnWorker(ActionEvent event){
-        FlowController.getInstance().goView("WorkerView");
+        // TODO
     }
 
     @FXML
-    private void onActionBtnAssociate(ActionEvent event){
-        FlowController.getInstance().goView("AssociateView");
+    private void onActionBtnAdmin(ActionEvent event) {
+        FlowController.getInstance().goMain("AdminView");
     }
-    
+
+    @FXML
+    private void onActionBtnWorker(ActionEvent event) {
+        FlowController.getInstance().goMain("WorkerView");
+    }
+
+    @FXML
+    private void onActionBtnAssociate(ActionEvent event) {
+        FlowController.getInstance().goMain("AssociateView");
+    }
 }
+

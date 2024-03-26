@@ -80,9 +80,9 @@ public class FlowController {
     }
 
 
-    public void goMain() {
+    public void goMain(String viewname) {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/PrincipalView.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/"+viewname+".fxml"), this.idioma)));
             this.mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
@@ -196,6 +196,7 @@ public class FlowController {
     }
 
     public static void iconChanger(Stage stage, Image image){
+
         stage.getIcons().clear();
         stage.getIcons().add(image);
     }

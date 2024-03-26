@@ -6,17 +6,13 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.Initializable;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.event.ActionEvent;
-
 
 /**
  * FXML Controller class
@@ -25,7 +21,10 @@ import javafx.event.ActionEvent;
  */
 public class RegisterController extends Controller implements Initializable {
 
-    MFXButton btnRegister;
+    @FXML
+    private MFXButton btnRegister;
+
+    @FXML
     private MFXTextField txtName;
 
     @FXML
@@ -38,20 +37,22 @@ public class RegisterController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @Override
     public void initialize() {
-
+        // TODO
     }
 
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
-
+        // TODO: Acción al presionar el botón de registro
     }
+
     @FXML
     private void onActionBtnPhoto(ActionEvent event) {
-        FlowController.getInstance().goViewInStage("WebCamView",getStage());
-        }
+        FlowController.getInstance().goViewInWindow("WebCamView");
     }
+}
 
     
 

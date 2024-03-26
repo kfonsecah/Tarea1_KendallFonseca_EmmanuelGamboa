@@ -35,20 +35,20 @@ public class AccountsConfigController extends Controller implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @Override
     public void initialize() {
-
+        // TODO: Implementar inicialización personalizada si es necesario
     }
 
     @FXML
     void onActionBtnCancel(ActionEvent event) {
-
+        // TODO: Manejar la acción del boton Cancelar
     }
 
     @FXML
     void onActionBtnSave(ActionEvent event) {
-
+        // TODO: Manejar la acción del botón Guardar
     }
-
-
 }
+

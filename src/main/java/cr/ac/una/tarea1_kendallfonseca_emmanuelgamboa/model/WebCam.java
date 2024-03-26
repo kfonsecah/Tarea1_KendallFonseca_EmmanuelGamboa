@@ -1,27 +1,16 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
-
-
 import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 
-
-/**
- *
- * @author kfonsecah
- */
 public class WebCam {
 
     private final Webcam webcam;
@@ -31,7 +20,6 @@ public class WebCam {
     public WebCam(ImageView imageView) {
         webcam = Webcam.getDefault();
         this.imageView = imageView;
-
     }
 
     public void start() {
@@ -39,34 +27,22 @@ public class WebCam {
         webcam.open();
         System.out.println("Taking photo");
         new Thread(() -> {
-            //System.out.println("Taking photo");
             while (true) {
-
                 try {
                     lastImage = webcam.getImage();
                     updateImageView();
                     Thread.sleep(30);
-
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-
-
                     break;
-
                 }
-
             }
         }).start();
-
-
     }
 
     public void updateImageView() {
         if (lastImage != null) {
-            SwingFXUtils.toFXImage(lastImage, null);
             Platform.runLater(() -> imageView.setImage(SwingFXUtils.toFXImage(lastImage, null)));
-
         }
     }
 
@@ -84,7 +60,8 @@ public class WebCam {
             System.out.println("Failed to save photo!");
         }
     }
-    public void stop(){
+
+    public void stop() {
         webcam.close();
     }
 }

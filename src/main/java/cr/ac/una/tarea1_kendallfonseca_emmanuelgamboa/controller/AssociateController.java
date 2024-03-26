@@ -13,7 +13,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 
-
 /**
  * FXML Controller class
  *
@@ -27,22 +26,18 @@ public class AssociateController extends Controller implements Initializable {
     @FXML
     private MFXButton btnRegister;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @Override
     public void initialize() {
-
+        // TODO
     }
 
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
         FlowController.getInstance().goView("RegisterView");
     }
-
-    
 }

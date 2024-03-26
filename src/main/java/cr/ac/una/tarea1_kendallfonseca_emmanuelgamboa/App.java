@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.PrincipalController;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FlowController.getInstance().InitializeFlow(stage, null);
         stage.setTitle("UNA");
-        FlowController.getInstance().goMain();
+        FlowController.getInstance().goMain("PrincipalView");
     }
 
 

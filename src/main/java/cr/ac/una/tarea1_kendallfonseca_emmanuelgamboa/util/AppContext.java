@@ -1,4 +1,4 @@
-package cr.ac.una.tareaprogra.util;
+package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
