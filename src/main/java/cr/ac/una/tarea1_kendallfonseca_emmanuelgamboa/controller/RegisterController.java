@@ -8,11 +8,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.event.ActionEvent;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 
 /**
  * FXML Controller class
@@ -26,6 +29,12 @@ public class RegisterController extends Controller implements Initializable {
 
     @FXML
     private MFXTextField txtName;
+
+    @FXML
+    private MFXTextField txtLastName;
+
+    @FXML
+    private MFXTextField txtAge;
 
     @FXML
     private MFXButton btnPhoto;
@@ -45,7 +54,16 @@ public class RegisterController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
-        // TODO: Acción al presionar el botón de registro
+        try{
+            if(txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()){
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
+            }else{
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "");
+                   new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:"+associated.getAssoFolio());
+            }
+        }catch(Exception e){
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al registrar");
+        }
     }
 
     @FXML
