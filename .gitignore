@@ -1,0 +1,17 @@
+
+
+*.jar
+*.class
+*.txt
+
+
+
+target/
+.idea/
+
+
+
+dependency-reduced-pom.xml
+nbactions.xml
+Tarea1_KendallFonseca_EmmanuelGamboa.iml
+.DS_Store
