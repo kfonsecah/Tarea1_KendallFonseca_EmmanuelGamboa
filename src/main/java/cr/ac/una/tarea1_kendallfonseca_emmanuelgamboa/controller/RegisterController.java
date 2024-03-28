@@ -138,6 +138,7 @@ public class RegisterController extends Controller implements Initializable {
             lastPhotoFile.renameTo(newFile);
             System.out.println("La ultima foto tomada se ha renombrado correctamente a: " + newFile.getName());
             loadLastUserPhoto();
+            
         } else {
             // No hay imagenes en la carpeta userphotos
             // imagen predeterminada o mostrar un mensaje al usuario
