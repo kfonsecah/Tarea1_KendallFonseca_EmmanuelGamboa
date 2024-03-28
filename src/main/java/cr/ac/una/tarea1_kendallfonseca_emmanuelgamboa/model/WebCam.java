@@ -16,6 +16,7 @@ public class WebCam {
     private final Webcam webcam;
     private BufferedImage lastImage;
     private final ImageView imageView;
+    private boolean photoTaken = false;
 
     public WebCam(ImageView imageView) {
         webcam = Webcam.getDefault();
@@ -25,12 +26,13 @@ public class WebCam {
     public void start() {
         webcam.getLock().disable();
         webcam.open();
-        System.out.println("Taking photo");
         new Thread(() -> {
             while (true) {
                 try {
                     lastImage = webcam.getImage();
-                    updateImageView();
+                    if (!photoTaken) {
+                        updateImageView();
+                    }
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -47,8 +49,43 @@ public class WebCam {
     }
 
     public void takePhoto() {
-        try {
-            if (lastImage != null) {
+        if (lastImage != null) {
+            photoTaken = true;
+        }
+//        try {
+//            if (lastImage != null) {
+//                String filePath = "userphotos/";
+//                File folder = new File(filePath);
+//                if (!folder.exists()) {
+//                    folder.mkdirs();
+//                }
+//
+//                int count = 1;
+//                String fileName = "photo" + count + ".png";
+//                File file = new File(folder, fileName);
+//                while (file.exists()) {
+//                    count++;
+//                    fileName = "photo" + count + ".png";
+//                    file = new File(folder, fileName);
+//                }
+//
+//                ImageIO.write(lastImage, "PNG", file);
+//                System.out.println("Photo saved successfully!");
+//            } else {
+//                System.out.println("No image to save!");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            System.out.println("Failed to save photo!");
+//        }
+    }
+    public void retakePhoto() {
+        photoTaken = false;
+    }
+
+    public void savePhoto() {
+        if (photoTaken) {
+            try {
                 String filePath = "userphotos/";
                 File folder = new File(filePath);
                 if (!folder.exists()) {
@@ -66,12 +103,12 @@ public class WebCam {
 
                 ImageIO.write(lastImage, "PNG", file);
                 System.out.println("Photo saved successfully!");
-            } else {
-                System.out.println("No image to save!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Failed to save photo!");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Failed to save photo!");
+        } else {
+            System.out.println("No photo taken to save!");
         }
     }
 

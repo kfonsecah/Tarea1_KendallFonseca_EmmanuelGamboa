@@ -6,9 +6,10 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WebCamController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="263.0" fitWidth="640.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <MFXButton fx:id="btnTakePhoto" layoutX="320.0" layoutY="288.0" onAction="#onActionBtnTakePhoto" text="Foto" />
-      <MFXButton fx:id="btnActivate" layoutX="245.0" layoutY="288.0" onAction="#onBtnActivateCamera" text="Activar" />
-      <MFXButton fx:id="btnTurnOffCam" layoutX="381.0" layoutY="288.0" onAction="#onActionBtnStopCam" text="Apagar" />
+      <ImageView fx:id="imageView" fitHeight="263.0" fitWidth="640.0" layoutX="82.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+      <MFXButton fx:id="btnTakePhoto" layoutX="230.0" layoutY="301.0" onAction="#onActionBtnTakePhoto" prefHeight="25.0" prefWidth="86.0" text="Tomar Foto" />
+      <MFXButton fx:id="btnTurnOffCam" layoutX="360.0" layoutY="301.0" onAction="#onActionBtnStopCam" text="Apagar" />
+      <MFXButton fx:id="btnRetakePhoto" layoutX="230.0" layoutY="301.0" onAction="#onActionBtnRetakePhoto" prefHeight="25.0" prefWidth="111.0" text="Volver a tomar" />
+      <MFXButton fx:id="btnSavePhoto" layoutX="230.0" layoutY="335.0" onAction="#onActionBtnSavePhoto" text="Guardar" />
    </children>
 </AnchorPane>
