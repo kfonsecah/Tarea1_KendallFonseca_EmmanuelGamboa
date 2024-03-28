@@ -67,9 +67,9 @@ public class Associated {
     private String createFolio() {
         Random random = new Random();
         char firstLetter = AssoName.charAt(0);
-        char firstLetterLT = AssoLastName.charAt(1);
+        char firstLetterLT = AssoLastName.charAt(0);
         int randomNumber = random.nextInt(1000);
-        return firstLetter + firstLetterLT + String.format("%04d", randomNumber);
+        return String.valueOf(firstLetter) + String.valueOf(firstLetterLT) + String.format("%04d", randomNumber);
     }
     public void addAssociated() {
         Associated associated = new Associated(AssoName, AssoLastName, AssoAge, AssoPhoto);
@@ -77,6 +77,7 @@ public class Associated {
         associated.Associated.add(String.valueOf(associated.getAssoAge()));
         associated.Associated.add(associated.createFolio());
         associated.Associated.add(associated.getAssoPhoto());
+
 
     }
 
