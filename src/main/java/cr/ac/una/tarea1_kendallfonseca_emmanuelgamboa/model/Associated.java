@@ -46,10 +46,10 @@ public class Associated {
         this.AssoAge = age;
     }
     public String getAssoPhoto() {
-        return AssoPhoto;
+        return getAssoFolio()+".png";
     }
     public void setAssoPhoto(String photo) {
-        this.AssoPhoto = photo;
+        this.AssoPhoto = getAssoFolio()+".png";
     }
     public String getAssoFolio() {
         return AssoFolio;

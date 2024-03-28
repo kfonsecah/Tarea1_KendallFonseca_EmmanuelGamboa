@@ -40,9 +40,9 @@ public class AppContext {
             Properties appProperties = new Properties();
             appProperties.load(configFile);
             configFile.close();
-//            if (appProperties.getProperty("propiedades.rutalog") != null) {
-//                this.set("rutalog",appProperties.getProperty("propiedades.rutalog"));
-//            }
+         //  if (appProperties.getProperty("propiedades.rutalog") != null) {
+            //  this.set("rutalog",appProperties.getProperty("propiedades.rutalog"));
+//          }
 //            if (appProperties.getProperty("propiedades.resturl") != null) {
 //                this.set("resturl",appProperties.getProperty("propiedades.resturl"));
   //          }

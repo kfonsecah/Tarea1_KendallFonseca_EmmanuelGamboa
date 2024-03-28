@@ -138,7 +138,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
         //stage.getIcons().add(new Image("cr/ac/una/tareap/resources/logo.png"));
-        stage.setTitle("La monedita feliz");
+        stage.setTitle("UNA");
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);

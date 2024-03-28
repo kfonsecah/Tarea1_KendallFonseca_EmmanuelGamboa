@@ -49,7 +49,21 @@ public class WebCam {
     public void takePhoto() {
         try {
             if (lastImage != null) {
-                File file = new File("photo.png");
+                String filePath = "userphotos/";
+                File folder = new File(filePath);
+                if (!folder.exists()) {
+                    folder.mkdirs();
+                }
+
+                int count = 1;
+                String fileName = "photo" + count + ".png";
+                File file = new File(folder, fileName);
+                while (file.exists()) {
+                    count++;
+                    fileName = "photo" + count + ".png";
+                    file = new File(folder, fileName);
+                }
+
                 ImageIO.write(lastImage, "PNG", file);
                 System.out.println("Photo saved successfully!");
             } else {

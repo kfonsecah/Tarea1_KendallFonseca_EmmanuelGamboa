@@ -5,6 +5,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -20,6 +21,12 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.event.ActionEvent;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+
+import javax.swing.*;
+import java.io.File;
+import java.util.Arrays;
 
 /**
  * FXML Controller class
@@ -46,6 +53,9 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
 
+    @FXML
+    private ImageView userPhotoPrev;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -58,15 +68,18 @@ public class RegisterController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
-        try{
-            if(txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()){
+        try {
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
-            }else{
-                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "");
+            } else {
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()),"");
                 AppContext.getInstance().set(associated.getAssoFolio(), associated);
-                   new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:"+associated.getAssoFolio());
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.getAssoFolio());
+                renameLastUserPhoto(associated.getAssoFolio());
+                //System.out.println(associated.getAssoPhoto());
+
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al registrar");
         }
     }
@@ -74,21 +87,67 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private void onActionBtnPhoto(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("WebCamView");
+    }
+
+
+
+
+
         //QUE SE SOLICITE DIGITAR EL FOLIO
 
         //JUST TEST
-        while(true){
-            System.out.println("Folio: ");
-            Scanner scanner = new Scanner(System.in);
-            String folio = scanner.nextLine();
-            Associated associated = (Associated) AppContext.getInstance().get(folio);
-            System.out.println(associated.getAssoName());
-            System.out.println(associated.getAssoLastName());
-            System.out.println(associated.getAssoAge());
-        }
+//        while(true){
+//            System.out.println("Folio: ");
+//            Scanner scanner = new Scanner(System.in);
+//            String folio = scanner.nextLine();
+//            Associated associated = (Associated) AppContext.getInstance().get(folio);
+//            System.out.println(associated.getAssoName());
+//            System.out.println(associated.getAssoLastName());
+//            System.out.println(associated.getAssoAge());
+//        }
 
+
+    @FXML
+    private void loadLastUserPhoto() {
+        File folder = new File("userphotos/");
+        File[] files = folder.listFiles();
+        if (files != null && files.length > 0) {
+
+            Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
+
+            File lastPhotoFile = files[0];
+
+            Image image = new Image(lastPhotoFile.toURI().toString());
+            userPhotoPrev.setImage(image);
+        } else {
+            // No hay imágenes en la carpeta userphotos
+            // imagen predeterminada o mostrar un mensaje al usuario
+        }
+    }
+
+    //metodo tan complejo
+    private void renameLastUserPhoto(String folio) {
+        File folder = new File("userphotos/");
+        File[] files = folder.listFiles();
+        if (files != null && files.length > 0) {
+            Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
+            File lastPhotoFile = files[0];
+            String filePath = lastPhotoFile.getParent();
+            String newFileName = folio + ".png";
+            File newFile = new File(filePath, newFileName);
+            lastPhotoFile.renameTo(newFile);
+            System.out.println("La ultima foto tomada se ha renombrado correctamente a: " + newFile.getName());
+            loadLastUserPhoto();
+        } else {
+            // No hay imagenes en la carpeta userphotos
+            // imagen predeterminada o mostrar un mensaje al usuario
+        }
     }
 }
+
+
+
+
 
     
 

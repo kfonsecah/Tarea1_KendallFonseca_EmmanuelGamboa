@@ -34,19 +34,21 @@ public class WebCamController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        webcam = new WebCam(imageView);
+        webcam.start();
+        webcam.updateImageView();
         // TODO
     }
 
     @Override
     public void initialize() {
+
         // TODO
     }
 
     @FXML
     private void onBtnActivateCamera(ActionEvent event) {
-        webcam = new WebCam(imageView);
-        webcam.start();
-        webcam.updateImageView();
+
     }
 
     @FXML
