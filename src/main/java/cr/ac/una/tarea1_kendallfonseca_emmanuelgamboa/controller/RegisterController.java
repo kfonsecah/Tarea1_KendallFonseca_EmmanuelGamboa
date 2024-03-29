@@ -69,9 +69,10 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
         try {
-            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()|| userPhotoPrev.getImage() == null){
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
             } else {
+
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()),"");
                 AppContext.getInstance().set(associated.getAssoFolio(), associated);
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.getAssoFolio());

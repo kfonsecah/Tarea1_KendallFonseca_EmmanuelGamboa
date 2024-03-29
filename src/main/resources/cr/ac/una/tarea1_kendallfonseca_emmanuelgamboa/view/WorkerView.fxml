@@ -19,7 +19,7 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin></MFXButton>
-            <MFXButton fx:id="btnOpenAccounts" text="Apertura de Cuentas">
+            <MFXButton fx:id="btnOpenAccounts" onAction="#onActionBtnOpenAccounts" text="Apertura de Cuentas">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>

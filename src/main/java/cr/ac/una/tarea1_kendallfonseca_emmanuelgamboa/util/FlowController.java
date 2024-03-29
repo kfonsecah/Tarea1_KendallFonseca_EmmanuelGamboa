@@ -195,13 +195,12 @@ public class FlowController {
         this.mainStage.close();
     }
 
-    public static void iconChanger(Stage stage, Image image){
-
-        stage.getIcons().clear();
-        stage.getIcons().add(image);
-    }
-    public static void nameChanger(Stage stage, String name){
-        stage.setTitle(name);
-    }
-
+//    public static void iconChanger(Stage stage, Image image){
+//        stage.getIcons().clear();
+//        stage.getIcons().add(image);
+//    }
+//    public static void nameChanger(Stage stage, String name){
+//        stage.setTitle(name);
+//    }
+//
 }
