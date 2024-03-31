@@ -12,7 +12,7 @@ public class Associated {
     public int AssoAge;
     public String AssoPhoto;
     public String AssoFolio;
-    public String AssoCuentas;
+    public String AssoCuenta;
     public ArrayList<String> Associated= new ArrayList<String>();
 
     public Associated() {
@@ -61,10 +61,10 @@ public class Associated {
         this.AssoFolio = folio;
     }
     public String getAssoCuentas() {
-        return AssoCuentas;
+        return AssoCuenta;
     }
-    public void setAssoCuentas(String cuentas) {
-        this.AssoCuentas = cuentas;
+    public void setAssoCuentas(String cuenta) {
+        this.AssoCuenta = cuenta;
     }
 
     public String createFolio() {

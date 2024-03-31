@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 
 /**
  * FXML Controller class
@@ -46,7 +48,7 @@ public class WorkerController extends Controller implements Initializable {
         //FlowController.getInstance().goView("AssociateMaintenanceView");
     }
     private void onActionBtnOpenAccounts(ActionEvent event){
-        //FlowController.getInstance().goView("OpenAccountsView");
+        FlowController.getInstance().goView("OpenAccountsView");
     }
     private void onActionBtnPrintID(ActionEvent event){
         //FlowController.getInstance().goView("PrintIDView");

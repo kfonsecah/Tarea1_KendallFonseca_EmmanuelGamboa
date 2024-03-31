@@ -57,7 +57,7 @@ public class BankConfigController extends Controller implements Initializable {
         File file = fileChooser.showOpenDialog(null);
         if (file != null && file.exists()) {
             Image image = new Image(file.toURI().toString());
-            FlowController.iconChanger(getStage(), image);
+            Controller.iconChanger(getStage(), image);
         }
     }
 
@@ -65,7 +65,7 @@ public class BankConfigController extends Controller implements Initializable {
         String newName = txtBankName.getText();
         if (!newName.isEmpty()) {
             String currentName = System.getProperty("java.class.title");
-            FlowController.nameChanger(getStage(), newName);
+            Controller.nameChanger(getStage(), newName);
         }
     }
 }
