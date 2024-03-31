@@ -1,6 +1,7 @@
 # Ignorar archivos generados por IDEs
 .idea/
 
+
 # Ignorar archivos específicos de NetBeans
 nbactions.xml
 dependency-reduced-pom.xml
@@ -10,7 +11,7 @@ Tarea1_KendallFonseca_EmmanuelGamboa.iml
 .DS_Store
 
 # Ignorar archivos de compilación y salida de Maven
-target/
+*target/
 
 # Ignorar archivos binarios compilados y generados
 *.class
@@ -18,3 +19,4 @@ target/
 
 # Ignorar archivos de texto genéricos
 *.txt
+*.png

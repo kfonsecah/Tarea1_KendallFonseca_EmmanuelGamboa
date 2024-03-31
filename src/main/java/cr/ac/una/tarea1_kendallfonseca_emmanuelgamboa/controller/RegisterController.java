@@ -69,7 +69,7 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
         try {
-            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()|| userPhotoPrev.getImage() == null){
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()){
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
             }
             else if(userPhotoPrev.getImage() == null){
