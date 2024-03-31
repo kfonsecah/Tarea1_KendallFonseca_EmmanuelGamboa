@@ -1,10 +1,13 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Associated {
-    public String AssoName;
+    public static String AssoName;
     public String AssoLastName;
     public int AssoAge;
     public String AssoPhoto;
@@ -27,7 +30,7 @@ public class Associated {
     public void setAssociated(ArrayList<String> associated) {
         Associated = associated;
     }
-    public String getAssoName() {
+    public static String getAssoName() {
         return AssoName;
     }
     public void setAssoName(String name) {
@@ -64,7 +67,7 @@ public class Associated {
         this.AssoCuentas = cuentas;
     }
 
-    private String createFolio() {
+    public String createFolio() {
         Random random = new Random();
         char firstLetter = AssoName.charAt(0);
         char firstLetterLT = AssoLastName.charAt(0);
@@ -77,8 +80,24 @@ public class Associated {
         associated.Associated.add(String.valueOf(associated.getAssoAge()));
         associated.Associated.add(associated.createFolio());
         associated.Associated.add(associated.getAssoPhoto());
+    }
 
+    public void addToFile(Associated associated) throws IOException {
 
+        associated.addAssociated();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Asociados.txt",true));
+        try {
+            writer.write(associated.getAssociated().toString());
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createFile(Associated associated) throws IOException {
+        associated.addToFile(associated);
     }
 
     public void printAssociated(){

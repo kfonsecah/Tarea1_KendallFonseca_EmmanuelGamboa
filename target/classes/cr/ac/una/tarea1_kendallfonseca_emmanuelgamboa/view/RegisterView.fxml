@@ -14,7 +14,7 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="userPhotoPrev" fitHeight="150.0" fitWidth="221.0" onMouseMoved="#loadLastUserPhoto" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="userPhotoPrev" fitHeight="150.0" fitWidth="221.0" onMouseEntered="#loadLastUserPhoto" pickOnBounds="true" preserveRatio="true" />
                   <MFXTextField fx:id="txtName" promptText="Nombre" />
                   <MFXTextField fx:id="txtLastName" promptText="Apellido" />
                   <MFXTextField fx:id="txtAge" promptText="Edad" />

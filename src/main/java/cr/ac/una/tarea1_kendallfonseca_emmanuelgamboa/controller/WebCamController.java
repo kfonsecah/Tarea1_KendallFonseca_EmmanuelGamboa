@@ -46,15 +46,18 @@ public class WebCamController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        webcam = new WebCam(imageView);
-        webcam.start();
-        webcam.updateImageView();
+
     }
 
     @Override
     public void initialize() {
         btnRetakePhoto.setVisible(false);
         btnSavePhoto.setVisible(false);
+        btnTakePhoto.setVisible(true);
+
+        webcam = new WebCam(imageView);
+        webcam.start();
+        webcam.updateImageView();
     }
 
     @FXML
@@ -76,6 +79,7 @@ public class WebCamController extends Controller implements Initializable {
         btnTakePhoto.setVisible(true);
         btnRetakePhoto.setVisible(false);
         btnSavePhoto.setVisible(false);
+
     }
 
 
@@ -85,14 +89,13 @@ public class WebCamController extends Controller implements Initializable {
         webcam.stop();
         new Mensaje().showModal(Alert.AlertType.INFORMATION, "Foto guardada", root.getScene().getWindow(), "La foto ha sido guardada con éxito");
         getStage().close();
-        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Foto guardada", root.getScene().getWindow(), "La foto ha sido guardada con éxito");
+
     }
 
 
 
     @FXML
     private void onActionBtnStopCam(ActionEvent event) {
-        webcam.stop();
     }
 }
 
