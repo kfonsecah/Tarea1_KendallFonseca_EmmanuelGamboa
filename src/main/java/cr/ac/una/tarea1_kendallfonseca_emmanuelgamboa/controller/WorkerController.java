@@ -47,6 +47,7 @@ public class WorkerController extends Controller implements Initializable {
     private void onActionBtnAssociateMaintenance(ActionEvent event){
         //FlowController.getInstance().goView("AssociateMaintenanceView");
     }
+    @FXML
     private void onActionBtnOpenAccounts(ActionEvent event){
         FlowController.getInstance().goView("OpenAccountsView");
     }
