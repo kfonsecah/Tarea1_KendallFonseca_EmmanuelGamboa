@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Associated {
     public static String AssoName;
-    public String AssoLastName;
+    public static String AssoLastName;
     public int AssoAge;
     public String AssoPhoto;
     public String AssoFolio;
@@ -36,7 +36,7 @@ public class Associated {
     public void setAssoName(String name) {
         this.AssoName = name;
     }
-    public String getAssoLastName() {
+    public static String getAssoLastName() {
         return AssoLastName;
     }
     public void setAssoLastName(String lastName) {

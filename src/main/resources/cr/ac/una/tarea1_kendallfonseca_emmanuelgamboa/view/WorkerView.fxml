@@ -11,7 +11,7 @@
       <VBox prefHeight="720.0" prefWidth="231.0" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" />
-            <MFXButton fx:id="btnAssociateMaintenance" text="Mantenimiento de Asociados">
+            <MFXButton fx:id="btnAssociateMaintenance" onAction="#onActionBtnAssociateMaintenance" text="Mantenimiento de Asociados">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin></MFXButton>

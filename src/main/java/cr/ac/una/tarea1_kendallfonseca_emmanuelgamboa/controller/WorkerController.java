@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -25,6 +26,9 @@ public class WorkerController extends Controller implements Initializable {
      */
 
     @FXML
+    private BorderPane BorderPane;
+
+    @FXML
     private MFXButton btnAssociateMaintenance;
 
     @FXML
@@ -36,6 +40,7 @@ public class WorkerController extends Controller implements Initializable {
     @FXML
     private MFXButton btnWithdrawDeposits;
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -44,8 +49,9 @@ public class WorkerController extends Controller implements Initializable {
     public void initialize() {
 
     }
+    @FXML
     private void onActionBtnAssociateMaintenance(ActionEvent event){
-        //FlowController.getInstance().goView("AssociateMaintenanceView");
+        FlowController.getInstance().goView("AssociateMaintenanceView");
     }
     @FXML
     private void onActionBtnOpenAccounts(ActionEvent event){

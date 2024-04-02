@@ -4,6 +4,9 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,30 +53,36 @@ public class AssociateMaintenanceController extends Controller implements Initia
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        getUsersData();
+        readUsers();
+
     }
     @Override
     public void initialize() {
         // TODO
     }
-    //method to get the users data and added to the table view
-    //get the data the app context HashMap
-//    private void getUsersData(){
-//        UsersData.getItems().addAll();
-//    }
-    private void getUsersData(){
-        ObservableList<Associated> usuarios = (ObservableList<Associated>) AppContext.getAssociated();
 
-        // Recorrer la lista de usuarios y mostrar sus datos en la consola
-        for (Associated usuario : usuarios) {
-            System.out.println("Nombre: " + usuario.getAssoName());
-            System.out.println("Apellido: " + usuario.getAssoLastName());
-            System.out.println("Edad: " + usuario.getAssoAge());
-            System.out.println("Folio: " + usuario.getAssoFolio());
-            // Considerando que la imagen es un String (URL) en este ejemplo
-            System.out.println("Foto: " + usuario.getAssoPhoto());
-            System.out.println("--------------------------------");
+    public void readUsers() {
+        String filePath = "Asociados.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("[") && line.endsWith("]")) {
+                    line = line.replaceAll("[\\[\\]]", "");
+                    String[] userInfo = line.split(",");
+                    if (userInfo.length == 5) {
+                        System.out.println("Name: " + userInfo[0]);
+                        System.out.println("Last Name: " + userInfo[1]);
+                        System.out.println("Age: " + userInfo[2]);
+                        System.out.println("Folio: " + userInfo[3]);
+                        System.out.println("User File Path: " + userInfo[4]);
+                        System.out.println("----------------------------------");
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading from the file: " + e.getMessage());
         }
     }
-    
 }
+    
+

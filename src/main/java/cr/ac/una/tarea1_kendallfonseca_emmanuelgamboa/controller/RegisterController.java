@@ -82,6 +82,7 @@ public class RegisterController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.getAssoFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(Associated.getAssoName());
+                associated.Associated.add(Associated.getAssoLastName());
                 associated.Associated.add(String.valueOf(associated.getAssoAge()));
                 associated.Associated.add(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoPhoto());
