@@ -15,6 +15,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.collections.ObservableList;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 
 /**
  * FXML Controller class
@@ -54,10 +58,22 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
     //method to get the users data and added to the table view
     //get the data the app context HashMap
+//    private void getUsersData(){
+//        UsersData.getItems().addAll();
+//    }
     private void getUsersData(){
-        UsersData.getItems().addAll();
+        ObservableList<Associated> usuarios = (ObservableList<Associated>) AppContext.getAssociated();
 
+        // Recorrer la lista de usuarios y mostrar sus datos en la consola
+        for (Associated usuario : usuarios) {
+            System.out.println("Nombre: " + usuario.getAssoName());
+            System.out.println("Apellido: " + usuario.getAssoLastName());
+            System.out.println("Edad: " + usuario.getAssoAge());
+            System.out.println("Folio: " + usuario.getAssoFolio());
+            // Considerando que la imagen es un String (URL) en este ejemplo
+            System.out.println("Foto: " + usuario.getAssoPhoto());
+            System.out.println("--------------------------------");
+        }
     }
-
     
 }

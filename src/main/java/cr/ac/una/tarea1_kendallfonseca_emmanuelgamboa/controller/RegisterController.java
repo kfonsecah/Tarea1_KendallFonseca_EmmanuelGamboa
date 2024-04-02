@@ -78,7 +78,7 @@ public class RegisterController extends Controller implements Initializable {
             else{
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), userPhotoPrev.getImage().getUrl());
 
-                AppContext.getInstance().set(associated.getAssoFolio(), associated);
+               AppContext.getInstance().set(associated.getAssoFolio(), associated);
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.getAssoFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(Associated.getAssoName());
@@ -86,11 +86,17 @@ public class RegisterController extends Controller implements Initializable {
                 associated.Associated.add(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoPhoto());
                 associated.createFile(associated);
+                AppContext.getInstance().getAssociated().add(associated);
+
+                //guardar el asociado en un la ObservableList de asociados que esta en App context
+
+
 
                 txtName.setText("");
                 txtLastName.setText("");
                 txtAge.setText("");
                 userPhotoPrev.setImage(null);
+
                 //System.out.println(associated.getAssoPhoto());
 
                 //mostra la lista de asociados mediante un for

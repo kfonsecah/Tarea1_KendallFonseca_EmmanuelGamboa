@@ -1,9 +1,14 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
+import javafx.collections.FXCollections;
+
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Properties;
+import javafx.collections.ObservableList;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import java.util.logging.Level;
 
 
@@ -11,9 +16,13 @@ public class AppContext {
 
     private static AppContext INSTANCE = null;
     private static HashMap<String, Object> context = new HashMap<>();
+    //lista de ObservableList tipo usuarios
+    private static ObservableList<Associated> asociados = FXCollections.observableArrayList();
+
      
     private AppContext() {
         cargarPropiedades();
+        context.put("asociados", asociados);
     }
 
     private static void createInstance() {
@@ -68,4 +77,7 @@ public class AppContext {
         context.put(parameter, null);
     }
 
+    public static Collection<Associated> getAssociated() {
+        return asociados;
+    }
 }
