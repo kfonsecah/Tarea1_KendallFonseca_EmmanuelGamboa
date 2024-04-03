@@ -2,27 +2,33 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import javafx.collections.FXCollections;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Properties;
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import javafx.scene.image.Image;
+
 import java.util.logging.Level;
 
 
 public class AppContext {
 
     private static AppContext INSTANCE = null;
-    private static HashMap<String, Object> context = new HashMap<>();
-    //lista de ObservableList tipo usuarios
-    private static ObservableList<Associated> asociados = FXCollections.observableArrayList();
 
-     
+    private static final String USERS_FILE_PATH = "Asociados.txt";
+    private static HashMap<String, Object> context = new HashMap<>();
+    private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
+
+
     private AppContext() {
-        cargarPropiedades();
-        context.put("asociados", asociados);
+//        cargarPropiedades();
+        readUsers();
+        //context.put("asociados", asociados);
     }
 
     private static void createInstance() {
@@ -41,7 +47,7 @@ public class AppContext {
         }
         return INSTANCE;
     }
-    
+
     private void cargarPropiedades(){
         try {
             FileInputStream configFile;
@@ -49,12 +55,7 @@ public class AppContext {
             Properties appProperties = new Properties();
             appProperties.load(configFile);
             configFile.close();
-         //  if (appProperties.getProperty("propiedades.rutalog") != null) {
-            //  this.set("rutalog",appProperties.getProperty("propiedades.rutalog"));
-//          }
-//            if (appProperties.getProperty("propiedades.resturl") != null) {
-//                this.set("resturl",appProperties.getProperty("propiedades.resturl"));
-  //          }
+            
         } catch (IOException io) {
             System.out.println("Archivo de configuración no encontrado.");
         }
@@ -65,7 +66,7 @@ public class AppContext {
         throw new CloneNotSupportedException();
     }
 
-    public Object get(String parameter){    
+    public Object get(String parameter){
         return context.get(parameter);
     }
 
@@ -77,7 +78,30 @@ public class AppContext {
         context.put(parameter, null);
     }
 
-    public static Collection<Associated> getAssociated() {
+    public static void readUsers() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty()) {
+                    String[] userData = line.replaceAll("\\[|\\]", "").split(", ");
+                    if (userData.length == 5) {
+                        String name = userData[0];
+                        String lastName = userData[1];
+                        int age = Integer.parseInt(userData[2]);
+                        String folio = userData[3];
+                        String imageName = userData[4];
+
+                        Associated associated = new Associated(name, lastName, age, folio, imageName);
+                        asociados.add(associated);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading users from the file: " + e.getMessage());
+        }
+        context.put("asociados", asociados);
+    }
+    public static ObservableList<Associated> getAsociados() {
         return asociados;
     }
 }

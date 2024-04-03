@@ -6,6 +6,10 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -43,26 +47,47 @@ public class WorkerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        printAppContextUsersInfo();
+
         // TODO
     }
+
     @Override
     public void initialize() {
 
     }
+
     @FXML
-    private void onActionBtnAssociateMaintenance(ActionEvent event){
+    private void onActionBtnAssociateMaintenance(ActionEvent event) {
         FlowController.getInstance().goView("AssociateMaintenanceView");
     }
+
     @FXML
-    private void onActionBtnOpenAccounts(ActionEvent event){
+    private void onActionBtnOpenAccounts(ActionEvent event) {
         FlowController.getInstance().goView("OpenAccountsView");
     }
-    private void onActionBtnPrintID(ActionEvent event){
+
+    private void onActionBtnPrintID(ActionEvent event) {
         //FlowController.getInstance().goView("PrintIDView");
     }
-    private void onActionBtnWithdrawDeposits(ActionEvent event){
+
+    private void onActionBtnWithdrawDeposits(ActionEvent event) {
         //FlowController.getInstance().goView("WithdrawDepositsView");
     }
 
-    
+    private void printAppContextUsersInfo() {
+        AppContext appContext = AppContext.getInstance();
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+
+        for (Associated associated : asociados) {
+            System.out.println("Nombre: " + associated.getAssoName());
+            System.out.println("Apellido: " + associated.getAssoLastName());
+            System.out.println("Edad: " + associated.getAssoAge());
+            System.out.println("Folio: " + associated.getAssoFolio());
+            System.out.println("Foto: " + associated.getAssoPhoto());
+            System.out.println("----------------------------------");
+        }
+    }
+
+
 }

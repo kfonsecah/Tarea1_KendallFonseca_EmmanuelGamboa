@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Associated {
-    public static String AssoName;
-    public static String AssoLastName;
+    public String AssoName;
+    public String AssoLastName;
     public int AssoAge;
     public String AssoPhoto;
     public String AssoFolio;
@@ -16,27 +16,31 @@ public class Associated {
     public ArrayList<String> Associated= new ArrayList<String>();
 
     public Associated() {
+
     }
-    public Associated(String name, String lastName, int age, String photo) {
+    public Associated(String name, String lastName, int age, String folio, String photo) {
         this.AssoName = name;
         this.AssoLastName = lastName;
         this.AssoAge = age;
-        this.AssoPhoto = photo;
         this.AssoFolio = createFolio();
+        this.AssoPhoto = photo;
+
     }
+
+
     public ArrayList<String> getAssociated() {
         return Associated;
     }
     public void setAssociated(ArrayList<String> associated) {
         Associated = associated;
     }
-    public static String getAssoName() {
+    public String getAssoName() {
         return AssoName;
     }
     public void setAssoName(String name) {
         this.AssoName = name;
     }
-    public static String getAssoLastName() {
+    public String getAssoLastName() {
         return AssoLastName;
     }
     public void setAssoLastName(String lastName) {
@@ -75,16 +79,16 @@ public class Associated {
         return String.valueOf(firstLetter) + String.valueOf(firstLetterLT) + String.format("%04d", randomNumber);
     }
     public void addAssociated() {
-        Associated associated = new Associated(AssoName, AssoLastName, AssoAge, AssoPhoto);
-        associated.Associated.add(associated.getAssoName());
-        associated.Associated.add(String.valueOf(associated.getAssoAge()));
-        associated.Associated.add(associated.createFolio());
-        associated.Associated.add(associated.getAssoPhoto());
+        this.Associated.add(this.getAssoName());
+        this.Associated.add(this.getAssoLastName());
+        this.Associated.add(String.valueOf(this.getAssoAge()));
+        this.Associated.add(this.getAssoFolio());
+        this.Associated.add(this.getAssoPhoto());
     }
 
     public void addToFile(Associated associated) throws IOException {
 
-        associated.addAssociated();
+
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("Asociados.txt",true));
         try {
@@ -105,5 +109,6 @@ public class Associated {
             System.out.println(aso);
         }
     }
+
 
 }

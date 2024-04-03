@@ -31,19 +31,19 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 public class AssociateMaintenanceController extends Controller implements Initializable {
 
 
-    @FXML
-    private TableView<Associated> UsersData;
-
-    @FXML
-    private TableColumn<Associated, String> columnNameUser;
-    @FXML
-    private TableColumn<Associated, String> columnLastNameUser;
-    @FXML
-    private TableColumn<Associated, Integer> columnAgeUser;
-    @FXML
-    private TableColumn<Associated, String> columnFolioUser;
-    @FXML
-    private TableColumn<Associated, ImageView> columnPhotoUser;
+//    @FXML
+//    private TableView<Associated> UsersData;
+//
+//    @FXML
+//    private TableColumn<Associated, String> columnNameUser;
+//    @FXML
+//    private TableColumn<Associated, String> columnLastNameUser;
+//    @FXML
+//    private TableColumn<Associated, Integer> columnAgeUser;
+//    @FXML
+//    private TableColumn<Associated, String> columnFolioUser;
+//    @FXML
+//    private TableColumn<Associated, ImageView> columnPhotoUser;
 
     @FXML
     private AnchorPane root;
@@ -53,36 +53,18 @@ public class AssociateMaintenanceController extends Controller implements Initia
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        readUsers();
+
 
     }
     @Override
     public void initialize() {
+
+
         // TODO
     }
 
-    public void readUsers() {
-        String filePath = "Asociados.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("[") && line.endsWith("]")) {
-                    line = line.replaceAll("[\\[\\]]", "");
-                    String[] userInfo = line.split(",");
-                    if (userInfo.length == 5) {
-                        System.out.println("Name: " + userInfo[0]);
-                        System.out.println("Last Name: " + userInfo[1]);
-                        System.out.println("Age: " + userInfo[2]);
-                        System.out.println("Folio: " + userInfo[3]);
-                        System.out.println("User File Path: " + userInfo[4]);
-                        System.out.println("----------------------------------");
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading from the file: " + e.getMessage());
-        }
-    }
+
 }
+
     
 
