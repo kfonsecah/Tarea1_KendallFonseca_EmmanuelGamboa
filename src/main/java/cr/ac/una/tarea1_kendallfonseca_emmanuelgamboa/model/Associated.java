@@ -22,7 +22,7 @@ public class Associated {
         this.AssoName = name;
         this.AssoLastName = lastName;
         this.AssoAge = age;
-        this.AssoFolio = createFolio();
+        this.AssoFolio = folio;
         this.AssoPhoto = photo;
 
     }
@@ -76,7 +76,9 @@ public class Associated {
         char firstLetter = AssoName.charAt(0);
         char firstLetterLT = AssoLastName.charAt(0);
         int randomNumber = random.nextInt(1000);
-        return String.valueOf(firstLetter) + String.valueOf(firstLetterLT) + String.format("%04d", randomNumber);
+        String folio = String.valueOf(firstLetter) + String.valueOf(firstLetterLT) + String.format("%04d", randomNumber);
+        this.AssoFolio = folio;
+        return folio;
     }
     public void addAssociated() {
         this.Associated.add(this.getAssoName());
@@ -87,8 +89,6 @@ public class Associated {
     }
 
     public void addToFile(Associated associated) throws IOException {
-
-
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("Asociados.txt",true));
         try {

@@ -55,7 +55,7 @@ public class AppContext {
             Properties appProperties = new Properties();
             appProperties.load(configFile);
             configFile.close();
-            
+
         } catch (IOException io) {
             System.out.println("Archivo de configuración no encontrado.");
         }

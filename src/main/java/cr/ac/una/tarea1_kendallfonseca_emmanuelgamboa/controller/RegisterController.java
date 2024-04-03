@@ -76,10 +76,11 @@ public class RegisterController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
             }
             else{
-                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), userPhotoPrev.getImage().getUrl(),"");
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","");
+
 
               // AppContext.getInstance().set(associated.getAssoFolio(), associated);
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.getAssoFolio());
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoName());
                 associated.Associated.add(associated.getAssoLastName());
