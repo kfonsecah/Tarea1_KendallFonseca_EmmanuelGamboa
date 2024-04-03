@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class WebCam {
 
@@ -17,7 +18,11 @@ public class WebCam {
     private BufferedImage lastImage;
     private final ImageView imageView;
     private boolean photoTaken = false;
+    private Consumer<String> onImageCapturedListener;
 
+    public void setOnImageCapturedListener(Consumer<String> listener) {
+        this.onImageCapturedListener = listener;
+    }
     public WebCam(ImageView imageView) {
         webcam = Webcam.getDefault();
         this.imageView = imageView;
