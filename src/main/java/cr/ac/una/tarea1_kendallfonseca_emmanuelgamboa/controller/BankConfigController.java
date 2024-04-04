@@ -5,6 +5,9 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -94,17 +97,37 @@ public class BankConfigController extends Controller implements Initializable {
         Mensaje mensaje = new Mensaje();
         String newName = txtBankName.getText();
         if (!newName.isEmpty()) {
-            String currentName = System.getProperty("java.class.title");
-            Controller.nameChanger(getStage(), newName);
+            try {
+                // Obtener la ruta del archivo de imagen
+                String imagePath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
 
-            // Set the new logo as the application icon
-            Stage stage = (Stage) root.getScene().getWindow();
-            stage.getIcons().clear();
-            stage.getIcons().add(new Image("file:src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png"));
+                // Crear un archivo txt para guardar la información
+                String txtFilePath = "cooperativa_info.txt";
+                FileWriter fw = new FileWriter(txtFilePath);
+                BufferedWriter writer = new BufferedWriter(fw);
 
-            // Show a success message
-mensaje.showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El nombre y logo de la Cooperativa han sido cambiados, el nuevo nombre es: " + newName + ".");
+                // Escribir la información en el archivo txt
+                writer.write("Nombre de la cooperativa: " + newName);
+                writer.newLine();
+                writer.write("Ruta del logo: " + imagePath);
+                writer.newLine();
 
+                // Cerrar el escritor
+                writer.close();
+
+                // Set the new logo as the application icon
+                Stage stage = (Stage) root.getScene().getWindow();
+                stage.getIcons().clear();
+                stage.getIcons().add(new Image("file:" + imagePath));
+
+                // Show a success message
+                mensaje.showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El nombre y logo de la Cooperativa han sido cambiados, el nuevo nombre es: " + newName + ".");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Show an error message
+                mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ha ocurrido un error al guardar la información.");
+            }
         } else {
             // Show an error message
             mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete el campo de nombre.");
