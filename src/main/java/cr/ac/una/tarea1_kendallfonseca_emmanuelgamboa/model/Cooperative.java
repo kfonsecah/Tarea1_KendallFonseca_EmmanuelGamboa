@@ -15,8 +15,15 @@ public class Cooperative {
     public Cooperative() {
         //stage.setTitle(name);
     }
+    public String getName(){
+        return nombre;
+    }
+    public Image getLogo(){
+        return logo;
+    }
 
-    public void loadFromTxtFile(String filePath) {
+    public void loadFromTxtFile() {
+        String filePath = "cooperativa_info.txt";
         File txtFile = new File(filePath);
         if (txtFile.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(txtFile))) {
@@ -30,7 +37,7 @@ public class Cooperative {
                         if (key.equals("Nombre de la cooperativa")) {
                             this.nombre = value;
                         } else if (key.equals("Ruta del logo")) {
-                            this.logo = new Image(value);
+                            this.logo = new Image("file:" + value); // Carga la imagen desde la ruta relativa
                         }
                     }
                 }
@@ -44,6 +51,7 @@ public class Cooperative {
             this.logo = null;
         }
     }
+
 
     // Método para guardar la información en el archivo de texto
     public void saveToTxtFile(String filePath) {

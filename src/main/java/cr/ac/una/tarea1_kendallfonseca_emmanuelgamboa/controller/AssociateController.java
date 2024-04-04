@@ -4,10 +4,15 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -40,4 +45,24 @@ public class AssociateController extends Controller implements Initializable {
     private void onActionBtnRegister(ActionEvent event) {
         FlowController.getInstance().goView("RegisterView");
     }
+
+    private void setCompanyInfo() {
+        Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
+        if (cooperative != null) {
+            Image logo = cooperative.getLogo();
+            if (logo != null) {
+                //imageLogo.setImage(cooperative.getLogo());
+            }
+
+            String companyName = cooperative.getName();
+
+           // txtCooperativeName.setText(companyName);
+
+        }
+    }
+
+
 }
+
+

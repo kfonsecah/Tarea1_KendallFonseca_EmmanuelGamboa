@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Cooperative cooperative = new Cooperative();
-        cooperative.loadFromTxtFile("src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/cooperativa_info.txt");
+        cooperative.loadFromTxtFile();
         AppContext.getInstance().set("cooperative", cooperative);
         FlowController.getInstance().InitializeFlow(stage, null);
         FlowController.getInstance().goMain("PrincipalView");

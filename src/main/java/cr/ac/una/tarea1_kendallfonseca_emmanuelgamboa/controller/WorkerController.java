@@ -4,10 +4,12 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -16,6 +18,9 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -44,10 +49,19 @@ public class WorkerController extends Controller implements Initializable {
     @FXML
     private MFXButton btnWithdrawDeposits;
 
+    @FXML
+    private ImageView imageLogo;
+
+    @FXML
+    private Label txtCooperativeName;
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         printAppContextUsersInfo();
+        setCompanyInfo();
 
         // TODO
     }
@@ -55,6 +69,21 @@ public class WorkerController extends Controller implements Initializable {
     @Override
     public void initialize() {
 
+    }
+    private void setCompanyInfo() {
+        Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
+        if (cooperative != null) {
+            Image logo = cooperative.getLogo();
+            if (logo != null) {
+                imageLogo.setImage(cooperative.getLogo());
+            }
+
+            String companyName = cooperative.getName();
+
+            txtCooperativeName.setText(companyName);
+
+        }
     }
 
     @FXML

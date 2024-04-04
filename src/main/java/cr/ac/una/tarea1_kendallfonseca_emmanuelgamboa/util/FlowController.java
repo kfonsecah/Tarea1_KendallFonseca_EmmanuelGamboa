@@ -7,6 +7,10 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.App;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.Controller;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -28,9 +32,14 @@ public class FlowController {
     private static Stage mainStage;
     private static ResourceBundle idioma;
     private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
+    Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
 
     private FlowController() {
+
+
     }
+
 
     private static void createInstance() {
         if (INSTANCE == null) {
@@ -84,7 +93,15 @@ public class FlowController {
         try {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/"+viewname+".fxml"), this.idioma)));
             this.mainStage.show();
-            this.mainStage.setTitle("UNA");
+            this.mainStage.setTitle(cooperative.getName());
+            String logoPath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
+            File logoFile = new File(logoPath);
+            Image logoImage = new Image(logoFile.toURI().toString());
+
+            this.mainStage.getIcons().clear();
+            this.mainStage.getIcons().add(cooperative.getLogo());
+
+
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
