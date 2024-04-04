@@ -11,8 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -24,6 +27,7 @@ import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -57,7 +61,10 @@ public class BankConfigController extends Controller implements Initializable {
         // TODO
     }
 
-    public void onActionBtnChangeIcon(ActionEvent event) {
+    @FXML
+    private void onActionBtnChangeIcon(ActionEvent event) {
+        Mensaje mensaje = new Mensaje();
+
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Imágenes (*.png, *.jpg)", "*.png", "*.jpg");
         fileChooser.getExtensionFilters().add(filter);
@@ -66,23 +73,41 @@ public class BankConfigController extends Controller implements Initializable {
             try {
                 // Save the selected image as "newLogo.png" in the folder "cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources"
                 Path source = file.toPath();
-                Path target = Paths.get("../resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png");
+                Path target = Paths.get("src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png");
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 
-                // Set the new logo as the application icon
-                Controller.iconChanger(getStage(), new Image("file:../resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png"));
+                // Set the selected image to the previewLogo ImageView
+                Image image = new Image(file.toURI().toString());
+                previewLogo.setImage(image);
+
+
             } catch (IOException e) {
                 e.printStackTrace();
+                // Show an error message
+                mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ha ocurrido un error al guardar la imagen.");
             }
         }
     }
 
-
-    public void onActionBtnAceptar(ActionEvent event) {
+    @FXML
+    private void onActionBtnAceptar(ActionEvent event) {
+        Mensaje mensaje = new Mensaje();
         String newName = txtBankName.getText();
         if (!newName.isEmpty()) {
             String currentName = System.getProperty("java.class.title");
             Controller.nameChanger(getStage(), newName);
+
+            // Set the new logo as the application icon
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.getIcons().clear();
+            stage.getIcons().add(new Image("file:src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png"));
+
+            // Show a success message
+mensaje.showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El nombre y logo de la Cooperativa han sido cambiados, el nuevo nombre es: " + newName + ".");
+
+        } else {
+            // Show an error message
+            mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete el campo de nombre.");
         }
     }
 }
