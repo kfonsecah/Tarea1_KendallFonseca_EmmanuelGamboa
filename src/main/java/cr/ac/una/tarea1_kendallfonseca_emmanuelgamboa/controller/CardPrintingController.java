@@ -79,9 +79,9 @@ public class CardPrintingController extends Controller implements Initializable 
     private void loadUsersToTableView() {
         // Create columns
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
-        TableColumn<Associated, String> nameColumn = new TableColumn<>("Name");
-        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Last Name");
-        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Age");
+        TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
+        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
+        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
 
         // Set cell value factories
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
