@@ -19,6 +19,7 @@ import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,13 +52,14 @@ public class CardPrintingController extends Controller implements Initializable 
     private AnchorPane root;
 
     @FXML
-    private MFXTextField txtAge;
+    private Label txtAge;
 
     @FXML
-    private MFXTextField txtFolio;
+    private Label txtFolio;
 
     @FXML
-    private MFXTextField txtName;
+    private Label txtName;
+
 
     @FXML
     private TableView<Associated> usersTable;

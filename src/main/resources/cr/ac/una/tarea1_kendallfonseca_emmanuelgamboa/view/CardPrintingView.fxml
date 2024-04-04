@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -41,26 +41,30 @@
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </StackPane.margin>
                                     </ImageView>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <VBox prefHeight="200.0" prefWidth="0.0">
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="125.0">
                                              <children>
-                                                <MFXTextField fx:id="txtFolio" minHeight="-Infinity" minWidth="-Infinity" prefHeight="11.0" prefWidth="73.0" style="-fx-background-color: #F2F2F2;">
+                                                <Label fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="71.0" text="folio">
                                                    <VBox.margin>
-                                                      <Insets bottom="10.0" left="65.0" right="10.0" top="140.0" />
+                                                      <Insets left="5.0" />
                                                    </VBox.margin>
-                                                </MFXTextField>
-                                                <MFXTextField fx:id="txtName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="9.0" prefWidth="131.0" style="-fx-background-color: #F2F2F2;">
+                                                </Label>
+                                                <Label fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="122.0" text="name">
                                                    <VBox.margin>
-                                                      <Insets bottom="10.0" left="82.0" right="10.0" top="15.0" />
+                                                      <Insets left="5.0" top="27.0" />
                                                    </VBox.margin>
-                                                </MFXTextField>
-                                                <MFXTextField fx:id="txtAge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="11.0" prefWidth="130.0" style="-fx-background-color: #F2F2F2;">
+                                                </Label>
+                                                <Label fx:id="txtAge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="115.0" text="age">
                                                    <VBox.margin>
-                                                      <Insets bottom="10.0" left="82.0" right="10.0" top="10.0" />
+                                                      <Insets left="5.0" top="17.0" />
                                                    </VBox.margin>
-                                                </MFXTextField>
-                                             </children></VBox>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets bottom="70.0" left="65.0" right="70.0" top="140.0" />
+                                             </HBox.margin>
+                                          </VBox>
                                           <ImageView fx:id="imagePreview" fitHeight="140.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                                              <HBox.margin>
                                                 <Insets left="157.0" right="80.0" top="55.0" />
