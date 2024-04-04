@@ -45,17 +45,17 @@
                                        <children>
                                           <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="125.0">
                                              <children>
-                                                <Label fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="71.0" text="folio">
+                                                <Label fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="71.0">
                                                    <VBox.margin>
                                                       <Insets left="5.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="122.0" text="name">
+                                                <Label fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="122.0">
                                                    <VBox.margin>
                                                       <Insets left="5.0" top="27.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="txtAge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="115.0" text="age">
+                                                <Label fx:id="txtAge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="115.0">
                                                    <VBox.margin>
                                                       <Insets left="5.0" top="17.0" />
                                                    </VBox.margin>
