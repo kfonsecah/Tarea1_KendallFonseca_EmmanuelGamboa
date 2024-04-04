@@ -84,6 +84,7 @@ public class FlowController {
         try {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/"+viewname+".fxml"), this.idioma)));
             this.mainStage.show();
+            this.mainStage.setTitle("UNA");
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
@@ -105,7 +106,6 @@ public class FlowController {
         Stage stage = controller.getStage();
         if (stage == null) {
             stage = this.mainStage;
-            stage.setTitle("UNA");
             controller.setStage(stage);
         }
         switch (location) {
