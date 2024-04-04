@@ -105,6 +105,7 @@ public class FlowController {
         Stage stage = controller.getStage();
         if (stage == null) {
             stage = this.mainStage;
+            stage.setTitle("UNA");
             controller.setStage(stage);
         }
         switch (location) {

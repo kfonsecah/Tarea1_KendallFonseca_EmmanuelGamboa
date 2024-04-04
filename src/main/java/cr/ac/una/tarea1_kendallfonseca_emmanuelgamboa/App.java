@@ -2,6 +2,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.PrincipalController;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,13 +20,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Cooperative cooperative;
-        cooperative= new Cooperative();
-
+        Cooperative cooperative = new Cooperative();
+        cooperative.loadFromTxtFile("src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/cooperativa_info.txt");
+        AppContext.getInstance().set("cooperative", cooperative);
         FlowController.getInstance().InitializeFlow(stage, null);
         FlowController.getInstance().goMain("PrincipalView");
-
     }
+
 
 
     public static void main(String[] args) {

@@ -18,7 +18,6 @@ public class Associated {
     public ArrayList<String> Associated= new ArrayList<String>();
 
     public Associated() {
-
     }
     public Associated(String name, String lastName, int age, String folio, String photo) {
         this.AssoName = name;
