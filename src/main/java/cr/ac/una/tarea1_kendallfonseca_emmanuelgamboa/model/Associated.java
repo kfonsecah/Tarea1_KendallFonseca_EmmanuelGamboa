@@ -1,5 +1,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import javafx.scene.Node;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -111,5 +113,6 @@ public class Associated {
     }
 
 
-    }
+
+}
 

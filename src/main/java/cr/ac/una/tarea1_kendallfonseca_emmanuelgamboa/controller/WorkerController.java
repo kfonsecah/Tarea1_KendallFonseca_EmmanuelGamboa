@@ -67,8 +67,9 @@ public class WorkerController extends Controller implements Initializable {
         FlowController.getInstance().goView("OpenAccountsView");
     }
 
+    @FXML
     private void onActionBtnPrintID(ActionEvent event) {
-        //FlowController.getInstance().goView("PrintIDView");
+        FlowController.getInstance().goView("CardPrintingView");
     }
 
     private void onActionBtnWithdrawDeposits(ActionEvent event) {

@@ -15,7 +15,7 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin></MFXButton>
-            <MFXButton fx:id="btnPrintID" text="Impresion del Carnet">
+            <MFXButton fx:id="btnPrintID" onAction="#onActionBtnPrintID" text="Impresion del Carnet">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin></MFXButton>
