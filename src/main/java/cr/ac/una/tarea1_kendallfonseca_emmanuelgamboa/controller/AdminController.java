@@ -55,6 +55,7 @@ public class AdminController extends Controller implements Initializable {
     private void onActionBtnAccountsConfig(ActionEvent event) {
         FlowController.getInstance().goView("AccountsConfigView");
     }
+
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 
