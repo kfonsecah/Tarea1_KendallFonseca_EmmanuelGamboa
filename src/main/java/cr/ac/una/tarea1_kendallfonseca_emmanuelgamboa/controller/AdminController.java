@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 public class AdminController extends Controller implements Initializable {
 
@@ -26,6 +28,12 @@ public class AdminController extends Controller implements Initializable {
 
     @FXML
     private AnchorPane root;
+    
+    @FXML
+    private ImageView imageLogo;
+
+    @FXML
+    private Label txtCooperativeName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

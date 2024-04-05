@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -30,6 +32,12 @@ public class AssociateController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnRegister;
+    
+    @FXML
+    private ImageView imageLogo;
+
+    @FXML
+    private Label txtCooperativeName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
