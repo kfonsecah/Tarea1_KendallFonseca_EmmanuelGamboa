@@ -8,15 +8,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@SuppressWarnings("ALL")
 public class Cooperative {
-    private String nombre;
+    private String cooperativeName;
     private Image logo;
 
     public Cooperative() {
         //stage.setTitle(name);
     }
     public String getName(){
-        return nombre;
+        return cooperativeName;
     }
     public Image getLogo(){
         return logo;
@@ -25,6 +26,16 @@ public class Cooperative {
     public void loadFromTxtFile() {
         String filePath = "cooperativa_info.txt";
         File txtFile = new File(filePath);
+
+        if (!txtFile.exists()) {
+            try {
+                txtFile.createNewFile();
+                saveDefaultCooperativaInfo();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (txtFile.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(txtFile))) {
                 String line;
@@ -35,34 +46,38 @@ public class Cooperative {
                         String value = parts[1].trim();
 
                         if (key.equals("Nombre de la cooperativa")) {
-                            this.nombre = value;
+                            this.cooperativeName = value;
                         } else if (key.equals("Ruta del logo")) {
-                            this.logo = new Image("file:" + value); // Carga la imagen desde la ruta relativa
+                            this.logo = new Image("file:" + value);
                         }
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                // Manejar cualquier error al leer el archivo
             }
         } else {
-            // Establecer un nombre y un logo por defecto si el archivo no existe
-            this.nombre = "Nombre por defecto";
+            this.cooperativeName = "Nombre por defecto";
             this.logo = null;
         }
     }
 
+    private void saveDefaultCooperativaInfo() throws IOException {
+        String filePath = "cooperativa_info.txt";
+        FileWriter writer = new FileWriter(filePath);
+        writer.write("Nombre de la cooperativa:Nombre por defecto\n");
+        writer.write("Ruta del logo: src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png");
+        writer.close();
+    }
 
-    // Método para guardar la información en el archivo de texto
+
     public void saveToTxtFile(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("Nombre de la cooperativa: " + this.nombre);
+            writer.write("Nombre de la cooperativa: " + this.cooperativeName);
             writer.newLine();
             writer.write("Ruta del logo: " + (this.logo != null ? this.logo.getUrl() : ""));
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
-            // Manejar cualquier error al escribir en el archivo
         }
     }
 }

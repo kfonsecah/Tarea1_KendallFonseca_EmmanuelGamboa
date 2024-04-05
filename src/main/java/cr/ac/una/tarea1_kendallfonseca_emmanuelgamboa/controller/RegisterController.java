@@ -79,7 +79,6 @@ public class RegisterController extends Controller implements Initializable {
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","");
 
 
-              // AppContext.getInstance().set(associated.getAssoFolio(), associated);
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoName());
@@ -88,7 +87,7 @@ public class RegisterController extends Controller implements Initializable {
                 associated.Associated.add(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoPhoto());
                 associated.createFile(associated);
-//
+
 
 
                 txtName.setText("");
@@ -96,9 +95,7 @@ public class RegisterController extends Controller implements Initializable {
                 txtAge.setText("");
                 userPhotoPrev.setImage(null);
 
-                //System.out.println(associated.getAssoPhoto());
 
-                //mostra la lista de asociados mediante un for
                 for (int i = 0; i < associated.Associated.size(); i++) {
                     System.out.println(associated.Associated.get(i));
                 }
@@ -119,24 +116,6 @@ public class RegisterController extends Controller implements Initializable {
 
     }
 
-
-
-
-
-        //QUE SE SOLICITE DIGITAR EL FOLIO
-
-        //JUST TEST
-//        while(true){
-//            System.out.println("Folio: ");
-//            Scanner scanner = new Scanner(System.in);
-//            String folio = scanner.nextLine();
-//            Associated associated = (Associated) AppContext.getInstance().get(folio);
-//            System.out.println(associated.getAssoName());
-//            System.out.println(associated.getAssoLastName());
-//            System.out.println(associated.getAssoAge());
-//        }
-
-
     @FXML
     private void loadLastUserPhoto() {
         File photoFile = new File("userphotos/photo1.png");
@@ -151,7 +130,6 @@ public class RegisterController extends Controller implements Initializable {
 
     private void renameLastUserPhoto(String folio) {
         File photoFile = new File("userphotos/photo1.png");
-
         if (photoFile.exists()) {
             String filePath = photoFile.getParent();
             String newFileName = folio + ".png";
@@ -159,7 +137,7 @@ public class RegisterController extends Controller implements Initializable {
 
             if (photoFile.renameTo(newFile)) {
                 System.out.println("La foto 'photo1.png' se ha renombrado correctamente a: " + newFileName);
-                loadLastUserPhoto(); // Cargar la nueva imagen renombrada
+                loadLastUserPhoto();
             } else {
                 System.out.println("No se pudo renombrar la foto 'photo1.png'.");
             }
@@ -167,26 +145,6 @@ public class RegisterController extends Controller implements Initializable {
 
         }
     }
-
-    //metodo tan complejo
-//    private void renameLastUserPhoto(String folio) {
-//        File folder = new File("userphotos/");
-//        File[] files = folder.listFiles();
-//        if (files != null && files.length > 0) {
-//            Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
-//            File lastPhotoFile = files[0];
-//            String filePath = lastPhotoFile.getParent();
-//            String newFileName = folio + ".png";
-//            File newFile = new File(filePath, newFileName);
-//            lastPhotoFile.renameTo(newFile);
-//            System.out.println("La ultima foto tomada se ha renombrado correctamente a: " + newFile.getName());
-//            loadLastUserPhoto();
-//
-//        } else {
-//            // No hay imagenes en la carpeta userphotos
-//            // imagen predeterminada o mostrar un mensaje al usuario
-//        }
-//    }
 }
 
 

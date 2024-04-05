@@ -57,32 +57,6 @@ public class WebCam {
         if (lastImage != null) {
             photoTaken = true;
         }
-//        try {
-//            if (lastImage != null) {
-//                String filePath = "userphotos/";
-//                File folder = new File(filePath);
-//                if (!folder.exists()) {
-//                    folder.mkdirs();
-//                }
-//
-//                int count = 1;
-//                String fileName = "photo" + count + ".png";
-//                File file = new File(folder, fileName);
-//                while (file.exists()) {
-//                    count++;
-//                    fileName = "photo" + count + ".png";
-//                    file = new File(folder, fileName);
-//                }
-//
-//                ImageIO.write(lastImage, "PNG", file);
-//                System.out.println("Photo saved successfully!");
-//            } else {
-//                System.out.println("No image to save!");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.out.println("Failed to save photo!");
-//        }
     }
     public void retakePhoto() {
         photoTaken = false;

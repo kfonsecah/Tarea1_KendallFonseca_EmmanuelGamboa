@@ -37,8 +37,7 @@ public class AdminController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        setCompanyInfo();
+        setCooperativeInfo();
     }
 
     @Override
@@ -56,7 +55,7 @@ public class AdminController extends Controller implements Initializable {
         FlowController.getInstance().goView("AccountsConfigView");
     }
 
-    private void setCompanyInfo() {
+    private void setCooperativeInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 
         if (cooperative != null) {
