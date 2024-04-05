@@ -17,6 +17,7 @@ import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -104,7 +105,7 @@ public class CardPrintingController extends Controller implements Initializable 
     private void populateTextFieldValues() {
         Associated selectedUser = usersTable.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            txtName.setText(selectedUser.getAssoName());
+            txtName.setText(selectedUser.getAssoName()+" "+selectedUser.getAssoLastName());
             //txtLastName.setText(selectedUser.getAssoLastName());
             txtFolio.setText(selectedUser.getAssoFolio());
             txtAge.setText(String.valueOf(selectedUser.getAssoAge()));
@@ -121,6 +122,10 @@ public class CardPrintingController extends Controller implements Initializable 
 
             }
         }
+    }
+    @FXML
+    private void onActionBtnPrint(ActionEvent event) {
+        //FlowController.getInstance().goView("CardPrintingView");
     }
 
 }

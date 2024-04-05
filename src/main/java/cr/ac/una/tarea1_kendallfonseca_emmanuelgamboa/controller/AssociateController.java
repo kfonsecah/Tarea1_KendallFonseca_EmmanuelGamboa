@@ -58,7 +58,7 @@ public class AssociateController extends Controller implements Initializable {
 
             String companyName = cooperative.getName();
 
-           // txtCooperativeName.setText(companyName);
+           //txtCooperativeName.setText(companyName);
 
         }
     }
