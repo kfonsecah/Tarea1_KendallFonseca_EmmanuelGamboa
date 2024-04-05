@@ -61,12 +61,12 @@ public class AdminController extends Controller implements Initializable {
         if (cooperative != null) {
             Image logo = cooperative.getLogo();
             if (logo != null) {
-                //imageLogo.setImage(cooperative.getLogo());
+                imageLogo.setImage(cooperative.getLogo());
             }
 
             String companyName = cooperative.getName();
 
-            // txtCooperativeName.setText(companyName);
+            txtCooperativeName.setText(companyName);
 
         }
     }
