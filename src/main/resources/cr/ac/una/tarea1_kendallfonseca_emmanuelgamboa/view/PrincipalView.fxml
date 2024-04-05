@@ -16,7 +16,7 @@
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="408.0" />
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <MFXButton fx:id="btnAssociate" onAction="#onActionBtnAssociate" text="Asociados" VBox.vgrow="ALWAYS">
+                  <MFXButton fx:id="btnAdmin" onAction="#onActionBtnAdmin" text="Admin" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -24,7 +24,7 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnAdmin" onAction="#onActionBtnAdmin" text="Admin" VBox.vgrow="ALWAYS">
+                  <MFXButton fx:id="btnAssociate" onAction="#onActionBtnAssociate" text="Asociados" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
