@@ -24,14 +24,6 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnAssociate" onAction="#onActionBtnAssociate" text="Asociados" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                  </MFXButton>
                   <MFXButton fx:id="btnWorker" onAction="#onActionBtnWorker" text="Funcionario" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -39,6 +31,14 @@
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
+                  </MFXButton>
+                  <MFXButton fx:id="btnAssociate" onAction="#onActionBtnAssociate" text="Asociados" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
                   </MFXButton>
                </children>
             </VBox>
