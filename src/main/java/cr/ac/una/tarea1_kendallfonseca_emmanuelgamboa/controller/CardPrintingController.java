@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.function.Function;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
@@ -75,6 +76,7 @@ public class CardPrintingController extends Controller implements Initializable 
         AppContext appContext = AppContext.getInstance();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         loadUsersToTableView();
+        setCompanyInfo();
         // populateTextFieldValues();
 
     }
@@ -130,6 +132,21 @@ public class CardPrintingController extends Controller implements Initializable 
     @FXML
     private void onActionBtnPrint(ActionEvent event) {
         //FlowController.getInstance().goView("CardPrintingView");
+    }
+    private void setCompanyInfo() {
+        Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
+        if (cooperative != null) {
+            Image logo = cooperative.getLogo();
+            if (logo != null) {
+                imageCardLogo.setImage(cooperative.getLogo());
+            }
+
+            String companyName = cooperative.getName();
+
+            txtCardCooperativeName.setText(companyName);
+
+        }
     }
 
 }
