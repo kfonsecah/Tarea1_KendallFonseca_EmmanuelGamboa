@@ -61,10 +61,14 @@ public class CardPrintingController extends Controller implements Initializable 
     @FXML
     private Label txtName;
 
-
     @FXML
     private TableView<Associated> usersTable;
 
+    @FXML
+    private ImageView imageCardLogo;
+    
+    @FXML
+    private Label txtCardCooperativeName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

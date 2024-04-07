@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.CardPrintingController">
    <children>
@@ -43,34 +44,57 @@
                                     </ImageView>
                                     <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="125.0">
-                                             <children>
-                                                <Label fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="71.0">
-                                                   <VBox.margin>
-                                                      <Insets left="5.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <Label fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="122.0">
-                                                   <VBox.margin>
-                                                      <Insets left="5.0" top="27.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                                <Label fx:id="txtAge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="115.0">
-                                                   <VBox.margin>
-                                                      <Insets left="5.0" top="17.0" />
-                                                   </VBox.margin>
-                                                </Label>
-                                             </children>
-                                             <HBox.margin>
-                                                <Insets bottom="70.0" left="65.0" right="70.0" top="140.0" />
-                                             </HBox.margin>
-                                          </VBox>
-                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="130.0">
+                                          <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="346.0">
+                                             <top>
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="245.0" BorderPane.alignment="TOP_LEFT">
+                                                   <BorderPane.margin>
+                                                      <Insets left="50.0" top="45.0" />
+                                                   </BorderPane.margin>
+                                                   <children>
+                                                      <ImageView fx:id="imageCardLogo" fitHeight="65.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                      <Label fx:id="txtCardCooperativeName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="104.0">
+                                                         <font>
+                                                            <Font name="Book Antiqua" size="19.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </top>
+                                             <left>
+                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="126.0" BorderPane.alignment="TOP_LEFT">
+                                                   <children>
+                                                      <Label fx:id="txtFolio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="71.0">
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="122.0">
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" top="27.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="txtAge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="115.0">
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" top="17.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <BorderPane.margin>
+                                                      <Insets left="65.0" top="24.0" />
+                                                   </BorderPane.margin>
+                                                </VBox>
+                                             </left>
+                                          </BorderPane>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="131.0">
                                              <children>
                                                 <ImageView fx:id="imagePreview" fitHeight="154.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                              <HBox.margin>
-                                                <Insets left="89.0" top="50.0" />
+                                                <Insets left="2.9" top="50.0" />
                                              </HBox.margin>
                                           </VBox>
                                        </children>
