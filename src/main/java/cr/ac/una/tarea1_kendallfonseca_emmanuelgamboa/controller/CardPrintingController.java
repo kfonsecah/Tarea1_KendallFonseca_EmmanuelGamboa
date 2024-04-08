@@ -4,11 +4,43 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+
+
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
+import javax.imageio.ImageIO;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
+
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
@@ -29,6 +61,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -58,6 +91,9 @@ public class CardPrintingController extends Controller implements Initializable 
 
     @FXML
     private Label txtFolio;
+
+    @FXML
+    private StackPane printPDF;
 
     @FXML
     private Label txtName;
@@ -131,7 +167,48 @@ public class CardPrintingController extends Controller implements Initializable 
     }
     @FXML
     private void onActionBtnPrint(ActionEvent event) {
-        //FlowController.getInstance().goView("CardPrintingView");
+        // Tomar una captura de pantalla de la StackPane
+        SnapshotParameters params = new SnapshotParameters();
+        // Se crea un objeto SnapshotParameters para especificar los parámetros de la captura de pantalla
+        WritableImage snapshot = printPDF.snapshot(params, null);
+        // Se toma la captura de pantalla de la StackPane y se almacena en el objeto WritableImage
+
+        // Convertir la captura de pantalla a un BufferedImage
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+        // Se convierte la captura de pantalla en un objeto BufferedImage de Java AWT
+
+        try (PDDocument document = new PDDocument()) {
+            // Crear un nuevo documento PDF
+            PDPage page = new PDPage();
+            // Crear una nueva página en el documento PDF
+            document.addPage(page);
+            // Agregar la página al documento PDF
+
+            // Convertir el BufferedImage a un arreglo de bytes
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            byte[] imageData = byteArrayOutputStream.toByteArray();
+            // Se convierte el BufferedImage a un arreglo de bytes y se almacena en el objeto ByteArrayOutputStream
+            // Luego, se obtiene el arreglo de bytes del objeto ByteArrayOutputStream
+
+            // Crear un PDImageXObject a partir del arreglo de bytes
+            PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, imageData, "image/png");
+            // Se crea un objeto PDImageXObject a partir del arreglo de bytes y se agrega al documento PDF
+
+            // Crear un PDPageContentStream
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // Dibujar la imagen en la página
+                contentStream.drawImage(pdImage, 50, 50);
+                // Se dibuja la imagen en la página en las coordenadas (50, 50)
+            }
+
+            // Guardar el documento como un archivo PDF
+            document.save("card_" + txtFolio.getText() + ".pdf");
+            // Se guarda el documento PDF en el disco con el nombre "card" seguido del texto del campo de folio
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Si ocurre una excepción de entrada/salida, se imprime la pila de trazas de la excepción
+        }
     }
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
