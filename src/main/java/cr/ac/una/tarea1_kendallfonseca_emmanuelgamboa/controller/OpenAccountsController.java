@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -22,7 +23,11 @@ import javafx.scene.layout.AnchorPane;
 public class OpenAccountsController extends Controller implements Initializable {
 
     @FXML
-    private MFXLegacyTableView<?> accountstable;
+    private TableView<?> activeAccounts;
+
+    @FXML
+    private TableView<?> pendingAccounts;
+
 
     @FXML
     private AnchorPane root;

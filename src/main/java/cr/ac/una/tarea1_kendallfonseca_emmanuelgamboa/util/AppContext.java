@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 
 import java.util.logging.Level;
@@ -23,6 +25,8 @@ public class AppContext {
     private static final String USERS_FILE_PATH = "Asociados.txt";
     private static HashMap<String, Object> context = new HashMap<>();
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
+    private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
+
 
 
     private AppContext() {
@@ -100,6 +104,14 @@ public class AppContext {
             System.err.println("Error reading users from the file: " + e.getMessage());
         }
         context.put("asociados", asociados);
+    }
+
+    public void addCooperative(Cooperative cooperative) {
+        cooperatives.put("cooperative", cooperative);
+    }
+
+    public Cooperative getCooperative(String name) {
+        return cooperatives.get("cooperative");
     }
     public static ObservableList<Associated> getAsociados() {
         return asociados;

@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import com.sun.source.tree.WhileLoopTree;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -77,6 +78,8 @@ public class RegisterController extends Controller implements Initializable {
             }
             else{
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","");
+
+                Account account = associated.createAccount();
 
 
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());

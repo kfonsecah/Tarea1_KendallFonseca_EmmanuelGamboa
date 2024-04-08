@@ -1,5 +1,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,10 +14,23 @@ import java.io.IOException;
 public class Cooperative {
     private String cooperativeName;
     private Image logo;
+    private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
+
 
     public Cooperative() {
         //stage.setTitle(name);
     }
+
+    public ObservableList<Associated> getAssociatedList() {
+        return associatedList;
+    }
+    public void addAssociated(Associated associated) {
+        associatedList.add(associated);
+    }
+    public void removeAssociated(Associated associated) {
+        associatedList.remove(associated);
+    }
+
     public String getName(){
         return cooperativeName;
     }

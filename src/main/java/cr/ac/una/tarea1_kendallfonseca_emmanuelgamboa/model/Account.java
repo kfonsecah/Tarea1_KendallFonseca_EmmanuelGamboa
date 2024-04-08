@@ -1,5 +1,8 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private String accountNumber;
     private String accountType;
@@ -7,8 +10,9 @@ public class Account {
     private String currency;
     private String accountHolder;
 
-    public Account() {
-    }
+    private static List<Account> accounts = new ArrayList<>();
+
+
 
     public Account(String accountNumber, String accountType, double balance, String currency, String accountHolder) {
         this.accountNumber = accountNumber;
@@ -16,7 +20,20 @@ public class Account {
         this.balance = balance;
         this.currency = currency;
         this.accountHolder = accountHolder;
+        accounts.add(this);
     }
+    public static void addAccount(Account account) {
+        accounts.add(account);
+    }
+    public static Account getAccountByNumber(String accountNumber) {
+        for (Account account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
 
     public String getAccountNumber() {
         return accountNumber;

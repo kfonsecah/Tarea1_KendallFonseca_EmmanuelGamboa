@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Associated {
@@ -16,6 +17,7 @@ public class Associated {
     public String AssoFolio;
     public String AssoCuenta;
     public ArrayList<String> Associated= new ArrayList<String>();
+    private List<Account> accounts = new ArrayList<>();
 
     public Associated() {
     }
@@ -27,6 +29,22 @@ public class Associated {
         this.AssoPhoto = photo;
 
     }
+
+
+    public Account createAccount() {
+        String accountNumber = createAccountNumber();
+        Account account = new Account(accountNumber, "Savings", 0, "CRC", this.AssoName + " " + this.AssoLastName);
+        this.accounts.add(account);
+        return account;
+    }
+
+    public String createAccountNumber() {
+        Random random = new Random();
+        long randomNumber = Math.abs(random.nextLong()); // Generate a random long integer
+        String cuenta = String.format("%019d", randomNumber); // Format the integer with leading zeros
+        return cuenta;
+    }
+
 
 
     public ArrayList<String> getAssociated() {
