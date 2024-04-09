@@ -95,6 +95,10 @@ public class Cooperative {
             e.printStackTrace();
         }
     }
+    public void accountsConfig() throws IOException {
+        AccountType accountType = new AccountType();
+        accountType.addToFile(accountType);
+    }
 }
 
 

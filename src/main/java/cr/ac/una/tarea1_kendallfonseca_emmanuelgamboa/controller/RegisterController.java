@@ -81,7 +81,7 @@ public class RegisterController extends Controller implements Initializable {
 
                 Account account = associated.createAccount();
 
-
+                associated.createIban();
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoName());
@@ -89,6 +89,7 @@ public class RegisterController extends Controller implements Initializable {
                 associated.Associated.add(String.valueOf(associated.getAssoAge()));
                 associated.Associated.add(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoPhoto());
+                associated.Associated.add(associated.getIban());
                 associated.createFile(associated);
 
 

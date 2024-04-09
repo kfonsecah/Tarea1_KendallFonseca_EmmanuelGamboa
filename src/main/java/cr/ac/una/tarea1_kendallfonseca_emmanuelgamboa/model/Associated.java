@@ -16,6 +16,7 @@ public class Associated {
     public String AssoPhoto;
     public String AssoFolio;
     public String AssoCuenta;
+    private String iban;
     public ArrayList<String> Associated= new ArrayList<String>();
     private List<Account> accounts = new ArrayList<>();
 
@@ -89,6 +90,12 @@ public class Associated {
     public void setAssoCuentas(String cuenta) {
         this.AssoCuenta = cuenta;
     }
+    public String getIban() {
+        return iban;
+    }
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
 
     public String createFolio() {
         Random random = new Random();
@@ -105,6 +112,7 @@ public class Associated {
         this.Associated.add(String.valueOf(this.getAssoAge()));
         this.Associated.add(this.getAssoFolio());
         this.Associated.add(this.getAssoPhoto());
+        this.Associated.add(this.getIban());
     }
 
     public void addToFile(Associated associated) throws IOException {
@@ -123,10 +131,17 @@ public class Associated {
         associated.addToFile(associated);
     }
 
+
+
     public void printAssociated(){
         for (String aso: Associated) {
             System.out.println(aso);
         }
+    }
+    public String createIban() {
+        Random random = new Random();
+        long randomNumber = Math.abs(random.nextLong());
+        return String.format("IBAN-%019d", randomNumber);
     }
 
 
