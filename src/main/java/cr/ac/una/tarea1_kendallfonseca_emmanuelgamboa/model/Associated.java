@@ -140,9 +140,7 @@ public class Associated {
         }
     }
     public String createIban() {
-        Random random = new Random();
-        long randomNumber = Math.abs(random.nextLong());
-        return String.format("IBAN-%019d", randomNumber);
+        return "CR";
     }
 
 
