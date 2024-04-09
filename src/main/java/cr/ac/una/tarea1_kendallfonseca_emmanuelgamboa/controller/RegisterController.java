@@ -77,9 +77,9 @@ public class RegisterController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
             }
             else{
-                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","");
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","", "");
 
-                Account account = associated.createAccount();
+                //Account account = associated.createAccount();
 
                 associated.createIban();
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());

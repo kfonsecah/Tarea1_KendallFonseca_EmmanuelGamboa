@@ -88,14 +88,15 @@ public class AppContext {
             while ((line = reader.readLine()) != null) {
                 if (!line.isEmpty()) {
                     String[] userData = line.replaceAll("\\[|\\]", "").split(", ");
-                    if (userData.length == 5) {
+                    if (userData.length == 6) {
                         String name = userData[0];
                         String lastName = userData[1];
                         int age = Integer.parseInt(userData[2]);
                         String folio = userData[3];
                         String imageName = userData[4];
+                        String iban = userData[5];
 
-                        Associated associated = new Associated(name, lastName, age, folio, imageName);
+                        Associated associated = new Associated(name, lastName, age, folio, imageName, iban);
                         asociados.add(associated);
                     }
                 }

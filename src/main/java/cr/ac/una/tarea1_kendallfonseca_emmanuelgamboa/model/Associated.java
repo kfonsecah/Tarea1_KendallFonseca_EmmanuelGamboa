@@ -22,12 +22,13 @@ public class Associated {
 
     public Associated() {
     }
-    public Associated(String name, String lastName, int age, String folio, String photo) {
+    public Associated(String name, String lastName, int age, String folio, String photo, String iban) {
         this.AssoName = name;
         this.AssoLastName = lastName;
         this.AssoAge = age;
         this.AssoFolio = folio;
         this.AssoPhoto = photo;
+        this.iban = iban;
 
     }
 
