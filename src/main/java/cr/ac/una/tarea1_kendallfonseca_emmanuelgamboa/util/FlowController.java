@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -94,6 +97,8 @@ public class FlowController {
             this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/"+viewname+".fxml"), this.idioma)));
             this.mainStage.show();
             this.mainStage.setTitle(cooperative.getName());
+            MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
+            this.mainStage.show();
             String logoPath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
             File logoFile = new File(logoPath);
             Image logoImage = new Image(logoFile.toURI().toString());
