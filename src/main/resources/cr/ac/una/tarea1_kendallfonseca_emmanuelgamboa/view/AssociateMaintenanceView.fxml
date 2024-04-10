@@ -51,7 +51,7 @@
                                     <Font name="Californian FB Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="txtFolio" graphicTextGap="10.0" prefHeight="33.0" prefWidth="197.0" styleClass="lblFolio" stylesheets="@Styles.css" text="Folio">
+                              <Label fx:id="txtFolio" graphicTextGap="10.0" prefHeight="33.0" prefWidth="197.0" styleClass="lblFolio" stylesheets="@Styles.css" text="  Folio">
                                  <VBox.margin>
                                     <Insets left="80.0" top="20.0" />
                                  </VBox.margin>

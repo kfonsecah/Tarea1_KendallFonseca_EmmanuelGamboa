@@ -1,7 +1,5 @@
 .btnPrincipal {
-    -fx-background-color: #ffffff;
- /* -fx-text-fill: #000000;
-    -fx-font-size: 17px*/
+    -fx-background-color: #27aab4;
     -fx-padding: 15px 20px;
     -fx-border-radius: 45px;
     -fx-cursor: hand;
@@ -16,6 +14,9 @@
     -fx-alignment:CENTER_LEFT;
 }
 
+.btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
+    -fx-background-color: #27aab4;
+}
 .etiqueta {
     -fx-font-size: 16px;
     -fx-text-fill: #333;
@@ -24,22 +25,24 @@
 .btnWorkers{
     -fx-background-color: #27aab4;
     -fx-text-fill: #000000;
-    -fx-font-size: 17px;
+    -fx-font-size: 14px;
     -fx-padding: 15px 20px;
     -fx-border-radius: 45px;
     -fx-cursor: hand;
     -fx-button-type: RAISED;
 }
 
+.btnWorkers.btnWorkers:armed,.btnWorkers:focused{
+    -fx-background-color: #27aab4;
+}
+
 .button:hover{
     -fx-background-color: #FF6D00;
 }
 
-.btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
-    -fx-background-color: #2196F3;
-}
+
 
 .lblFolio{
     -fx-background-color: #ffffff;
-
+    -fx-border-radius: 45px;
 }
