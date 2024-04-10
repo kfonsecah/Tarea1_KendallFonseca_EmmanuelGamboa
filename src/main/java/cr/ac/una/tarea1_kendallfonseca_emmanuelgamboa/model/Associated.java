@@ -140,7 +140,8 @@ public class Associated {
         }
     }
     public String createIban() {
-        return "CR";
+        this.iban = "CR" + createAccountNumber();
+        return iban;
     }
 
 
