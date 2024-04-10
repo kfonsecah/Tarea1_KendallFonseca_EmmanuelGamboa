@@ -1,13 +1,45 @@
 .btnPrincipal {
     -fx-background-color: #ffffff;
-    -fx-text-fill: #000000;
-    -fx-font-size: 17px;
+ /* -fx-text-fill: #000000;
+    -fx-font-size: 17px*/
     -fx-padding: 15px 20px;
     -fx-border-radius: 45px;
-    -fx-cursor: hand
+    -fx-cursor: hand;
+
+    -jfx-button-type: RAISED;
+    -mfx-button-type: RAISED;
+    -fx-opacity: 0.8;
+    -fx-content-display: left;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment:CENTER_LEFT;
 }
 
 .etiqueta {
     -fx-font-size: 16px;
     -fx-text-fill: #333;
+}
+
+.btnWorkers{
+    -fx-background-color: #27aab4;
+    -fx-text-fill: #000000;
+    -fx-font-size: 17px;
+    -fx-padding: 15px 20px;
+    -fx-border-radius: 45px;
+    -fx-cursor: hand;
+    -fx-button-type: RAISED;
+}
+
+.button:hover{
+    -fx-background-color: #FF6D00;
+}
+
+.btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
+    -fx-background-color: #2196F3;
+}
+
+.lblFolio{
+    -fx-background-color: #ffffff;
+
 }

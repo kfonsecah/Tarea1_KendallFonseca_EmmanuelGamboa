@@ -29,6 +29,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
@@ -51,7 +52,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXTextField txtAge;
 
     @FXML
-    private MFXTextField txtFolio;
+    private Label txtFolio;
 
     @FXML
     private MFXTextField txtLastName;
