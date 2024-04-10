@@ -4,30 +4,27 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AccountType {
 
-    public ArrayList<String> cuentas = new ArrayList<String>();
-
-    public String name;
-
+    private List<AccountType> accounts = new ArrayList<>();
+    private String name;
 
 
     public AccountType() {
     }
 
-    public AccountType(String name){
+    public AccountType(String name) {
         this.name = name;
-
     }
 
-
-    public ArrayList<String> getCuentas() {
-        return cuentas;
+    public List<AccountType> getAccounts() {
+        return accounts;
     }
 
-    public void setCuentas(ArrayList<String> cuentas) {
-        this.cuentas = cuentas;
+    public void setAccounts(List<AccountType> accounts) {
+        this.accounts = accounts;
     }
 
     public String getName() {
@@ -38,38 +35,44 @@ public class AccountType {
         this.name = name;
     }
 
-
-    public void addAccount(){
-        AccountType accounts = new AccountType(name);
-        accounts.cuentas.add(accounts.getName());
-
-
+    public void addAccount(AccountType account) {
+        accounts.add(account);
     }
 
-    public void deleteAccount(){
-        AccountType accounts = new AccountType(name);
-        accounts.cuentas.remove(accounts.getName());
-
+    public void deleteAccount(AccountType account) {
+        accounts.remove(account);
     }
 
-    public void addToFile(AccountType account) throws IOException {
-
-        account.addAccount();
-        BufferedWriter writer = new BufferedWriter(new FileWriter("Cuentas.txt",true));
+    public void addToFile(AccountType accountType) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Cuentas.txt", true));
 
         try {
-
-            writer.write(account.getCuentas().toString());
+            writer.write(getName());
             writer.newLine();
             writer.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void createFile(AccountType account) throws IOException {
-        account.addToFile(account);
+    public void createFile() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Cuentas.txt"));
+
+        try {
+            writer.write("Cuenta Corriente");
+            writer.newLine();
+            writer.write("Ahorro a la vista");
+            writer.newLine();
+            writer.write("Cuenta Naranja");
+            writer.newLine();
+            writer.write("Cuenta Objetivo");
+            writer.newLine();
+            writer.write("Pequenhos ahorros");
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -9,11 +9,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("ALL")
 public class Cooperative {
     private String cooperativeName;
     private Image logo;
+    private List<AccountType> accountType;
     private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
 
 
@@ -120,6 +123,16 @@ public class Cooperative {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void accountsConfig() throws IOException {
+        accountType = new ArrayList<AccountType>();
+        accountType.add(new AccountType("Cuenta Corriente"));
+        accountType.add(new AccountType("Ahorro a la vista"));
+        accountType.add(new AccountType("Cuenta Naranja"));
+        accountType.add(new AccountType("Cuenta Objetivo"));
+        accountType.add(new AccountType("Pequenhos ahorros"));
+
+        accountType.get(0).addToFile(accountType.get(0));
     }
 }
 
