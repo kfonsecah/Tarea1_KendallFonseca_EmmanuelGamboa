@@ -9,11 +9,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -22,14 +26,28 @@ import javafx.event.ActionEvent;
  */
 public class AccountsConfigController extends Controller implements Initializable {
 
-    @FXML
-    private MFXButton btnCancel;
+    public class PleaseProvideControllerClassName {
 
-    @FXML
-    private MFXButton btnSave;
+        @FXML
+        private MFXButton btn;
 
-    @FXML
-    private AnchorPane root;
+        @FXML
+        private MFXButton btnAdd;
+
+        @FXML
+        private MFXButton btnEliminar;
+
+        @FXML
+        private BorderPane root;
+
+        @FXML
+        private TableView<?> tableTypesAccount;
+
+        @FXML
+        private MFXTextField txtNewAccountType;
+
+    }
+
 
     /**
      * Initializes the controller class.
