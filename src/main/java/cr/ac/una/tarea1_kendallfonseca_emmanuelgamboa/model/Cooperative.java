@@ -19,6 +19,7 @@ public class Cooperative {
 
     public Cooperative() {
         //stage.setTitle(name);
+        saveAccountConfigToFile();
     }
 
     public ObservableList<Associated> getAssociatedList() {
@@ -95,10 +96,33 @@ public class Cooperative {
             e.printStackTrace();
         }
     }
-    public void accountsConfig() throws IOException {
-        AccountType accountType = new AccountType();
-        accountType.addToFile(accountType);
+
+    public void saveAccountConfigToFile() {
+        String filePath = "account_config.txt";
+        File file = new File(filePath);
+
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                writer.write("Account type: Cuenta Corriente*");
+                writer.newLine();
+                writer.write("Account type: Ahorro a la vista");
+                writer.newLine();
+                writer.write("Account type: Cuenta Naranja*");
+                writer.newLine();
+                writer.write("Account type: Cuenta Objetivo");
+                writer.newLine();
+                    writer.write("Account type: Pequenhos ahorros");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+
+
 
 

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #767676; -fx-background-radius: 40;" BorderPane.alignment="CENTER">
@@ -36,7 +35,7 @@
                               <Insets bottom="40.0" left="400.0" right="40.0" top="40.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton fx:id="btnEliminar" text="Eliminar">
+                        <MFXButton fx:id="btnDelete" text="Eliminar">
                            <HBox.margin>
                               <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                            </HBox.margin>
