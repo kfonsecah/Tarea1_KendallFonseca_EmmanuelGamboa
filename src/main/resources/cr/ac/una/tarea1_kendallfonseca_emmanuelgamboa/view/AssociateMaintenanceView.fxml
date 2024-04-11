@@ -22,7 +22,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="400.0" prefWidth="112.0" />
-                        <VBox prefHeight="660.0" prefWidth="624.0">
+                        <VBox prefHeight="659.0" prefWidth="606.0">
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
@@ -31,12 +31,12 @@
                                           <Insets left="40.0" top="40.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" text="Editar">
+                                    <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" styleClass="btnMaintenance" stylesheets="@Styles.css" text="Editar">
                                        <HBox.margin>
-                                          <Insets left="10.0" top="200.0" />
+                                          <Insets left="50.0" top="200.0" />
                                        </HBox.margin>
                                     </MFXButton>
-                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" text="NuevaFoto">
+                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" styleClass="btnMaintenance" stylesheets="@Styles.css" text="Nueva Foto">
                                        <HBox.margin>
                                           <Insets left="10.0" top="200.0" />
                                        </HBox.margin>
@@ -97,7 +97,7 @@
                               </MFXTextField>
                            </children>
                         </VBox>
-                        <TableView fx:id="userSearchList" prefHeight="660.0" prefWidth="733.0">
+                        <TableView fx:id="userSearchList" prefHeight="659.0" prefWidth="490.0">
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>

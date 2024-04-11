@@ -28,17 +28,20 @@ public class Cooperative {
     public ObservableList<Associated> getAssociatedList() {
         return associatedList;
     }
+
     public void addAssociated(Associated associated) {
         associatedList.add(associated);
     }
+
     public void removeAssociated(Associated associated) {
         associatedList.remove(associated);
     }
 
-    public String getName(){
+    public String getName() {
         return cooperativeName;
     }
-    public Image getLogo(){
+
+    public Image getLogo() {
         return logo;
     }
 
@@ -118,21 +121,15 @@ public class Cooperative {
                 writer.newLine();
                 writer.write("Account type: Cuenta Objetivo");
                 writer.newLine();
-                    writer.write("Account type: Pequenhos ahorros");
+                writer.write("Account type: Pequenhos ahorros");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void accountsConfig() throws IOException {
-        accountType = new ArrayList<AccountType>();
-        accountType.add(new AccountType("Cuenta Corriente"));
-        accountType.add(new AccountType("Ahorro a la vista"));
-        accountType.add(new AccountType("Cuenta Naranja"));
-        accountType.add(new AccountType("Cuenta Objetivo"));
-        accountType.add(new AccountType("Pequenhos ahorros"));
 
-        accountType.get(0).addToFile(accountType.get(0));
+
+    public void accountsConfig() throws IOException {
     }
 }
 

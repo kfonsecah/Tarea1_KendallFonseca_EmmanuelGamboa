@@ -4,9 +4,7 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
  * @author Kendall Fonseca
  */
 public class AccountsConfigController extends Controller implements Initializable {
+    String fileName = "account_types.txt";
 
     @FXML
     private MFXButton btn;
@@ -51,47 +50,41 @@ public class AccountsConfigController extends Controller implements Initializabl
     @FXML
     private TableColumn<AccountType, String> accountTypeColumn;
 
-    private List<AccountType> accountTypes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // accountTypeColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-       // loadAccountTypes();
+        loadAccountTypes();
+
     }
     @Override
     public void initialize() {
         // TODO
     }
 
-    private void loadAccountTypes() {
-        accountTypes = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("account_config.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2) {
-                    String accountType = parts[1].trim();
-                    accountTypes.add(new AccountType(accountType));
-                }
+    @FXML
+    void onActionBtnCancel(ActionEvent event) {
+
+    }
+    private void saveAccountTypesToFile(String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (AccountType accountType : tableTypesAccount.getItems()) {
+                writer.write(accountType.getName());
+                writer.newLine();
             }
-            tableTypesAccount.getItems().addAll(accountTypes);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void onActionBtnCancel(ActionEvent event) {
-
-    }
-
-    @FXML
     private void onActionBtn(ActionEvent event) {
         AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
         if (selectedAccountType != null) {
-            int index = tableTypesAccount.getSelectionModel().getSelectedIndex();
-            selectedAccountType.setName(selectedAccountType.getName() + "*");
-            tableTypesAccount.getItems().set(index, selectedAccountType);
+            String newName = txtNewAccountType.getText().trim();
+            if (!newName.isEmpty()) {
+                selectedAccountType.setName(newName);
+                saveAccountTypesToFile(fileName);
+            }
         }
     }
 
@@ -99,7 +92,24 @@ public class AccountsConfigController extends Controller implements Initializabl
     void onActionBtnSave(ActionEvent event) {
 
     }
+    private void loadAccountTypes() {
+        List<AccountType> accountTypes = new ArrayList<>();
+        String fileName = "account_types.txt";
 
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    AccountType accountType = new AccountType(line.trim());
+                    accountTypes.add(accountType);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tableTypesAccount.getItems().setAll(accountTypes);
+    }
 }
 
 

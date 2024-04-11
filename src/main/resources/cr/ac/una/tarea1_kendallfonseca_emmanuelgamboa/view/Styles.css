@@ -27,9 +27,16 @@
     -fx-text-fill: #000000;
     -fx-font-size: 14px;
     -fx-padding: 15px 20px;
-    -fx-border-radius: 45px;
+    -fx-border-radius: 10px;
     -fx-cursor: hand;
     -fx-button-type: RAISED;
+
+    -jfx-button-type: RAISED;
+    -mfx-button-type: RAISED;
+    -fx-opacity: 0.8;
+    -fx-content-display: left;
+    -fx-font-weight: bold;
+    -fx-alignment:CENTER_LEFT;
 }
 
 .btnWorkers.btnWorkers:armed,.btnWorkers:focused{
@@ -40,9 +47,19 @@
     -fx-background-color: #FF6D00;
 }
 
-
-
 .lblFolio{
     -fx-background-color: #ffffff;
-    -fx-border-radius: 45px;
+    -fx-border-radius: 80px;
 }
+
+.btnMaintenance,.btnMaintenance:armed,.btnMaintenance:focused{
+    -fx-background-color: #54ec2c;
+    -fx-text-fill: #ffffff;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 12px 15px;
+}
+
+
