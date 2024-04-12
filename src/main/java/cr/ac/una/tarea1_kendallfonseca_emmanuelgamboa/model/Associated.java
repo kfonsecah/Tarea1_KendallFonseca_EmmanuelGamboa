@@ -143,10 +143,5 @@ public class Associated {
         this.iban = "CR" + createAccountNumber();
         return iban;
     }
-
-
-
-
-
 }
 

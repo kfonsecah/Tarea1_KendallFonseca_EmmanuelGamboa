@@ -37,8 +37,39 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         initializeTableColumns();
 
+      
+        loadAccountsToTable();
+    }
+    @Override
+    public void initialize() {
+    }
+
+    private void initializeTableColumns() {
+        // Columnas de la tabla de cuentas activas
+        TableColumn<Account, String> activeAccountNumberColumn = new TableColumn<>("Account Number");
+        activeAccountNumberColumn.setCellValueFactory(cellData -> cellData.getValue().accountNumberProperty());
+
+        TableColumn<Account, String> activeAccountTypeColumn = new TableColumn<>("Account Type");
+        activeAccountTypeColumn.setCellValueFactory(cellData -> cellData.getValue().accountTypeProperty());
+
+        // Agregar las columnas a la tabla de cuentas activas
+        activeAccounts.getColumns().addAll(activeAccountNumberColumn, activeAccountTypeColumn);
+
+        // Columnas de la tabla de cuentas pendientes
+        TableColumn<Account, String> pendingAccountNumberColumn = new TableColumn<>("Account Number");
+        pendingAccountNumberColumn.setCellValueFactory(cellData -> cellData.getValue().accountNumberProperty());
+
+        TableColumn<Account, String> pendingAccountTypeColumn = new TableColumn<>("Account Type");
+        pendingAccountTypeColumn.setCellValueFactory(cellData -> cellData.getValue().accountTypeProperty());
+
+        // Agregar las columnas a la tabla de cuentas pendientes
+        pendingAccounts.getColumns().addAll(pendingAccountNumberColumn, pendingAccountTypeColumn);
+    }
+
+    private void loadAccountsToTable() {
         ObservableList<Account> accounts = AppContext.getInstance().getAccounts();
 
         for (Account account : accounts) {
@@ -48,13 +79,6 @@ public class OpenAccountsController extends Controller implements Initializable 
                 pendingAccounts.getItems().add(account);
             }
         }
-    }
-    public void initialize() {
-        // TODO
-    }
-
-    private void initializeTableColumns() {
-  
     }
 }
 
