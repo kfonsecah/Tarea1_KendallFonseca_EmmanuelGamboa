@@ -9,19 +9,22 @@ public class Account {
     private double balance;
     private String currency;
     private String accountHolder;
+    private boolean active;
 
     private static List<Account> accounts = new ArrayList<>();
 
 
 
-    public Account(String accountNumber, String accountType, double balance, String currency, String accountHolder) {
+    public Account(String accountNumber, String accountType, double balance, String currency, String accountHolder, boolean active) {
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
         this.currency = currency;
         this.accountHolder = accountHolder;
+        this.active = active;
         accounts.add(this);
     }
+
     public static void addAccount(Account account) {
         accounts.add(account);
     }
@@ -74,4 +77,13 @@ public class Account {
     public void setAccountHolder(String accountHolder) {
         this.accountHolder = accountHolder;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
 }

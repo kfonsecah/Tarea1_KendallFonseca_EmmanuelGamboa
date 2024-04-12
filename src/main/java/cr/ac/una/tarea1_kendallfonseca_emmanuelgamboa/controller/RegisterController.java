@@ -4,6 +4,9 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -81,6 +84,10 @@ public class RegisterController extends Controller implements Initializable {
 
                 associated.createIban();
                 associated.setIban(associated.getIban());
+
+                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0.0, "USD", associated.getAssoFolio(), false);
+                writeAccountToFile(account);
+
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
                 renameLastUserPhoto(associated.getAssoFolio());
                 associated.Associated.add(associated.getAssoName());
@@ -148,6 +155,29 @@ public class RegisterController extends Controller implements Initializable {
 
         }
     }
+
+    private void writeAccountToFile(Account account) {
+        File file = new File("accounts.txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            String accountInfo = String.format("%s,%s,%.2f,%s,%s,%s%n",
+                    account.getAccountNumber(),
+                    account.getAccountType(),
+                    account.getBalance(),
+                    account.getCurrency(),
+                    account.getAccountHolder(),
+                    account.isActive() ? "active" : "inactive");
+            writer.write(accountInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al escribir la cuenta en el archivo");
+        }
+    }
+
 }
 
 
