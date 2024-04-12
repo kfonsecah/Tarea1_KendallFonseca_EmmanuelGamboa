@@ -21,13 +21,14 @@ public class Account {
         this.balance = balance;
         this.currency = currency;
         this.accountHolder = accountHolder;
-        this.active = active;
+        this.active = false;
         accounts.add(this);
     }
 
     public static void addAccount(Account account) {
         accounts.add(account);
     }
+
     public static Account getAccountByNumber(String accountNumber) {
         for (Account account : accounts) {
             if (account.getAccountNumber().equals(accountNumber)) {
@@ -36,7 +37,6 @@ public class Account {
         }
         return null;
     }
-
 
     public String getAccountNumber() {
         return accountNumber;
@@ -85,5 +85,4 @@ public class Account {
     public void setActive(boolean active) {
         this.active = active;
     }
-
 }

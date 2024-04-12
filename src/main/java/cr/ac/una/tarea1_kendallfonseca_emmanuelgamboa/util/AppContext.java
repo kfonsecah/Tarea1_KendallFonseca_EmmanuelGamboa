@@ -122,9 +122,9 @@ public class AppContext {
                         double balance = Double.parseDouble(accountData[2]);
                         String currency = accountData[3];
                         String accountHolder = accountData[4];
-                        boolean active = accountData[5].equals("active");
+                        String activeStatus = accountData[5];
 
-                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, active);
+                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, Boolean.parseBoolean(activeStatus));
                         accounts.add(account);
                     }
                 }
