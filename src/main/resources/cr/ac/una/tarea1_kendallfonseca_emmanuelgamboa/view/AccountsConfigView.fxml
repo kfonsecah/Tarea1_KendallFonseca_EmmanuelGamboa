@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,11 +21,16 @@
             <children>
                <VBox prefHeight="200.0" prefWidth="100.0">
                   <children>
-                     <TableView fx:id="tableTypesAccount" prefHeight="200.0" prefWidth="1052.0">
+                     <TableView fx:id="tableTypesAccount" prefHeight="200.0" prefWidth="700.0">
                         <VBox.margin>
-                           <Insets bottom="50.0" left="190.0" right="190.0" top="50.0" />
+                           <Insets bottom="50.0" left="420.0" right="420.0" top="50.0" />
                         </VBox.margin>
                      </TableView>
+                     <Label fx:id="selectedAccountType" text="Label">
+                        <VBox.margin>
+                           <Insets bottom="60.0" left="500.0" />
+                        </VBox.margin>
+                     </Label>
                      <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0">
                         <VBox.margin>
                            <Insets left="350.0" />

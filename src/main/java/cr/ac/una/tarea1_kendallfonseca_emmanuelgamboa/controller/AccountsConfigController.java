@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,6 +48,9 @@ public class AccountsConfigController extends Controller implements Initializabl
     private AnchorPane root;
 
     @FXML
+    private Label selectedAccountType;
+
+    @FXML
     private MFXTextField txtNewAccountType;
 
     @FXML
@@ -61,6 +65,7 @@ public class AccountsConfigController extends Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadAccountTypesToTableView();
+        loadFirstAccountTypeToLabel();
     }
 
     @Override
@@ -135,6 +140,7 @@ public class AccountsConfigController extends Controller implements Initializabl
         AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
         if (selectedAccountType != null) {
             String accountTypeName = selectedAccountType.getName();
+            this.selectedAccountType.setText(selectedAccountType.getName());
             try {
                 List<String> updatedAccountTypes = new ArrayList<>();
                 BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -155,14 +161,20 @@ public class AccountsConfigController extends Controller implements Initializabl
                 writer.close();
 
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta seleccionado correctamente");
+
             } catch (IOException e) {
+                // Muestra el mensaje de error
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al seleccionar el tipo de cuenta");
                 e.printStackTrace();
             }
         } else {
+            // Muestra el mensaje de error
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta");
         }
     }
+
+
+
     private void loadAccountTypesToTableView() {
         // Create column
         TableColumn<AccountType, String> accountTypeColumn = new TableColumn<>("Account Type");
@@ -190,6 +202,20 @@ public class AccountsConfigController extends Controller implements Initializabl
         });
     }
 
+
+    private void loadFirstAccountTypeToLabel() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            // Lee la primera línea del archivo
+            String firstLine = reader.readLine();
+            if (firstLine != null) {
+                // Establece el texto del Label con el primer tipo de cuenta
+                selectedAccountType.setText(firstLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
 
