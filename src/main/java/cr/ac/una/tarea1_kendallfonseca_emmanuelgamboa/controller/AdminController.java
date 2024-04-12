@@ -45,6 +45,7 @@ public class AdminController extends Controller implements Initializable {
         // TODO
     }
 
+
     @FXML
     private void onActionBtnBankConfig(ActionEvent event) {
         FlowController.getInstance().goView("BankConfigView");
@@ -57,6 +58,9 @@ public class AdminController extends Controller implements Initializable {
 
     private void setCooperativeInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+        String name= cooperative.getAccountTypeName();
+        System.out.println(name);
+
 
         if (cooperative != null) {
             Image logo = cooperative.getLogo();
@@ -70,5 +74,8 @@ public class AdminController extends Controller implements Initializable {
 
         }
     }
+
+
+
 }
 

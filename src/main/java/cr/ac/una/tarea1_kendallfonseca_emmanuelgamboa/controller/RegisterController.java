@@ -79,8 +79,6 @@ public class RegisterController extends Controller implements Initializable {
             else{
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","", "");
 
-                //Account account = associated.createAccount();
-
                 associated.createIban();
                 associated.setIban(associated.getIban());
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());

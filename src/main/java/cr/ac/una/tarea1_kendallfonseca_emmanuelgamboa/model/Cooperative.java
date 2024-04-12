@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -11,18 +12,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("ALL")
 public class Cooperative {
     private String cooperativeName;
     private Image logo;
-    private List<AccountType> accountType;
     private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
+    private AccountType accountType;
 
 
     public Cooperative() {
-        //stage.setTitle(name);
-        saveAccountConfigToFile();
+
+        this.accountType = new AccountType("");
+        this.accountType.setNameFromFirstInFile("account_types.txt");
     }
 
     public ObservableList<Associated> getAssociatedList() {
@@ -103,34 +107,13 @@ public class Cooperative {
         }
     }
 
-    public void saveAccountConfigToFile() {
-        String filePath = "account_config.txt";
-        File file = new File(filePath);
-
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                writer.write("Account type: Cuenta Corriente*");
-                writer.newLine();
-                writer.write("Account type: Ahorro a la vista");
-                writer.newLine();
-                writer.write("Account type: Cuenta Naranja*");
-                writer.newLine();
-                writer.write("Account type: Cuenta Objetivo");
-                writer.newLine();
-                writer.write("Account type: Pequenhos ahorros");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+   //METHOD TO GET THE NAME OF THE AccountType
+    public String getAccountTypeName() {
+        return accountType.getName();
     }
 
 
-    public void accountsConfig() throws IOException {
-    }
+
 }
 
 

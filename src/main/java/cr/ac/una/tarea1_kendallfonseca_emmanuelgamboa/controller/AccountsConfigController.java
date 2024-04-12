@@ -11,9 +11,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,7 +35,7 @@ public class AccountsConfigController extends Controller implements Initializabl
     String fileName = "account_types.txt";
 
     @FXML
-    private MFXButton btn;
+    private MFXButton btnSelect;
 
     @FXML
     private MFXButton btnAdd;
@@ -50,66 +55,141 @@ public class AccountsConfigController extends Controller implements Initializabl
     @FXML
     private TableColumn<AccountType, String> accountTypeColumn;
 
+    private ObservableList<AccountType> accountTypes = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadAccountTypes();
-
+        loadAccountTypesToTableView();
     }
+
     @Override
     public void initialize() {
-        // TODO
     }
 
     @FXML
-    void onActionBtnCancel(ActionEvent event) {
-
-    }
-    private void saveAccountTypesToFile(String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (AccountType accountType : tableTypesAccount.getItems()) {
-                writer.write(accountType.getName());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void onActionBtn(ActionEvent event) {
+    void onActionBtnDelete(ActionEvent event) {
         AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
         if (selectedAccountType != null) {
-            String newName = txtNewAccountType.getText().trim();
-            if (!newName.isEmpty()) {
-                selectedAccountType.setName(newName);
-                saveAccountTypesToFile(fileName);
+            String accountTypeName = selectedAccountType.getName();
+            try {
+                List<String> updatedAccountTypes = new ArrayList<>();
+                BufferedReader reader = new BufferedReader(new FileReader(fileName));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (!line.trim().equals(accountTypeName)) {
+                        updatedAccountTypes.add(line);
+                    }
+                }
+                reader.close();
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+                for (String accountType : updatedAccountTypes) {
+                    writer.write(accountType);
+                    writer.newLine();
+                }
+                writer.close();
+
+                accountTypes.remove(selectedAccountType);
+                tableTypesAccount.setItems(accountTypes);
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta eliminado correctamente");
+            } catch (IOException e) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al eliminar el tipo de cuenta");
+                e.printStackTrace();
+            }
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta");
+        }
+    }
+
+
+    @FXML
+    private void onActionBtnAdd(ActionEvent event) {
+        if (txtNewAccountType.getText().isEmpty()) {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor rellene el campo de texto");
+        } else {
+            String newAccountTypeName = txtNewAccountType.getText().trim();
+            if (!newAccountTypeName.isEmpty()) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+                    writer.write(newAccountTypeName);
+                    writer.newLine();
+                    writer.flush();
+
+                    AccountType newAccountType = new AccountType(newAccountTypeName);
+                    accountTypes.add(newAccountType);
+                    tableTypesAccount.setItems(accountTypes);
+
+                    txtNewAccountType.clear();
+
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta agregado correctamente");
+                } catch (IOException e) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al agregar el tipo de cuenta");
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     @FXML
-    void onActionBtnSave(ActionEvent event) {
+    void onActionBtnSelect(ActionEvent event) {
+        AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
+        if (selectedAccountType != null) {
+            String accountTypeName = selectedAccountType.getName();
+            try {
+                List<String> updatedAccountTypes = new ArrayList<>();
+                BufferedReader reader = new BufferedReader(new FileReader(fileName));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    updatedAccountTypes.add(line);
+                }
+                reader.close();
 
+                updatedAccountTypes.remove(accountTypeName);
+                updatedAccountTypes.add(0, accountTypeName);
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+                for (String accountType : updatedAccountTypes) {
+                    writer.write(accountType);
+                    writer.newLine();
+                }
+                writer.close();
+
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta seleccionado correctamente");
+            } catch (IOException e) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al seleccionar el tipo de cuenta");
+                e.printStackTrace();
+            }
+        } else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta");
+        }
     }
-    private void loadAccountTypes() {
-        List<AccountType> accountTypes = new ArrayList<>();
-        String fileName = "account_types.txt";
+    private void loadAccountTypesToTableView() {
+        // Create column
+        TableColumn<AccountType, String> accountTypeColumn = new TableColumn<>("Account Type");
 
+        // Set cell value factory
+        accountTypeColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        // Set column
+        tableTypesAccount.getColumns().add(accountTypeColumn);
+
+        // Load data from file
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    AccountType accountType = new AccountType(line.trim());
-                    accountTypes.add(accountType);
-                }
+                AccountType accountType = new AccountType(line.trim());
+                accountTypes.add(accountType);
             }
+            tableTypesAccount.setItems(accountTypes);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        tableTypesAccount.getItems().setAll(accountTypes);
+        // Listener for selecting an account type
+        tableTypesAccount.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        });
     }
+
 }
 
 

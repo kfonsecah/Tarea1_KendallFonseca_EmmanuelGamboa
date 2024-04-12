@@ -18,23 +18,19 @@ public class AccountType {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public void applyNameFromFile(String fileName) {
+    public void setNameFromFirstInFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    this.name = line.trim();
-                    break;
-                }
+            String firstAccountTypeName = reader.readLine();
+            if (firstAccountTypeName != null) {
+                name = firstAccountTypeName.trim();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    //method to show the string name
+    public String toString() {
+        return name;
+    }
 }
+// Path: src/main/java/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/model/Associated.java
