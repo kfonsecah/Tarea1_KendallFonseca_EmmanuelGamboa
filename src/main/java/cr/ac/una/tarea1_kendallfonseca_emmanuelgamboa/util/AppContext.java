@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
@@ -23,6 +24,8 @@ public class AppContext {
     private static AppContext INSTANCE = null;
 
     private static final String USERS_FILE_PATH = "Asociados.txt";
+    private static final String ACCOUNTS_FILE_PATH = "accounts.txt";
+    private static final ObservableList<Account> accounts = FXCollections.observableArrayList();
     private static HashMap<String, Object> context = new HashMap<>();
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
     private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
@@ -30,9 +33,10 @@ public class AppContext {
 
 
     private AppContext() {
-//        cargarPropiedades();
+
         readUsers();
-        //context.put("asociados", asociados);
+        readAccounts();
+
     }
 
     private static void createInstance() {
@@ -106,6 +110,31 @@ public class AppContext {
         }
         context.put("asociados", asociados);
     }
+    private static void readAccounts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ACCOUNTS_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty()) {
+                    String[] accountData = line.split(",");
+                    if (accountData.length == 6) {
+                        String accountNumber = accountData[0];
+                        String accountType = accountData[1];
+                        double balance = Double.parseDouble(accountData[2]);
+                        String currency = accountData[3];
+                        String accountHolder = accountData[4];
+                        boolean active = accountData[5].equals("active");
+
+                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, active);
+                        accounts.add(account);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading accounts from the file: " + e.getMessage());
+        }
+        context.put("accounts", accounts);
+    }
+
 
     public void addCooperative(Cooperative cooperative) {
         cooperatives.put("cooperative", cooperative);
@@ -117,4 +146,8 @@ public class AppContext {
     public static ObservableList<Associated> getAsociados() {
         return asociados;
     }
+    public static ObservableList<Account> getAccounts() {
+        return accounts;
+    }
+
 }
