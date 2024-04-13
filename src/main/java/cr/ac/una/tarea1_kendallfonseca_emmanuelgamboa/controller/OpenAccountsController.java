@@ -17,6 +17,9 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -40,8 +43,11 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         initializeTableColumns();
 
-      
+
         loadAccountsToTable();
+
+        enableDragAndDrop(activeAccounts);
+        enableDragAndDrop(pendingAccounts);
     }
     @Override
     public void initialize() {
@@ -79,6 +85,38 @@ public class OpenAccountsController extends Controller implements Initializable 
                 pendingAccounts.getItems().add(account);
             }
         }
+    }
+
+    private void enableDragAndDrop(TableView<Account> tableView) {
+        // Habilitar el evento de arrastrar
+        tableView.setOnDragDetected(event -> {
+            Dragboard dragboard = tableView.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(String.valueOf(tableView.getSelectionModel().getSelectedItem()));
+            dragboard.setContent(content);
+            event.consume();
+        });
+
+        // Habilitar el evento de soltar
+        tableView.setOnDragOver(event -> {
+            if (event.getGestureSource() != tableView && event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+            event.consume();
+        });
+
+        // Definir el evento cuando se suelta el elemento
+        tableView.setOnDragDropped(event -> {
+            Dragboard dragboard = event.getDragboard();
+            boolean success = false;
+            if (dragboard.hasString()) {
+                String item = dragboard.getString();
+                // Aquí debes realizar la lógica para mover el elemento y actualizar el archivo txt
+                success = true;
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
     }
 }
 
