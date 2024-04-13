@@ -46,8 +46,8 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         loadAccountsToTable();
 
-        enableDragAndDrop(activeAccounts);
-        enableDragAndDrop(pendingAccounts);
+        enableDragAndDrop(activeAccounts, true);
+        enableDragAndDrop(pendingAccounts, false);
     }
     @Override
     public void initialize() {
@@ -87,8 +87,7 @@ public class OpenAccountsController extends Controller implements Initializable 
         }
     }
 
-    private void enableDragAndDrop(TableView<Account> tableView) {
-        // Habilitar el evento de arrastrar
+    private void enableDragAndDrop(TableView<Account> tableView, boolean isActive) {
         tableView.setOnDragDetected(event -> {
             Dragboard dragboard = tableView.startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
@@ -97,7 +96,6 @@ public class OpenAccountsController extends Controller implements Initializable 
             event.consume();
         });
 
-        // Habilitar el evento de soltar
         tableView.setOnDragOver(event -> {
             if (event.getGestureSource() != tableView && event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
@@ -105,14 +103,25 @@ public class OpenAccountsController extends Controller implements Initializable 
             event.consume();
         });
 
-        // Definir el evento cuando se suelta el elemento
         tableView.setOnDragDropped(event -> {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             if (dragboard.hasString()) {
                 String item = dragboard.getString();
-                // Aquí debes realizar la lógica para mover el elemento y actualizar el archivo txt
-                success = true;
+                Account accountToMove = tableView.getSelectionModel().getSelectedItem();
+                if (accountToMove != null) {
+                    if (isActive) {
+                        pendingAccounts.getItems().remove(accountToMove);
+                        activeAccounts.getItems().add(accountToMove);
+                        accountToMove.setActive(true);
+                    } else {
+                        activeAccounts.getItems().remove(accountToMove);
+                        pendingAccounts.getItems().add(accountToMove);
+                        accountToMove.setActive(false);
+                    }
+                    // Aquí debes actualizar el archivo de texto con el estado actualizado
+                    success = true;
+                }
             }
             event.setDropCompleted(success);
             event.consume();
