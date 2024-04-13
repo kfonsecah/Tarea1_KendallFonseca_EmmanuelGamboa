@@ -15,9 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -45,15 +47,15 @@ public class OpenAccountsController extends Controller implements Initializable 
 
 
         loadAccountsToTable();
-
-        enableDragAndDrop(activeAccounts, true);
-        enableDragAndDrop(pendingAccounts, false);
     }
+
     @Override
     public void initialize() {
     }
 
     private void initializeTableColumns() {
+        activeAccounts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        pendingAccounts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         // Columnas de la tabla de cuentas activas
         TableColumn<Account, String> activeAccountNumberColumn = new TableColumn<>("Account Number");
         activeAccountNumberColumn.setCellValueFactory(cellData -> cellData.getValue().accountNumberProperty());
@@ -89,11 +91,14 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     private void enableDragAndDrop(TableView<Account> tableView, boolean isActive) {
         tableView.setOnDragDetected(event -> {
-            Dragboard dragboard = tableView.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(String.valueOf(tableView.getSelectionModel().getSelectedItem()));
-            dragboard.setContent(content);
-            event.consume();
+            ObservableList<Account> selectedItems = tableView.getSelectionModel().getSelectedItems();
+            if (selectedItems != null && !selectedItems.isEmpty()) {
+                Dragboard dragboard = tableView.startDragAndDrop(TransferMode.MOVE);
+                ClipboardContent content = new ClipboardContent();
+                content.put(DataFormat.PLAIN_TEXT, ""); // El contenido no se usa pero es necesario
+                dragboard.setContent(content);
+                event.consume();
+            }
         });
 
         tableView.setOnDragOver(event -> {
@@ -107,21 +112,19 @@ public class OpenAccountsController extends Controller implements Initializable 
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             if (dragboard.hasString()) {
-                String item = dragboard.getString();
-                Account accountToMove = tableView.getSelectionModel().getSelectedItem();
-                if (accountToMove != null) {
-                    if (isActive) {
-                        pendingAccounts.getItems().remove(accountToMove);
-                        activeAccounts.getItems().add(accountToMove);
-                        accountToMove.setActive(true);
-                    } else {
-                        activeAccounts.getItems().remove(accountToMove);
-                        pendingAccounts.getItems().add(accountToMove);
-                        accountToMove.setActive(false);
-                    }
-                    // Aquí debes actualizar el archivo de texto con el estado actualizado
-                    success = true;
+                ObservableList<Account> selectedItems = tableView.getSelectionModel().getSelectedItems();
+                Account accountToMove = selectedItems.get(0); // Solo necesitamos mover el primer elemento seleccionado
+                if (isActive) {
+                    pendingAccounts.getItems().remove(accountToMove);
+                    activeAccounts.getItems().add(accountToMove);
+                    accountToMove.setActive(true);
+                } else {
+                    activeAccounts.getItems().remove(accountToMove);
+                    pendingAccounts.getItems().add(accountToMove);
+                    accountToMove.setActive(false);
                 }
+                // Aquí debes actualizar el archivo de texto con el estado actualizado
+                success = true;
             }
             event.setDropCompleted(success);
             event.consume();
