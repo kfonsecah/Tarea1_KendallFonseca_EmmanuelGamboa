@@ -47,9 +47,9 @@
     -fx-background-color: #FF6D00;
 }
 
-.lblFolio{
+.txtAsoMain{
     -fx-background-color: #ffffff;
-    -fx-border-radius: 80px;
+    -fx-background-radius: 20px;
 }
 
 .btnMaintenance,.btnMaintenance:armed,.btnMaintenance:focused{
@@ -62,4 +62,7 @@
     -fx-padding: 12px 15px;
 }
 
-
+.fx-stackPane{
+    -fx-background-color: #767676;
+    -fx-background-radius: 40px;
+}
