@@ -45,6 +45,8 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         initializeTableColumns();
 
+        enableDragAndDrop(activeAccounts, true);
+
 
         loadAccountsToTable();
     }
