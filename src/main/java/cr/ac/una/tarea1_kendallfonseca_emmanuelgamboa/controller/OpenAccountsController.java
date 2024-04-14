@@ -111,7 +111,7 @@ public class OpenAccountsController extends Controller implements Initializable 
             event.consume();
         });
 
-        tableView.setOnDragDropped(event -> {
+        /*tableView.setOnDragDropped(event -> {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             if (dragboard.hasString()) {
@@ -127,6 +127,26 @@ public class OpenAccountsController extends Controller implements Initializable 
                     accountToMove.setActive(false);
                 }
                 // Aquí debes actualizar el archivo de texto con el estado actualizado
+                success = true;
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });*/
+        tableView.setOnDragDropped(event -> {
+            Dragboard dragboard = event.getDragboard();
+            boolean success = false;
+            if (dragboard.hasContent(DataFormat.PLAIN_TEXT)) {
+                ObservableList<Account> selectedItems = tableView.getSelectionModel().getSelectedItems();
+                Account accountToMove = selectedItems.get(0); // Solo necesitamos mover el primer elemento seleccionado
+                if (isActive) {
+                    pendingAccounts.getItems().remove(accountToMove);
+                    activeAccounts.getItems().add(accountToMove);
+                    accountToMove.setActive(true);
+                } else {
+                    activeAccounts.getItems().remove(accountToMove);
+                    pendingAccounts.getItems().add(accountToMove);
+                    accountToMove.setActive(false);
+                }
                 success = true;
             }
             event.setDropCompleted(success);
