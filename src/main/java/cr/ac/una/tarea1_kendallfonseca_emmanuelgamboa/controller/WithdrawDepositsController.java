@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author gambo
  */
-public class DepositController implements Initializable {
+public class WithdrawDepositsController implements Initializable {
 
     /**
      * Initializes the controller class.
