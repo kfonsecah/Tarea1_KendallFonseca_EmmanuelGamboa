@@ -26,21 +26,21 @@
                            <Insets bottom="50.0" left="420.0" right="420.0" top="50.0" />
                         </VBox.margin>
                      </TableView>
-                     <Label fx:id="selectedAccountType" text="Label">
+                     <Label fx:id="selectedAccountType" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css" text="Label">
                         <VBox.margin>
-                           <Insets bottom="60.0" left="500.0" />
+                           <Insets bottom="60.0" left="512.0" />
                         </VBox.margin>
                      </Label>
-                     <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0">
+                     <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre de tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0">
                         <VBox.margin>
-                           <Insets left="350.0" />
+                           <Insets left="393.0" />
                         </VBox.margin>
                      </MFXTextField>
                      <HBox prefHeight="100.0" prefWidth="200.0">
                         <children>
                            <MFXButton fx:id="btnAdd" onAction="#onActionBtnAdd" text="Agregar">
                               <HBox.margin>
-                                 <Insets bottom="40.0" left="400.0" right="40.0" top="40.0" />
+                                 <Insets bottom="40.0" left="441.0" right="40.0" top="40.0" />
                               </HBox.margin>
                            </MFXButton>
                            <MFXButton fx:id="btnDelete" onAction="#onActionBtnDelete" text="Eliminar">
