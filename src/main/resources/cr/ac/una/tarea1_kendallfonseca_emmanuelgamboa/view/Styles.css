@@ -52,7 +52,7 @@
     -fx-background-radius: 20px;
 }
 
-.btnNewFoto,.btnNewFoto:armed,.btnNewFoto:focused{
+.btnNewPhoto,.btnNewPhoto:armed,.btnNewPhoto:focused{
     -fx-background-color: #54ec2c;
     -fx-text-fill: #ffffff;
     -mfx-button-type: RAISED;
@@ -62,7 +62,7 @@
     -fx-padding: 12px 15px;
 }
 
-.btnNewFoto>ImageView{
+.btnNewPhoto>ImageView{
     -fx-image: url("../resources/NewFoto.png");
 }
 .btnEdit{
@@ -81,6 +81,24 @@
 
 .btnEdit>ImageView{
     -fx-image: url("../resources/Editar.png");
+}
+
+.btnAccept{
+    -fx-background-color: #54ec2c;
+    -fx-text-fill: #ffffff;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 12px 15px;
+}
+
+.btnAccept,.btnAccept:armed,.btnAccept:focused{
+    -fx-background-color: #54ec2c;
+}
+
+.btnAccept>ImageView{
+    -fx-image: url("../resources/aceptar.png");
 }
 
 .fx-stackPane{

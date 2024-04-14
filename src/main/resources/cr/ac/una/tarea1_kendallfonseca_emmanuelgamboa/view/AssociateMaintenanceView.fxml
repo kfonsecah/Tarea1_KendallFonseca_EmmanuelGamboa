@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1178.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
    <children>
-      <BorderPane layoutX="175.0" layoutY="42.0" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="175.0" layoutY="42.0" prefHeight="720.0" prefWidth="1155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="0.0">
          <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 45;" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1082.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 45;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                  <Insets bottom="30.0" left="30.0" top="30.0" />
                </BorderPane.margin>
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1065.0">
                      <children>
-                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="286.0" prefWidth="1141.0" styleClass="fx-hBoxMaintenance" stylesheets="@Styles.css">
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="284.0" prefWidth="1014.0" styleClass="fx-hBoxMaintenance" stylesheets="@Styles.css">
                            <children>
                               <TableView fx:id="userSearchList" prefHeight="277.0" prefWidth="1087.0">
                                  <HBox.margin>
@@ -39,9 +39,9 @@
                               <Insets bottom="25.0" left="40.0" right="40.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="343.0" prefWidth="726.0">
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="342.0" prefWidth="1053.0">
                            <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="341.0" prefWidth="625.0">
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="341.0" prefWidth="547.0">
                                  <children>
                                     <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="358.0">
                                        <children>
@@ -120,19 +120,27 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </HBox>
-                              <HBox prefHeight="343.0" prefWidth="540.0">
+                              <HBox prefHeight="342.0" prefWidth="448.0">
                                  <children>
                                     <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" prefHeight="55.0" prefWidth="105.0" styleClass="btnEdit" stylesheets="@Styles.css" text="Editar">
                                        <HBox.margin>
-                                          <Insets left="50.0" top="200.0" />
+                                          <Insets left="40.0" top="150.0" />
                                        </HBox.margin>
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                                        </graphic>
                                     </MFXButton>
-                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" prefHeight="55.0" prefWidth="137.0" styleClass="btnNewFoto" stylesheets="@Styles.css" text="Nueva Foto">
+                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" prefHeight="55.0" prefWidth="140.0" styleClass="btnNewPhoto" stylesheets="@Styles.css" text="Nueva Foto">
                                        <HBox.margin>
-                                          <Insets left="10.0" top="200.0" />
+                                          <Insets left="10.0" top="150.0" />
+                                       </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                                       </graphic>
+                                    </MFXButton>
+                                    <MFXButton fx:id="btnAccept" onAction="#onActionBtnAccept" prefHeight="55.0" styleClass="btnAccept" stylesheets="@Styles.css" text="Aceptar">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="150.0" />
                                        </HBox.margin>
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />

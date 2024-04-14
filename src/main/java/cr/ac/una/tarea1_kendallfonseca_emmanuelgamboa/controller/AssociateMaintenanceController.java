@@ -4,6 +4,7 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.*;
@@ -46,6 +47,12 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnEditImage;
 
     @FXML
+    private MFXButton btnAccept;
+
+    @FXML
+    private MFXButton btnNewPhoto;
+
+    @FXML
     private AnchorPane root;
 
     @FXML
@@ -62,7 +69,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private ImageView userImage;
-
 
     @FXML
     private TableView<Associated> userSearchList;
@@ -169,13 +175,11 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     private void onActionNewPhoto() {
     }
+
+    @FXML
+    private void onActionBtnAccept() {
+
+    }
 }
 
-
-
-
-
-
-
-    
 
