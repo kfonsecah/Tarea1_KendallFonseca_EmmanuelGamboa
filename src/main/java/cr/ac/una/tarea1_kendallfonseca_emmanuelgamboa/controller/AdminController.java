@@ -4,11 +4,14 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +41,8 @@ public class AdminController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setCooperativeInfo();
+        AppContext appContext = AppContext.getInstance();
+        ObservableList<Associated> asociados = AppContext.getAsociados();
     }
 
     @Override
@@ -74,6 +79,16 @@ public class AdminController extends Controller implements Initializable {
 
         }
     }
+
+    //metodo para mostrar las cuentas
+    private void showAccounts(){
+
+    }
+
+
+
+
+
 
 
 

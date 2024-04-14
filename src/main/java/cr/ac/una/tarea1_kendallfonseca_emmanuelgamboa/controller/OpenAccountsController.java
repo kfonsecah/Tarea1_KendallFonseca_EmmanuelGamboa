@@ -39,6 +39,10 @@ public class OpenAccountsController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+
+        AppContext appContext = AppContext.getInstance();
+        ObservableList<Account> accounts = AppContext.getAccounts();
+
         initializeTableColumns();
 
         enableDragAndDrop(activeAccounts, true);
@@ -77,7 +81,7 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     private void loadAccountsToTable() {
-        ObservableList<Account> accounts = AppContext.getInstance().getAccounts();
+        ObservableList<Account> accounts = AppContext.getAccounts();
 
         for (Account account : accounts) {
             if (account.isActive()) {

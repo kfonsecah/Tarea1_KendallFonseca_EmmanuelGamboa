@@ -1,6 +1,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountManager;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
@@ -108,8 +109,25 @@ public class AppContext {
         } catch (IOException e) {
             System.err.println("Error reading users from the file: " + e.getMessage());
         }
+
+        for (Associated associated : asociados) {
+            ObservableList<Account> associatedAccounts = getAccountsByFolio(associated.getAssoFolio());
+            AccountManager.getInstance().addAssociatedAccounts(associated.getAssoFolio(), associatedAccounts);
+        }
+        AccountManager.getInstance().writeAccountsToFile();
         context.put("asociados", asociados);
     }
+
+    private static ObservableList<Account> getAccountsByFolio(String folio) {
+        ObservableList<Account> associatedAccounts = FXCollections.observableArrayList();
+        for (Account account : accounts) {
+            if (account.getAccountHolder().equals(folio)) {
+                associatedAccounts.add(account);
+            }
+        }
+        return associatedAccounts;
+    }
+
     private static void readAccounts() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ACCOUNTS_FILE_PATH))) {
             String line;
