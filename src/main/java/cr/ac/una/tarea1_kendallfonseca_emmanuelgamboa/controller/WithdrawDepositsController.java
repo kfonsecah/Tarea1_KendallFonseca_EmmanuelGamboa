@@ -6,14 +6,17 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author gambo
  */
-public class WithdrawDepositsController implements Initializable {
+public class WithdrawDepositsController extends Controller implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -21,6 +24,15 @@ public class WithdrawDepositsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private Label txtBills;
+
+    @Override
+    public void initialize() {
+
+    }
 }

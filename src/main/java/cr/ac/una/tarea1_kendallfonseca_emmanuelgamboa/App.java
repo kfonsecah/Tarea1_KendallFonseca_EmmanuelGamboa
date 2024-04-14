@@ -26,8 +26,6 @@ public class App extends Application {
         FlowController.getInstance().goMain("PrincipalView");
     }
 
-
-
     public static void main(String[] args) {
         launch();
     }

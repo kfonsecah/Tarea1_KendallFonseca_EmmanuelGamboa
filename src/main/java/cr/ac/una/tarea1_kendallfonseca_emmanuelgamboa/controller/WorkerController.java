@@ -102,7 +102,7 @@ public class WorkerController extends Controller implements Initializable {
     }
 
     private void onActionBtnWithdrawDeposits(ActionEvent event) {
-        //FlowController.getInstance().goView("WithdrawDepositsView");
+        FlowController.getInstance().goView("WithdrawDepositsView");
     }
 
     private void printAppContextUsersInfo() {
