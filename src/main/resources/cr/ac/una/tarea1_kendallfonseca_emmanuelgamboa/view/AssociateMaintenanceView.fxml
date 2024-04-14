@@ -24,21 +24,24 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <HBox prefHeight="286.0" prefWidth="1219.0">
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="286.0" prefWidth="1141.0" styleClass="fx-hBoxMaintenance" stylesheets="@Styles.css">
                            <children>
-                              <TableView fx:id="userSearchList" prefHeight="314.0" prefWidth="974.0">
+                              <TableView fx:id="userSearchList" prefHeight="277.0" prefWidth="1087.0">
                                  <HBox.margin>
-                                    <Insets left="100.0" />
+                                    <Insets left="15.0" right="15.0" />
                                  </HBox.margin>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </TableView>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="25.0" left="40.0" right="40.0" top="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <HBox prefHeight="343.0" prefWidth="726.0">
                            <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="558.0">
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="341.0" prefWidth="625.0">
                                  <children>
                                     <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="358.0">
                                        <children>
@@ -52,7 +55,7 @@
                                                       <Insets left="80.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Nombre" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Nombre" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="80.0" top="10.0" />
                                                    </VBox.margin>
@@ -65,7 +68,7 @@
                                                       <Insets left="80.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtLastName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Apellido" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtLastName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Apellido" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="80.0" top="10.0" />
                                                    </VBox.margin>
@@ -78,12 +81,15 @@
                                                       <Insets left="80.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtAge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Edad" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtAge" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Edad" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="80.0" top="10.0" />
                                                    </VBox.margin>
                                                 </MFXTextField>
                                              </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
                                           </VBox>
                                        </children>
                                     </VBox>
@@ -97,7 +103,7 @@
                                                 <Font name="Californian FB Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="txtFolio" graphicTextGap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css" text="  Folio">
+                                          <Label fx:id="txtFolio" contentDisplay="CENTER" graphicTextGap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css" text="  Folio" textFill="#636363">
                                              <VBox.margin>
                                                 <Insets bottom="50.0" left="15.0" right="15.0" top="10.0" />
                                              </VBox.margin>
@@ -110,18 +116,27 @@
                                        </children>
                                     </VBox>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
                               </HBox>
                               <HBox prefHeight="343.0" prefWidth="540.0">
                                  <children>
-                                    <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" styleClass="btnMaintenance" stylesheets="@Styles.css" text="Editar">
+                                    <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" prefHeight="55.0" prefWidth="105.0" styleClass="btnEdit" stylesheets="@Styles.css" text="Editar">
                                        <HBox.margin>
                                           <Insets left="50.0" top="200.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                                       </graphic>
                                     </MFXButton>
-                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" styleClass="btnMaintenance" stylesheets="@Styles.css" text="Nueva Foto">
+                                    <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" prefHeight="55.0" prefWidth="137.0" styleClass="btnNewFoto" stylesheets="@Styles.css" text="Nueva Foto">
                                        <HBox.margin>
                                           <Insets left="10.0" top="200.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                                       </graphic>
                                     </MFXButton>
                                  </children>
                               </HBox>
@@ -130,9 +145,6 @@
                      </children>
                   </VBox>
                </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
             </StackPane>
          </center>
       </BorderPane>

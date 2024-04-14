@@ -44,7 +44,7 @@
 }
 
 .button:hover{
-    -fx-background-color: #FF6D00;
+    -fx-background-color: #986ecc;
 }
 
 .txtAsoMain{
@@ -52,7 +52,7 @@
     -fx-background-radius: 20px;
 }
 
-.btnMaintenance,.btnMaintenance:armed,.btnMaintenance:focused{
+.btnNewFoto,.btnNewFoto:armed,.btnNewFoto:focused{
     -fx-background-color: #54ec2c;
     -fx-text-fill: #ffffff;
     -mfx-button-type: RAISED;
@@ -62,7 +62,35 @@
     -fx-padding: 12px 15px;
 }
 
+.btnNewFoto>ImageView{
+    -fx-image: url("../resources/NewFoto.png");
+}
+.btnEdit{
+    -fx-background-color: #54ec2c;
+    -fx-text-fill: #ffffff;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 12px 15px;
+}
+
+.btnEdit,.btnEdit:armed,.btnEdit:focused{
+    -fx-background-color: #54ec2c;
+}
+
+.btnEdit>ImageView{
+    -fx-image: url("../resources/Editar.png");
+}
+
 .fx-stackPane{
     -fx-background-color: #767676;
     -fx-background-radius: 40px;
+}
+
+.fx-hBoxMaintenance{
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+    -fx-padding: 5 5 5 5;
 }
