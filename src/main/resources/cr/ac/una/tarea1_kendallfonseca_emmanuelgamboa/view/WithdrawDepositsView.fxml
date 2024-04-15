@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.ImageView?>
@@ -28,6 +29,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -41,6 +47,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -54,6 +65,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -67,6 +83,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -87,6 +108,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -100,6 +126,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -113,6 +144,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -126,6 +162,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -146,6 +187,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -159,6 +205,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -172,6 +223,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -185,6 +241,11 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Spinner>
+                                    <MFXButton text="Aceptar">
+                                       <VBox.margin>
+                                          <Insets left="71.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXButton>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />

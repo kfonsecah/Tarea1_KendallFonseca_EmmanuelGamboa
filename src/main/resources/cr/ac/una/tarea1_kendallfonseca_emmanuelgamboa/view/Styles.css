@@ -124,3 +124,15 @@
     -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
     -fx-padding: 5 5 5 5;
 }
+
+.btnAdmin>ImageView{
+    -fx-image: url("../resources/Admin.png");
+}
+
+.btnEmployee>ImageView{
+    -fx-image: url("../resources/Funcionario.png");
+}
+
+.btnUser>ImageView{
+    -fx-image: url("../resources/User.png");
+}

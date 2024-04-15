@@ -6,33 +6,55 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.RegisterController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="userPhotoPrev" fitHeight="150.0" fitWidth="221.0" onMouseEntered="#loadLastUserPhoto" pickOnBounds="true" preserveRatio="true" />
-                  <MFXTextField fx:id="txtName" promptText="Nombre" />
-                  <MFXTextField fx:id="txtLastName" promptText="Apellido" />
-                  <MFXTextField fx:id="txtAge" promptText="Edad" />
-                  <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" text="Registrar">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </MFXButton>
-                  <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" text="Foto">
-                     <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
-                  </MFXButton>
+                  <VBox prefHeight="422.0" prefWidth="295.0">
+                     <children>
+                        <MFXTextField fx:id="txtName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Nombre">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="40.0" top="40.0" />
+                           </VBox.margin>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtLastName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Apellido">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtAge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Edad">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </MFXTextField>
+                        <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" text="Foto">
+                           <VBox.margin>
+                              <Insets left="40.0" top="10.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="userPhotoPrev" fitHeight="150.0" fitWidth="221.0" onMouseEntered="#loadLastUserPhoto" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" text="Registrar">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="102.0" top="10.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                     </children>
+                  </VBox>
                </children>
-               <BorderPane.margin>
-                  <Insets left="25.0" top="25.0" />
-               </BorderPane.margin>
-            </VBox>
+            </HBox>
          </center>
       </BorderPane>
    </children>
