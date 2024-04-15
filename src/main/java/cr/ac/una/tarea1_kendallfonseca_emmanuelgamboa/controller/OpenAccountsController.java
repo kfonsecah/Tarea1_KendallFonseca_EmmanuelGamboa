@@ -92,7 +92,39 @@ public class OpenAccountsController extends Controller implements Initializable 
         boolean success = false;
         if (db.hasString()) {
             String item = db.getString();
-            targetListView.getItems().add(new Account("","",0,"","",false));// Ajusta esto según tu lógica
+            Account account = Account.fromString(item);
+
+            // Determine if the account is in activeAccounts or inactiveAccounts
+            boolean isInActiveAccounts = activeAccounts.getItems().contains(account);
+            boolean isInInactiveAccounts = inactiveAccounts.getItems().contains(account);
+
+            if (isInActiveAccounts) {
+                // Remove from activeAccounts list
+                activeAccounts.getItems().remove(account);
+
+                // Add to inactiveAccounts list
+                inactiveAccounts.getItems().add(account);
+            } else if (isInInactiveAccounts) {
+                // Remove from inactiveAccounts list
+                inactiveAccounts.getItems().remove(account);
+
+                // Add to activeAccounts list
+                activeAccounts.getItems().add(account);
+            } else {
+                // Handle the case where the account is not found in either list
+                System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+            }
+
+            // Update the account status (active/inactive) based on the target list
+            if (targetListView == activeAccounts) {
+                account.setActive(true);
+            } else {
+                account.setActive(false);
+            }
+
+            // Save the updated account list to AppContext
+            AppContext.saveAccounts();
+
             success = true;
         }
         event.setDropCompleted(success);

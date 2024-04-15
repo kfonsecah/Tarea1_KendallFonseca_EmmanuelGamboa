@@ -57,6 +57,9 @@ public class AppContext {
         return INSTANCE;
     }
 
+    public static void saveAccounts() {
+    }
+
     private void cargarPropiedades(){
         try {
             FileInputStream configFile;
