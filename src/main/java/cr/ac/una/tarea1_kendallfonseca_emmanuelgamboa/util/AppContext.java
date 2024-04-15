@@ -172,7 +172,7 @@ public class AppContext {
 
                         // Dividir la información de la cuenta en base al delimitador ","
                         String[] accountInfoParts = accountInfo.split(",");
-                        if (accountInfoParts.length == 6) { // Verificar si hay seis partes en la información de la cuenta
+                        if (accountInfoParts.length == 5) { // Verificar si hay seis partes en la información de la cuenta
                             String accountNumber = accountInfoParts[0];
                             String accountType = accountInfoParts[1];
                             double balance = Double.parseDouble(accountInfoParts[2]);
