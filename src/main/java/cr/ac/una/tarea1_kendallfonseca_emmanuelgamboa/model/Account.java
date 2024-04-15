@@ -6,6 +6,8 @@ import javafx.beans.property.*;
 
 
 public class Account {
+
+
     private StringProperty accountNumber;
     private StringProperty accountType;
     private DoubleProperty balance;

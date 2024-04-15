@@ -44,7 +44,7 @@ public class AccountManager {
             }
             for (Map.Entry<String, ObservableList<Account>> entry : accountMap.entrySet()) {
                 String folio = entry.getKey();
-                ObservableList<Account> accounts = AppContext.getAccounts();
+                ObservableList<Account> accounts = AppContext.getInactiveAccounts();
 
                 writer.write("USUARIO " + folio);
                 for (Account account : accounts) {

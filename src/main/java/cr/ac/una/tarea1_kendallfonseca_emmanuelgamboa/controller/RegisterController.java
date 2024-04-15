@@ -97,10 +97,8 @@ public class RegisterController extends Controller implements Initializable {
                 associated.Associated.add(associated.getIban());
                 associated.createFile(associated);
 
-                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0.0, "USD", associated.getAssoFolio(), false);
+                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio(), false);
                 writeAccountToFile(account);
-
-
 
                 txtName.setText("");
                 txtLastName.setText("");
@@ -159,26 +157,29 @@ public class RegisterController extends Controller implements Initializable {
     }
 
     private void writeAccountToFile(Account account) {
-        File file = new File("accounts.txt");
+        File file = new File("inactiveAccounts.txt");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             if (!file.exists()) {
                 file.createNewFile();
             }
 
-            String accountInfo = String.format("%s,%s,%.2f,%s,%s,%s%n",
+            // Formatear la información de la cuenta en el formato deseado
+            String accountInfo = String.format("[%s/%s/%.2f/%s/%s/%s]%n",
                     account.getAccountNumber(),
                     account.getAccountType(),
                     account.getBalance(),
                     account.getCurrency(),
                     account.getAccountHolder(),
                     account.isActive() ? "active" : "inactive");
+
             writer.write(accountInfo);
         } catch (IOException e) {
             e.printStackTrace();
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al escribir la cuenta en el archivo");
         }
     }
+
 
 }
 

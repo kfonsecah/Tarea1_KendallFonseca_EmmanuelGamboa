@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
    <children>
@@ -19,16 +19,21 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="pendingAccounts" prefHeight="562.0" prefWidth="588.0">
+                        <ListView fx:id="inactiveAccounts" prefHeight="522.0" prefWidth="451.0">
                            <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                            </HBox.margin>
-                        </TableView>
-                        <TableView fx:id="activeAccounts" prefHeight="562.0" prefWidth="524.0">
+                        </ListView>
+                        <Separator orientation="VERTICAL" prefHeight="462.0" prefWidth="99.0">
                            <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets bottom="50.0" top="50.0" />
                            </HBox.margin>
-                        </TableView>
+                        </Separator>
+                        <ListView fx:id="activeAccounts" prefHeight="522.0" prefWidth="447.0">
+                           <HBox.margin>
+                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                           </HBox.margin>
+                        </ListView>
                      </children>
                   </HBox>
                </children>

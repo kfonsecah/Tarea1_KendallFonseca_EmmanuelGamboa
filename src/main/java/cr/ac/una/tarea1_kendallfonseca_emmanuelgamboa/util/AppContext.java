@@ -25,8 +25,10 @@ public class AppContext {
     private static AppContext INSTANCE = null;
 
     private static final String USERS_FILE_PATH = "Asociados.txt";
-    private static final String ACCOUNTS_FILE_PATH = "accounts.txt";
-    private static final ObservableList<Account> accounts = FXCollections.observableArrayList();
+    private static final String INACTIVE_ACCOUNTS_FILE_PATH = "inactiveAccounts.txt";
+    private static final String ACTIVE_ACCOUNTS_FILE_PATH = "activeAccounts.txt";
+    private static final ObservableList<Account> inactiveAccounts = FXCollections.observableArrayList();
+    private static final ObservableList<Account> activeAccounts = FXCollections.observableArrayList();
     private static HashMap<String, Object> context = new HashMap<>();
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
     private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
@@ -36,7 +38,8 @@ public class AppContext {
     private AppContext() {
 
         readUsers();
-        readAccounts();
+        readInactiveAccounts();
+        readActiveAccounts();
 
     }
 
@@ -120,7 +123,7 @@ public class AppContext {
 
     private static ObservableList<Account> getAccountsByFolio(String folio) {
         ObservableList<Account> associatedAccounts = FXCollections.observableArrayList();
-        for (Account account : accounts) {
+        for (Account account : inactiveAccounts) {
             if (account.getAccountHolder().equals(folio)) {
                 associatedAccounts.add(account);
             }
@@ -128,30 +131,69 @@ public class AppContext {
         return associatedAccounts;
     }
 
-    private static void readAccounts() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(ACCOUNTS_FILE_PATH))) {
+    public static void readInactiveAccounts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(INACTIVE_ACCOUNTS_FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (!line.isEmpty()) {
-                    String[] accountData = line.split(",");
-                    if (accountData.length == 6) {
+                    // Eliminar los corchetes "[" y "]" alrededor de la línea
+                    line = line.substring(1, line.length() - 1);
+
+                    // Dividir la línea en base al delimitador "/"
+                    String[] accountData = line.split("/");
+                    if (accountData.length == 6) { // Verificar si hay seis partes en la línea
                         String accountNumber = accountData[0];
                         String accountType = accountData[1];
-                        double balance = Double.parseDouble(accountData[2]);
+                        double balance = Double.parseDouble(accountData[2].replace(",", ".")); // Reemplazar "," por "." para el formato correcto de double
                         String currency = accountData[3];
                         String accountHolder = accountData[4];
                         String activeStatus = accountData[5];
 
-                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, Boolean.parseBoolean(activeStatus));
-                        accounts.add(account);
+                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, activeStatus.equals("active"));
+                        inactiveAccounts.add(account);
                     }
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error reading accounts from the file: " + e.getMessage());
+            System.err.println("Error reading inactive accounts from the file: " + e.getMessage());
         }
-        context.put("accounts", accounts);
+        context.put("inactiveAccounts", inactiveAccounts);
     }
+
+
+    private static void readActiveAccounts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ACTIVE_ACCOUNTS_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.isEmpty()) {
+                    // Dividir la línea en base al delimitador "/"
+                    String[] accountData = line.split("/");
+                    if (accountData.length == 2) { // Verificar si hay dos partes en la línea
+                        String accountInfo = accountData[0]; // Obtener la información de la cuenta
+                        String activeStatus = accountData[1]; // Obtener el estado activo/inactivo
+
+                        // Dividir la información de la cuenta en base al delimitador ","
+                        String[] accountInfoParts = accountInfo.split(",");
+                        if (accountInfoParts.length == 6) { // Verificar si hay seis partes en la información de la cuenta
+                            String accountNumber = accountInfoParts[0];
+                            String accountType = accountInfoParts[1];
+                            double balance = Double.parseDouble(accountInfoParts[2]);
+                            String currency = accountInfoParts[3];
+                            String accountHolder = accountInfoParts[4];
+
+                            Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, activeStatus.equals("active"));
+                            activeAccounts.add(account);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading active accounts from the file: " + e.getMessage());
+        }
+        context.put("activeAccounts", activeAccounts);
+    }
+
+
 
 
     public void addCooperative(Cooperative cooperative) {
@@ -164,8 +206,11 @@ public class AppContext {
     public static ObservableList<Associated> getAsociados() {
         return asociados;
     }
-    public static ObservableList<Account> getAccounts() {
-        return accounts;
+    public static ObservableList<Account> getInactiveAccounts() {
+        return inactiveAccounts;
+    }
+    public static ObservableList<Account> getActiveAccounts() {
+        return activeAccounts;
     }
 
 }
