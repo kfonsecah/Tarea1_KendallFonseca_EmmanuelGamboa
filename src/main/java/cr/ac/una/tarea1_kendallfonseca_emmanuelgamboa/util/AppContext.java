@@ -5,10 +5,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountManager;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Properties;
@@ -193,9 +190,6 @@ public class AppContext {
         context.put("activeAccounts", activeAccounts);
     }
 
-
-
-
     public void addCooperative(Cooperative cooperative) {
         cooperatives.put("cooperative", cooperative);
     }
@@ -212,5 +206,38 @@ public class AppContext {
     public static ObservableList<Account> getActiveAccounts() {
         return activeAccounts;
     }
+
+    public void writeInactiveAccounts() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(INACTIVE_ACCOUNTS_FILE_PATH))) {
+            for (Account account : inactiveAccounts) {
+                writer.write(String.format("[%s/%s/%.2f/%s/%s/%s]%n",
+                        account.getAccountNumber(),
+                        account.getAccountType(),
+                        account.getBalance(),
+                        account.getCurrency(),
+                        account.getAccountHolder(),
+                        account.isActive() ? "active" : "inactive"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeActiveAccounts() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ACTIVE_ACCOUNTS_FILE_PATH))) {
+            for (Account account : activeAccounts) {
+                writer.write(String.format("[%s/%s/%.2f/%s/%s/%s]%n",
+                        account.getAccountNumber(),
+                        account.getAccountType(),
+                        account.getBalance(),
+                        account.getCurrency(),
+                        account.getAccountHolder(),
+                        account.isActive() ? "active" : "inactive"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

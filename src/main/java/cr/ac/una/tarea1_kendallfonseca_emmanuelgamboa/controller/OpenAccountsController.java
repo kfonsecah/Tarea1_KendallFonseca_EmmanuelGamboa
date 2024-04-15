@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,10 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -54,9 +52,52 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         inactiveAccounts.setCellFactory(param -> new AccountCell());
         activeAccounts.setCellFactory(param -> new AccountCell());
+
+
+        activeAccounts.setOnDragDetected(this::onDragDetected);
+        inactiveAccounts.setOnDragDetected(this::onDragDetected);
+
+        activeAccounts.setOnDragOver(this::onDragOver);
+        inactiveAccounts.setOnDragOver(this::onDragOver);
+
+        activeAccounts.setOnDragDropped(this::onDragDropped);
+        inactiveAccounts.setOnDragDropped(this::onDragDropped);
     }
 
+    @FXML
+    void onDragDetected(MouseEvent event) {
+        ListView<Account> listView = (ListView<Account>) event.getSource();
+        Account selectedItem = listView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            Dragboard dragboard = listView.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(selectedItem.toString());
+            dragboard.setContent(content);
+        }
+        event.consume();
+    }
 
+    @FXML
+    void onDragOver(DragEvent event) {
+        if (event.getGestureSource() != event.getSource() && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.MOVE);
+        }
+        event.consume();
+    }
+
+    @FXML
+    void onDragDropped(DragEvent event) {
+        ListView<Account> targetListView = (ListView<Account>) event.getGestureTarget();
+        Dragboard db = event.getDragboard();
+        boolean success = false;
+        if (db.hasString()) {
+            String item = db.getString();
+            targetListView.getItems().add(new Account("","",0,"","",false));// Ajusta esto según tu lógica
+            success = true;
+        }
+        event.setDropCompleted(success);
+        event.consume();
+    }
 
     @Override
     public void initialize() {
