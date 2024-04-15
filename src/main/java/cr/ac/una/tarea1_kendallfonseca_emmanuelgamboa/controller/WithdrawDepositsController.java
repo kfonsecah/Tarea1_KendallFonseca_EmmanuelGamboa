@@ -28,9 +28,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
     @FXML
     private AnchorPane root;
 
-    @FXML
-    private Label txtBills;
-
     @Override
     public void initialize() {
 

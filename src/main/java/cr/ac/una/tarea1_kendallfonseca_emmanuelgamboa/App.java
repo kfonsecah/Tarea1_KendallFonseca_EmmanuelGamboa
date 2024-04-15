@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
  */
 public class App extends Application {
 
-
     @Override
     public void start(Stage stage) throws IOException {
         Cooperative cooperative = new Cooperative();

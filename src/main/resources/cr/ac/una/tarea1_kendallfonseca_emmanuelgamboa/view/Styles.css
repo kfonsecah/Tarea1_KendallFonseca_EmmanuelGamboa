@@ -112,3 +112,15 @@
     -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
     -fx-padding: 5 5 5 5;
 }
+
+.spBills{
+    -fx-background-color: #ababab;
+    -fx-background-radius: 10px;
+}
+
+.fx-vBoxBills{
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+    -fx-padding: 5 5 5 5;
+}
