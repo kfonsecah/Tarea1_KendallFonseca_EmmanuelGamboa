@@ -8,11 +8,17 @@ class AccountCell extends ListCell<Account> {
     @Override
     protected void updateItem(Account account, boolean empty) {
         super.updateItem(account, empty);
-        System.out.println("Updating item: " + account);
         if (empty || account == null) {
             setText(null);
         } else {
-            setText(account.getAccountNumber() + " - " + account.getAccountType());
+            String text = String.format("[%s/%s/%.2f/%s/%s]%n",
+                    account.getAccountNumber(),
+                    account.getAccountType(),
+                    account.getBalance(),
+                    account.getCurrency(),
+                    account.getAccountHolder());
+            setText(text);
         }
     }
+
 }

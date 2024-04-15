@@ -40,22 +40,22 @@ import java.util.Arrays;
 public class RegisterController extends Controller implements Initializable {
 
     @FXML
+    private MFXButton btnPhoto;
+
+    @FXML
     private MFXButton btnRegister;
 
     @FXML
-    private MFXTextField txtName;
-
-    @FXML
-    private MFXTextField txtLastName;
+    private AnchorPane root;
 
     @FXML
     private MFXTextField txtAge;
 
     @FXML
-    private MFXButton btnPhoto;
+    private MFXTextField txtLastName;
 
     @FXML
-    private AnchorPane root;
+    private MFXTextField txtName;
 
     @FXML
     private ImageView userPhotoPrev;
@@ -97,13 +97,13 @@ public class RegisterController extends Controller implements Initializable {
                 associated.Associated.add(associated.getIban());
                 associated.createFile(associated);
 
-                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio(), false);
-                writeAccountToFile(account);
-
                 txtName.setText("");
                 txtLastName.setText("");
                 txtAge.setText("");
                 userPhotoPrev.setImage(null);
+
+                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
+                writeAccountToFile(account);
 
 
                 for (int i = 0; i < associated.Associated.size(); i++) {
@@ -164,14 +164,12 @@ public class RegisterController extends Controller implements Initializable {
                 file.createNewFile();
             }
 
-            // Formatear la información de la cuenta en el formato deseado
-            String accountInfo = String.format("[%s/%s/%.2f/%s/%s/%s]%n",
+            String accountInfo = String.format("[%s/%s/%.2f/%s/%s]%n",
                     account.getAccountNumber(),
                     account.getAccountType(),
                     account.getBalance(),
                     account.getCurrency(),
-                    account.getAccountHolder(),
-                    account.isActive() ? "active" : "inactive");
+                    account.getAccountHolder());
 
             writer.write(accountInfo);
         } catch (IOException e) {

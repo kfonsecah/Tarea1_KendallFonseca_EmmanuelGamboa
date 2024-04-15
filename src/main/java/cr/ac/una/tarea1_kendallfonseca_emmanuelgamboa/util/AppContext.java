@@ -141,15 +141,13 @@ public class AppContext {
 
                     // Dividir la línea en base al delimitador "/"
                     String[] accountData = line.split("/");
-                    if (accountData.length == 6) { // Verificar si hay seis partes en la línea
+                    if (accountData.length == 5) { // Verificar si hay seis partes en la línea
                         String accountNumber = accountData[0];
                         String accountType = accountData[1];
                         double balance = Double.parseDouble(accountData[2].replace(",", ".")); // Reemplazar "," por "." para el formato correcto de double
                         String currency = accountData[3];
                         String accountHolder = accountData[4];
-                        String activeStatus = accountData[5];
-
-                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, activeStatus.equals("active"));
+                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder);
                         inactiveAccounts.add(account);
                     }
                 }
@@ -181,7 +179,7 @@ public class AppContext {
                             String currency = accountInfoParts[3];
                             String accountHolder = accountInfoParts[4];
 
-                            Account account = new Account(accountNumber, accountType, balance, currency, accountHolder, activeStatus.equals("active"));
+                            Account account = new Account(accountNumber, accountType, balance, currency, accountHolder);
                             activeAccounts.add(account);
                         }
                     }
@@ -203,44 +201,38 @@ public class AppContext {
     public static ObservableList<Associated> getAsociados() {
         return asociados;
     }
-    public static ObservableList<Account> getInactiveAccounts() {
-        return inactiveAccounts;
-    }
+//    public static ObservableList<Account> getInactiveAccounts() {
+//        return inactiveAccounts;
+//    }
+//    public static ObservableList<Account> getActiveAccounts() {
+//        return activeAccounts;
+//    }
+
+
     public static ObservableList<Account> getActiveAccounts() {
-        return activeAccounts;
+        return FXCollections.observableArrayList(activeAccounts);
+    }
+
+    public static ObservableList<Account> getInactiveAccounts() {
+        return FXCollections.observableArrayList(inactiveAccounts);
     }
 
     public void writeInactiveAccounts() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(INACTIVE_ACCOUNTS_FILE_PATH))) {
             for (Account account : inactiveAccounts) {
-                writer.write(String.format("[%s/%s/%.2f/%s/%s/%s]%n",
+                writer.write(String.format("[%s/%s/%.2f/%s/%s]%n",
                         account.getAccountNumber(),
                         account.getAccountType(),
                         account.getBalance(),
                         account.getCurrency(),
-                        account.getAccountHolder(),
-                        account.isActive() ? "active" : "inactive"));
+                        account.getAccountHolder()));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void writeActiveAccounts() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ACTIVE_ACCOUNTS_FILE_PATH))) {
-            for (Account account : activeAccounts) {
-                writer.write(String.format("[%s/%s/%.2f/%s/%s/%s]%n",
-                        account.getAccountNumber(),
-                        account.getAccountType(),
-                        account.getBalance(),
-                        account.getCurrency(),
-                        account.getAccountHolder(),
-                        account.isActive() ? "active" : "inactive"));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

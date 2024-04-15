@@ -32,9 +32,9 @@
                               <Insets bottom="10.0" left="40.0" top="10.0" />
                            </VBox.margin>
                         </MFXTextField>
-                        <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" text="Foto">
+                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" text="Registrar">
                            <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
+                              <Insets bottom="10.0" left="102.0" top="10.0" />
                            </VBox.margin>
                         </MFXButton>
                      </children>
@@ -46,9 +46,9 @@
                               <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" text="Registrar">
+                        <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" text="Foto">
                            <VBox.margin>
-                              <Insets bottom="10.0" left="102.0" top="10.0" />
+                              <Insets left="40.0" top="10.0" />
                            </VBox.margin>
                         </MFXButton>
                      </children>

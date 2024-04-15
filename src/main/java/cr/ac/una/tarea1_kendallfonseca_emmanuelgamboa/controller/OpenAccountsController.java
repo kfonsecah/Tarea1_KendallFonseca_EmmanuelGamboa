@@ -1,6 +1,5 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,21 +37,15 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         AppContext.readInactiveAccounts();
-        AppContext appContext = AppContext.getInstance();
         ObservableList<Account> inactiveAccountsData = AppContext.getInactiveAccounts();
         ObservableList<Account> activeAccountsData = AppContext.getActiveAccounts();
-
-        System.out.println("Inactive accounts size: " + inactiveAccountsData.size());
-        System.out.println("Active accounts size: " + activeAccountsData.size());
 
         inactiveAccounts.setItems(inactiveAccountsData);
         activeAccounts.setItems(activeAccountsData);
 
         inactiveAccounts.setCellFactory(param -> new AccountCell());
         activeAccounts.setCellFactory(param -> new AccountCell());
-
 
         activeAccounts.setOnDragDetected(this::onDragDetected);
         inactiveAccounts.setOnDragDetected(this::onDragDetected);
@@ -71,11 +64,21 @@ public class OpenAccountsController extends Controller implements Initializable 
         if (selectedItem != null) {
             Dragboard dragboard = listView.startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
-            content.putString(selectedItem.toString());
+
+
+            String accountString = String.format("[%s/%s/%.2f/%s/%s]%n",
+                    selectedItem.getAccountNumber(),
+                    selectedItem.getAccountType(),
+                    selectedItem.getBalance(),
+                    selectedItem.getCurrency(),
+                    selectedItem.getAccountHolder());
+
+            content.putString(accountString);
             dragboard.setContent(content);
         }
         event.consume();
     }
+
 
     @FXML
     void onDragOver(DragEvent event) {
@@ -93,39 +96,31 @@ public class OpenAccountsController extends Controller implements Initializable 
         if (db.hasString()) {
             String item = db.getString();
             Account account = Account.fromString(item);
+            if (account != null) {
+                boolean isInActiveAccounts = activeAccounts.getItems().contains(account);
+                boolean isInInactiveAccounts = inactiveAccounts.getItems().contains(account);
 
-            // Determine if the account is in activeAccounts or inactiveAccounts
-            boolean isInActiveAccounts = activeAccounts.getItems().contains(account);
-            boolean isInInactiveAccounts = inactiveAccounts.getItems().contains(account);
+                if (isInActiveAccounts) {
+                    activeAccounts.getItems().remove(account);
+                    inactiveAccounts.getItems().add(account);
+                } else if (isInInactiveAccounts) {
+                    inactiveAccounts.getItems().remove(account);
+                    activeAccounts.getItems().add(account);
+                } else {
+                    System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+                }
 
-            if (isInActiveAccounts) {
-                // Remove from activeAccounts list
-                activeAccounts.getItems().remove(account);
+                if (targetListView == activeAccounts) {
+                    account.setActive(true);
+                } else {
+                    account.setActive(false);
+                }
 
-                // Add to inactiveAccounts list
-                inactiveAccounts.getItems().add(account);
-            } else if (isInInactiveAccounts) {
-                // Remove from inactiveAccounts list
-                inactiveAccounts.getItems().remove(account);
-
-                // Add to activeAccounts list
-                activeAccounts.getItems().add(account);
+                AppContext.saveAccounts();
+                success = true;
             } else {
-                // Handle the case where the account is not found in either list
-                System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+                System.out.println("Error: Invalid account string format.");
             }
-
-            // Update the account status (active/inactive) based on the target list
-            if (targetListView == activeAccounts) {
-                account.setActive(true);
-            } else {
-                account.setActive(false);
-            }
-
-            // Save the updated account list to AppContext
-            AppContext.saveAccounts();
-
-            success = true;
         }
         event.setDropCompleted(success);
         event.consume();
@@ -134,8 +129,8 @@ public class OpenAccountsController extends Controller implements Initializable 
     @Override
     public void initialize() {
     }
-
 }
+
 
 
 
