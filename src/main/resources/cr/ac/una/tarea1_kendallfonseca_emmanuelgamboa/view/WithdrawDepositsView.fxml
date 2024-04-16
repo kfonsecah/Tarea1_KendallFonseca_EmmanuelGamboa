@@ -28,7 +28,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -46,7 +46,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -64,7 +64,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -82,7 +82,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -107,7 +107,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -125,7 +125,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -143,7 +143,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -161,7 +161,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -186,7 +186,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -204,7 +204,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -222,7 +222,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>
@@ -240,7 +240,7 @@
                                           <Insets left="10.0" top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
-                                    <MFXButton styleClass="btnDeposits" stylesheets="@Styles.css" text="Aceptar">
+                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Aceptar">
                                        <VBox.margin>
                                           <Insets left="71.0" top="10.0" />
                                        </VBox.margin>

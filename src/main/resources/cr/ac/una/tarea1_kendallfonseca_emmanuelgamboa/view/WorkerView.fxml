@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -29,25 +30,53 @@
                      </font></Label>
                </children>
             </HBox>
-            <MFXButton fx:id="btnAssociateMaintenance" onAction="#onActionBtnAssociateMaintenance" styleClass="btnWorkers" stylesheets="@Styles.css" text="Mantenimiento de Asociados">
+            <MFXButton fx:id="btnAssociateMaintenance" onAction="#onActionBtnAssociateMaintenance" stylesheets="@Styles.css" text="Mantenimiento de Asociados">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" top="20.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnMaintenance" />
+               </styleClass>
             </MFXButton>
-            <MFXButton fx:id="btnPrintID" onAction="#onActionBtnPrintID" styleClass="btnWorkers" stylesheets="@Styles.css" text="Impresion del Carnet">
+            <MFXButton fx:id="btnPrintID" onAction="#onActionBtnPrintID" stylesheets="@Styles.css" text="Impresion del Carnet">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnPrint" />
+               </styleClass>
             </MFXButton>
-            <MFXButton fx:id="btnOpenAccounts" onAction="#onActionBtnOpenAccounts" styleClass="btnWorkers" stylesheets="@Styles.css" text="Apertura de Cuentas">
+            <MFXButton fx:id="btnOpenAccounts" onAction="#onActionBtnOpenAccounts" stylesheets="@Styles.css" text="Apertura de Cuentas">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnOpenAccounts" />
+               </styleClass>
             </MFXButton>
-            <MFXButton fx:id="btnWithdrawDeposits" onAction="#onActionBtnWithdrawDeposits" styleClass="btnWorkers" stylesheets="@Styles.css" text="Retiros y Depositos">
+            <MFXButton fx:id="btnWithdrawDeposits" onAction="#onActionBtnWithdrawDeposits" stylesheets="@Styles.css" text="Retiros y Depositos">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnDeposits" />
+               </styleClass>
             </MFXButton>
          </children>
       </VBox>
