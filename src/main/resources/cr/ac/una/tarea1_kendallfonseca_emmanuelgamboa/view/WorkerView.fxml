@@ -44,7 +44,7 @@
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>
             </MFXButton>
-            <MFXButton fx:id="btnWithdrawDeposits" styleClass="btnWorkers" stylesheets="@Styles.css" text="Retiros y Depositos">
+            <MFXButton fx:id="btnWithdrawDeposits" onAction="#onActionBtnWithdrawDeposits" styleClass="btnWorkers" stylesheets="@Styles.css" text="Retiros y Depositos">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" />
                </VBox.margin>
