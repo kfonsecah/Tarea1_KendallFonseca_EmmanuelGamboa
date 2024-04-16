@@ -88,6 +88,7 @@ public class OpenAccountsController extends Controller implements Initializable 
         event.consume();
     }
 
+
     @FXML
     void onDragDropped(DragEvent event) {
         ListView<Account> targetListView = (ListView<Account>) event.getGestureTarget();
@@ -110,12 +111,6 @@ public class OpenAccountsController extends Controller implements Initializable 
                     System.out.println("Error: The account was not found in either the active or inactive accounts list.");
                 }
 
-                if (targetListView == activeAccounts) {
-                    account.setActive(true);
-                } else {
-                    account.setActive(false);
-                }
-
                 AppContext.saveAccounts();
                 success = true;
             } else {
@@ -124,6 +119,15 @@ public class OpenAccountsController extends Controller implements Initializable 
         }
         event.setDropCompleted(success);
         event.consume();
+    }
+
+    private void findAndMoveAccount(Account account, ListView<Account> fromListView, ListView<Account> toListView) {
+        if (fromListView.getItems().contains(account)) {
+            fromListView.getItems().remove(account);
+            toListView.getItems().add(account);
+        } else {
+            System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+        }
     }
 
     @Override

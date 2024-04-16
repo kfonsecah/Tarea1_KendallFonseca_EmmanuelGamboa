@@ -18,6 +18,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -177,7 +178,14 @@ public class RegisterController extends Controller implements Initializable {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al escribir la cuenta en el archivo");
         }
     }
-
+    private void findAndMoveAccount(Account account, ListView<Account> fromListView, ListView<Account> toListView) {
+        if (fromListView.getItems().contains(account)) {
+            fromListView.getItems().remove(account);
+            toListView.getItems().add(account);
+        } else {
+            System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+        }
+    }
 
 }
 

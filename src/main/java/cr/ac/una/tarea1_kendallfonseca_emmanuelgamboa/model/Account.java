@@ -2,6 +2,8 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import javafx.beans.property.*;
 
 
@@ -21,6 +23,7 @@ public class Account {
         this.balance = new SimpleDoubleProperty(balance);
         this.currency = new SimpleStringProperty(currency);
         this.accountHolder = new SimpleStringProperty(accountHolder);
+
 
     }
 
@@ -92,10 +95,6 @@ public class Account {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active.set(active);
-    }
-
     public static Account fromString(String accountString) {
         try {
             System.out.println("Account string: " + accountString); // Mensaje de depuración
@@ -106,14 +105,26 @@ public class Account {
             if (accountData.length != 5) {
                 throw new IllegalArgumentException("Invalid account string format. Expected 6 fields (comma or slash separated).");
             }
-            // Resto del código
+
+            // Crear una nueva instancia de Account con los datos obtenidos
+            String accountNumber = accountData[0];
+            String accountType = accountData[1];
+            double balance = Double.parseDouble(accountData[2].replaceAll("[^\\d.]", ""));
+            String currency = accountData[3];
+            String accountHolder = accountData[4];
+
+            return new Account(accountNumber, accountType, balance, currency, accountHolder);
         } catch (IllegalArgumentException e) {
             System.err.println("Error parsing account string: " + e.getMessage());
+            throw e; // Relanzar la excepción para que la clase que llama pueda manejarla adecuadamente
         }
-        return null;
+
     }
-
-
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(accountNumber, account.accountNumber);
+    }
 }
-
