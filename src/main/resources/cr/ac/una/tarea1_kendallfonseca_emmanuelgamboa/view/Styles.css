@@ -136,3 +136,15 @@
 .btnUser>ImageView{
     -fx-image: url("../resources/User.png");
 }
+
+.btnDeposits{
+    -fx-background-color: #008e8e;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+.btnDeposits,.btnDeposits:armed,.btnDeposits:focused{
+    -fx-background-color: #008e8e;
+}
+
