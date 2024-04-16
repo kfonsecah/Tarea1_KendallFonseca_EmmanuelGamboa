@@ -166,3 +166,6 @@
       -fx-image: url("../resources/retiros.png")
 }
 
+.imageAdmin>ImageView{
+    -fx-image: url("../resources/fondo.jpeg");
+}
