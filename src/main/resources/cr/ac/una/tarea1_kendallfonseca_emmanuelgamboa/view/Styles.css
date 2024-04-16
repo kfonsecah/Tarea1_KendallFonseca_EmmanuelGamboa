@@ -136,3 +136,36 @@
 .btnUser>ImageView{
     -fx-image: url("../resources/User.png");
 }
+
+.btnAcceptDeposits{
+    -fx-background-color: #008e8e;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+    -fx-font-size: 15px;
+
+}
+
+.btnAcceptDeposits,.btnAcceptDeposits:armed,.btnAcceptDeposits:focused{
+    -fx-background-color: #008e8e;
+}
+
+.btnMaintenance>ImageView{
+    -fx-image: url("../resources/mantenimiento.png")
+}
+
+.btnPrint>ImageView{
+    -fx-image: url("../resources/imprimir.png")
+}
+
+.btnOpenAccounts>ImageView{
+     -fx-image: url("../resources/apertura.png")
+}
+
+.btnDeposits>ImageView{
+      -fx-image: url("../resources/retiros.png")
+}
+
+.imageAdmin>ImageView{
+    -fx-image: url("../resources/fondo.jpeg");
+}
