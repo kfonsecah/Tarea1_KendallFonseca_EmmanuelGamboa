@@ -216,10 +216,9 @@
     -fx-background-radius: 20px;
     -fx-text-fill: #000000;
     -fx-font-weight: bold;
-    -fx-alignment: CENTER LEFT;
     -fx-cursor: hand;
     -fx-padding: 15px 20px;
-    -mfx-button-type: RAISED;
+   // -mfx-button-type: RAISED;
     -fx-opacity: 0.8;
     -fx-content-display: center;
     -fx-font-size: 14px;

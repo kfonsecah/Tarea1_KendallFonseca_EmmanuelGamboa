@@ -105,15 +105,9 @@ public class AssociateMaintenanceController extends Controller implements Initia
         loadUsersToTableView();
         populateTextFieldValues();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
-        ChangeListener<ObservableList<Associated>> tableItemsListener = new ChangeListener<ObservableList<Associated>>() {
-            @Override
-            public void changed(ObservableValue<? extends ObservableList<Associated>> observable, ObservableList<Associated> oldValue, ObservableList<Associated> newValue) {
-                // Set the value of the combo box to "Todo" after the table view has been populated with data
-                comboBoxFilter.setValue("Todo");
-                // Remove the listener after it has been triggered once
-                userSearchList.itemsProperty().removeListener(this);
-            }
-        };
+        comboBoxFilter.setValue("Todo");
+
+
     }
 
     @Override
@@ -149,6 +143,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private void onActionBtnSearch(ActionEvent event) {
+
         String filter = comboBoxFilter.getValue();
         if (!txtSearch.getText().isEmpty()) {
             ObservableList<Associated> filteredData = FXCollections.observableArrayList();
