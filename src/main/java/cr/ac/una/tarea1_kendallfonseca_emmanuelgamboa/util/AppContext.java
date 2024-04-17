@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountManager;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
@@ -8,6 +9,7 @@ import javafx.collections.FXCollections;
 import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
@@ -37,6 +39,7 @@ public class AppContext {
         readUsers();
         readInactiveAccounts();
         readActiveAccounts();
+        readAssociatedsFromJsonFile();
 
     }
 
@@ -119,6 +122,18 @@ public class AppContext {
         }
         AccountManager.getInstance().writeAccountsToFile();
         context.put("asociados", asociados);
+    }
+
+    public static void readAssociatedsFromJsonFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+            ObservableList<Associated> asociados = FXCollections.observableArrayList(associateds);
+            context.put("asociados", asociados);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static ObservableList<Account> getAccountsByFolio(String folio) {

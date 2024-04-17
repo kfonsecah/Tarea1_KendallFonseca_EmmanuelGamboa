@@ -1,8 +1,11 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.scene.Node;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,6 +129,57 @@ public class Associated {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static class AssociatedData {
+        public String name;
+        public String lastName;
+        public int age;
+        public String folio;
+        public String photo;
+        public String iban;
+
+        public AssociatedData() {
+        }
+
+        public AssociatedData(String name, String lastName, int age, String folio, String photo, String iban) {
+            this.name = name;
+            this.lastName = lastName;
+            this.age = age;
+            this.folio = folio;
+            this.photo = photo;
+            this.iban = iban;
+        }
+    }
+
+//    public void writeAssociatedsToJsonFile(ArrayList<Associated> associateds) throws IOException {
+//        File file = new File("associateds.json");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+//
+//        if (!file.exists()) {
+//            file.createNewFile();
+//            objectMapper.writeValue(file, new ArrayList<>());
+//        }
+//
+//        ArrayList<Associated> currentAssociateds = objectMapper.readValue(file, ArrayList.class);
+//        currentAssociateds.addAll(associateds);
+//        objectMapper.writeValue(file, currentAssociateds);
+//    }
+
+    public void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
+        File file = new File("associateds.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        if (!file.exists()) {
+            file.createNewFile();
+            objectMapper.writeValue(file, new ArrayList<>());
+        }
+
+        List<Associated.AssociatedData> associatedDataList = objectMapper.readValue(file, ArrayList.class);
+        associatedDataList.add(associatedData);
+        objectMapper.writeValue(file, associatedDataList);
     }
 
     public void createFile(Associated associated) throws IOException {
