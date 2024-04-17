@@ -158,11 +158,19 @@ public class AppContext {
                     objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
         }
 
-        associatedList.add(associated);
+        for (int i = 0; i < associatedList.size(); i++) {
+            if (associatedList.get(i).getAssoFolio().equals(associated.getAssoFolio())) {
+                associatedList.set(i, associated);
+                break;
+            }
+        }
+
+        if (!associatedList.contains(associated)) {
+            associatedList.add(associated);
+        }
 
         objectMapper.writeValue(new File("associateds.json"), associatedList);
     }
-
 
     private static void readActiveAccounts() {
         try (BufferedReader reader = new BufferedReader(new FileReader(ACTIVE_ACCOUNTS_FILE_PATH))) {
