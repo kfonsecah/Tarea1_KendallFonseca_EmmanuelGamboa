@@ -38,17 +38,17 @@
                      </MFXTextField>
                      <HBox prefHeight="100.0" prefWidth="200.0">
                         <children>
-                           <MFXButton fx:id="btnAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnAdd" prefHeight="25.0" prefWidth="85.0" text="Agregar">
+                           <MFXButton fx:id="btnAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnAdd" prefHeight="25.0" prefWidth="85.0" styleClass="btnAccConf" stylesheets="@Styles.css" text="Agregar">
                               <HBox.margin>
                                  <Insets bottom="40.0" left="320.0" right="40.0" top="40.0" />
                               </HBox.margin>
                            </MFXButton>
-                           <MFXButton fx:id="btnDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnDelete" prefHeight="25.0" prefWidth="85.0" text="Eliminar">
+                           <MFXButton fx:id="btnDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btnAccConf" stylesheets="@Styles.css" text="Eliminar">
                               <HBox.margin>
                                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                               </HBox.margin>
                            </MFXButton>
-                           <MFXButton fx:id="btnSelect" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnSelect" prefHeight="25.0" prefWidth="85.0" text="Seleccionar">
+                           <MFXButton fx:id="btnSelect" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnSelect" prefHeight="25.0" prefWidth="85.0" styleClass="btnAccConf" stylesheets="@Styles.css" text="Seleccionar">
                               <HBox.margin>
                                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                               </HBox.margin>
