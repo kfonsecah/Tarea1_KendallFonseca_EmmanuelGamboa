@@ -8,9 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 import com.sun.source.tree.WhileLoopTree;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
@@ -29,9 +27,10 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 
+
 import javax.swing.*;
 import java.io.File;
-import java.util.Arrays;
+
 
 /**
  * FXML Controller class
@@ -61,6 +60,8 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private ImageView userPhotoPrev;
 
+    private ArrayList<Associated> associateds = new ArrayList<>();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -88,15 +89,26 @@ public class RegisterController extends Controller implements Initializable {
 
 
 
+
+
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
+
+                Associated.AssociatedData associatedData = new Associated.AssociatedData(
+                        associated.getAssoName(),
+                        associated.getAssoLastName(),
+                        associated.getAssoAge(),
+                        associated.getAssoFolio(),
+                        associated.getAssoPhoto(),
+                        associated.getIban()
+                );
+
                 renameLastUserPhoto(associated.getAssoFolio());
-                associated.Associated.add(associated.getAssoName());
-                associated.Associated.add(associated.getAssoLastName());
-                associated.Associated.add(String.valueOf(associated.getAssoAge()));
-                associated.Associated.add(associated.getAssoFolio());
-                associated.Associated.add(associated.getAssoPhoto());
-                associated.Associated.add(associated.getIban());
-                associated.createFile(associated);
+
+                try {
+                    associated.addAssociatedToJsonFile(associatedData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 txtName.setText("");
                 txtLastName.setText("");
@@ -105,6 +117,9 @@ public class RegisterController extends Controller implements Initializable {
 
                 Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
                 writeAccountToFile(account);
+
+
+
 
 
                 for (int i = 0; i < associated.Associated.size(); i++) {

@@ -62,6 +62,10 @@ public class WorkerController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         printAppContextUsersInfo();
         setCompanyInfo();
+        AppContext appContext = AppContext.getInstance();
+        AppContext.readAssociatedsFromJsonFile();
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+        System.out.println("Asociados list: " + asociados);
 
         // TODO
     }

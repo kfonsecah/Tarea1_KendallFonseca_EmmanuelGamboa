@@ -1,0 +1,15 @@
+[ {
+  "name" : "Kendall",
+  "lastName" : "Fonseca",
+  "age" : 12,
+  "folio" : "KF0437",
+  "photo" : "KF0437.png",
+  "iban" : "CR0443753323923757507"
+}, {
+  "name" : "Isaac",
+  "lastName" : "Nigger",
+  "age" : 2,
+  "folio" : "IN0152",
+  "photo" : "IN0152.png",
+  "iban" : "CR5862110959430401796"
+} ]
