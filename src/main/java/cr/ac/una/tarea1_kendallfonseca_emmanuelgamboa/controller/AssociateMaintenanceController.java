@@ -4,7 +4,9 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.awt.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.*;
@@ -17,7 +19,9 @@ import java.util.ResourceBundle;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -74,6 +78,17 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     private TableView<Associated> userSearchList;
 
+    @FXML
+    private MFXTextField txtSearch;
+
+    @FXML
+    private MFXButton btnSearch;
+
+    @FXML
+    private MFXComboBox<String> comboBoxFilter;
+
+
+
     /**
      * Initializes the controller class.
      */
@@ -83,7 +98,16 @@ public class AssociateMaintenanceController extends Controller implements Initia
         ObservableList<Associated> asociados = AppContext.getAsociados();
         loadUsersToTableView();
         populateTextFieldValues();
-
+        comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
+        ChangeListener<ObservableList<Associated>> tableItemsListener = new ChangeListener<ObservableList<Associated>>() {
+            @Override
+            public void changed(ObservableValue<? extends ObservableList<Associated>> observable, ObservableList<Associated> oldValue, ObservableList<Associated> newValue) {
+                // Set the value of the combo box to "Todo" after the table view has been populated with data
+                comboBoxFilter.setValue("Todo");
+                // Remove the listener after it has been triggered once
+                userSearchList.itemsProperty().removeListener(this);
+            }
+        };
     }
 
     @Override
@@ -94,9 +118,10 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private void loadUsersToTableView() {
         // Create columns
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
-        TableColumn<Associated, String> nameColumn = new TableColumn<>("Name");
-        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Last Name");
-        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Age");
+        TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
+        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
+        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
+
 
         // Set cell value factories
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
@@ -116,6 +141,41 @@ public class AssociateMaintenanceController extends Controller implements Initia
         });
     }
 
+    @FXML
+    private void onActionBtnSearch(ActionEvent event) {
+        String filter = comboBoxFilter.getValue();
+        if (!txtSearch.getText().isEmpty()) {
+            ObservableList<Associated> filteredData = FXCollections.observableArrayList();
+            ObservableList<Associated> list = AppContext.getAsociados();
+
+            for (int i = 0; i < list.size(); i++) {
+                Associated data = list.get(i);
+                if(filter.equals("Todo")&& data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())){
+                    filteredData.add(data);
+                } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Apellido") && data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Folio") && data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Edad") && Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
+                    filteredData.add(data);
+                }
+            }
+            userSearchList.setItems(filteredData);
+        } else {
+            cleanUserTableView();
+            loadUsersToTableView();
+        }
+    }
+
+    private void cleanUserTableView() {
+        userSearchList.getItems().clear();
+        userSearchList.getColumns().clear();
+    }
     private void populateTextFieldValues() {
         Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
@@ -139,7 +199,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
 
     @FXML
-    private void onActionBtnEditImage() {
+    private void onActionBtnEditImage(ActionEvent event) {
         if (userSearchList.getSelectionModel().getSelectedItem() == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Seleccione un usuario");
             return;
@@ -179,7 +239,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
 
     @FXML
-    private void onActionBtnAccept() {
+    private void onActionBtnAccept(ActionEvent event) {
         Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
 
         if (selectedUser == null) {
@@ -199,7 +259,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
             selectedUser.setAssoAge(newAge);
 
             String newImagePath = selectedUser.getAssoPhoto();
-            if (newImagePath != null && !newImagePath.isEmpty()) {
+            if (newImagePath!= null &&!newImagePath.isEmpty()) {
                 String imageFileName = selectedUser.getAssoFolio() + ".png";
                 String destinationPath = "userphotos/" + imageFileName;
                 Path destination = new File(destinationPath).toPath();
@@ -218,7 +278,10 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                loadUsersToTableView();
+
+                // Update the TableView with the edited Associated object
+                updateTableView();
+
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Exito", root.getScene().getWindow(), "Usuario actualizado correctamente");
 
                 txtName.setText("");
@@ -226,10 +289,21 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 txtAge.setText("");
                 userImage.setImage(null);
                 txtFolio.setText("");
-
             }
         }
     }
+
+    private void updateTableView() {
+        // Get the updated Associated objects from the AppContext
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+
+        // Update the TableView with the updated Associated objects
+        int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+        userSearchList.setItems(asociados);
+        userSearchList.getSelectionModel().select(selectedIndex);
+        userSearchList.refresh(); // Refresh the TableView to display the updated Associated object
+    }
+
 }
 
 

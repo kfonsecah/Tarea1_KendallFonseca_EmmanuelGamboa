@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -24,6 +25,25 @@
                <children>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1065.0">
                      <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <MFXComboBox fx:id="comboBoxFilter" prefHeight="24.0" prefWidth="135.0">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="20.0" right="10.0" top="15.0" />
+                                 </HBox.margin>
+                              </MFXComboBox>
+                              <MFXTextField fx:id="txtSearch" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnSearch" prefHeight="37.0" prefWidth="165.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="15.0" />
+                                 </HBox.margin>
+                              </MFXTextField>
+                              <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" prefHeight="27.0" prefWidth="68.0" text="Buscar">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="20.0" />
+                                 </HBox.margin>
+                              </MFXButton>
+                           </children>
+                        </HBox>
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="284.0" prefWidth="1014.0" styleClass="fx-hBoxMaintenance" stylesheets="@Styles.css">
                            <children>
                               <TableView fx:id="userSearchList" prefHeight="277.0" prefWidth="1087.0">
