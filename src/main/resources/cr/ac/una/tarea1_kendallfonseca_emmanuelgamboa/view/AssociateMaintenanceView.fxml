@@ -150,6 +150,7 @@
                                           <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                                        </graphic>
                                     </MFXButton>
+                                    <MFXButton fx:id="btnDeleteUser" onAction="#onActionDeleteUser" prefHeight="27.0" prefWidth="181.0" text="Eliminar Usuario" />
                                     <MFXButton fx:id="btnNewPhoto" onAction="#onActionNewPhoto" prefHeight="55.0" prefWidth="140.0" styleClass="btnNewPhoto" stylesheets="@Styles.css" text="Nueva Foto">
                                        <HBox.margin>
                                           <Insets left="10.0" top="150.0" />

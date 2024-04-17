@@ -87,6 +87,9 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     private MFXComboBox<String> comboBoxFilter;
 
+    @FXML
+    private MFXButton btnDeleteUser;
+
 
 
     /**
@@ -304,6 +307,45 @@ public class AssociateMaintenanceController extends Controller implements Initia
         userSearchList.refresh(); // Refresh the TableView to display the updated Associated object
     }
 
+
+    private void deleteAssociated() {
+        int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("No user selected.");
+            alert.showAndWait();
+            return;
+        }
+
+        String folio = txtFolio.getText();
+        if (folio.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Folio cannot be empty.");
+            alert.showAndWait();
+            return;
+        }
+
+        Associated associatedData = userSearchList.getItems().get(selectedIndex);
+        associatedData.setFolio(folio);
+
+        AppContext appContext = AppContext.getInstance();
+
+        String result = appContext.deleteAssociatedFromJsonFile(associatedData);
+
+        userSearchList.getItems().remove(selectedIndex);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Result");
+        alert.setContentText(result);
+        alert.showAndWait();
+    }
+    @FXML
+    private void onActionDeleteUser(ActionEvent event) {
+        deleteAssociated();
+        updateTableView();
+    }
 }
 
 

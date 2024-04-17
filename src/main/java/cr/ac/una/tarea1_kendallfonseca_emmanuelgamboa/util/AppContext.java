@@ -3,7 +3,6 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountManager;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
@@ -13,9 +12,6 @@ import java.util.*;
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import javafx.collections.ObservableMap;
-import javafx.scene.image.Image;
-
-import java.util.logging.Level;
 
 
 public class AppContext {
@@ -148,7 +144,7 @@ public class AppContext {
         }
         context.put("inactiveAccounts", inactiveAccounts);
     }
-    
+
     public static void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -255,6 +251,35 @@ public static void printAsociados() {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String deleteAssociatedFromJsonFile(Associated associatedData) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<Associated.AssociatedData> associatedDataList;
+        try {
+            associatedDataList = objectMapper.readValue(new File("associateds.json"),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.AssociatedData.class));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "No se pudo eliminar el usuario";
+        }
+
+        boolean deleted = associatedDataList.removeIf(data -> data.getFolio().equals(associatedData.getFolio()));
+
+        if (deleted) {
+            try {
+                objectMapper.writeValue(new File("associateds.json"), associatedDataList);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "No se pudo eliminar el usuario";
+            }
+        } else {
+            return "No se encontró el usuario a eliminar";
+        }
+
+        return "Usuario eliminado correctamente";
     }
 
 
