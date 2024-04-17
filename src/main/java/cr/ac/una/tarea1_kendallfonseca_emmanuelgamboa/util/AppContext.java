@@ -148,28 +148,29 @@ public class AppContext {
         }
         context.put("inactiveAccounts", inactiveAccounts);
     }
-    public static void addAssociatedToJsonFile(Associated associated) throws IOException {
+    
+    public static void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        List<Associated> associatedList = new ArrayList<>();
+        List<Associated.AssociatedData> associatedDataList = new ArrayList<>();
         if (new File("associateds.json").exists()) {
-            associatedList = objectMapper.readValue(new File("associateds.json"),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+            associatedDataList = objectMapper.readValue(new File("associateds.json"),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.AssociatedData.class));
         }
 
-        for (int i = 0; i < associatedList.size(); i++) {
-            if (associatedList.get(i).getAssoFolio().equals(associated.getAssoFolio())) {
-                associatedList.set(i, associated);
+        for (int i = 0; i < associatedDataList.size(); i++) {
+            if (associatedDataList.get(i).getFolio().equals(associatedData.getFolio())) {
+                associatedDataList.set(i, associatedData);
                 break;
             }
         }
 
-        if (!associatedList.contains(associated)) {
-            associatedList.add(associated);
+        if (!associatedDataList.contains(associatedData)) {
+            associatedDataList.add(associatedData);
         }
 
-        objectMapper.writeValue(new File("associateds.json"), associatedList);
+        objectMapper.writeValue(new File("associateds.json"), associatedDataList);
     }
 
     private static void readActiveAccounts() {

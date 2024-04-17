@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -139,35 +140,36 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private void onActionBtnEditImage() {
-        if (userImage.getImage() == null) {
+        if (userSearchList.getSelectionModel().getSelectedItem() == null) {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Seleccione un usuario");
-        } else {
+            return;
+        }
 
-            Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
-            if (selectedUser != null) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Choose Image");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image");
 
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
 
-                File selectedFile = fileChooser.showOpenDialog(null);
-                if (selectedFile != null) {
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(selectedFile);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                userImage.setImage(image);
 
-                    String newImagePath = selectedFile.getAbsolutePath();
-                    String imageFileName = selectedUser.getAssoFolio() + ".png";
-                    String destinationPath = "userphotos/" + imageFileName;
-                    Path destination = new File(destinationPath).toPath();
-                    try {
+                Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
+                String newImagePath = selectedFile.getAbsolutePath();
+                selectedUser.setAssoPhoto(newImagePath);
 
-                        Files.copy(Path.of(newImagePath), destination, StandardCopyOption.REPLACE_EXISTING);
+                String imageFileName = selectedUser.getAssoFolio() + ".png";
+                String destinationPath = "userphotos/" + imageFileName;
+                Path destination = new File(destinationPath).toPath();
+                Files.copy(Path.of(newImagePath), destination, StandardCopyOption.REPLACE_EXISTING);
 
-                        Image newImage = new Image(selectedFile.toURI().toString());
-                        userImage.setImage(newImage);
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Exito", root.getScene().getWindow(), "Imagen actualizada correctamente");
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -179,19 +181,52 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     private void onActionBtnAccept() {
         Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
+
+        if (selectedUser == null) {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Seleccione un usuario");
+        } else {
             String newName = txtName.getText();
             String newLastName = txtLastName.getText();
             int newAge = Integer.parseInt(txtAge.getText());
+
+            if (newName.isEmpty() || newLastName.isEmpty() || newAge <= 0) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
+                return;
+            }
 
             selectedUser.setAssoName(newName);
             selectedUser.setAssoLastName(newLastName);
             selectedUser.setAssoAge(newAge);
 
-            try {
-                AppContext.addAssociatedToJsonFile(selectedUser);
-            } catch (IOException e) {
-                e.printStackTrace();
+            String newImagePath = selectedUser.getAssoPhoto();
+            if (newImagePath != null && !newImagePath.isEmpty()) {
+                String imageFileName = selectedUser.getAssoFolio() + ".png";
+                String destinationPath = "userphotos/" + imageFileName;
+                Path destination = new File(destinationPath).toPath();
+
+                Associated.AssociatedData associatedData = new Associated.AssociatedData(
+                        selectedUser.getAssoName(),
+                        selectedUser.getAssoLastName(),
+                        selectedUser.getAssoAge(),
+                        selectedUser.getAssoFolio(),
+                        selectedUser.getAssoPhoto(),
+                        selectedUser.getIban()
+                );
+
+                try {
+                    AppContext.addAssociatedToJsonFile(associatedData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                loadUsersToTableView();
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Exito", root.getScene().getWindow(), "Usuario actualizado correctamente");
+
+                txtName.setText("");
+                txtLastName.setText("");
+                txtAge.setText("");
+                userImage.setImage(null);
+                txtFolio.setText("");
+
             }
         }
     }
