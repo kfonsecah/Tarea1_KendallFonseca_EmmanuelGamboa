@@ -36,7 +36,7 @@
     -fx-opacity: 0.8;
     -fx-content-display: left;
     -fx-font-weight: bold;
-    -fx-alignment:CENTER_LEFT;
+    -fx-alignment:CENTER-LEFT;
 }
 
 .btnWorkers.btnWorkers:armed,.btnWorkers:focused{
@@ -171,7 +171,24 @@
 }
 
 .btnRegister{
+    -fx-background-color: #54ec2c;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER-LEFT;
+    -fx-cursor: hand;
 
+    -fx-padding: 15px 20px;
+    -jfx-button-type: RAISED;
+    -mfx-button-type: RAISED;
+    -fx-opacity: 0.8;
+    -fx-content-display: left;
+    -fx-font-size: 14px;
+
+}
+
+.btnRegister,.btnRegister:armed,.btnRegister:focused{
+    -fx-background-color: #54ec2c;
 }
 
 .btnCamView{

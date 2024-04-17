@@ -68,7 +68,7 @@
    <center>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="965.0" styleClass="imageAdmin" stylesheets="@Styles.css" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <ImageView fitHeight="740.0" fitWidth="790.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="740.0" fitWidth="973.0" pickOnBounds="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
