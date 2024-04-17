@@ -116,7 +116,7 @@ public class RegisterController extends Controller implements Initializable {
                 userPhotoPrev.setImage(null);
 
                 Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
-                writeAccountToFile(account);
+                //writeAccountToFile(account);
 
 
 

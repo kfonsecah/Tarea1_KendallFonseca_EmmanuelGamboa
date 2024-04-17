@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.scene.Node;
@@ -191,14 +192,14 @@ public class Associated {
     }
 
 
-    public void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
+    public static void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
         File file = new File("associateds.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         if (!file.exists()) {
             file.createNewFile();
-            objectMapper.writeValue(file, new ArrayList<>());
+            objectMapper.writeValue(file, new ArrayList<Associated.AssociatedData>());
         }
 
         List<Associated.AssociatedData> associatedDataList = objectMapper.readValue(file, ArrayList.class);
