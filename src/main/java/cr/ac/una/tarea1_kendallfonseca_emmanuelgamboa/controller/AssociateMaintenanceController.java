@@ -55,6 +55,9 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnAccept;
 
     @FXML
+    private MFXButton addAssociate;
+
+    @FXML
     private MFXButton btnNewPhoto;
 
     @FXML
