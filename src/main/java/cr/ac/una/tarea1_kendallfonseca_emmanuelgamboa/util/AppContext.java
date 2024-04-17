@@ -1,16 +1,15 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountManager;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+
 import javafx.collections.ObservableList;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import javafx.collections.ObservableMap;
@@ -148,6 +147,20 @@ public class AppContext {
             System.err.println("Error reading inactive accounts from the file: " + e.getMessage());
         }
         context.put("inactiveAccounts", inactiveAccounts);
+    }
+    public static void addAssociatedToJsonFile(Associated associated) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<Associated> associatedList = new ArrayList<>();
+        if (new File("associateds.json").exists()) {
+            associatedList = objectMapper.readValue(new File("associateds.json"),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+        }
+
+        associatedList.add(associated);
+
+        objectMapper.writeValue(new File("associateds.json"), associatedList);
     }
 
 

@@ -178,7 +178,22 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private void onActionBtnAccept() {
+        Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            String newName = txtName.getText();
+            String newLastName = txtLastName.getText();
+            int newAge = Integer.parseInt(txtAge.getText());
 
+            selectedUser.setAssoName(newName);
+            selectedUser.setAssoLastName(newLastName);
+            selectedUser.setAssoAge(newAge);
+
+            try {
+                AppContext.addAssociatedToJsonFile(selectedUser);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
