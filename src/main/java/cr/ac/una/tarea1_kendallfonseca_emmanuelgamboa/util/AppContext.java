@@ -35,11 +35,11 @@ public class AppContext {
 
 
     private AppContext() {
-
-        readUsers();
+        System.out.println("AppContext");
         readInactiveAccounts();
         readActiveAccounts();
         readAssociatedsFromJsonFile();
+        printAsociados();
 
     }
 
@@ -94,34 +94,7 @@ public class AppContext {
     }
 
     public static void readUsers() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_FILE_PATH))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    String[] userData = line.replaceAll("\\[|\\]", "").split(", ");
-                    if (userData.length == 6) {
-                        String name = userData[0];
-                        String lastName = userData[1];
-                        int age = Integer.parseInt(userData[2]);
-                        String folio = userData[3];
-                        String imageName = userData[4];
-                        String iban = userData[5];
 
-                        Associated associated = new Associated(name, lastName, age, folio, imageName, iban);
-                        asociados.add(associated);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading users from the file: " + e.getMessage());
-        }
-
-        for (Associated associated : asociados) {
-            ObservableList<Account> associatedAccounts = getAccountsByFolio(associated.getAssoFolio());
-            AccountManager.getInstance().addAssociatedAccounts(associated.getAssoFolio(), associatedAccounts);
-        }
-        AccountManager.getInstance().writeAccountsToFile();
-        context.put("asociados", asociados);
     }
 
     public static void readAssociatedsFromJsonFile() {
@@ -129,13 +102,17 @@ public class AppContext {
         try {
             List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
                     objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
-            ObservableList<Associated> asociados = FXCollections.observableArrayList(associateds);
-            context.put("asociados", asociados);
+
+            System.out.println("Loaded associateds from JSON file: " + associateds);
+
+            ObservableList<Associated> observableAsociados = FXCollections.observableArrayList(associateds);
+            context.put("asociados", observableAsociados);
+
         } catch (IOException e) {
+            System.out.println("Error reading associateds from JSON file: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
     private static ObservableList<Account> getAccountsByFolio(String folio) {
         ObservableList<Account> associatedAccounts = FXCollections.observableArrayList();
         for (Account account : inactiveAccounts) {
@@ -214,15 +191,25 @@ public class AppContext {
         return cooperatives.get("cooperative");
     }
     public static ObservableList<Associated> getAsociados() {
-        return asociados;
-    }
-//    public static ObservableList<Account> getInactiveAccounts() {
-//        return inactiveAccounts;
-//    }
-//    public static ObservableList<Account> getActiveAccounts() {
-//        return activeAccounts;
-//    }
+        ObservableList<Associated> associateds = (ObservableList<Associated>) context.get("asociados");
 
+        if (associateds == null) {
+            System.out.println("Asociados list is empty.");
+            return FXCollections.observableArrayList();
+        }
+
+        return associateds;
+    }
+public static void printAsociados() {
+    if (asociados != null && !asociados.isEmpty()) {
+        System.out.println("Asociados:");
+        for (Associated asociado : asociados) {
+            System.out.println(asociado);
+        }
+    } else {
+        System.out.println("Asociados list is empty.");
+    }
+}
 
     public static ObservableList<Account> getActiveAccounts() {
         return FXCollections.observableArrayList(activeAccounts);

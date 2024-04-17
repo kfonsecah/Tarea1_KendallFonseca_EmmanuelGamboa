@@ -1,29 +1,15 @@
 [ {
-  "name" : "Kednall",
-  "lastName" : "Fonseca",
-  "age" : 12,
-  "folio" : "KF0646",
-  "photo" : "KF0646.png",
-  "iban" : "CR1565313641003707383"
-}, {
-  "name" : "Zxza",
-  "lastName" : "Fonseca",
-  "age" : 12,
-  "folio" : "ZF0781",
-  "photo" : "ZF0781.png",
-  "iban" : "CR8808681783719012392"
-}, {
-  "name" : "KENDALL",
-  "lastName" : "fnajfsno;",
-  "age" : 2,
-  "folio" : "Kf0768",
-  "photo" : "Kf0768.png",
-  "iban" : "CR4631373591700154901"
-}, {
   "name" : "Kendall",
-  "lastName" : "FOnseca",
+  "lastName" : "Fonseca",
   "age" : 12,
-  "folio" : "KF0405",
-  "photo" : "KF0405.png",
-  "iban" : "CR0333018405968580510"
+  "folio" : "KF0437",
+  "photo" : "KF0437.png",
+  "iban" : "CR0443753323923757507"
+}, {
+  "name" : "Isaac",
+  "lastName" : "Nigger",
+  "age" : 2,
+  "folio" : "IN0152",
+  "photo" : "IN0152.png",
+  "iban" : "CR5862110959430401796"
 } ]

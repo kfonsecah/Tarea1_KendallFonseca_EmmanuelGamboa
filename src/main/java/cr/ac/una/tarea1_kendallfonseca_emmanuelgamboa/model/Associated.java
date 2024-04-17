@@ -101,6 +101,44 @@ public class Associated {
         this.iban = iban;
     }
 
+    public String getName() {
+        return AssoName;
+    }
+
+    public void setName(String name) {
+        AssoName = name;
+    }
+    public String getLastName() {
+        return AssoLastName;
+    }
+    public void setLastName(String lastName) {
+        AssoLastName = lastName;
+    }
+    public int getAge() {
+        return AssoAge;
+    }
+    public void setAge(int age) {
+        AssoAge = age;
+    }
+    public String getPhoto() {
+        return getAssoFolio()+".png";
+    }
+    public void setPhoto(String photo) {
+        this.AssoPhoto = getAssoFolio()+".png";
+    }
+    public String getFolio() {
+        return AssoFolio;
+    }
+    public void setFolio(String folio) {
+        this.AssoFolio = folio;
+    }
+    public String getCuentas() {
+        return AssoCuenta;
+    }
+    public void setCuentas(String cuenta) {
+        this.AssoCuenta = cuenta;
+    }
+
     public String createFolio() {
         Random random = new Random();
         char firstLetter = AssoName.charAt(0);
@@ -152,20 +190,6 @@ public class Associated {
         }
     }
 
-//    public void writeAssociatedsToJsonFile(ArrayList<Associated> associateds) throws IOException {
-//        File file = new File("associateds.json");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-//
-//        if (!file.exists()) {
-//            file.createNewFile();
-//            objectMapper.writeValue(file, new ArrayList<>());
-//        }
-//
-//        ArrayList<Associated> currentAssociateds = objectMapper.readValue(file, ArrayList.class);
-//        currentAssociateds.addAll(associateds);
-//        objectMapper.writeValue(file, currentAssociateds);
-//    }
 
     public void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
         File file = new File("associateds.json");
