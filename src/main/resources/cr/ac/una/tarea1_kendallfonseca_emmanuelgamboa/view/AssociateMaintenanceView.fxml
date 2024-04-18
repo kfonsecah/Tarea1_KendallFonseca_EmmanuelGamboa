@@ -142,6 +142,7 @@
                               </HBox>
                               <HBox prefHeight="342.0" prefWidth="448.0">
                                  <children>
+                                    <MFXButton fx:id="addAssociate" prefHeight="27.0" prefWidth="259.0" text="Anadir asociado" />
                                     <MFXButton fx:id="btnEditImage" onAction="#onActionBtnEditImage" prefHeight="55.0" prefWidth="105.0" styleClass="btnEdit" stylesheets="@Styles.css" text="Editar">
                                        <HBox.margin>
                                           <Insets left="40.0" top="150.0" />
