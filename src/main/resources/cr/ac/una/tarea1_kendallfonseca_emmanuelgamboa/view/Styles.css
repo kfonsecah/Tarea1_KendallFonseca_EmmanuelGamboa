@@ -22,29 +22,11 @@
     -fx-text-fill: #333;
 }
 
-.btnWorkers{
-    -fx-background-color: #27aab4;
-    -fx-text-fill: #000000;
-    -fx-font-size: 14px;
-    -fx-padding: 15px 20px;
-    -fx-border-radius: 10px;
-    -fx-cursor: hand;
-    -fx-button-type: RAISED;
-
-    -jfx-button-type: RAISED;
-    -mfx-button-type: RAISED;
-    -fx-opacity: 0.8;
-    -fx-content-display: left;
-    -fx-font-weight: bold;
-    -fx-alignment:CENTER-LEFT;
-}
-
-.btnWorkers.btnWorkers:armed,.btnWorkers:focused{
-    -fx-background-color: #27aab4;
-}
-
 .button:hover{
     -fx-background-color: #986ecc;
+}
+.button{
+    -fx-cursor: hand;
 }
 
 .txtAsoMain{
@@ -52,7 +34,7 @@
     -fx-background-radius: 20px;
 }
 
-.btnNewPhoto,.btnNewPhoto:armed,.btnNewPhoto:focused{
+.btnAssMaintenance{
     -fx-background-color: #54ec2c;
     -fx-text-fill: #ffffff;
     -mfx-button-type: RAISED;
@@ -60,41 +42,18 @@
     -fx-font-weight: bold;
     -fx-font-size: 12px;
     -fx-padding: 12px 15px;
+}
+
+.btnAssMaintenance,.btnAssMaintenance:armed,.btnAssMaintenance:focused{
+    -fx-background-color: #54ec2c;
 }
 
 .btnNewPhoto>ImageView{
     -fx-image: url("../resources/NewFoto.png");
 }
-.btnEdit{
-    -fx-background-color: #54ec2c;
-    -fx-text-fill: #ffffff;
-    -mfx-button-type: RAISED;
-    -fx-content-display: left;
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-    -fx-padding: 12px 15px;
-}
-
-.btnEdit,.btnEdit:armed,.btnEdit:focused{
-    -fx-background-color: #54ec2c;
-}
 
 .btnEdit>ImageView{
     -fx-image: url("../resources/Editar.png");
-}
-
-.btnAccept{
-    -fx-background-color: #54ec2c;
-    -fx-text-fill: #ffffff;
-    -mfx-button-type: RAISED;
-    -fx-content-display: left;
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-    -fx-padding: 12px 15px;
-}
-
-.btnAccept,.btnAccept:armed,.btnAccept:focused{
-    -fx-background-color: #54ec2c;
 }
 
 .btnAccept>ImageView{
@@ -170,27 +129,6 @@
     -fx-image: url("../resources/fondo.jpeg");
 }
 
-.btnRegister{
-    -fx-background-color: #54ec2c;
-    -fx-background-radius: 20px;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-alignment: CENTER-LEFT;
-    -fx-cursor: hand;
-
-    -fx-padding: 15px 20px;
-    -jfx-button-type: RAISED;
-    -mfx-button-type: RAISED;
-    -fx-opacity: 0.8;
-    -fx-content-display: left;
-    -fx-font-size: 14px;
-
-}
-
-.btnRegister,.btnRegister:armed,.btnRegister:focused{
-    -fx-background-color: #54ec2c;
-}
-
 .btnCamView{
     -fx-background-color: #005a4e;
     -fx-background-radius: 20px;
@@ -210,7 +148,6 @@
     -fx-background-color: #005a4e;
 }
 
-
 .btnAccConf{
     -fx-background-color: #3da7ff;
     -fx-background-radius: 20px;
@@ -218,7 +155,7 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-padding: 15px 20px;
-   // -mfx-button-type: RAISED;
+   /*-mfx-button-type: RAISED;*/
     -fx-opacity: 0.8;
     -fx-content-display: center;
     -fx-font-size: 14px;
@@ -227,4 +164,48 @@
 .btnAccConf,.btnAccConf:armed,.btnAccConf:focused{
     -fx-background-color: #3da7ff;
 
+}
+
+.coinFive>ImageView{
+    -fx-image: url("../resources/CincoColones.png");
+}
+
+.coinTen>ImageView{
+    -fx-image: url("../resources/DiezColones.png");
+}
+
+.coinTFive>ImageView{
+    -fx-image: url("../resources/VeinticincoColones.jpg");
+}
+
+.coinFifty>ImageView{
+    -fx-image: url("../resources/CincuentaColones.png");
+}
+
+.coinOneH>ImageView{
+    -fx-image: url("../resources/CienColones.png");
+}
+
+.coinFiveH>ImageView{
+    -fx-image: url("../resources/QuinientosColones.png");
+}
+
+.billOne>ImageView{
+    -fx-image: url("../resources/UnRojo.jpg");
+}
+
+.billTwo>ImageView{
+    -fx-image: url("../resources/DosRojos.jpg");
+}
+
+.billFive>ImageView{
+    -fx-image: url("../resources/CincoRojos.jpg");
+}
+
+.billTen>ImageView{
+    -fx-image: url("../resources/DiezRojos.jpg");
+}
+
+.billTwenty>ImageView{
+    -fx-image: url("../resources/VeinteRojos.jpg");
 }

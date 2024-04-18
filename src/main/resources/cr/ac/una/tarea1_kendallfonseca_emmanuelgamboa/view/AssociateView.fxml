@@ -30,7 +30,7 @@
                   </Label>
                </children>
             </HBox>
-            <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" styleClass="btnRegister" stylesheets="@Styles.css" text="Registro">
+            <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" styleClass="btnPrincipal" stylesheets="@Styles.css" text="Registro">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin></MFXButton>

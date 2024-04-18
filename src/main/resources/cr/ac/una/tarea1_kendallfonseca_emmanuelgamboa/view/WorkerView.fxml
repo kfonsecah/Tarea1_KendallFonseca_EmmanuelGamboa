@@ -38,7 +38,7 @@
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <styleClass>
-                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnPrincipal" />
                   <String fx:value="btnMaintenance" />
                </styleClass>
             </MFXButton>
@@ -50,7 +50,7 @@
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <styleClass>
-                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnPrincipal" />
                   <String fx:value="btnPrint" />
                </styleClass>
             </MFXButton>
@@ -62,7 +62,7 @@
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <styleClass>
-                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnPrincipal" />
                   <String fx:value="btnOpenAccounts" />
                </styleClass>
             </MFXButton>
@@ -74,7 +74,7 @@
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <styleClass>
-                  <String fx:value="btnWorkers" />
+                  <String fx:value="btnPrincipal" />
                   <String fx:value="btnDeposits" />
                </styleClass>
             </MFXButton>
