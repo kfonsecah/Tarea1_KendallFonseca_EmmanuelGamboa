@@ -30,7 +30,7 @@ public class App extends Application {
         if (access.equals("A")){
 
 
-      
+
             FlowController.getInstance().goMain("AssociateView");
         }
         if (access.equals("F")){
