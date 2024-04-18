@@ -146,6 +146,7 @@ public class AppContext {
     }
 
     public static void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 

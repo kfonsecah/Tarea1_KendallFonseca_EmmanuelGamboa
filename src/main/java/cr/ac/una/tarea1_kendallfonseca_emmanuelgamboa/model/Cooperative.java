@@ -24,8 +24,10 @@ public class Cooperative {
 
 
     public Cooperative() {
+        createFiles();
 
         this.accountType = new AccountType("");
+
         this.accountType.setNameFromFirstInFile("account_types.txt");
     }
 
@@ -110,6 +112,36 @@ public class Cooperative {
    //METHOD TO GET THE NAME OF THE AccountType
     public String getAccountTypeName() {
         return accountType.getName();
+    }
+
+    public void createFiles() {
+        try {
+            // Create inactiveAccounts.txt file
+            File inactiveAccountsFile = new File("inactiveAccounts.txt");
+            if (!inactiveAccountsFile.exists()) {
+                inactiveAccountsFile.createNewFile();
+            }
+
+            // Create activeAccounts.txt file
+            File activeAccountsFile = new File("activeAccounts.txt");
+            if (!activeAccountsFile.exists()) {
+                activeAccountsFile.createNewFile();
+            }
+
+            // Create account_types.txt file
+            File accountTypesFile = new File("account_types.txt");
+            if (!accountTypesFile.exists()) {
+                accountTypesFile.createNewFile();
+            }
+
+            // Create Associates.json file
+            File associatesFile = new File("associateds.json");
+            if (!associatesFile.exists()) {
+                associatesFile.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

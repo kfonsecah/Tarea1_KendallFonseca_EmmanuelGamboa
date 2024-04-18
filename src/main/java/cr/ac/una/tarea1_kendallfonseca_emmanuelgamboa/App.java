@@ -19,17 +19,24 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        goViewByAccess(accessParameter);
+        FlowController.getInstance().InitializeFlow(stage, null);
 
         Cooperative cooperative = new Cooperative();
         cooperative.loadFromTxtFile();
-        AppContext.getInstance().set("cooperative", cooperative);
-        FlowController.getInstance().InitializeFlow(stage, null);
-        FlowController.getInstance().goMain("PrincipalView");
+
+        goViewByAccess(accessParameter);
+
+        //AppContext.getInstance().set("cooperative", cooperative);
+       // FlowController.getInstance().InitializeFlow(stage, null);
+       // FlowController.getInstance().goMain("PrincipalView");
     }
 
     private void goViewByAccess(String access){
         if (access.equals("A")){
+            Cooperative cooperative = new Cooperative();
+            cooperative.loadFromTxtFile();
+
+            AppContext.getInstance().set("cooperative", cooperative);
             FlowController.getInstance().goMain("AssociateView");
         }
         if (access.equals("F")){
