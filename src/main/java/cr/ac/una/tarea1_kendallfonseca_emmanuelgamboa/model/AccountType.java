@@ -41,5 +41,6 @@ public class AccountType {
         return Objects.equals(name, other.name);
     }
 
+
 }
 

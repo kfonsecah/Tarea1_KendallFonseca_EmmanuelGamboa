@@ -4,8 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
-import io.github.palexdev.materialfx.controls.legacy.MFXLegacyTableView;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -15,93 +19,157 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 
-
-/**
- * FXML Controller class
- *
- * @author kfonsecah
- */
 public class OpenAccountsController extends Controller implements Initializable {
-
-    @FXML
-    private ListView<Account> activeAccounts;
-
-    @FXML
-    private ListView<Account> inactiveAccounts;
 
     @FXML
     private AnchorPane root;
 
+    @FXML
+    private ListView<AccountType> accountTypes;
+
+    @FXML
+    private MFXButton btnSearch;
+
+    @FXML
+    private MFXComboBox<String> comboBoxFilter;
+
+    @FXML
+    private ListView<Account> userAccounts;
+
+    @FXML
+    private MFXTextField txtSearch;
+
+    @FXML
+    private TableView<Associated> userSearchList;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        AppContext appContext = AppContext.getInstance();
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+        ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
+        accountTypes.setItems(tiposCuenta);
+        loadUsersToTableView();
+        comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
+        comboBoxFilter.setValue("Todo");
 
+        accountTypes.setOnDragDetected(event -> {
+            AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
+            if (selectedAccountType != null) {
+                Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.MOVE);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(selectedAccountType.getName());
+                dragboard.setContent(content);
+                event.consume();
+            }
+        });
 
+        userAccounts.setOnDragOver(event -> {
+            if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+            event.consume();
+        });
 
+        userAccounts.setOnDragDropped(event -> {
+            String accountType = event.getDragboard().getString();
+            Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
+            if (selectedAssociated != null) {
+                Account newAccount = new Account("", accountType, 0, "CRC", selectedAssociated.getName());
+                selectedAssociated.addAccount(newAccount);
+                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
+                userAccounts.setItems(userAccountList);
+                // Update the JSON file
+                AppContext.updateJSONFile();
+            }
+            event.setDropCompleted(true);
+            event.consume();
+        });
+    }
 
-        inactiveAccounts.setCellFactory(param -> new AccountCell());
-        activeAccounts.setCellFactory(param -> new AccountCell());
+    public void initialize(){};
 
-        activeAccounts.setOnDragDetected(this::onDragDetected);
-        inactiveAccounts.setOnDragDetected(this::onDragDetected);
+    private void loadUsersToTableView() {
+        TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
+        TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
+        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
+        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
 
-        activeAccounts.setOnDragOver(this::onDragOver);
-        inactiveAccounts.setOnDragOver(this::onDragOver);
+        folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("assoName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("assoLastName"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("assoAge"));
 
-        activeAccounts.setOnDragDropped(this::onDragDropped);
-        inactiveAccounts.setOnDragDropped(this::onDragDropped);
+        userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
+
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+        userSearchList.setItems(asociados);
+    }
+
+    @FXML
+    private void onActionBtnSearch(ActionEvent event) {
+        String filter = comboBoxFilter.getValue();
+        if (!txtSearch.getText().isEmpty()) {
+            ObservableList<Associated> filteredData = FXCollections.observableArrayList();
+            ObservableList<Associated> list = AppContext.getAsociados();
+
+            for (Associated data : list) {
+                if ((filter.equals("Todo") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) ||
+                        data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Apellido") && data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Folio") && data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Edad") && Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
+                    filteredData.add(data);
+                }
+            }
+            userSearchList.setItems(filteredData);
+        } else {
+            updateTableView();
+        }
+    }
+
+    private void updateTableView() {
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+        int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+        userSearchList.setItems(asociados);
+        userSearchList.getSelectionModel().select(selectedIndex);
+        userSearchList.refresh();
     }
 
     @FXML
     void onDragDetected(MouseEvent event) {
-        ListView<Account> listView = (ListView<Account>) event.getSource();
-        Account selectedItem = listView.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            Dragboard dragboard = listView.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
 
-
-            String accountString = String.format("[%s/%s/%.2f/%s/%s]%n",
-                    selectedItem.getAccountNumber(),
-                    selectedItem.getAccountType(),
-                    selectedItem.getBalance(),
-                    selectedItem.getCurrency(),
-                    selectedItem.getAccountHolder());
-
-            content.putString(accountString);
-            dragboard.setContent(content);
-        }
-        event.consume();
     }
-
 
     @FXML
     void onDragOver(DragEvent event) {
-        if (event.getGestureSource() != event.getSource() && event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
-        event.consume();
-    }
 
+    }
 
     @FXML
     void onDragDropped(DragEvent event) {
-
-    }
-
-    private void findAndMoveAccount(Account account, ListView<Account> fromListView, ListView<Account> toListView) {
-        if (fromListView.getItems().contains(account)) {
-            fromListView.getItems().remove(account);
-            toListView.getItems().add(account);
-        } else {
-            System.out.println("Error: The account was not found in either the active or inactive accounts list.");
+        String accountType = event.getDragboard().getString();
+        Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
+        if (selectedAssociated != null) {
+            Account newAccount = new Account("", accountType, 0, "CRC", selectedAssociated.getName());
+            AppContext.getInstance().addAccountToSelectedUser(selectedAssociated, newAccount);
+            ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
+            userAccounts.setItems(userAccountList);
+            // Update the JSON file
+            AppContext.updateJSONFile();
         }
-    }
-
-    @Override
-    public void initialize() {
+        event.setDropCompleted(true);
+        event.consume();
     }
 }
 

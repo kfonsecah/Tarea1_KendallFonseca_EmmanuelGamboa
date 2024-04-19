@@ -67,6 +67,7 @@ public class FlowController {
 
     public void InitializeFlow(Stage stage, ResourceBundle idioma, String accessParameter) {
         getInstance();
+
         this.mainStage = stage;
         this.idioma = idioma;
         goViewByAccess(accessParameter);
@@ -93,6 +94,7 @@ public class FlowController {
                         loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), this.idioma);
                         loader.load();
                         loaders.put(name, loader);
+
                     } catch (Exception ex) {
                         loader = null;
                         java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Creando loader [" + name + "].", ex);
@@ -111,9 +113,9 @@ public class FlowController {
             loader.getNamespace().clear(); // Clear the FXMLLoader cache
             Parent root = loader.load();
             Scene scene = new Scene(root);
-
+            //MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
             // Add the MaterialFX theme to the scene
-            MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
+
 
             // Set the scene and show the stage
             this.mainStage.setScene(scene);

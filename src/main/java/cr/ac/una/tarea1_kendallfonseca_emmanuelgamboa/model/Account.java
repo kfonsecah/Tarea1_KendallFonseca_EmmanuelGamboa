@@ -12,7 +12,6 @@ public class Account {
     private DoubleProperty balance;
     private StringProperty currency;
     private StringProperty accountHolder;
-    private BooleanProperty active;
     private StringProperty associateIdentifier;
 
 
@@ -22,7 +21,6 @@ public class Account {
         this.balance = new SimpleDoubleProperty(balance);
         this.currency = new SimpleStringProperty(currency);
         this.accountHolder = new SimpleStringProperty(accountHolder);
-        this.active = new SimpleBooleanProperty(true);
         this.associateIdentifier = new SimpleStringProperty(associateIdentifier);
     }
 
@@ -94,13 +92,6 @@ public class Account {
         this.accountHolder.set(accountHolder);
     }
 
-    public boolean isActive() {
-        return active.get();
-    }
-
-    public BooleanProperty activeProperty() {
-        return active;
-    }
 
     @Override
     public boolean equals(Object o) {
