@@ -79,14 +79,15 @@ public class AccountsConfigController extends Controller implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        initializeTableView();
+        accountTypes = FXCollections.observableArrayList();
+        tableTypesAccount.setItems(accountTypes);
 
 
     }
 
     @Override
     public void initialize() {
-        accountTypes = (ObservableList<AccountType>) AppContext.getInstance().get("accountTypes");
+
 
     }
 
@@ -176,6 +177,9 @@ public class AccountsConfigController extends Controller implements Initializabl
             //new Mensaje("Exito", "El tipo de cuenta ha sido agregado exitosamente", Mensaje.EXITO);
         }
     }
+
+
+
 
 }
 
