@@ -37,7 +37,6 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        AppContext.readInactiveAccounts();
         ObservableList<Account> inactiveAccountsData = AppContext.getInactiveAccounts();
         ObservableList<Account> activeAccountsData = AppContext.getActiveAccounts();
 
