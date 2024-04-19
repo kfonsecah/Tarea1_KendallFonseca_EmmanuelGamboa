@@ -151,17 +151,19 @@ public class Associated {
         public String folio;
         public String photo;
         public String iban;
+        public List<Account> accounts;
 
         public AssociatedData() {
         }
 
-        public AssociatedData(String name, String lastName, int age, String folio, String photo, String iban) {
+        public AssociatedData(String name, String lastName, int age, String folio, String photo, String iban, List<Account> accounts) {
             this.name = name;
             this.lastName = lastName;
             this.age = age;
             this.folio = folio;
             this.photo = photo;
             this.iban = iban;
+            this.accounts = accounts;
         }
 
         public String getName() {
@@ -193,6 +195,12 @@ public class Associated {
         }
         public void setPhoto(String photo) {
             this.photo = photo;
+        }
+        public List<Account> getAccounts() {
+            return accounts;
+        }
+        public void setAccounts(List<Account> accounts) {
+            this.accounts = accounts;
         }
     }
 

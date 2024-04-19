@@ -263,7 +263,8 @@ public class AssociateMaintenanceController extends Controller implements Initia
                         selectedUser.getAssoAge(),
                         selectedUser.getAssoFolio(),
                         selectedUser.getAssoPhoto(),
-                        selectedUser.getIban()
+                        selectedUser.getIban(),
+                        selectedUser.getAccounts()
                 );
 
                 try {

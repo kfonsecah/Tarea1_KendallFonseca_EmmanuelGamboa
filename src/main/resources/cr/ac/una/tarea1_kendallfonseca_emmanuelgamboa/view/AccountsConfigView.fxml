@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -26,11 +25,6 @@
                            <Insets bottom="50.0" left="420.0" right="420.0" top="50.0" />
                         </VBox.margin>
                      </TableView>
-                     <Label fx:id="selectedAccountType" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css">
-                        <VBox.margin>
-                           <Insets bottom="60.0" left="440.0" />
-                        </VBox.margin>
-                     </Label>
                      <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre de tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0">
                         <VBox.margin>
                            <Insets left="320.0" />
@@ -44,11 +38,6 @@
                               </HBox.margin>
                            </MFXButton>
                            <MFXButton fx:id="btnDelete" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btnAccConf" stylesheets="@Styles.css" text="Eliminar">
-                              <HBox.margin>
-                                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                              </HBox.margin>
-                           </MFXButton>
-                           <MFXButton fx:id="btnSelect" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onActionBtnSelect" prefHeight="25.0" prefWidth="85.0" styleClass="btnAccConf" stylesheets="@Styles.css" text="Seleccionar">
                               <HBox.margin>
                                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                               </HBox.margin>

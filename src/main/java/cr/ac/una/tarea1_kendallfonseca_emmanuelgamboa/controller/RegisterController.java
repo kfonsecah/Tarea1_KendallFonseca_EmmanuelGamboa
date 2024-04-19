@@ -91,7 +91,8 @@ public class RegisterController extends Controller implements Initializable {
                         associated.getAssoAge(),
                         associated.getAssoFolio(),
                         associated.getAssoPhoto(),
-                        associated.getIban()
+                        associated.getIban(),
+                        associated.getAccounts()
                 );
 
                 renameLastUserPhoto(associated.getAssoFolio());

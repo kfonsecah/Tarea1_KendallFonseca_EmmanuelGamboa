@@ -35,8 +35,6 @@ public class AppContext {
         System.out.println("AppContext");
         readAssociatedsFromJsonFile();
         loadAccountTypesFromJsonFile();
-        printAsociados();
-
 
     }
 

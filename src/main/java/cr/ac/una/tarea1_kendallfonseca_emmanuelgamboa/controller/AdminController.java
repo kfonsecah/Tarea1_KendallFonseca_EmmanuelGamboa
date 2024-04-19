@@ -40,9 +40,9 @@ public class AdminController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setCooperativeInfo();
-        AppContext appContext = AppContext.getInstance();
-        ObservableList<Associated> asociados = AppContext.getAsociados();
+       // setCooperativeInfo();
+        //AppContext appContext = AppContext.getInstance();
+       // ObservableList<Associated> asociados = AppContext.getAsociados();
     }
 
     @Override

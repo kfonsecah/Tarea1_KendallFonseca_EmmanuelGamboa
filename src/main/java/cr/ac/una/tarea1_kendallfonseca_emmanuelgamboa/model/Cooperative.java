@@ -17,16 +17,12 @@ import java.nio.file.Paths;
 public class Cooperative {
     private String cooperativeName;
     private Image logo;
-    private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
     private AccountType accountType;
+    private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
     private ObservableList<AccountType> accounTypesList = FXCollections.observableArrayList();
 
     public Cooperative() {
         createFiles();
-
-        this.accountType = new AccountType("");
-
-        this.accountType.setNameFromFirstInFile("account_types.txt");
     }
 
     public ObservableList<Associated> getAssociatedList() {
