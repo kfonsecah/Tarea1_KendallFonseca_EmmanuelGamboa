@@ -50,7 +50,6 @@ public class AdminController extends Controller implements Initializable {
         // TODO
     }
 
-
     @FXML
     private void onActionBtnBankConfig(ActionEvent event) {
         FlowController.getInstance().goView("BankConfigView");
@@ -79,18 +78,6 @@ public class AdminController extends Controller implements Initializable {
 
         }
     }
-
-    //metodo para mostrar las cuentas
-    private void showAccounts(){
-
-    }
-
-
-
-
-
-
-
 
 }
 

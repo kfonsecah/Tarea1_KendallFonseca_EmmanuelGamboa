@@ -119,7 +119,6 @@ public class BankConfigController extends Controller implements Initializable {
                 mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ha ocurrido un error al guardar la información.");
             }
         } else if(newName.isEmpty()) {
-            // Show an error message
             mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete el campo de nombre.");
         }else if(previewLogo.getImage()==null){
             mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un logo.");

@@ -1,7 +1,5 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.*;
@@ -99,14 +97,12 @@ public class Account {
         try {
             System.out.println("Account string: " + accountString); // Mensaje de depuración
             String[] accountData;
-            // Try splitting by comma first
-            // If comma fails, try splitting by slash
+
             accountData = accountString.split("/");
             if (accountData.length != 5) {
                 throw new IllegalArgumentException("Invalid account string format. Expected 6 fields (comma or slash separated).");
             }
 
-            // Crear una nueva instancia de Account con los datos obtenidos
             String accountNumber = accountData[0];
             String accountType = accountData[1];
             double balance = Double.parseDouble(accountData[2].replaceAll("[^\\d.]", ""));
@@ -116,7 +112,7 @@ public class Account {
             return new Account(accountNumber, accountType, balance, currency, accountHolder);
         } catch (IllegalArgumentException e) {
             System.err.println("Error parsing account string: " + e.getMessage());
-            throw e; // Relanzar la excepción para que la clase que llama pueda manejarla adecuadamente
+            throw e;
         }
 
     }

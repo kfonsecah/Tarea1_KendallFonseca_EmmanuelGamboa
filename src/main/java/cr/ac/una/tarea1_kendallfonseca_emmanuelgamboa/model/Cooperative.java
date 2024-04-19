@@ -1,6 +1,5 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -10,10 +9,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @SuppressWarnings("ALL")
 public class Cooperative {
@@ -109,7 +104,6 @@ public class Cooperative {
         }
     }
 
-   //METHOD TO GET THE NAME OF THE AccountType
     public String getAccountTypeName() {
         return accountType.getName();
     }
@@ -143,9 +137,6 @@ public class Cooperative {
             e.printStackTrace();
         }
     }
-
-
-
 }
 
 

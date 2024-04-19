@@ -4,12 +4,10 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.WebCam;
 import javafx.fxml.Initializable;
@@ -45,10 +43,6 @@ public class WebCamController extends Controller implements Initializable {
 
     @FXML
     private AnchorPane root;
-
-    private Consumer<String> onImageCapturedListener;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

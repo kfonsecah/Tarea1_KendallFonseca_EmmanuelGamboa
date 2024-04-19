@@ -4,7 +4,6 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,7 +15,6 @@ import javafx.fxml.Initializable;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -29,10 +27,6 @@ import javafx.scene.layout.BorderPane;
  * @author Kendall Fonseca
  */
 public class WorkerController extends Controller implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
 
     @FXML
     private BorderPane BorderPane;
@@ -66,8 +60,6 @@ public class WorkerController extends Controller implements Initializable {
         AppContext.readAssociatedsFromJsonFile();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         System.out.println("Asociados list: " + asociados);
-
-        // TODO
     }
 
     @Override

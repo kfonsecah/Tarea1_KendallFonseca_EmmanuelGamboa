@@ -31,8 +31,6 @@ public class AppContext {
 
     private AppContext() {
         System.out.println("AppContext");
-        readInactiveAccounts();
-        readActiveAccounts();
         readAssociatedsFromJsonFile();
         printAsociados();
 
@@ -88,10 +86,6 @@ public class AppContext {
         context.put(parameter, null);
     }
 
-    public static void readUsers() {
-
-    }
-
     public static void readAssociatedsFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -107,42 +101,6 @@ public class AppContext {
             System.out.println("Error reading associateds from JSON file: " + e.getMessage());
             e.printStackTrace();
         }
-    }
-    private static ObservableList<Account> getAccountsByFolio(String folio) {
-        ObservableList<Account> associatedAccounts = FXCollections.observableArrayList();
-        for (Account account : inactiveAccounts) {
-            if (account.getAccountHolder().equals(folio)) {
-                associatedAccounts.add(account);
-            }
-        }
-        return associatedAccounts;
-    }
-
-    public static void readInactiveAccounts() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(INACTIVE_ACCOUNTS_FILE_PATH))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    // Eliminar los corchetes "[" y "]" alrededor de la línea
-                    line = line.substring(1, line.length() - 1);
-
-                    // Dividir la línea en base al delimitador "/"
-                    String[] accountData = line.split("/");
-                    if (accountData.length == 5) { // Verificar si hay seis partes en la línea
-                        String accountNumber = accountData[0];
-                        String accountType = accountData[1];
-                        double balance = Double.parseDouble(accountData[2].replace(",", ".")); // Reemplazar "," por "." para el formato correcto de double
-                        String currency = accountData[3];
-                        String accountHolder = accountData[4];
-                        Account account = new Account(accountNumber, accountType, balance, currency, accountHolder);
-                        inactiveAccounts.add(account);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading inactive accounts from the file: " + e.getMessage());
-        }
-        context.put("inactiveAccounts", inactiveAccounts);
     }
 
     public static void addAssociatedToJsonFile(Associated.AssociatedData associatedData) throws IOException {
@@ -168,38 +126,6 @@ public class AppContext {
         }
 
         objectMapper.writeValue(new File("associateds.json"), associatedDataList);
-    }
-
-    private static void readActiveAccounts() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(ACTIVE_ACCOUNTS_FILE_PATH))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    // Dividir la línea en base al delimitador "/"
-                    String[] accountData = line.split("/");
-                    if (accountData.length == 2) { // Verificar si hay dos partes en la línea
-                        String accountInfo = accountData[0]; // Obtener la información de la cuenta
-                        String activeStatus = accountData[1]; // Obtener el estado activo/inactivo
-
-                        // Dividir la información de la cuenta en base al delimitador ","
-                        String[] accountInfoParts = accountInfo.split(",");
-                        if (accountInfoParts.length == 5) { // Verificar si hay seis partes en la información de la cuenta
-                            String accountNumber = accountInfoParts[0];
-                            String accountType = accountInfoParts[1];
-                            double balance = Double.parseDouble(accountInfoParts[2]);
-                            String currency = accountInfoParts[3];
-                            String accountHolder = accountInfoParts[4];
-
-                            Account account = new Account(accountNumber, accountType, balance, currency, accountHolder);
-                            activeAccounts.add(account);
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading active accounts from the file: " + e.getMessage());
-        }
-        context.put("activeAccounts", activeAccounts);
     }
 
     public void addCooperative(Cooperative cooperative) {
@@ -236,22 +162,6 @@ public static void printAsociados() {
 
     public static ObservableList<Account> getInactiveAccounts() {
         return FXCollections.observableArrayList(inactiveAccounts);
-    }
-
-    public void writeInactiveAccounts() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(INACTIVE_ACCOUNTS_FILE_PATH))) {
-            for (Account account : inactiveAccounts) {
-                writer.write(String.format("[%s/%s/%.2f/%s/%s]%n",
-                        account.getAccountNumber(),
-                        account.getAccountType(),
-                        account.getBalance(),
-                        account.getCurrency(),
-                        account.getAccountHolder()));
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static String deleteAssociatedFromJsonFile(Associated associatedData) {

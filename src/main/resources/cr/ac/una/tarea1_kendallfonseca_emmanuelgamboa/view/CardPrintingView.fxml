@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
@@ -108,11 +110,40 @@
                               </MFXButton>
                            </children>
                         </VBox>
-                        <TableView fx:id="usersTable" prefHeight="634.0" prefWidth="602.0">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="40.0" top="40.0" />
-                           </HBox.margin>
-                        </TableView>
+                        <VBox prefHeight="640.0" prefWidth="572.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXFilterComboBox fx:id="comboBoxFilter">
+                                       <HBox.margin>
+                                          <Insets left="50.0" top="30.0" />
+                                       </HBox.margin>
+                                    </MFXFilterComboBox>
+                                    <MFXTextField fx:id="txtSearch" prefHeight="49.0" prefWidth="183.0" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="20.0" top="30.0" />
+                                       </HBox.margin>
+                                    </MFXTextField>
+                                    <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" prefWidth="55.0" text="Buscar">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="25.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </padding>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="userSearchList" prefHeight="591.0" prefWidth="271.0">
+                                 <VBox.margin>
+                                    <Insets left="30.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                           <padding>
+                              <Insets right="90.0" />
+                           </padding>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets bottom="20.0" />

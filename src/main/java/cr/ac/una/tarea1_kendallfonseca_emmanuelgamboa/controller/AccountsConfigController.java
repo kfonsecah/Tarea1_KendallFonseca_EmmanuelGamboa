@@ -33,6 +33,7 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
  * @author Kendall Fonseca
  */
 public class AccountsConfigController extends Controller implements Initializable {
+
     String fileName = "account_types.txt";
 
     @FXML

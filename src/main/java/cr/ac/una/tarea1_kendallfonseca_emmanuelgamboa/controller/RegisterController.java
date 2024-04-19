@@ -4,19 +4,14 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import com.sun.source.tree.WhileLoopTree;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -60,7 +55,6 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private ImageView userPhotoPrev;
 
-    private ArrayList<Associated> associateds = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,10 +81,6 @@ public class RegisterController extends Controller implements Initializable {
                 associated.createIban();
                 associated.setIban(associated.getIban());
 
-
-
-
-
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
 
                 Associated.AssociatedData associatedData = new Associated.AssociatedData(
@@ -116,11 +106,6 @@ public class RegisterController extends Controller implements Initializable {
                 userPhotoPrev.setImage(null);
 
                 Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
-                //writeAccountToFile(account);
-
-
-
-
 
                 for (int i = 0; i < associated.Associated.size(); i++) {
                     System.out.println(associated.Associated.get(i));
@@ -150,7 +135,7 @@ public class RegisterController extends Controller implements Initializable {
             Image image = new Image(photoFile.toURI().toString());
             userPhotoPrev.setImage(image);
         } else {
-            // No se encontró la imagen photo1.png
+            System.out.println("No se pudo cargar la foto 'photo1.png'.");
         }
     }
 
@@ -169,36 +154,6 @@ public class RegisterController extends Controller implements Initializable {
             }
         } else {
 
-        }
-    }
-
-    private void writeAccountToFile(Account account) {
-        File file = new File("inactiveAccounts.txt");
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-
-            String accountInfo = String.format("[%s/%s/%.2f/%s/%s]%n",
-                    account.getAccountNumber(),
-                    account.getAccountType(),
-                    account.getBalance(),
-                    account.getCurrency(),
-                    account.getAccountHolder());
-
-            writer.write(accountInfo);
-        } catch (IOException e) {
-            e.printStackTrace();
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al escribir la cuenta en el archivo");
-        }
-    }
-    private void findAndMoveAccount(Account account, ListView<Account> fromListView, ListView<Account> toListView) {
-        if (fromListView.getItems().contains(account)) {
-            fromListView.getItems().remove(account);
-            toListView.getItems().add(account);
-        } else {
-            System.out.println("Error: The account was not found in either the active or inactive accounts list.");
         }
     }
 

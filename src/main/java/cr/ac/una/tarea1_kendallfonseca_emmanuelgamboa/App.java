@@ -16,31 +16,15 @@ import javafx.scene.image.Image;
  */
 public class App extends Application {
     private static String accessParameter = "";
+
     @Override
     public void start(Stage stage) throws IOException {
         Cooperative cooperative = new Cooperative();
         cooperative.loadFromTxtFile();
-        goViewByAccess(accessParameter);
         AppContext.getInstance().set("cooperative", cooperative);
-       FlowController.getInstance().InitializeFlow(stage, null);
-       FlowController.getInstance().goMain("PrincipalView");
+        FlowController.getInstance().InitializeFlow(stage, null, accessParameter);
+        FlowController.getInstance().goMain("PrincipalView");
     }
-
-    private void goViewByAccess(String access){
-        if (access.equals("A")){
-
-
-
-            FlowController.getInstance().goMain("AssociateView");
-        }
-        if (access.equals("F")){
-            FlowController.getInstance().goMain("WorkerView");
-        }
-        if(access.equals("P")){
-            FlowController.getInstance().goMain("AdminView");
-        }
-    }
-
     public static void main(String[] args) {
         if (args.length>0){
             accessParameter = args[0];

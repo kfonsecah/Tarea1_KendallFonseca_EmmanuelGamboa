@@ -42,12 +42,10 @@ public class AssociateController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setCompanyInfo();
-        // TODO
     }
 
     @Override
     public void initialize() {
-        // TODO
     }
 
     @FXML

@@ -10,51 +10,36 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Function;
+
 
 import javax.imageio.ImageIO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.FXCollections;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
-
-import javax.imageio.ImageIO;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.image.WritableImage;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.image.WritableImage;
+
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXTableColumn;
-import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.MFXTextField;
-import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -69,10 +54,6 @@ import javafx.scene.layout.StackPane;
  * @author Kendall Fonseca
  */
 public class CardPrintingController extends Controller implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
 
     @FXML
     private MFXButton btnPrint;
@@ -99,7 +80,16 @@ public class CardPrintingController extends Controller implements Initializable 
     private Label txtName;
 
     @FXML
-    private TableView<Associated> usersTable;
+    private TableView<Associated> userSearchList;
+
+    @FXML
+    private MFXButton btnSearch;
+
+    @FXML
+    private MFXComboBox<String> comboBoxFilter;
+
+    @FXML
+    private MFXTextField txtSearch;
 
     @FXML
     private ImageView imageCardLogo;
@@ -113,8 +103,9 @@ public class CardPrintingController extends Controller implements Initializable 
         ObservableList<Associated> asociados = AppContext.getAsociados();
         loadUsersToTableView();
         setCompanyInfo();
-        // populateTextFieldValues();
 
+        comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
+        comboBoxFilter.setValue("Todo");
     }
     @Override
     public void initialize(){
@@ -133,22 +124,63 @@ public class CardPrintingController extends Controller implements Initializable 
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("assoAge"));
 
         // Set columns
-        usersTable.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
+        userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
 
         // Load data
         ObservableList<Associated> asociados = AppContext.getAsociados();
-        usersTable.setItems(asociados);
+        userSearchList.setItems(asociados);
 
-        usersTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             populateTextFieldValues();
         });
     }
 
+    @FXML
+    private void onActionBtnSearch(ActionEvent event) {
+
+        String filter = comboBoxFilter.getValue();
+        if (!txtSearch.getText().isEmpty()) {
+            ObservableList<Associated> filteredData = FXCollections.observableArrayList();
+            ObservableList<Associated> list = AppContext.getAsociados();
+
+            for (int i = 0; i < list.size(); i++) {
+                Associated data = list.get(i);
+                if(filter.equals("Todo")&& data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())){
+                    filteredData.add(data);
+                } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Apellido") && data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Folio") && data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Edad") && Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
+                    filteredData.add(data);
+                }
+            }
+            userSearchList.setItems(filteredData);
+        } else {
+            updateTableView();
+
+        }
+    }
+
+    private void updateTableView() {
+
+        ObservableList<Associated> asociados = AppContext.getAsociados();
+
+        // Update the TableView with the updated Associated objects
+        int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+        userSearchList.setItems(asociados);
+        userSearchList.getSelectionModel().select(selectedIndex);
+        userSearchList.refresh();
+    }
     private void populateTextFieldValues() {
-        Associated selectedUser = usersTable.getSelectionModel().getSelectedItem();
+        Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             txtName.setText(selectedUser.getAssoName()+" "+selectedUser.getAssoLastName());
-            //txtLastName.setText(selectedUser.getAssoLastName());
             txtFolio.setText(selectedUser.getAssoFolio());
             txtAge.setText(String.valueOf(selectedUser.getAssoAge()));
 

@@ -1,9 +1,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import javafx.scene.Node;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,8 +44,8 @@ public class Associated {
 
     public String createAccountNumber() {
         Random random = new Random();
-        long randomNumber = Math.abs(random.nextLong()); // Generate a random long integer
-        String cuenta = String.format("%019d", randomNumber); // Format the integer with leading zeros
+        long randomNumber = Math.abs(random.nextLong());
+        String cuenta = String.format("%019d", randomNumber);
         return cuenta;
     }
 
@@ -189,7 +187,6 @@ public class Associated {
             this.photo = photo;
             this.iban = iban;
         }
-        //setters and getters
 
         public String getName() {
             return name;
@@ -243,13 +240,6 @@ public class Associated {
         associated.addToFile(associated);
     }
 
-
-
-    public void printAssociated(){
-        for (String aso: Associated) {
-            System.out.println(aso);
-        }
-    }
     public String createIban() {
         this.iban = "CR" + createAccountNumber();
         return iban;

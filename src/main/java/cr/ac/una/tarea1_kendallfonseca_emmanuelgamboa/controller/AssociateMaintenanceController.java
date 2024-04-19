@@ -94,10 +94,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnDeleteUser;
 
 
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         AppContext appContext = AppContext.getInstance();
@@ -106,7 +102,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
         populateTextFieldValues();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
-
 
     }
 
@@ -168,15 +163,11 @@ public class AssociateMaintenanceController extends Controller implements Initia
             }
             userSearchList.setItems(filteredData);
         } else {
-            cleanUserTableView();
-            loadUsersToTableView();
+            updateTableView();
+
         }
     }
 
-    private void cleanUserTableView() {
-        userSearchList.getItems().clear();
-        userSearchList.getColumns().clear();
-    }
     private void populateTextFieldValues() {
         Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
@@ -237,6 +228,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private void onActionNewPhoto() {
+        //TODO
     }
 
     @FXML
@@ -280,7 +272,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
                     e.printStackTrace();
                 }
 
-                // Update the TableView with the edited Associated object
                 updateTableView();
 
                 new Mensaje().showModal(Alert.AlertType.INFORMATION, "Exito", root.getScene().getWindow(), "Usuario actualizado correctamente");
@@ -295,16 +286,15 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
 
     private void updateTableView() {
-        // Get the updated Associated objects from the AppContext
+
         ObservableList<Associated> asociados = AppContext.getAsociados();
 
         // Update the TableView with the updated Associated objects
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         userSearchList.setItems(asociados);
         userSearchList.getSelectionModel().select(selectedIndex);
-        userSearchList.refresh(); // Refresh the TableView to display the updated Associated object
+        userSearchList.refresh();
     }
-
 
     private void deleteAssociated() {
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();

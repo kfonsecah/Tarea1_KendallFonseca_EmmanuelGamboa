@@ -3,7 +3,6 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;

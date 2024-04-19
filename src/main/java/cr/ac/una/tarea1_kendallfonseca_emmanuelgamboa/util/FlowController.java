@@ -66,10 +66,23 @@ public class FlowController {
         throw new CloneNotSupportedException();
     }
 
-    public void InitializeFlow(Stage stage, ResourceBundle idioma) {
+    public void InitializeFlow(Stage stage, ResourceBundle idioma, String accessParameter ) {
         getInstance();
         this.mainStage = stage;
         this.idioma = idioma;
+        goViewByAccess(accessParameter);
+    }
+
+    private void goViewByAccess(String access){
+        if (access.equals("A")){
+            goMain("AssociateView");
+        }
+        if (access.equals("F")){
+            goMain("WorkerView");
+        }
+        if(access.equals("P")){
+            goMain("AdminView");
+        }
     }
 
     private FXMLLoader getLoader(String name) {

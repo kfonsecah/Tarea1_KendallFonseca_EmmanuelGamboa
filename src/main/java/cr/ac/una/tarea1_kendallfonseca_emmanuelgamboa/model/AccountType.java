@@ -1,8 +1,7 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class AccountType {
     private String name;
