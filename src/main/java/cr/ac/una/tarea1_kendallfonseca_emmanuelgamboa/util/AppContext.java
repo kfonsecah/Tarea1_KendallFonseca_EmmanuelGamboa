@@ -133,20 +133,6 @@ public class AppContext {
         objectMapper.writeValue(new File("associateds.json"), associatedDataList);
     }
 
-    public static List<Associated.AssociatedData> loadAssociatedFromJsonFile() throws IOException {
-        File file = new File("associateds.json");
-
-        if (!file.exists()) {
-
-            file.createNewFile();
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(file, new ArrayList<Associated.AssociatedData>());
-        }
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Associated.AssociatedData> associatedDataList = objectMapper.readValue(file, new TypeReference<List<Associated.AssociatedData>>() {});
-        return associatedDataList;
-    }
     public void addCooperative(Cooperative cooperative) {
         cooperatives.put("cooperative", cooperative);
     }
