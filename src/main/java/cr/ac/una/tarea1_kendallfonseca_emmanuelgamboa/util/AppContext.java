@@ -90,14 +90,21 @@ public class AppContext {
 
     public static void readAssociatedsFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
+
         try {
-            List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
+            File jsonFile = new File("associateds.json");
+            if (!jsonFile.exists() || jsonFile.length() == 0) {
+                System.out.println("JSON file is empty or missing.");
+                return;
+            }
+
+            List<Associated> associateds = objectMapper.readValue(jsonFile,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
 
             System.out.println("Loaded associateds from JSON file: " + associateds);
 
-            ObservableList<Associated> observableAsociados = FXCollections.observableArrayList(associateds);
-            context.put("asociados", observableAsociados);
+            ObservableList<Associated> observableAssociateds = FXCollections.observableArrayList(associateds);
+            context.put("asociados", observableAssociateds);
 
         } catch (IOException e) {
             System.out.println("Error reading associateds from JSON file: " + e.getMessage());
