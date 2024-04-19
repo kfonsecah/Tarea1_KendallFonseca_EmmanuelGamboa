@@ -46,6 +46,9 @@ public class AccountsConfigController extends Controller implements Initializabl
     private TableView<AccountType> tableTypesAccount;
 
     @FXML
+    private TableColumn<AccountType, String> columnName;
+
+    @FXML
     private MFXButton btnAdd;
 
     @FXML
@@ -54,10 +57,14 @@ public class AccountsConfigController extends Controller implements Initializabl
 
     private ObservableList<AccountType> accountTypes;
 
+    private AppContext appContext;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        appContext = AppContext.getInstance();
+        loadAccountTypes();
 
 
     }
@@ -68,6 +75,15 @@ public class AccountsConfigController extends Controller implements Initializabl
 
     }
 
+    private void loadAccountTypes() {
+        accountTypes = appContext.getAccountTypes();
+        if (accountTypes == null) {
+            appContext.loadAccountTypesFromJsonFile();
+            accountTypes = appContext.getAccountTypes();
+        }
+        tableTypesAccount.setItems(accountTypes);
+    }
+
     private void initializeTableView() {
 
     }
@@ -75,17 +91,33 @@ public class AccountsConfigController extends Controller implements Initializabl
 
     @FXML
     void onActionBtnDelete(ActionEvent event) {
-
+        AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
+        if (selectedAccountType != null) {
+            appContext.deleteAccountTypeFromJsonFile(selectedAccountType);
+            accountTypes.remove(selectedAccountType);
+            tableTypesAccount.setItems(accountTypes);
+        }else
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta para eliminar.");
     }
 
-    @FXML
-    void onActionBtnSelect(ActionEvent event) {
 
-    }
 
     @FXML
     void onActionBtnAdd(ActionEvent event) {
+        String newAccountTypeName = txtNewAccountType.getText().trim();
+        if (!newAccountTypeName.isEmpty()) {
+            AccountType newAccountType = new AccountType(newAccountTypeName);
+            try {
+                appContext.addAccountTypeToJsonFile(newAccountType);
+                accountTypes.add(newAccountType);
+                txtNewAccountType.clear();
+            } catch (IOException e) {
+                e.printStackTrace();
 
+            }
+        }else {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor ingrese un nombre para el tipo de cuenta.");
+        }
     }
 
 

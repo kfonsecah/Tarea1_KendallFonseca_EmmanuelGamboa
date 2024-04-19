@@ -197,18 +197,24 @@ public static void printAsociados() {
             File jsonFile = new File("account_types.json");
             if (!jsonFile.exists() || jsonFile.length() == 0) {
                 System.out.println("JSON file is empty or missing.");
+                // Initialize an empty list of account types
+                List<AccountType> accountTypes = new ArrayList<>();
+                // Create an observable list from the empty list
+                ObservableList<AccountType> observableAccountTypes = FXCollections.observableArrayList(accountTypes);
+                // Put the observable list into the context
+                context.put("accountTypes", observableAccountTypes);
                 return;
             }
 
+            // Read account types from JSON file
             List<AccountType> accountTypes = objectMapper.readValue(jsonFile,
                     objectMapper.getTypeFactory().constructCollectionType(List.class, AccountType.class));
 
             System.out.println("Loaded account types from JSON file: " + accountTypes);
 
-            if (!accountTypes.isEmpty()) {
-                ObservableList<AccountType> observableAccountTypes = FXCollections.observableArrayList(accountTypes);
-                context.put("accountTypes", observableAccountTypes);
-            }
+            // Convert to observable list and put into context
+            ObservableList<AccountType> observableAccountTypes = FXCollections.observableArrayList(accountTypes);
+            context.put("accountTypes", observableAccountTypes);
 
         } catch (IOException e) {
             System.out.println("Error reading account types from JSON file: " + e.getMessage());
@@ -217,30 +223,67 @@ public static void printAsociados() {
     }
 
     public static void addAccountTypeToJsonFile(AccountType accountType) throws IOException {
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        List<AccountType> accountTypes = new ArrayList<>();
-        if (new File("account_types.json").exists()) {
-            accountTypes = objectMapper.readValue(new File("account_types.json"),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, AccountType.class));
+        List<AccountType> accountTypes;
+
+        File jsonFile = new File("account_types.json");
+
+        if (jsonFile.exists() && jsonFile.length() > 0) {
+
+            accountTypes = objectMapper.readValue(jsonFile, new TypeReference<List<AccountType>>() {});
+        } else {
+            accountTypes = new ArrayList<>();
         }
 
+        boolean found = false;
         for (int i = 0; i < accountTypes.size(); i++) {
             if (accountTypes.get(i).getName().equals(accountType.getName())) {
                 accountTypes.set(i, accountType);
+                found = true;
                 break;
             }
         }
 
-        if (!accountTypes.contains(accountType)) {
+        if (!found) {
             accountTypes.add(accountType);
         }
-
-        objectMapper.writeValue(new File("account_types.json"), accountTypes);
+        objectMapper.writeValue(jsonFile, accountTypes);
     }
 
+    public static String deleteAccountTypeFromJsonFile(AccountType accountType) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<AccountType> accountTypes;
+        try {
+            File jsonFile = new File("account_types.json");
+            accountTypes = objectMapper.readValue(jsonFile,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, AccountType.class));
+
+            if (accountTypes.remove(accountType)) {
+                objectMapper.writeValue(jsonFile, accountTypes);
+                return "Tipo de cuenta eliminado exitosamente";
+            } else {
+                return "No se encontró el tipo de cuenta especificado";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "No se pudo eliminar el tipo de cuenta";
+        }
+    }
+
+    public static ObservableList<AccountType> getAccountTypes() {
+        ObservableList<AccountType> accountTypes = (ObservableList<AccountType>) context.get("accountTypes");
+
+        if (accountTypes == null) {
+            System.out.println("Account types list is empty.");
+            return FXCollections.observableArrayList();
+        }
+
+        return accountTypes;
+    }
 
     }
 
