@@ -209,3 +209,27 @@
 .billTwenty>ImageView{
     -fx-image: url("../resources/VeinteRojos.jpg");
 }
+
+.btnDeleteUser>ImageView{
+    -fx-image: url("../resources/delete.png");
+}
+
+.btnSearch>ImageView{
+    -fx-image: url("../resources/search.png");
+}
+
+.btnManteCoop{
+    -fx-image: url("../resources/manteCop.png");
+}
+
+.btnManteAcc{
+    -fx-image: url("../resources/manteCuen.png");
+}
+
+.viewWorkers{
+    -fx-background-image: url("../resources/todosfondo.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}

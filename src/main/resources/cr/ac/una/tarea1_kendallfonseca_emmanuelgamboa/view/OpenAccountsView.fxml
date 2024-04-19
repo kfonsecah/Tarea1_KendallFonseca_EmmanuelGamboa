@@ -12,7 +12,7 @@
    <children>
       <BorderPane prefHeight="722.0" prefWidth="1281.0">
          <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #CDCDCD; -fx-border-radius: 60;" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
                </BorderPane.margin>

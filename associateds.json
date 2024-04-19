@@ -13,13 +13,6 @@
   "photo" : "EG0943.png",
   "iban" : "CR7593498673403651523"
 }, {
-  "name" : "Carlos",
-  "lastName" : "Chaverri",
-  "age" : 9,
-  "folio" : "CC0526",
-  "photo" : "CC0526.png",
-  "iban" : "CR7747340955026778460"
-}, {
   "name" : "Matiw",
   "lastName" : "Rivera",
   "age" : 7,
@@ -40,13 +33,6 @@
   "folio" : "AL0455",
   "photo" : "AL0455.png",
   "iban" : "CR0004862303899112685"
-}, {
-  "name" : "Alessia",
-  "lastName" : "Mora",
-  "age" : 5,
-  "folio" : "AM0029",
-  "photo" : "AM0029.png",
-  "iban" : "CR0141814632963397846"
 }, {
   "name" : "Erling",
   "lastName" : "Halaand",
