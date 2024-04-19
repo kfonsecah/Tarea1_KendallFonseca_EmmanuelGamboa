@@ -7,13 +7,24 @@ import javafx.beans.property.*;
 
 public class Account {
 
-
     private StringProperty accountNumber;
     private StringProperty accountType;
     private DoubleProperty balance;
     private StringProperty currency;
     private StringProperty accountHolder;
     private BooleanProperty active;
+    private StringProperty associateIdentifier;
+
+
+    public Account(String accountNumber, String accountType, double balance, String currency, String accountHolder, String associateIdentifier) {
+        this.accountNumber = new SimpleStringProperty(accountNumber);
+        this.accountType = new SimpleStringProperty(accountType);
+        this.balance = new SimpleDoubleProperty(balance);
+        this.currency = new SimpleStringProperty(currency);
+        this.accountHolder = new SimpleStringProperty(accountHolder);
+        this.active = new SimpleBooleanProperty(true);
+        this.associateIdentifier = new SimpleStringProperty(associateIdentifier);
+    }
 
     public Account(String accountNumber, String accountType, double balance, String currency, String accountHolder) {
         this.accountNumber = new SimpleStringProperty(accountNumber);
@@ -21,8 +32,6 @@ public class Account {
         this.balance = new SimpleDoubleProperty(balance);
         this.currency = new SimpleStringProperty(currency);
         this.accountHolder = new SimpleStringProperty(accountHolder);
-
-
     }
 
     public String getAccountNumber() {
@@ -93,34 +102,44 @@ public class Account {
         return active;
     }
 
-    public static Account fromString(String accountString) {
-        try {
-            System.out.println("Account string: " + accountString); // Mensaje de depuración
-            String[] accountData;
-
-            accountData = accountString.split("/");
-            if (accountData.length != 5) {
-                throw new IllegalArgumentException("Invalid account string format. Expected 6 fields (comma or slash separated).");
-            }
-
-            String accountNumber = accountData[0];
-            String accountType = accountData[1];
-            double balance = Double.parseDouble(accountData[2].replaceAll("[^\\d.]", ""));
-            String currency = accountData[3];
-            String accountHolder = accountData[4];
-
-            return new Account(accountNumber, accountType, balance, currency, accountHolder);
-        } catch (IllegalArgumentException e) {
-            System.err.println("Error parsing account string: " + e.getMessage());
-            throw e;
-        }
-
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
         return Objects.equals(accountNumber, account.accountNumber);
+    }
+
+    public String getAssociateIdentifier() {
+        return associateIdentifier.get();
+    }
+
+    public StringProperty associateIdentifierProperty() {
+        return associateIdentifier;
+    }
+
+    public void setAssociateIdentifier(String associateIdentifier) {
+        this.associateIdentifier.set(associateIdentifier);
+    }
+
+
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance.set(balance.get() + amount);
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance.get()) {
+            balance.set(balance.get() - amount);
+        }
+    }
+
+    public void transfer(Account recipient, double amount) {
+        if (amount > 0 && amount <= balance.get()) {
+            withdraw(amount);
+            recipient.deposit(amount);
+        }
     }
 }

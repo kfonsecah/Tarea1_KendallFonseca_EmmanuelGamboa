@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,10 +24,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * FXML Controller class
  *
@@ -34,10 +50,17 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
  */
 public class AccountsConfigController extends Controller implements Initializable {
 
-    String fileName = "account_types.txt";
+    @FXML
+    private AnchorPane root;
 
     @FXML
-    private MFXButton btnSelect;
+    private MFXTextField txtNewAccountType;
+
+    @FXML
+    private Label selectedAccountType;
+
+    @FXML
+    private TableView<AccountType> tableTypesAccount;
 
     @FXML
     private MFXButton btnAdd;
@@ -46,177 +69,115 @@ public class AccountsConfigController extends Controller implements Initializabl
     private MFXButton btnDelete;
 
     @FXML
-    private AnchorPane root;
+    private MFXButton btnSelect;
 
-    @FXML
-    private Label selectedAccountType;
+    private ObservableList<AccountType> accountTypes;
 
-    @FXML
-    private MFXTextField txtNewAccountType;
 
-    @FXML
-    private TableView<AccountType> tableTypesAccount;
-
-    @FXML
-    private TableColumn<AccountType, String> accountTypeColumn;
-
-    private ObservableList<AccountType> accountTypes = FXCollections.observableArrayList();
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        loadAccountTypesToTableView();
-        loadFirstAccountTypeToLabel();
+    public void initialize(URL location, ResourceBundle resources) {
+
+        initializeTableView();
+
+
     }
 
     @Override
     public void initialize() {
+        accountTypes = (ObservableList<AccountType>) AppContext.getInstance().get("accountTypes");
+
     }
+
+    private void initializeTableView() {
+        // Create the table columns
+        TableColumn<AccountType, String> columnType = new TableColumn<>("Tipo de cuenta");
+        TableColumn<AccountType, String> columnDescription = new TableColumn<>("Descripción");
+
+        // Set the cell value factory for each column
+        columnType.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
+        //columnDescription.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getDescription()));
+
+        // Add the columns to the table view
+        tableTypesAccount.getColumns().addAll(columnType, columnDescription);
+
+        // Make the table view editable
+        tableTypesAccount.setEditable(true);
+
+        // Use TextFieldTableCell for editing
+        columnType.setCellFactory(TextFieldTableCell.forTableColumn());
+        columnDescription.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // Add listener for commit changes on TextFieldTableCell
+        columnType.setOnEditCommit(event -> {
+            // Get the selected account type from the table view
+            AccountType selectedAccountType = event.getRowValue();
+
+            // Update the name of the selected account type
+            selectedAccountType.setName(event.getNewValue());
+        });
+        columnDescription.setOnEditCommit(event -> {
+            // Get the selected account type from the table view
+            AccountType selectedAccountType = event.getRowValue();
+
+            // Update the description of the selected account type
+            //selectedAccountType.setDescription(event.getNewValue());
+        });
+
+        // Load the account types to the table view
+        tableTypesAccount.setItems(accountTypes);
+    }
+
 
     @FXML
     void onActionBtnDelete(ActionEvent event) {
+        // Get the selected account type from the table view
         AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
+
+        // Check if an account type is selected
         if (selectedAccountType != null) {
-            String accountTypeName = selectedAccountType.getName();
-            try {
-                List<String> updatedAccountTypes = new ArrayList<>();
-                BufferedReader reader = new BufferedReader(new FileReader(fileName));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (!line.trim().equals(accountTypeName)) {
-                        updatedAccountTypes.add(line);
-                    }
-                }
-                reader.close();
+            // Remove the selected account type from the observable list
+            accountTypes.remove(selectedAccountType);
 
-                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-                for (String accountType : updatedAccountTypes) {
-                    writer.write(accountType);
-                    writer.newLine();
-                }
-                writer.close();
-
-                accountTypes.remove(selectedAccountType);
-                tableTypesAccount.setItems(accountTypes);
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta eliminado correctamente");
-            } catch (IOException e) {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al eliminar el tipo de cuenta");
-                e.printStackTrace();
-            }
+            // Show success message
+          //  new Mensaje("Exito", "El tipo de cuenta ha sido eliminado exitosamente", Mensaje.SUCCESS);
         } else {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta");
-        }
-    }
-
-
-    @FXML
-    private void onActionBtnAdd(ActionEvent event) {
-        if (txtNewAccountType.getText().isEmpty()) {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor rellene el campo de texto");
-        } else {
-            String newAccountTypeName = txtNewAccountType.getText().trim();
-            if (!newAccountTypeName.isEmpty()) {
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-                    writer.write(newAccountTypeName);
-                    writer.newLine();
-                    writer.flush();
-
-                    AccountType newAccountType = new AccountType(newAccountTypeName);
-                    accountTypes.add(newAccountType);
-                    tableTypesAccount.setItems(accountTypes);
-
-                    txtNewAccountType.clear();
-
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta agregado correctamente");
-                } catch (IOException e) {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al agregar el tipo de cuenta");
-                    e.printStackTrace();
-                }
-            }
+            // Show error message
+          //  new Mensaje("Error", "Debe seleccionar un tipo de cuenta para eliminarlo", Mensaje.ERROR);
         }
     }
 
     @FXML
     void onActionBtnSelect(ActionEvent event) {
-        AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
-        if (selectedAccountType != null) {
-            String accountTypeName = selectedAccountType.getName();
-            this.selectedAccountType.setText(selectedAccountType.getName());
-            try {
-                List<String> updatedAccountTypes = new ArrayList<>();
-                BufferedReader reader = new BufferedReader(new FileReader(fileName));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    updatedAccountTypes.add(line);
-                }
-                reader.close();
 
-                updatedAccountTypes.remove(accountTypeName);
-                updatedAccountTypes.add(0, accountTypeName);
+    }
 
-                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-                for (String accountType : updatedAccountTypes) {
-                    writer.write(accountType);
-                    writer.newLine();
-                }
-                writer.close();
+    @FXML
+    void onActionBtnAdd(ActionEvent event) {
+        // Get the new account type from the text field
+        String newAccountType = txtNewAccountType.getText();
 
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Information", root.getScene().getWindow(), "Tipo de cuenta seleccionado correctamente");
-
-            } catch (IOException e) {
-                // Muestra el mensaje de error
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al seleccionar el tipo de cuenta");
-                e.printStackTrace();
-            }
+        // Check if the new account type is empty
+        if (newAccountType.isEmpty()) {
+            // Show error message
+            //new Mensaje("Error", "Debe ingresar un tipo de cuenta para agregarlo", Mensaje.ERROR);
         } else {
-            // Muestra el mensaje de error
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta");
+            // Create a new account type
+            AccountType accountType = new AccountType(newAccountType);
+
+            // Add the new account type to the observable list
+            accountTypes.add(accountType);
+
+            // Clear the text field
+            txtNewAccountType.clear();
+
+            // Show success message
+            //new Mensaje("Exito", "El tipo de cuenta ha sido agregado exitosamente", Mensaje.EXITO);
         }
     }
 
-
-
-    private void loadAccountTypesToTableView() {
-        // Create column
-        TableColumn<AccountType, String> accountTypeColumn = new TableColumn<>("Account Type");
-
-        // Set cell value factory
-        accountTypeColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        // Set column
-        tableTypesAccount.getColumns().add(accountTypeColumn);
-
-        // Load data from file
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                AccountType accountType = new AccountType(line.trim());
-                accountTypes.add(accountType);
-            }
-            tableTypesAccount.setItems(accountTypes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Listener for selecting an account type
-        tableTypesAccount.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        });
-    }
-
-
-    private void loadFirstAccountTypeToLabel() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            // Lee la primera línea del archivo
-            String firstLine = reader.readLine();
-            if (firstLine != null) {
-                // Establece el texto del Label con el primer tipo de cuenta
-                selectedAccountType.setText(firstLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 }
+
 
 

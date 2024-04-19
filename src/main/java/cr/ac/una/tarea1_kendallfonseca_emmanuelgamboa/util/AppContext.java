@@ -3,6 +3,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import javafx.collections.FXCollections;
 
@@ -26,12 +27,13 @@ public class AppContext {
     private static HashMap<String, Object> context = new HashMap<>();
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
     private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
-
+    private static final ObservableList<AccountType> accountTypes = FXCollections.observableArrayList();
 
 
     private AppContext() {
         System.out.println("AppContext");
         readAssociatedsFromJsonFile();
+        loadAccountTypesFromJsonFile();
         printAsociados();
 
     }
@@ -156,13 +158,6 @@ public static void printAsociados() {
     }
 }
 
-    public static ObservableList<Account> getActiveAccounts() {
-        return FXCollections.observableArrayList(activeAccounts);
-    }
-
-    public static ObservableList<Account> getInactiveAccounts() {
-        return FXCollections.observableArrayList(inactiveAccounts);
-    }
 
     public static String deleteAssociatedFromJsonFile(Associated associatedData) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -193,6 +188,59 @@ public static void printAsociados() {
         return "Usuario eliminado correctamente";
     }
 
+    public static void loadAccountTypesFromJsonFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        try {
+            File jsonFile = new File("account_types.json");
+            if (!jsonFile.exists() || jsonFile.length() == 0) {
+                System.out.println("JSON file is empty or missing.");
+                return;
+            }
+
+            List<AccountType> accountTypes = objectMapper.readValue(jsonFile,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, AccountType.class));
+
+            System.out.println("Loaded account types from JSON file: " + accountTypes);
+
+            if (!accountTypes.isEmpty()) {
+                ObservableList<AccountType> observableAccountTypes = FXCollections.observableArrayList(accountTypes);
+                context.put("accountTypes", observableAccountTypes);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error reading account types from JSON file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public static void addAccountTypeToJsonFile(AccountType accountType) throws IOException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<AccountType> accountTypes = new ArrayList<>();
+        if (new File("account_types.json").exists()) {
+            accountTypes = objectMapper.readValue(new File("account_types.json"),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, AccountType.class));
+        }
+
+        for (int i = 0; i < accountTypes.size(); i++) {
+            if (accountTypes.get(i).getName().equals(accountType.getName())) {
+                accountTypes.set(i, accountType);
+                break;
+            }
+        }
+
+        if (!accountTypes.contains(accountType)) {
+            accountTypes.add(accountType);
+        }
+
+        objectMapper.writeValue(new File("account_types.json"), accountTypes);
+    }
 
 
-}
+    }
+
+
+

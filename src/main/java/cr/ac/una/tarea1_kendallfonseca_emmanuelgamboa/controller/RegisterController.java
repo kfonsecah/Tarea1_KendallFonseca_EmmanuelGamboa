@@ -56,6 +56,8 @@ public class RegisterController extends Controller implements Initializable {
     private ImageView userPhotoPrev;
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -107,9 +109,7 @@ public class RegisterController extends Controller implements Initializable {
 
                 Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
 
-                for (int i = 0; i < associated.Associated.size(); i++) {
-                    System.out.println(associated.Associated.get(i));
-                }
+
 
             }
         } catch (Exception e) {
@@ -156,6 +156,8 @@ public class RegisterController extends Controller implements Initializable {
 
         }
     }
+
+
 
 }
 

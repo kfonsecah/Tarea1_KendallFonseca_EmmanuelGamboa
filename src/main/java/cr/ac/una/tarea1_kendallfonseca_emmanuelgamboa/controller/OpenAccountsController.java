@@ -37,11 +37,9 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Account> inactiveAccountsData = AppContext.getInactiveAccounts();
-        ObservableList<Account> activeAccountsData = AppContext.getActiveAccounts();
 
-        inactiveAccounts.setItems(inactiveAccountsData);
-        activeAccounts.setItems(activeAccountsData);
+
+
 
         inactiveAccounts.setCellFactory(param -> new AccountCell());
         activeAccounts.setCellFactory(param -> new AccountCell());
@@ -90,35 +88,7 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @FXML
     void onDragDropped(DragEvent event) {
-        ListView<Account> targetListView = (ListView<Account>) event.getGestureTarget();
-        Dragboard db = event.getDragboard();
-        boolean success = false;
-        if (db.hasString()) {
-            String item = db.getString();
-            Account account = Account.fromString(item);
-            if (account != null) {
-                boolean isInActiveAccounts = activeAccounts.getItems().contains(account);
-                boolean isInInactiveAccounts = inactiveAccounts.getItems().contains(account);
 
-                if (isInActiveAccounts) {
-                    System.out.println("Error: The account is already in the active accounts list.");
-                } else if (isInInactiveAccounts) {
-                    // Mover la cuenta de la lista de cuentas inactivas a la lista de cuentas activas
-                    inactiveAccounts.getItems().remove(account);
-                    activeAccounts.getItems().add(account);
-
-                    // Guardar los cambios en el contexto de la aplicación
-                    AppContext.saveAccounts();
-                    success = true;
-                } else {
-                    System.out.println("Error: The account was not found in either the active or inactive accounts list.");
-                }
-            } else {
-                System.out.println("Error: Invalid account string format.");
-            }
-        }
-        event.setDropCompleted(success);
-        event.consume();
     }
 
     private void findAndMoveAccount(Account account, ListView<Account> fromListView, ListView<Account> toListView) {

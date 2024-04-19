@@ -68,4 +68,11 @@
   "folio" : "PF0976",
   "photo" : "PF0976.png",
   "iban" : "CR5035406863527695207"
+}, {
+  "name" : "Kendall",
+  "lastName" : "FOnse1",
+  "age" : 12,
+  "folio" : "KF0629",
+  "photo" : "KF0629.png",
+  "iban" : "CR3138864539748469208"
 } ]

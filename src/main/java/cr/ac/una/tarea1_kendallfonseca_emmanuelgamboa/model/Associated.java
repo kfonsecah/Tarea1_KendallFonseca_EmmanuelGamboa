@@ -19,7 +19,8 @@ public class Associated {
     public String AssoFolio;
     public String AssoCuenta;
     private String iban;
-    public ArrayList<String> Associated= new ArrayList<String>();
+
+    //list for the accounts
     private List<Account> accounts = new ArrayList<>();
 
     public Associated() {
@@ -51,12 +52,6 @@ public class Associated {
 
 
 
-    public ArrayList<String> getAssociated() {
-        return Associated;
-    }
-    public void setAssociated(ArrayList<String> associated) {
-        Associated = associated;
-    }
     public String getAssoName() {
         return AssoName;
     }
@@ -147,26 +142,7 @@ public class Associated {
         this.AssoFolio = folio;
         return folio;
     }
-    public void addAssociated() {
-        this.Associated.add(this.getAssoName());
-        this.Associated.add(this.getAssoLastName());
-        this.Associated.add(String.valueOf(this.getAssoAge()));
-        this.Associated.add(this.getAssoFolio());
-        this.Associated.add(this.getAssoPhoto());
-        this.Associated.add(this.getIban());
-    }
 
-    public void addToFile(Associated associated) throws IOException {
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("Asociados.txt",true));
-        try {
-            writer.write(associated.getAssociated().toString());
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static class AssociatedData {
         public String name;
@@ -236,13 +212,36 @@ public class Associated {
         objectMapper.writeValue(file, associatedDataList);
     }
 
-    public void createFile(Associated associated) throws IOException {
-        associated.addToFile(associated);
-    }
+
 
     public String createIban() {
         this.iban = "CR" + createAccountNumber();
         return iban;
+    }
+
+    //method to get the accounts
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+    //method to set the accounts
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+    //method to add an account
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
+    //method to remove an account
+    public void removeAccount(Account account) {
+        accounts.remove(account);
+    }
+    //check that the accounts are empty
+    public boolean accountsIsEmpty() {
+        return accounts.isEmpty();
+    }
+    //method to get the last account
+    public Account getLastAccount() {
+        return accounts.get(accounts.size() - 1);
     }
 }
 

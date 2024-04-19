@@ -117,13 +117,13 @@ public class Cooperative {
             }
 
             // Create activeAccounts.txt file
-            File activeAccountsFile = new File("activeAccounts.txt");
+            File activeAccountsFile = new File("Accounts.txt");
             if (!activeAccountsFile.exists()) {
                 activeAccountsFile.createNewFile();
             }
 
             // Create account_types.txt file
-            File accountTypesFile = new File("account_types.txt");
+            File accountTypesFile = new File("account_types.json");
             if (!accountTypesFile.exists()) {
                 accountTypesFile.createNewFile();
             }

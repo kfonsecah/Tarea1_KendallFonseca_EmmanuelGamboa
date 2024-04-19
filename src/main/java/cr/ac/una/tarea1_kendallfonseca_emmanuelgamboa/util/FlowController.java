@@ -43,7 +43,6 @@ public class FlowController {
 
     }
 
-
     private static void createInstance() {
         if (INSTANCE == null) {
             synchronized (FlowController.class) {
@@ -66,21 +65,21 @@ public class FlowController {
         throw new CloneNotSupportedException();
     }
 
-    public void InitializeFlow(Stage stage, ResourceBundle idioma, String accessParameter ) {
+    public void InitializeFlow(Stage stage, ResourceBundle idioma, String accessParameter) {
         getInstance();
         this.mainStage = stage;
         this.idioma = idioma;
         goViewByAccess(accessParameter);
     }
 
-    private void goViewByAccess(String access){
-        if (access.equals("A")){
+    private void goViewByAccess(String access) {
+        if (access.equals("A")) {
             goMain("AssociateView");
         }
-        if (access.equals("F")){
+        if (access.equals("F")) {
             goMain("WorkerView");
         }
-        if(access.equals("P")){
+        if (access.equals("P")) {
             goMain("AdminView");
         }
     }
@@ -107,10 +106,17 @@ public class FlowController {
 
     public void goMain(String viewname) {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/"+viewname+".fxml"), this.idioma)));
-            this.mainStage.show();
-            this.mainStage.setTitle(cooperative.getName());
-            MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
+            // Load the FXML file and set it as the scene's root
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/" + viewname + ".fxml"), this.idioma);
+            loader.getNamespace().clear(); // Clear the FXMLLoader cache
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Add the MaterialFX theme to the scene
+            MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
+
+            // Set the scene and show the stage
+            this.mainStage.setScene(scene);
             this.mainStage.show();
             String logoPath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
             File logoFile = new File(logoPath);
@@ -118,7 +124,6 @@ public class FlowController {
 
             this.mainStage.getIcons().clear();
             this.mainStage.getIcons().add(cooperative.getLogo());
-
 
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
@@ -230,13 +235,4 @@ public class FlowController {
     public void salir() {
         this.mainStage.close();
     }
-
-//    public static void iconChanger(Stage stage, Image image){
-//        stage.getIcons().clear();
-//        stage.getIcons().add(image);
-//    }
-//    public static void nameChanger(Stage stage, String name){
-//        stage.setTitle(name);
-//    }
-//
 }
