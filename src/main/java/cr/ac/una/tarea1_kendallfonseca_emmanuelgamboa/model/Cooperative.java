@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -9,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @SuppressWarnings("ALL")
 public class Cooperative {
@@ -16,7 +19,7 @@ public class Cooperative {
     private Image logo;
     private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
     private AccountType accountType;
-
+    private ObservableList<AccountType> accounTypesList = FXCollections.observableArrayList();
 
     public Cooperative() {
         createFiles();
@@ -126,12 +129,17 @@ public class Cooperative {
             File accountTypesFile = new File("account_types.json");
             if (!accountTypesFile.exists()) {
                 accountTypesFile.createNewFile();
+                ObjectMapper objectMapper = new ObjectMapper();
+                String jsonString = objectMapper.writeValueAsString(accounTypesList);
+                Files.write(Paths.get(accountTypesFile.getPath()), jsonString.getBytes());
             }
 
             // Create Associates.json file
             File associatesFile = new File("associateds.json");
             if (!associatesFile.exists()) {
-                associatesFile.createNewFile();
+                ObjectMapper objectMapper = new ObjectMapper();
+                String jsonString = objectMapper.writeValueAsString(associatedList);
+                Files.write(Paths.get(associatesFile.getPath()), jsonString.getBytes());
             }
         } catch (IOException e) {
             e.printStackTrace();

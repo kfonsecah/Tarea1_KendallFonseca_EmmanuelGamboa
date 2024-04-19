@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
@@ -35,6 +36,7 @@ public class AppContext {
         readAssociatedsFromJsonFile();
         loadAccountTypesFromJsonFile();
         printAsociados();
+
 
     }
 
@@ -90,21 +92,15 @@ public class AppContext {
 
     public static void readAssociatedsFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
-
         try {
-            File jsonFile = new File("associateds.json");
-            if (!jsonFile.exists() || jsonFile.length() == 0) {
-                System.out.println("JSON file is empty or missing.");
-                return;
-            }
 
-            List<Associated> associateds = objectMapper.readValue(jsonFile,
+            List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
                     objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
 
             System.out.println("Loaded associateds from JSON file: " + associateds);
 
-            ObservableList<Associated> observableAssociateds = FXCollections.observableArrayList(associateds);
-            context.put("asociados", observableAssociateds);
+            ObservableList<Associated> observableAsociados = FXCollections.observableArrayList(associateds);
+            context.put("asociados", observableAsociados);
 
         } catch (IOException e) {
             System.out.println("Error reading associateds from JSON file: " + e.getMessage());
@@ -137,6 +133,20 @@ public class AppContext {
         objectMapper.writeValue(new File("associateds.json"), associatedDataList);
     }
 
+    public static List<Associated.AssociatedData> loadAssociatedFromJsonFile() throws IOException {
+        File file = new File("associateds.json");
+
+        if (!file.exists()) {
+
+            file.createNewFile();
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(file, new ArrayList<Associated.AssociatedData>());
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Associated.AssociatedData> associatedDataList = objectMapper.readValue(file, new TypeReference<List<Associated.AssociatedData>>() {});
+        return associatedDataList;
+    }
     public void addCooperative(Cooperative cooperative) {
         cooperatives.put("cooperative", cooperative);
     }
@@ -221,6 +231,7 @@ public static void printAsociados() {
             e.printStackTrace();
         }
     }
+
     public static void addAccountTypeToJsonFile(AccountType accountType) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
