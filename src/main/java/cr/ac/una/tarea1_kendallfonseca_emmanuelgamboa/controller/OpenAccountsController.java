@@ -152,90 +152,53 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @FXML
     void onDragDetected(MouseEvent event) {
-        if (userAccounts.getSelectionModel().getSelectedItem() != null) {
-            Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
-            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
 
-            dragboard.setContent(content);
-            event.consume();
-        }
     }
 
     @FXML
     void onDragOver(DragEvent event) {
-        if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
-        event.consume();
+
     }
 
     @FXML
     void onDragDropped(DragEvent event) {
-        String accountType = event.getDragboard().getString();
-        Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
-        if (selectedAssociated != null) {
 
-
-        }
     }
 
     @FXML
     public void onDragDetectedAccountTypes(MouseEvent event) {
-        draggedAccountType = accountTypes.getSelectionModel().getSelectedItem();
-        if (draggedAccountType != null) {
-            Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(draggedAccountType.getName());
-            dragboard.setContent(content);
-            event.consume();
-        }
+
     }
 
     @FXML
     public void onDragOverAccountTypes(DragEvent event) {
-        if (event.getGestureSource() != accountTypes && event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
-        event.consume();
+
     }
 
     @FXML
     public void onDragDroppedAccountTypes(DragEvent event) {
-        String accountType = event.getDragboard().getString();
-        // Implement your logic here for when an account type is dropped onto another area
-        event.setDropCompleted(true);
-        event.consume();
+
     }
 
     @FXML
     public void onDragDetectedUserAccounts(MouseEvent event) {
-        if (userAccounts.getSelectionModel().getSelectedItem() != null) {
-            Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
-            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
 
-            dragboard.setContent(content);
-            event.consume();
-        }
+
     }
 
     @FXML
-    public void onDragOverUserAccounts(DragEvent event) {
-        if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
-            event.acceptTransferModes(TransferMode.MOVE);
-        }
-        event.consume();
-    }
+    public void onDragOverUserAccounts(DragEvent event) {}
+
+
+
+
 
     @FXML
-    public void onDragDroppedUserAccounts(DragEvent event) {
-        String accountType = event.getDragboard().getString();
-        Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
-        if (selectedAssociated != null) {
-        }
+    public void onDragDroppedUserAccounts(DragEvent event) {}
 
-    }
+
+
+
 }
 
 

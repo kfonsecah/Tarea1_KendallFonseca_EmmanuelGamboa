@@ -3,9 +3,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,10 @@ public class Associated {
     public int AssoAge;
     public String AssoPhoto;
     public String AssoFolio;
-    public String AssoCuenta;
     private String iban;
 
     //list for the accounts
-    private List<Account> accounts = new ArrayList<>();
+
 
     public Associated() {
     }
@@ -35,13 +32,6 @@ public class Associated {
 
     }
 
-
-    public Account createAccount() {
-        String accountNumber = createAccountNumber();
-        Account account = new Account("Savings", 0, "CRC", this.AssoName + " " + this.AssoLastName);
-        this.accounts.add(account);
-        return account;
-    }
 
     public String createAccountNumber() {
         Random random = new Random();
@@ -82,12 +72,6 @@ public class Associated {
     public void setAssoFolio(String folio) {
         this.AssoFolio = folio;
     }
-    public String getAssoCuentas() {
-        return AssoCuenta;
-    }
-    public void setAssoCuentas(String cuenta) {
-        this.AssoCuenta = cuenta;
-    }
     public String getIban() {
         return iban;
     }
@@ -126,12 +110,7 @@ public class Associated {
     public void setFolio(String folio) {
         this.AssoFolio = folio;
     }
-    public String getCuentas() {
-        return AssoCuenta;
-    }
-    public void setCuentas(String cuenta) {
-        this.AssoCuenta = cuenta;
-    }
+
 
     public String createFolio() {
         Random random = new Random();
@@ -143,7 +122,6 @@ public class Associated {
         return folio;
     }
 
-
     public static class AssociatedData {
         public String name;
         public String lastName;
@@ -151,19 +129,17 @@ public class Associated {
         public String folio;
         public String photo;
         public String iban;
-        public List<Account> accounts;
 
-        public AssociatedData() {
-        }
 
-        public AssociatedData(String name, String lastName, int age, String folio, String photo, String iban, List<Account> accounts) {
+        public AssociatedData(String name, String lastName, int age, String folio, String photo, String iban) {
             this.name = name;
             this.lastName = lastName;
             this.age = age;
             this.folio = folio;
             this.photo = photo;
             this.iban = iban;
-            this.accounts = accounts;
+        }
+        public AssociatedData() {
         }
 
         public String getName() {
@@ -196,11 +172,11 @@ public class Associated {
         public void setPhoto(String photo) {
             this.photo = photo;
         }
-        public List<Account> getAccounts() {
-            return accounts;
+        public String getIban() {
+            return iban;
         }
-        public void setAccounts(List<Account> accounts) {
-            this.accounts = accounts;
+        public void setIban(String iban) {
+            this.iban = iban;
         }
     }
 
@@ -209,17 +185,14 @@ public class Associated {
         File file = new File("associateds.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-
         if (!file.exists()) {
             file.createNewFile();
             objectMapper.writeValue(file, new ArrayList<Associated.AssociatedData>());
         }
-
         List<Associated.AssociatedData> associatedDataList = objectMapper.readValue(file, ArrayList.class);
         associatedDataList.add(associatedData);
         objectMapper.writeValue(file, associatedDataList);
     }
-
 
 
     public String createIban() {
@@ -227,29 +200,5 @@ public class Associated {
         return iban;
     }
 
-    //method to get the accounts
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-    //method to set the accounts
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-    //method to add an account
-    public void addAccount(Account account) {
-        accounts.add(account);
-    }
-    //method to remove an account
-    public void removeAccount(Account account) {
-        accounts.remove(account);
-    }
-    //check that the accounts are empty
-    public boolean accountsIsEmpty() {
-        return accounts.isEmpty();
-    }
-    //method to get the last account
-    public Account getLastAccount() {
-        return accounts.get(accounts.size() - 1);
-    }
 }
 

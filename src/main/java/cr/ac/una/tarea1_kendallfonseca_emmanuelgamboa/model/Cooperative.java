@@ -20,6 +20,7 @@ public class Cooperative {
     private AccountType accountType;
     private ObservableList<Associated> associatedList = FXCollections.observableArrayList();
     private ObservableList<AccountType> accounTypesList = FXCollections.observableArrayList();
+    private ObservableList<Account> accounts = FXCollections.observableArrayList();
 
     public Cooperative() {
         createFiles();
@@ -116,15 +117,17 @@ public class Cooperative {
             }
 
             // Create activeAccounts.txt file
-            File activeAccountsFile = new File("Accounts.txt");
-            if (!activeAccountsFile.exists()) {
-                activeAccountsFile.createNewFile();
+            File accountsFile = new File("accounts.json");
+            if (!accountsFile.exists()) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                String jsonString = objectMapper.writeValueAsString(accounts);
+                Files.write(Paths.get(accountsFile.getPath()), jsonString.getBytes());
+
             }
 
             // Create account_types.txt file
             File accountTypesFile = new File("account_types.json");
             if (!accountTypesFile.exists()) {
-                accountTypesFile.createNewFile();
                 ObjectMapper objectMapper = new ObjectMapper();
                 String jsonString = objectMapper.writeValueAsString(accounTypesList);
                 Files.write(Paths.get(accountTypesFile.getPath()), jsonString.getBytes());

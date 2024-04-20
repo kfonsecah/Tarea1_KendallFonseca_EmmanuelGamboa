@@ -19,21 +19,18 @@ import javafx.collections.ObservableMap;
 public class AppContext {
 
     private static AppContext INSTANCE = null;
-    private static final String USERS_FILE_PATH = "Asociados.txt";
-    private static final String INACTIVE_ACCOUNTS_FILE_PATH = "inactiveAccounts.txt";
-    private static final String ACTIVE_ACCOUNTS_FILE_PATH = "activeAccounts.txt";
-    private static final ObservableList<Account> inactiveAccounts = FXCollections.observableArrayList();
-    private static final ObservableList<Account> activeAccounts = FXCollections.observableArrayList();
     private static HashMap<String, Object> context = new HashMap<>();
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
     private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
     private static final ObservableList<AccountType> accountTypes = FXCollections.observableArrayList();
+    private ObservableList<Account> accounts = FXCollections.observableArrayList();
     private Associated selectedAssociated;
 
     private AppContext() {
         System.out.println("AppContext");
         readAssociatedsFromJsonFile();
         loadAccountTypesFromJsonFile();
+        loadAccountsFromJsonFile();
     }
 
     // Singleton Instance Management
@@ -83,6 +80,7 @@ public class AppContext {
     public void delete(String parameter) {
         context.put(parameter, null);
     }
+
 
     // CRUD Operations for Associated
     public static void readAssociatedsFromJsonFile() {
@@ -151,42 +149,6 @@ public class AppContext {
 
         objectMapper.writeValue(new File("associateds.json"), associatedDataList);
     }
-    public static void addAccountToAssociatedInJsonFile(String folio, Account account) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-
-        File file = new File("associateds.json");
-        List<Associated> associateds;
-
-        if (file.exists()) {
-            associateds = objectMapper.readValue(file,
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
-
-            // Find the associated object with the given folio
-            Associated associatedToUpdate = null;
-            for (Associated associated : associateds) {
-                if (associated.getAssoFolio().equals(folio)) {
-                    associatedToUpdate = associated;
-                    break;
-                }
-            }
-
-            if (associatedToUpdate != null) {
-                // Add the account to the associated object's accounts list
-                associatedToUpdate.addAccount(account);
-
-                // Write the updated list of associated objects back to the JSON file
-                objectMapper.writeValue(file, associateds);
-            } else {
-                // Handle the case where the associated object with the given folio is not found
-                System.out.println("Associated object with folio " + folio + " not found.");
-            }
-        } else {
-            // Handle the case where the JSON file does not exist
-            System.out.println("JSON file does not exist.");
-        }
-    }
-
 
 
 
@@ -302,6 +264,67 @@ public class AppContext {
         }
 
     }
+
+    public static void loadAccountsFromJsonFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        try {
+            File jsonFile = new File("accounts.json");
+            if (!jsonFile.exists() || jsonFile.length() == 0) {
+                System.out.println("JSON file is empty or missing.");
+                List<Account> accounts = new ArrayList<>();
+                ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
+                context.put("accounts", observableAccounts);
+                return;
+            }
+
+            List<Account> accounts = objectMapper.readValue(jsonFile,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Account.class));
+
+            System.out.println("Loaded accounts from JSON file: " + accounts);
+
+            ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
+            context.put("accounts", observableAccounts);
+
+        } catch (IOException e) {
+            System.out.println("Error reading accounts from JSON file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void addAccountToJsonFile(Account account) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<Account> accounts;
+
+        File jsonFile = new File("accounts.json");
+
+        if (jsonFile.exists() && jsonFile.length() > 0) {
+            accounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {});
+        } else {
+            accounts = new ArrayList<>();
+        }
+
+        accounts.add(account);
+
+        objectMapper.writeValue(jsonFile, accounts);
+    }
+
+    // Getters for Accounts
+
+    public static ObservableList<Account> getAccounts() {
+        ObservableList<Account> accounts = (ObservableList<Account>) context.get("accounts");
+        if (accounts == null) {
+            System.out.println("Accounts list is empty.");
+            return FXCollections.observableArrayList();
+        }
+        return accounts;
+    }
+
+
+
 
 }
 
