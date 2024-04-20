@@ -28,6 +28,7 @@ public class AppContext {
     private static final ObservableList<Associated> asociados = FXCollections.observableArrayList();
     private ObservableMap<String, Cooperative> cooperatives = FXCollections.observableHashMap();
     private static final ObservableList<AccountType> accountTypes = FXCollections.observableArrayList();
+    private Associated selectedAssociated;
 
     private AppContext() {
         System.out.println("AppContext");
@@ -150,6 +151,30 @@ public class AppContext {
 
         objectMapper.writeValue(new File("associateds.json"), associatedDataList);
     }
+    public static void addAccountToAssociatedInJsonFile(String folio, Account account) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
+                objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+
+        Associated associatedToUpdate = null;
+        for (Associated associated : associateds) {
+            if (associated.getFolio().equals(folio)) {
+                associatedToUpdate = associated;
+                break;
+            }
+        }
+
+        if (associatedToUpdate != null) {
+            associatedToUpdate.getAccounts().add(account);
+        } else {
+            // handle case when the user doesn't exist
+            System.out.println("User with folio " + folio + " not found");
+        }
+
+        objectMapper.writeValue(new File("associateds.json"), associateds);
+    }
 
     // CRUD Operations for Account Types
     public static void loadAccountTypesFromJsonFile() {
@@ -249,22 +274,20 @@ public class AppContext {
         }
         return accountTypes;
     }
-
-    public void addAccountToSelectedUser(Associated selectedUser, Account account) {
-        // Add the account to the selected user's list of accounts
-        if (selectedUser != null) {
-            selectedUser.addAccount(account);
+    public void setSelectedAssociated(Associated associated) {
+        this.selectedAssociated = associated;
+    }
+    public Associated getSelectedAssociated() {
+        return selectedAssociated;
+    }
+    public boolean addAccountToSelectedUser(Account newAccount) {
+        if (newAccount != null)  {
+            return true;
+        }else {
+            return false;
         }
+
     }
 
-    public static void updateJSONFile() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            // Convertir la lista de asociados a JSON y escribirlo en un archivo
-            objectMapper.writeValue(new File("associateds.json"), asociados);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
 

@@ -38,7 +38,7 @@ public class Associated {
 
     public Account createAccount() {
         String accountNumber = createAccountNumber();
-        Account account = new Account(accountNumber, "Savings", 0, "CRC", this.AssoName + " " + this.AssoLastName);
+        Account account = new Account("Savings", 0, "CRC", this.AssoName + " " + this.AssoLastName);
         this.accounts.add(account);
         return account;
     }

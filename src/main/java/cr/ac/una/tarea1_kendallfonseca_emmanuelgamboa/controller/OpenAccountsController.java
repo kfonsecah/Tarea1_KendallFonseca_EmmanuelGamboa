@@ -1,5 +1,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,6 +23,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 
 public class OpenAccountsController extends Controller implements Initializable {
 
@@ -46,22 +50,30 @@ public class OpenAccountsController extends Controller implements Initializable 
     @FXML
     private TableView<Associated> userSearchList;
 
+    private AccountType draggedAccountType;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         AppContext appContext = AppContext.getInstance();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
+        Account account = new Account("Cuenta de ahorros", 0, "CRC", "Kendall Fonseca");
+        try {
+            appContext.addAccountToAssociatedInJsonFile("KF0789",account);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         accountTypes.setItems(tiposCuenta);
         loadUsersToTableView();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
 
         accountTypes.setOnDragDetected(event -> {
-            AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
-            if (selectedAccountType != null) {
+            draggedAccountType = accountTypes.getSelectionModel().getSelectedItem();
+            if (draggedAccountType != null) {
                 Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.MOVE);
                 ClipboardContent content = new ClipboardContent();
-                content.putString(selectedAccountType.getName());
+                content.putString(draggedAccountType.getName());
                 dragboard.setContent(content);
                 event.consume();
             }
@@ -78,19 +90,18 @@ public class OpenAccountsController extends Controller implements Initializable 
             String accountType = event.getDragboard().getString();
             Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
             if (selectedAssociated != null) {
-                Account newAccount = new Account("", accountType, 0, "CRC", selectedAssociated.getName());
-                selectedAssociated.addAccount(newAccount);
+                Account newAccount = new Account(accountType, 0, "CRC", selectedAssociated.getName());
+                AppContext.getInstance().addAccountToSelectedUser(newAccount);
                 ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
                 userAccounts.setItems(userAccountList);
-                // Update the JSON file
-                AppContext.updateJSONFile();
             }
             event.setDropCompleted(true);
             event.consume();
         });
     }
 
-    public void initialize(){};
+    public void initialize() {
+    }
 
     private void loadUsersToTableView() {
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
@@ -148,12 +159,22 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @FXML
     void onDragDetected(MouseEvent event) {
-
+        if (userAccounts.getSelectionModel().getSelectedItem() != null) {
+            Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
+            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(selectedAccount.getAccountType());
+            dragboard.setContent(content);
+            event.consume();
+        }
     }
 
     @FXML
     void onDragOver(DragEvent event) {
-
+        if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.MOVE);
+        }
+        event.consume();
     }
 
     @FXML
@@ -161,17 +182,91 @@ public class OpenAccountsController extends Controller implements Initializable 
         String accountType = event.getDragboard().getString();
         Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedAssociated != null) {
-            Account newAccount = new Account("", accountType, 0, "CRC", selectedAssociated.getName());
-            AppContext.getInstance().addAccountToSelectedUser(selectedAssociated, newAccount);
-            ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
-            userAccounts.setItems(userAccountList);
-            // Update the JSON file
-            AppContext.updateJSONFile();
+            Account newAccount = new Account( accountType, 0, "CRC", selectedAssociated.getName());
+            if (AppContext.getInstance().addAccountToSelectedUser(newAccount)) {
+                System.out.println("New account added successfully.");
+                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
+                userAccounts.setItems(userAccountList);
+            } else {
+                System.out.println("Failed to add new account.");
+            }
+        } else {
+            System.out.println("No associated user selected.");
         }
         event.setDropCompleted(true);
         event.consume();
     }
+
+    @FXML
+    public void onDragDetectedAccountTypes(MouseEvent event) {
+        draggedAccountType = accountTypes.getSelectionModel().getSelectedItem();
+        if (draggedAccountType != null) {
+            Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(draggedAccountType.getName());
+            dragboard.setContent(content);
+            event.consume();
+        }
+    }
+
+    @FXML
+    public void onDragOverAccountTypes(DragEvent event) {
+        if (event.getGestureSource() != accountTypes && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.MOVE);
+        }
+        event.consume();
+    }
+
+    @FXML
+    public void onDragDroppedAccountTypes(DragEvent event) {
+        String accountType = event.getDragboard().getString();
+        // Implement your logic here for when an account type is dropped onto another area
+        event.setDropCompleted(true);
+        event.consume();
+    }
+
+    @FXML
+    public void onDragDetectedUserAccounts(MouseEvent event) {
+        if (userAccounts.getSelectionModel().getSelectedItem() != null) {
+            Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
+            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(selectedAccount.getAccountType());
+            dragboard.setContent(content);
+            event.consume();
+        }
+    }
+
+    @FXML
+    public void onDragOverUserAccounts(DragEvent event) {
+        if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.MOVE);
+        }
+        event.consume();
+    }
+
+    @FXML
+    public void onDragDroppedUserAccounts(DragEvent event) {
+        String accountType = event.getDragboard().getString();
+        Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
+        if (selectedAssociated != null) {
+            Account newAccount = new Account(accountType, 0, "CRC", selectedAssociated.getName());
+            if (AppContext.getInstance().addAccountToSelectedUser(newAccount)) {
+                System.out.println("New account added successfully.");
+                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
+                userAccounts.setItems(userAccountList);
+            } else {
+                System.out.println("Failed to add new account.");
+            }
+        } else {
+            System.out.println("No associated user selected.");
+        }
+        event.setDropCompleted(true);
+        event.consume();
+    }
+
 }
+
 
 
 

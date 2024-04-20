@@ -24,7 +24,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="accountTypes" prefHeight="325.0" prefWidth="451.0">
+                        <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes" onDragDropped="#onDragDroppedAccountTypes" onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0">
                            <HBox.margin>
                               <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                            </HBox.margin>
@@ -34,7 +34,7 @@
                               <Insets bottom="50.0" top="50.0" />
                            </HBox.margin>
                         </Separator>
-                        <ListView fx:id="userAccounts" prefHeight="522.0" prefWidth="447.0">
+                        <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts" onDragDropped="#onDragDroppedUserAccounts" onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0">
                            <HBox.margin>
                               <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                            </HBox.margin>

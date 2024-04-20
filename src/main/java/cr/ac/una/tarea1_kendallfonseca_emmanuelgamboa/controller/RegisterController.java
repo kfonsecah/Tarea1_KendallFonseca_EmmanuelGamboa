@@ -108,9 +108,6 @@ public class RegisterController extends Controller implements Initializable {
                 txtAge.setText("");
                 userPhotoPrev.setImage(null);
 
-                Account account = new Account(associated.getIban(), "Cuenta de usuario", 0, "CRC", associated.getAssoFolio());
-
-
 
             }
         } catch (Exception e) {
