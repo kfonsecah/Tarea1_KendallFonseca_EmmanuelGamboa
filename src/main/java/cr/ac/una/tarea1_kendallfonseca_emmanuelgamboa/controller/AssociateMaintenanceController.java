@@ -263,12 +263,12 @@ public class AssociateMaintenanceController extends Controller implements Initia
                         selectedUser.getAssoAge(),
                         selectedUser.getAssoFolio(),
                         selectedUser.getAssoPhoto(),
-                        selectedUser.getIban(),
-                        selectedUser.getAccounts()
+                        selectedUser.getIban()
+
                 );
 
                 try {
-                    AppContext.addAssociatedToJsonFile(associatedData);
+                   selectedUser.addAssociatedToJsonFile(associatedData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

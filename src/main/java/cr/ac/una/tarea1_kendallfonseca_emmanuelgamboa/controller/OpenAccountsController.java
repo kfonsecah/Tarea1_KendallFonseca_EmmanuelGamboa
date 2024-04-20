@@ -57,16 +57,11 @@ public class OpenAccountsController extends Controller implements Initializable 
         AppContext appContext = AppContext.getInstance();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
-        Account account = new Account("Cuenta de ahorros", 0, "CRC", "Kendall Fonseca");
-        try {
-            appContext.addAccountToAssociatedInJsonFile("KF0789",account);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         accountTypes.setItems(tiposCuenta);
         loadUsersToTableView();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
+
 
         accountTypes.setOnDragDetected(event -> {
             draggedAccountType = accountTypes.getSelectionModel().getSelectedItem();
@@ -90,10 +85,8 @@ public class OpenAccountsController extends Controller implements Initializable 
             String accountType = event.getDragboard().getString();
             Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
             if (selectedAssociated != null) {
-                Account newAccount = new Account(accountType, 0, "CRC", selectedAssociated.getName());
-                AppContext.getInstance().addAccountToSelectedUser(newAccount);
-                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
-                userAccounts.setItems(userAccountList);
+
+
             }
             event.setDropCompleted(true);
             event.consume();
@@ -163,7 +156,7 @@ public class OpenAccountsController extends Controller implements Initializable 
             Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
             Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
-            content.putString(selectedAccount.getAccountType());
+
             dragboard.setContent(content);
             event.consume();
         }
@@ -182,19 +175,9 @@ public class OpenAccountsController extends Controller implements Initializable 
         String accountType = event.getDragboard().getString();
         Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedAssociated != null) {
-            Account newAccount = new Account( accountType, 0, "CRC", selectedAssociated.getName());
-            if (AppContext.getInstance().addAccountToSelectedUser(newAccount)) {
-                System.out.println("New account added successfully.");
-                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
-                userAccounts.setItems(userAccountList);
-            } else {
-                System.out.println("Failed to add new account.");
-            }
-        } else {
-            System.out.println("No associated user selected.");
+
+
         }
-        event.setDropCompleted(true);
-        event.consume();
     }
 
     @FXML
@@ -231,7 +214,7 @@ public class OpenAccountsController extends Controller implements Initializable 
             Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
             Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
-            content.putString(selectedAccount.getAccountType());
+
             dragboard.setContent(content);
             event.consume();
         }
@@ -250,21 +233,9 @@ public class OpenAccountsController extends Controller implements Initializable 
         String accountType = event.getDragboard().getString();
         Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedAssociated != null) {
-            Account newAccount = new Account(accountType, 0, "CRC", selectedAssociated.getName());
-            if (AppContext.getInstance().addAccountToSelectedUser(newAccount)) {
-                System.out.println("New account added successfully.");
-                ObservableList<Account> userAccountList = FXCollections.observableArrayList(selectedAssociated.getAccounts());
-                userAccounts.setItems(userAccountList);
-            } else {
-                System.out.println("Failed to add new account.");
-            }
-        } else {
-            System.out.println("No associated user selected.");
         }
-        event.setDropCompleted(true);
-        event.consume();
-    }
 
+    }
 }
 
 

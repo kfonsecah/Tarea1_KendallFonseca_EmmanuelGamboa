@@ -13,7 +13,7 @@ class AccountCell extends ListCell<Account> {
         } else {
             String text = String.format("[%s/%s/%.2f/%s/%s]%n",
 
-                    account.getAccountType(),
+
                     account.getBalance(),
                     account.getCurrency(),
                     account.getAccountHolder());

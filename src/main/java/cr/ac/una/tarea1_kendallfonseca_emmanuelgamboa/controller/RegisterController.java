@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.*;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -91,14 +92,13 @@ public class RegisterController extends Controller implements Initializable {
                         associated.getAssoAge(),
                         associated.getAssoFolio(),
                         associated.getAssoPhoto(),
-                        associated.getIban(),
-                        associated.getAccounts()
+                        associated.getIban()
                 );
 
                 renameLastUserPhoto(associated.getAssoFolio());
 
                 try {
-                    associated.addAssociatedToJsonFile(associatedData);
+                    AppContext.getInstance().addAssociatedToJsonFile(associatedData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
