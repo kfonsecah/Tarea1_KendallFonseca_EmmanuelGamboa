@@ -14,7 +14,7 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AccountsConfigController">
    <BorderPane layoutX="15.0" layoutY="24.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
       <center>
-         <StackPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="fx-stackPane" stylesheets="@Styles.css" BorderPane.alignment="CENTER">
+         <StackPane maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </BorderPane.margin>

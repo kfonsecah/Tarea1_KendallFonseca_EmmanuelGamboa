@@ -14,11 +14,11 @@
    <children>
       <BorderPane layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <center>
-            <StackPane prefHeight="400.0" prefWidth="388.0" style="-fx-background-color: #E3E3E3; -fx-background-radius: 45;" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="400.0" prefWidth="388.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <MFXButton fx:id="btnChangeIcon" onAction="#onActionBtnChangeIcon" prefHeight="22.0" prefWidth="110.0" text="Cambiar Icono">
+                        <MFXButton fx:id="btnChangeIcon" onAction="#onActionBtnChangeIcon" prefHeight="50.0" prefWidth="137.0" styleClass="btnAdminConf" stylesheets="@Styles.css" text="Cambiar Icono">
                            <VBox.margin>
                               <Insets bottom="20.0" left="421.0" top="55.0" />
                            </VBox.margin>
@@ -36,7 +36,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </MFXTextField>
-                        <MFXButton fx:id="btnAceptar" onAction="#onActionBtnAceptar" style="-fx-background-color: white;" text="Aceptar">
+                        <MFXButton fx:id="btnAceptar" onAction="#onActionBtnAceptar" styleClass="btnAdminConf" stylesheets="@Styles.css" text="Aceptar">
                            <VBox.margin>
                               <Insets bottom="30.0" left="445.0" top="50.0" />
                            </VBox.margin>
