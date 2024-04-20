@@ -155,26 +155,40 @@ public class AppContext {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        List<Associated> associateds = objectMapper.readValue(new File("associateds.json"),
-                objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+        File file = new File("associateds.json");
+        List<Associated> associateds;
 
-        Associated associatedToUpdate = null;
-        for (Associated associated : associateds) {
-            if (associated.getFolio().equals(folio)) {
-                associatedToUpdate = associated;
-                break;
+        if (file.exists()) {
+            associateds = objectMapper.readValue(file,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Associated.class));
+
+            // Find the associated object with the given folio
+            Associated associatedToUpdate = null;
+            for (Associated associated : associateds) {
+                if (associated.getAssoFolio().equals(folio)) {
+                    associatedToUpdate = associated;
+                    break;
+                }
             }
-        }
 
-        if (associatedToUpdate != null) {
-            associatedToUpdate.getAccounts().add(account);
+            if (associatedToUpdate != null) {
+                // Add the account to the associated object's accounts list
+                associatedToUpdate.addAccount(account);
+
+                // Write the updated list of associated objects back to the JSON file
+                objectMapper.writeValue(file, associateds);
+            } else {
+                // Handle the case where the associated object with the given folio is not found
+                System.out.println("Associated object with folio " + folio + " not found.");
+            }
         } else {
-            // handle case when the user doesn't exist
-            System.out.println("User with folio " + folio + " not found");
+            // Handle the case where the JSON file does not exist
+            System.out.println("JSON file does not exist.");
         }
-
-        objectMapper.writeValue(new File("associateds.json"), associateds);
     }
+
+
+
 
     // CRUD Operations for Account Types
     public static void loadAccountTypesFromJsonFile() {
