@@ -20,3 +20,4 @@ Tarea1_KendallFonseca_EmmanuelGamboa.iml
 # Ignorar archivos de texto genéricos
 *.txt
 .userphotos/
+account_types.json
