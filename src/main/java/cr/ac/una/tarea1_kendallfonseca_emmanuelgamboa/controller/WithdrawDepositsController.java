@@ -7,6 +7,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXSpinner;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,6 +68,15 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     private TableView<?> userFolioList;
+
+    @FXML
+    private MFXButton btnDepositsDelete;
+
+    @FXML
+    private MFXButton btnDepositsRequest;
+
+    @FXML
+    private MFXButton btnDepositsSearch;
 
     @FXML
     private AnchorPane root;
