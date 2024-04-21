@@ -2,6 +2,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.beans.property.*;
 import javafx.scene.control.ListCell;
 
@@ -23,7 +24,7 @@ public class Account {
     public Account(double balance, String currency, String accountType, String accountHolder, String folio) {
 
         this.balance = balance;
-        this.currency= currency;
+        this.currency= "Colones";
         this.accountType = accountType;
         this.accountHolder = accountHolder;
         this.Folio = folio;
@@ -40,10 +41,11 @@ public class Account {
         this.balance = balance;
     }
 
-
     public String getCurrency() {
         return currency;
     }
+
+
     public void setCurrency(String currency) {
         this.currency = currency;
     }

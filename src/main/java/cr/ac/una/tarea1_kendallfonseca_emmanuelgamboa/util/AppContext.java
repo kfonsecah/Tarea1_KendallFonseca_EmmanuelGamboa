@@ -327,6 +327,23 @@ public class AppContext {
         return accounts;
     }
 
+    public static void removeAccountFromJsonFile(Account accountToRemove) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("accounts.json");
+        if (file.exists()) {
+            List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {});
+            Iterator<Account> iterator = accounts.iterator();
+            while (iterator.hasNext()) {
+                Account account = iterator.next();
+                if (account.getAccountType().equals(accountToRemove.getAccountType()) && account.getFolio().equals(accountToRemove.getFolio())) {
+                    iterator.remove();
+                    break;
+                }
+            }
+            objectMapper.writeValue(file, accounts);
+        }
+    }
+
 
 
 

@@ -51,13 +51,13 @@ public class OpenAccountsController extends Controller implements Initializable 
     @FXML
     private TableView<Associated> userSearchList;
 
-    private AccountType draggedAccountType;
-
 
     AppContext appContext = AppContext.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
 
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
@@ -77,14 +77,15 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     private void loadAssociatedAccounts(Associated associated) {
-        // Creamos una instancia de AccountUser y obtenemos las cuentas asociadas al asociado
+
         AccountUser accountUser = new AccountUser();
         ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
         // Verificamos si hay cuentas asociadas
         if (associatedAccounts.isEmpty()) {
             System.out.println("No hay cuentas asociadas al usuario con folio: " + associated.getFolio());
-            // Aquí puedes agregar código para mostrar una notificación en la interfaz de usuario si lo deseas
+            userAccounts.getItems().clear();
+
         } else {
             // Limpiamos la lista de cuentas de usuario y agregamos las cuentas asociadas
             userAccounts.getItems().clear();
@@ -151,28 +152,6 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     @FXML
-    public void onFilterButtonClick(ActionEvent event) {
-        ObservableList<Associated> filteredData = FXCollections.observableArrayList();
-        String filter = String.valueOf(accountTypes.getSelectionModel().getSelectedItem());
-        String txtSearchValue = txtSearch.getText();
-
-        if (!txtSearchValue.isEmpty()) {
-            for (Associated data : userSearchList.getItems()) {
-                if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearchValue.toLowerCase())) {
-                    filteredData.add(data);
-                } else if (filter.equals("Folio") && data.getAssoFolio().toLowerCase().contains(txtSearchValue.toLowerCase())) {
-                    filteredData.add(data);
-                } else if (filter.equals("Edad") && Integer.toString(data.getAssoAge()).contains(txtSearchValue)) {
-                    filteredData.add(data);
-                }
-            }
-            userSearchList.setItems(filteredData);
-        } else {
-            updateTableView();
-        }
-    }
-
-    @FXML
     public void onDragDetectedAccountTypes(MouseEvent event) {
         AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
         if (selectedAccountType != null) {
@@ -192,31 +171,27 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     @FXML
-    public void onDragDroppedAccountTypes(DragEvent event) {
+    public void onDragDroppedAccountTypes(DragEvent event) throws IOException {
         Dragboard dragboard = event.getDragboard();
         boolean success = false;
+
         if (dragboard.hasString()) {
             String accountTypeName = dragboard.getString();
-            Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
-            if (selectedAssociated != null) {
-                // Obtener el folio del usuario seleccionado
-                String folio = selectedAssociated.getFolio();
-                // Crear una nueva instancia de cuenta con el folio del usuario seleccionado
-                Account newAccount = new Account(0.0, "Colones", accountTypeName, selectedAssociated.getName(), folio);
-                // Agregar la nueva cuenta a la lista de cuentas
-                userAccounts.getItems().add(newAccount);
-                // Guardar la lista actualizada en el archivo JSON
-                try {
-                    AppContext.addAccountToJsonFile(newAccount);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    // Manejar cualquier error de escritura en el archivo JSON
-                }
-                success = true;
-            }
+            int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+            Associated associated = userSearchList.getItems().get(selectedIndex);
+
+            Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+
+            // Remove the account from the JSON file
+            AppContext.removeAccountFromJsonFile(accountToRemove);
+
+            // Remove the account from the table view
+            userAccounts.getItems().remove(accountToRemove);
+            updateListView();
+            success = true;
         }
+
         event.setDropCompleted(success);
-        event.consume();
     }
 
     @FXML
@@ -250,21 +225,55 @@ public class OpenAccountsController extends Controller implements Initializable 
 
             Account newAccount = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
             appContext.addAccountToJsonFile(newAccount);
+
+            // Agregar la nueva cuenta a la lista de cuentas asociadas
+            AccountUser accountUser = new AccountUser();
+            ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
+            associatedAccounts.add(newAccount);
+
+            // Limpiar la lista de cuentas de usuario y agregar las cuentas actualizadas
+            userAccounts.getItems().clear();
+            userAccounts.getItems().addAll(associatedAccounts);
+
             success = true;
+            updateListView();
         }
 
         event.setDropCompleted(success);
-
-        updateTableView();
     }
 
 
+    private void updateListView() {
+        // Get the accounts of the selected user
+        int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+        Associated associated = userSearchList.getItems().get(selectedIndex);
+        AccountUser accountUser = new AccountUser();
+        ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
+        // Update the list of accounts
+        for (Account updatedAccount : AppContext.getAccounts()) {
+            boolean found = false;
+            for (Account account : associatedAccounts) {
+                if (updatedAccount.getAccountType().equals(account.getAccountType())) {
+                    // If the account exists, update it
+                    account.setBalance(updatedAccount.getBalance());
+                    account.setCurrency(updatedAccount.getCurrency());
+                    account.setAccountType(updatedAccount.getAccountType());
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                // If the account does not exist, add it to the list
+                associatedAccounts.add(updatedAccount);
+            }
+        }
+
+        // Refresh the ListView to reflect the changes
+        userAccounts.refresh();
+    }
 
 
 }
-
-
-
 
 
