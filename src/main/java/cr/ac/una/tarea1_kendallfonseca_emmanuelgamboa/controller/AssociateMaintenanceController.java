@@ -268,7 +268,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 );
 
                 try {
-                   selectedUser.addAssociatedToJsonFile(associatedData);
+                   AppContext.addAssociatedToJsonFile(associatedData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
