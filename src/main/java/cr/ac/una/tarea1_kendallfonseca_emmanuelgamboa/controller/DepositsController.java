@@ -38,10 +38,10 @@ public class DepositsController extends Controller implements Initializable {
     }
 
     private void loadDeposits() {
-        // Retrieve deposits from the JSON file
-        ObservableList<Deposits> deposits = AppContext.getDeposits();
 
-        // Set the deposits as the items of the MFXCheckListView
+        ObservableList<Deposits> deposits = AppContext.getInstance().getDeposits();
+
+
         pendingDeposits.setItems(deposits);
     }
 

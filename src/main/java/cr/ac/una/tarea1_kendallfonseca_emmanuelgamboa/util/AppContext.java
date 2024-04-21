@@ -29,6 +29,7 @@ public class AppContext {
         readAssociatedsFromJsonFile();
         loadAccountTypesFromJsonFile();
         loadAccountsFromJsonFile();
+        loadDepositsFromJsonFile();
     }
 
     // Singleton Instance Management
