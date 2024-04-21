@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXSpinner?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="765.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0">
          <center>
@@ -24,6 +26,96 @@
                         <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
                            <children>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="coinFive" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn prefWidth="189.5999939084053" text="C1" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="coinTFive" />
+                                 </styleClass>
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                       </VBox.margin></ImageView>
+                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                       <VBox.margin>
+                                          <Insets left="6.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXSpinner>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="coinFiveH" />
+                                 </styleClass>
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                       </VBox.margin></ImageView>
+                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                       <VBox.margin>
+                                          <Insets left="6.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXSpinner>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="billFive" />
+                                 </styleClass>
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="20.0" />
+                                       </VBox.margin></ImageView>
+                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                       <VBox.margin>
+                                          <Insets left="8.0" top="10.0" />
+                                       </VBox.margin>
+                                    </MFXSpinner>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="25.0" top="25.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="coinFive" />
+                                 </styleClass>
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -35,15 +127,15 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinFive" />
+                                    <String fx:value="coinFifty" />
                                  </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -55,15 +147,15 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinFifty" />
+                                    <String fx:value="billOne" />
                                  </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="208.0" stylesheets="@Styles.css">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -75,15 +167,15 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="20.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="billOne" />
+                                    <String fx:value="billTen" />
                                  </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -95,22 +187,22 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="billTen" />
-                                 </styleClass>
                               </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="25.0" top="25.0" />
+                              <Insets bottom="25.0" />
                            </VBox.margin>
                         </HBox>
                         <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="fx-vBoxBills" />
+                                    <String fx:value="coinTen" />
+                                 </styleClass>
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -122,15 +214,15 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinTen" />
+                                    <String fx:value="coinOneH" />
                                  </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -142,15 +234,15 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinOneH" />
+                                    <String fx:value="billTwo" />
                                  </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="208.0" stylesheets="@Styles.css">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
@@ -162,29 +254,23 @@
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="billTwo" />
-                                 </styleClass>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@Styles.css">
+                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
                                           <Insets bottom="10.0" top="20.0" />
-                                       </VBox.margin></ImageView>
+                                       </VBox.margin>
+                                    </ImageView>
                                     <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="8.0" top="20.0" />
+                                          <Insets left="8.0" top="18.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
                                     <String fx:value="billTwenty" />
@@ -195,110 +281,73 @@
                               <Insets bottom="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
-                                       </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
-                                       <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
-                                       </VBox.margin>
-                                    </MFXSpinner>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinTFive" />
-                                 </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
-                                       </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
-                                       <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
-                                       </VBox.margin>
-                                    </MFXSpinner>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="coinFiveH" />
-                                 </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="208.0" stylesheets="@Styles.css">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" top="20.0" />
-                                       </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
-                                       <VBox.margin>
-                                          <Insets left="8.0" top="10.0" />
-                                       </VBox.margin>
-                                    </MFXSpinner>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="fx-vBoxBills" />
-                                    <String fx:value="billFive" />
-                                 </styleClass>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
-                                 <children>
-                                    <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Depósito">
-                                       <VBox.margin>
-                                          <Insets left="58.0" top="70.0" />
-                                       </VBox.margin>
-                                    </MFXButton>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="25.0" />
-                           </VBox.margin>
-                        </HBox>
                      </children>
                   </VBox>
                </children>
                <BorderPane.margin>
-                  <Insets bottom="25.0" left="15.0" top="25.0" />
+                  <Insets bottom="10.0" left="15.0" />
                </BorderPane.margin>
             </StackPane>
          </center>
          <right>
             <VBox maxHeight="-Infinity" prefHeight="700.0" prefWidth="245.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView prefHeight="650.0" prefWidth="190.0">
+                  <TableView prefHeight="566.0" prefWidth="230.0">
                     <columns>
-                      <TableColumn prefWidth="225.5999698638916" text="C1" />
+                      <TableColumn prefWidth="225.5999698638916" text="Cantidad de dinero" />
                     </columns>
                      <VBox.margin>
                         <Insets left="8.0" right="8.0" top="25.0" />
                      </VBox.margin>
                   </TableView>
+                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0">
+                     <children>
+                        <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Solicitar">
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                        <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Eliminar">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </MFXButton>
+                     </children>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets left="5.0" right="15.0" />
                </BorderPane.margin>
             </VBox>
          </right>
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="89.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MFXComboBox prefHeight="24.0" prefWidth="135.0">
+                     <HBox.margin>
+                        <Insets left="35.0" right="10.0" />
+                     </HBox.margin>
+                  </MFXComboBox>
+                  <MFXTextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="165.0">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </MFXTextField>
+                  <MFXButton prefHeight="56.0" prefWidth="125.0" stylesheets="@Styles.css" text="Buscar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnAcceptDeposits" />
+                        <String fx:value="btnSearch" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>
