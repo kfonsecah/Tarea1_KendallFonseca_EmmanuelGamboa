@@ -336,13 +336,15 @@ public class AppContext {
             List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {});
             System.out.println("Cuentas antes de la eliminación: " + accounts);
 
+            // Iterar sobre todas las cuentas en el archivo JSON
             Iterator<Account> iterator = accounts.iterator();
             while (iterator.hasNext()) {
                 Account account = iterator.next();
+                // Verificar si la cuenta coincide con el tipo de cuenta y el folio del usuario
                 if (account.getAccountType().equals(accountToRemove.getAccountType()) && account.getFolio().equals(accountToRemove.getFolio())) {
-                    iterator.remove();
+                    iterator.remove(); // Eliminar la cuenta del usuario específico
                     System.out.println("Cuenta eliminada: " + account);
-                    break;
+                    break; // Salir del bucle después de eliminar la cuenta deseada
                 }
             }
 
@@ -351,33 +353,10 @@ public class AppContext {
         }
     }
 
-    public static void reloadAccountsFromJsonFile() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        try {
-            File jsonFile = new File("accounts.json");
-            if (!jsonFile.exists() || jsonFile.length() == 0) {
-                System.out.println("JSON file is empty or missing.");
-                List<Account> accounts = new ArrayList<>();
-                ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
-                context.put("accounts", observableAccounts);
-                return;
-            }
 
-            List<Account> accounts = objectMapper.readValue(jsonFile,
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Account.class));
 
-            System.out.println("Loaded accounts from JSON file: " + accounts);
 
-            ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
-            context.put("accounts", observableAccounts);
-
-        } catch (IOException e) {
-            System.out.println("Error reading accounts from JSON file: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
 
 

@@ -189,29 +189,22 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            // Iterar sobre todas las cuentas del usuario en la TableView
-            for (Account account : userAccounts.getItems()) {
-                // Crear un nuevo objeto Account con los datos de cada cuenta del usuario
-                Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+            // Crear un nuevo objeto Account con los datos de la cuenta a eliminar
+            Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
 
-                // Remove the account from the JSON file
-                AppContext.removeAccountFromJsonFile(accountToRemove);
-            }
+            // Remove the account from the JSON file
+            AppContext.removeAccountFromJsonFile(accountToRemove);
 
-            // Remove all associated accounts from the TableView
-            userAccounts.getItems().removeAll(userAccounts.getItems());
-
-            // Reload accounts after removing the accounts
-            AppContext.loadAccountsFromJsonFile();
-
-            // Update the ListView with the updated accounts list
-            userAccounts.setItems(AppContext.getAccounts());
+            // Remove the account from the userAccounts list
+            userAccounts.getItems().removeIf(account ->
+                    account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio()));
 
             success = true;
         }
 
         event.setDropCompleted(success);
     }
+
 
 
 

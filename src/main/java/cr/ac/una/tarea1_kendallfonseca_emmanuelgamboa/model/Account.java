@@ -71,16 +71,19 @@ public class Account {
         this.accountType = accountType;
     }
 
-    private class AccountListCell extends ListCell<Account> {
-        @Override
-        protected void updateItem(Account account, boolean empty) {
-            super.updateItem(account, empty);
-            if (empty || account == null) {
-                setText(null);
-            } else {
-                setText(account.getAccountHolder() + " - " + account.getAccountType() + " - " + account.getCurrency());
-            }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Account account = (Account) obj;
+        return Objects.equals(accountType, account.getAccountType()) &&
+                Objects.equals(Folio, account.getFolio()) &&
+                Objects.equals(accountHolder, account.getAccountHolder());
     }
+
 
 }
