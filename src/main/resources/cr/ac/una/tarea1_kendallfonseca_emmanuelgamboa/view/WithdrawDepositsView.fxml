@@ -34,7 +34,7 @@
                                     <String fx:value="coinFive" />
                                  </styleClass>
                                  <children>
-                                    <TableView prefHeight="200.0" prefWidth="200.0">
+                                    <TableView fx:id="userFolioList" prefHeight="200.0" prefWidth="200.0">
                                       <columns>
                                         <TableColumn prefWidth="189.5999939084053" text="C1" />
                                       </columns>
@@ -54,7 +54,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="46.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addTwentyC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="6.0" top="10.0" />
                                        </VBox.margin>
@@ -74,7 +74,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="46.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addFiveHundredC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="6.0" top="10.0" />
                                        </VBox.margin>
@@ -94,7 +94,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addFiveBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="8.0" top="10.0" />
                                        </VBox.margin>
@@ -161,7 +161,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="5.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addOneBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="6.0" top="10.0" />
                                        </VBox.margin>
@@ -181,7 +181,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addTenBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="8.0" top="18.0" />
                                        </VBox.margin>
@@ -248,7 +248,7 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addTwoBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="8.0" top="10.0" />
                                        </VBox.margin>
@@ -265,7 +265,7 @@
                                           <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin>
                                     </ImageView>
-                                    <MFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
+                                    <MFXSpinner fx:id="addTwentyBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
                                           <Insets left="8.0" top="18.0" />
                                        </VBox.margin>
@@ -292,7 +292,7 @@
          <right>
             <VBox maxHeight="-Infinity" prefHeight="700.0" prefWidth="245.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView prefHeight="566.0" prefWidth="230.0">
+                  <TableView fx:id="userDepositsList" prefHeight="566.0" prefWidth="230.0">
                     <columns>
                       <TableColumn prefWidth="225.5999698638916" text="Cantidad de dinero" />
                     </columns>
@@ -302,12 +302,12 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0">
                      <children>
-                        <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Solicitar">
+                        <MFXButton prefHeight="45.0" prefWidth="95.0" styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Solicitar">
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>
                         </MFXButton>
-                        <MFXButton styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Eliminar">
+                        <MFXButton prefHeight="45.0" prefWidth="95.0" styleClass="btnAcceptDeposits" stylesheets="@Styles.css" text="Eliminar">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
