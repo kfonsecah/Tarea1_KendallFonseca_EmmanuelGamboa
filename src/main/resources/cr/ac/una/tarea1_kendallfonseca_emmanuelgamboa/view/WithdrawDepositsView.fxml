@@ -35,11 +35,7 @@
                                     <String fx:value="coinFive" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="userFolioList" prefHeight="200.0" prefWidth="200.0">
-                                      <columns>
-                                        <TableColumn prefWidth="189.5999939084053" text="C1" />
-                                      </columns>
-                                    </TableView>
+                                    <TableView fx:id="userFolioList" prefHeight="200.0" prefWidth="200.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
