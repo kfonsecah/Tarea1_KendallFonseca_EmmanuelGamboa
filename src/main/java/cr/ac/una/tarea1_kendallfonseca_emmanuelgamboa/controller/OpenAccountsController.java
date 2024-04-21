@@ -53,19 +53,15 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     private AccountType draggedAccountType;
 
+
+    AppContext appContext = AppContext.getInstance();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        AppContext appContext = AppContext.getInstance();
+
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
 
-        Account Account = new Account(4.5, "Colones", "REG", "LD0819");
-
-        try {
-            appContext.addAccountToJsonFile(Account);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         accountTypes.setItems(tiposCuenta);
         loadUsersToTableView();
@@ -94,6 +90,7 @@ public class OpenAccountsController extends Controller implements Initializable 
             userAccounts.getItems().clear();
             userAccounts.getItems().addAll(associatedAccounts);
         }
+        updateTableView();
     }
 
     public void initialize() {
@@ -154,50 +151,113 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     @FXML
-    void onDragDetected(MouseEvent event) {
+    public void onFilterButtonClick(ActionEvent event) {
+        ObservableList<Associated> filteredData = FXCollections.observableArrayList();
+        String filter = String.valueOf(accountTypes.getSelectionModel().getSelectedItem());
+        String txtSearchValue = txtSearch.getText();
 
-    }
-
-    @FXML
-    void onDragOver(DragEvent event) {
-
-    }
-
-    @FXML
-    void onDragDropped(DragEvent event) {
-
+        if (!txtSearchValue.isEmpty()) {
+            for (Associated data : userSearchList.getItems()) {
+                if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearchValue.toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Folio") && data.getAssoFolio().toLowerCase().contains(txtSearchValue.toLowerCase())) {
+                    filteredData.add(data);
+                } else if (filter.equals("Edad") && Integer.toString(data.getAssoAge()).contains(txtSearchValue)) {
+                    filteredData.add(data);
+                }
+            }
+            userSearchList.setItems(filteredData);
+        } else {
+            updateTableView();
+        }
     }
 
     @FXML
     public void onDragDetectedAccountTypes(MouseEvent event) {
-
+        AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
+        if (selectedAccountType != null) {
+            Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(selectedAccountType.getName());
+            dragboard.setContent(content);
+            event.consume();
+        }
     }
 
     @FXML
     public void onDragOverAccountTypes(DragEvent event) {
-
+        if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
     }
 
     @FXML
     public void onDragDroppedAccountTypes(DragEvent event) {
-
+        Dragboard dragboard = event.getDragboard();
+        boolean success = false;
+        if (dragboard.hasString()) {
+            String accountTypeName = dragboard.getString();
+            Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
+            if (selectedAssociated != null) {
+                // Obtener el folio del usuario seleccionado
+                String folio = selectedAssociated.getFolio();
+                // Crear una nueva instancia de cuenta con el folio del usuario seleccionado
+                Account newAccount = new Account(0.0, "Colones", accountTypeName, selectedAssociated.getName(), folio);
+                // Agregar la nueva cuenta a la lista de cuentas
+                userAccounts.getItems().add(newAccount);
+                // Guardar la lista actualizada en el archivo JSON
+                try {
+                    AppContext.addAccountToJsonFile(newAccount);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Manejar cualquier error de escritura en el archivo JSON
+                }
+                success = true;
+            }
+        }
+        event.setDropCompleted(success);
+        event.consume();
     }
 
     @FXML
     public void onDragDetectedUserAccounts(MouseEvent event) {
-
-
+        Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
+        if (selectedAccount != null) {
+            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(selectedAccount.getAccountType());
+            dragboard.setContent(content);
+            event.consume();
+        }
     }
 
     @FXML
-    public void onDragOverUserAccounts(DragEvent event) {}
-
-
-
-
+    public void onDragOverUserAccounts(DragEvent event) {
+        if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+    }
 
     @FXML
-    public void onDragDroppedUserAccounts(DragEvent event) {}
+    public void onDragDroppedUserAccounts(DragEvent event) throws IOException {
+        Dragboard dragboard = event.getDragboard();
+        boolean success = false;
+
+        if (dragboard.hasString()) {
+            String accountTypeName = dragboard.getString();
+            int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
+            Associated associated = userSearchList.getItems().get(selectedIndex);
+
+            Account newAccount = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+            appContext.addAccountToJsonFile(newAccount);
+            success = true;
+        }
+
+        event.setDropCompleted(success);
+
+        updateTableView();
+    }
+
 
 
 
