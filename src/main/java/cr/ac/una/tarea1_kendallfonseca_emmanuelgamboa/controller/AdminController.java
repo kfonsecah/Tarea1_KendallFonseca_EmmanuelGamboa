@@ -30,6 +30,9 @@ public class AdminController extends Controller implements Initializable {
     private MFXButton btnBankConfig;
 
     @FXML
+    private MFXButton btnDeposits;
+
+    @FXML
     private AnchorPane root;
     
     @FXML
@@ -60,6 +63,8 @@ public class AdminController extends Controller implements Initializable {
         FlowController.getInstance().goView("AccountsConfigView");
     }
 
+
+
     private void setCooperativeInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
         String name= cooperative.getAccountTypeName();
@@ -77,6 +82,11 @@ public class AdminController extends Controller implements Initializable {
             txtCooperativeName.setText(companyName);
 
         }
+    }
+
+    @FXML
+    void onActionBtnDeposits(ActionEvent event) {
+        FlowController.getInstance().goView("DepositsView");
     }
 
 }

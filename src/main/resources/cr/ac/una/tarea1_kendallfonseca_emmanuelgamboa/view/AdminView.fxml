@@ -55,6 +55,15 @@
                   <String fx:value="btnManteAcc" />
                </styleClass>
             </MFXButton>
+            <MFXButton fx:id="btnDeposits" onAction="#onActionBtnDeposits" stylesheets="@Styles.css" text="Depositos Pendientes">
+               <styleClass>
+                  <String fx:value="btnPrincipal" />
+                  <String fx:value="btnManteCoop" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="10.0" right="20.0" top="40.0" />
+               </VBox.margin>
+            </MFXButton>
          </children>
          <BorderPane.margin>
             <Insets />
