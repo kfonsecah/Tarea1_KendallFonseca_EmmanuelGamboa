@@ -1,8 +1,7 @@
-*{
+/**{
     -fx-letras-btn:#FFFFFF;
 
 }
-
 
 .btnPrincipal {
     -fx-background-color: #27aab4;
@@ -149,24 +148,24 @@
     -fx-background-color: #005a4e;
 }
 
-
+*/
 
 .btnAccConf{
     -fx-background-color: #3da7ff;
     -fx-background-radius: 20px;
-    -fx-text-fill: -fx-letras-btn;
+    -fx-text-fill:  #ffffff;
     -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-padding: 15px 20px;
-    -mfx-button-type: RAISED;
-    -fx-content-display: center;
+    -fx-button-type: RAISED;
+    -fx-content-display: center; /* Corregido */
     -fx-font-size: 14px;
 }
 
 .btnAccConf,.btnAccConf:armed,.btnAccConf:focused{
     -fx-background-color: #3da7ff;
-
 }
+/*
 
 .coinFive>ImageView{
     -fx-image: url("../resources/CincoColones.png");
@@ -244,6 +243,14 @@
     -fx-opacity: 1;
 }
 
+.viewAssociate{
+    -fx-background-image: url("../resources/FondoAsociate.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
 .btnAdminConf{
     -fx-background-color: #001fcc;
     -fx-padding: 15px 20px;
@@ -265,7 +272,7 @@
 .confImageView{
 
 }
-
+*/
 .button:hover{
     -fx-background-color: #986ecc;
 }
