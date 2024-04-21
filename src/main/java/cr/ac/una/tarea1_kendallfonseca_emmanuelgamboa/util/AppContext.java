@@ -320,10 +320,12 @@ public class AppContext {
 
     public static ObservableList<Account> getAccounts() {
         ObservableList<Account> accounts = (ObservableList<Account>) context.get("accounts");
+
         if (accounts == null) {
             System.out.println("Accounts list is empty.");
             return FXCollections.observableArrayList();
         }
+
         return accounts;
     }
 
@@ -332,15 +334,48 @@ public class AppContext {
         File file = new File("accounts.json");
         if (file.exists()) {
             List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {});
+            System.out.println("Cuentas antes de la eliminación: " + accounts);
+
             Iterator<Account> iterator = accounts.iterator();
             while (iterator.hasNext()) {
                 Account account = iterator.next();
                 if (account.getAccountType().equals(accountToRemove.getAccountType()) && account.getFolio().equals(accountToRemove.getFolio())) {
                     iterator.remove();
+                    System.out.println("Cuenta eliminada: " + account);
                     break;
                 }
             }
+
             objectMapper.writeValue(file, accounts);
+            System.out.println("Cuentas después de la eliminación: " + accounts);
+        }
+    }
+
+    public static void reloadAccountsFromJsonFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        try {
+            File jsonFile = new File("accounts.json");
+            if (!jsonFile.exists() || jsonFile.length() == 0) {
+                System.out.println("JSON file is empty or missing.");
+                List<Account> accounts = new ArrayList<>();
+                ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
+                context.put("accounts", observableAccounts);
+                return;
+            }
+
+            List<Account> accounts = objectMapper.readValue(jsonFile,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Account.class));
+
+            System.out.println("Loaded accounts from JSON file: " + accounts);
+
+            ObservableList<Account> observableAccounts = FXCollections.observableArrayList(accounts);
+            context.put("accounts", observableAccounts);
+
+        } catch (IOException e) {
+            System.out.println("Error reading accounts from JSON file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

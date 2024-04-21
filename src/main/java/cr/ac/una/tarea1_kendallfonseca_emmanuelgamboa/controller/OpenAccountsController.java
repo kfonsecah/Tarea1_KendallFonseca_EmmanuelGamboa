@@ -77,21 +77,18 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     private void loadAssociatedAccounts(Associated associated) {
-
         AccountUser accountUser = new AccountUser();
         ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
-        // Verificamos si hay cuentas asociadas
         if (associatedAccounts.isEmpty()) {
             System.out.println("No hay cuentas asociadas al usuario con folio: " + associated.getFolio());
             userAccounts.getItems().clear();
-
         } else {
             // Limpiamos la lista de cuentas de usuario y agregamos las cuentas asociadas
             userAccounts.getItems().clear();
             userAccounts.getItems().addAll(associatedAccounts);
         }
-        updateTableView();
+        updateListView();
     }
 
     public void initialize() {
@@ -180,19 +177,34 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+            // Iterar sobre todas las cuentas del usuario en la TableView
+            for (Account account : userAccounts.getItems()) {
+                // Crear un nuevo objeto Account con los datos de cada cuenta del usuario
+                Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
 
-            // Remove the account from the JSON file
-            AppContext.removeAccountFromJsonFile(accountToRemove);
+                // Remove the account from the JSON file
+                AppContext.removeAccountFromJsonFile(accountToRemove);
+            }
 
-            // Remove the account from the table view
-            userAccounts.getItems().remove(accountToRemove);
-            updateListView();
+            // Remove all associated accounts from the TableView
+            userAccounts.getItems().removeAll(userAccounts.getItems());
+
+            // Reload accounts after removing the accounts
+            AppContext.loadAccountsFromJsonFile();
+
+            // Update the ListView with the updated accounts list
+            userAccounts.setItems(AppContext.getAccounts());
+
             success = true;
         }
 
         event.setDropCompleted(success);
     }
+
+
+
+
+
 
     @FXML
     public void onDragDetectedUserAccounts(MouseEvent event) {
@@ -223,55 +235,56 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            Account newAccount = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
-            appContext.addAccountToJsonFile(newAccount);
+            // Verificar si el usuario ya tiene una cuenta del mismo tipo
+            boolean hasSameTypeAccount = false;
+            for (Account account : userAccounts.getItems()) {
+                if (account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio())) {
+                    // Si el usuario ya tiene una cuenta del mismo tipo, no permitir agregar otra cuenta
+                    System.out.println("El usuario ya tiene una cuenta del mismo tipo.");
+                    hasSameTypeAccount = true;
+                    break;
+                }
+            }
 
-            // Agregar la nueva cuenta a la lista de cuentas asociadas
-            AccountUser accountUser = new AccountUser();
-            ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
-            associatedAccounts.add(newAccount);
+            if (!hasSameTypeAccount) {
+                // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo
+                Account newAccount = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+                AppContext.addAccountToJsonFile(newAccount); // Agregar al archivo JSON
 
-            // Limpiar la lista de cuentas de usuario y agregar las cuentas actualizadas
-            userAccounts.getItems().clear();
-            userAccounts.getItems().addAll(associatedAccounts);
+                // Reload accounts after adding the new account
+                AppContext.loadAccountsFromJsonFile();
 
-            success = true;
-            updateListView();
+                // Reload the associated accounts for the selected user
+                loadAssociatedAccounts(associated);
+
+                success = true;
+            }
         }
 
         event.setDropCompleted(success);
     }
 
 
+
+
+
     private void updateListView() {
-        // Get the accounts of the selected user
+        // Get the selected user
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         Associated associated = userSearchList.getItems().get(selectedIndex);
+
+        // Get the accounts of the selected user
         AccountUser accountUser = new AccountUser();
         ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
-        // Update the list of accounts
-        for (Account updatedAccount : AppContext.getAccounts()) {
-            boolean found = false;
-            for (Account account : associatedAccounts) {
-                if (updatedAccount.getAccountType().equals(account.getAccountType())) {
-                    // If the account exists, update it
-                    account.setBalance(updatedAccount.getBalance());
-                    account.setCurrency(updatedAccount.getCurrency());
-                    account.setAccountType(updatedAccount.getAccountType());
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                // If the account does not exist, add it to the list
-                associatedAccounts.add(updatedAccount);
-            }
-        }
+        // Update the list of accounts with all accounts from the application context
+        associatedAccounts.clear();
+        associatedAccounts.addAll(AppContext.getAccounts());
 
         // Refresh the ListView to reflect the changes
         userAccounts.refresh();
     }
+
 
 
 }
