@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 
 import java.io.*;
@@ -306,6 +307,9 @@ public class AppContext {
         } else {
             accounts = new ArrayList<>();
         }
+
+        // Inicializar la propiedad currency como SimpleStringProperty
+        account.setCurrency(String.valueOf(new SimpleStringProperty(account.getCurrency())));
 
         accounts.add(account);
 

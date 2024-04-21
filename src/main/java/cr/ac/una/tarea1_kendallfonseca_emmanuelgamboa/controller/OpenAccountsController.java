@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -57,40 +58,42 @@ public class OpenAccountsController extends Controller implements Initializable 
         AppContext appContext = AppContext.getInstance();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
+
+        Account Account = new Account(4.5, "Colones", "REG", "LD0819");
+
+        try {
+            appContext.addAccountToJsonFile(Account);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         accountTypes.setItems(tiposCuenta);
         loadUsersToTableView();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
 
-
-        accountTypes.setOnDragDetected(event -> {
-            draggedAccountType = accountTypes.getSelectionModel().getSelectedItem();
-            if (draggedAccountType != null) {
-                Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.MOVE);
-                ClipboardContent content = new ClipboardContent();
-                content.putString(draggedAccountType.getName());
-                dragboard.setContent(content);
-                event.consume();
+        userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                loadAssociatedAccounts(newValue);
             }
         });
 
-        userAccounts.setOnDragOver(event -> {
-            if (event.getGestureSource() != userAccounts && event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.MOVE);
-            }
-            event.consume();
-        });
+    }
 
-        userAccounts.setOnDragDropped(event -> {
-            String accountType = event.getDragboard().getString();
-            Associated selectedAssociated = userSearchList.getSelectionModel().getSelectedItem();
-            if (selectedAssociated != null) {
+    private void loadAssociatedAccounts(Associated associated) {
+        // Creamos una instancia de AccountUser y obtenemos las cuentas asociadas al asociado
+        AccountUser accountUser = new AccountUser();
+        ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
-
-            }
-            event.setDropCompleted(true);
-            event.consume();
-        });
+        // Verificamos si hay cuentas asociadas
+        if (associatedAccounts.isEmpty()) {
+            System.out.println("No hay cuentas asociadas al usuario con folio: " + associated.getFolio());
+            // Aquí puedes agregar código para mostrar una notificación en la interfaz de usuario si lo deseas
+        } else {
+            // Limpiamos la lista de cuentas de usuario y agregamos las cuentas asociadas
+            userAccounts.getItems().clear();
+            userAccounts.getItems().addAll(associatedAccounts);
+        }
     }
 
     public void initialize() {

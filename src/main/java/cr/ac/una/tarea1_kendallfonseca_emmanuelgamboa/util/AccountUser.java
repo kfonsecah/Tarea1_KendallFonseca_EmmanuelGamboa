@@ -46,8 +46,8 @@ public class AccountUser {
         accountsObservableList.add(account);
     }
 
-    public List<Account> getAccountsByFolio(String folio) {
-        List<Account> accountsByFolio = new ArrayList<>();
+    public ObservableList<Account> getAccountsByFolio(String folio) {
+        ObservableList<Account> accountsByFolio = FXCollections.observableArrayList();
         for (Account account : accountsObservableList) {
             if (account.getFolio().equals(folio)) {
                 accountsByFolio.add(account);
