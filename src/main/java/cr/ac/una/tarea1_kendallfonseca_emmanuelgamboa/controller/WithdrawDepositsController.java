@@ -6,8 +6,11 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -265,17 +268,12 @@ public class WithdrawDepositsController extends Controller implements Initializa
     private void uptadeTable(int moneda, Integer newValue, Integer oldValue) {
         boolean monedaEncontrada = false;
 
-        // Busca la moneda en la tabla y actualiza la cantidad según corresponda
         for (Deposits deposit : userDepositsList.getItems()) {
-            if (deposit.getMoneda() == moneda) { // Compara el int directamente
+            if (deposit.getMoneda() == moneda) {
                 if (newValue > oldValue) {
-                    // Aumentar la cantidad
                     deposit.setCantidad(deposit.getCantidad() + (newValue - oldValue));
                 } else if (newValue < oldValue) {
-                    // Reducir la cantidad
                     deposit.setCantidad(deposit.getCantidad() - (oldValue - newValue));
-
-                    // Si la cantidad llega a cero, elimina el billete de la tabla
                     if (deposit.getCantidad() == 0) {
                         userDepositsList.getItems().remove(deposit);
                     }
@@ -285,16 +283,15 @@ public class WithdrawDepositsController extends Controller implements Initializa
             }
         }
 
-        // Si la moneda no se encontró y el valor nuevo es mayor que cero, agrega una nueva fila a la tabla
         if (!monedaEncontrada && newValue > 0) {
-            Deposits deposit = new Deposits(moneda, newValue); // Aquí se crea el objeto con el int
+            String folio = accountsByFolioList.get(0).getFolio(); // Assuming only one account is selected
+            String accountType = accountsByFolioList.get(0).getAccountType(); // Assuming only one account is selected
+            Deposits deposit = new Deposits(moneda, newValue, folio, accountType);
             userDepositsList.getItems().add(deposit);
         }
 
-        // Llama al método para calcular el total después de actualizar la tabla
         calculateTotal();
     }
-
 
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
@@ -365,6 +362,39 @@ public class WithdrawDepositsController extends Controller implements Initializa
             userFolioList.setItems(accountsByFolioList);
         }
     }
+
+    @FXML
+    public void onActionRequest(ActionEvent event) {
+        // Get the selected account from userFolioList
+        Account selectedAccount = userFolioList.getSelectionModel().getSelectedItem();
+
+        if (selectedAccount != null) {
+            // Extract folio and account type from the selected account
+            String folio = selectedAccount.getFolio();
+            String accountType = selectedAccount.getAccountType();
+
+            // Extract the total amount from txtTotal
+            String totalText = txtTotal.getText();
+            int total = Integer.parseInt(totalText.replaceAll("\\D", ""));
+
+            // Create a new deposit object
+            Deposits newDeposit = new Deposits(total, 1, folio, accountType);
+
+            // Add the new deposit to your data store
+            try {
+                AppContext.addDepositToJsonFile(newDeposit);
+                System.out.println("Deposit created successfully.");
+            } catch (IOException e) {
+                System.out.println("Error creating deposit: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("No account selected.");
+        }
+    }
+
+
+
 
 
 }

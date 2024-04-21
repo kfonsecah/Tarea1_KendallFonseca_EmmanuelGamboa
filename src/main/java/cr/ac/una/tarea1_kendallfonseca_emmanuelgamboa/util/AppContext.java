@@ -3,9 +3,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 
@@ -13,7 +11,6 @@ import java.io.*;
 import java.util.*;
 
 import javafx.collections.ObservableList;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import javafx.collections.ObservableMap;
 
 
@@ -351,6 +348,64 @@ public class AppContext {
             objectMapper.writeValue(file, accounts);
             System.out.println("Cuentas después de la eliminación: " + accounts);
         }
+    }
+
+    public static void loadDepositsFromJsonFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        try {
+            File jsonFile = new File("deposits.json");
+            if (!jsonFile.exists() || jsonFile.length() == 0) {
+                System.out.println("JSON file is empty or missing.");
+                List<Deposits> deposits = new ArrayList<>();
+                ObservableList<Deposits> observableDeposits = FXCollections.observableArrayList(deposits);
+                context.put("deposits", observableDeposits);
+                return;
+            }
+
+            List<Deposits> deposits = objectMapper.readValue(jsonFile,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, Deposits.class));
+
+            System.out.println("Loaded deposits from JSON file: " + deposits);
+
+            ObservableList<Deposits> observableDeposits = FXCollections.observableArrayList(deposits);
+            context.put("deposits", observableDeposits);
+
+        } catch (IOException e) {
+            System.out.println("Error reading deposits from JSON file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void addDepositToJsonFile(Deposits deposit) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+        List<Deposits> deposits;
+
+        File jsonFile = new File("deposits.json");
+
+        if (jsonFile.exists() && jsonFile.length() > 0) {
+            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {});
+        } else {
+            deposits = new ArrayList<>();
+        }
+
+        deposits.add(deposit);
+
+        objectMapper.writeValue(jsonFile, deposits);
+    }
+
+    public static ObservableList<Deposits> getDeposits() {
+        ObservableList<Deposits> deposits = (ObservableList<Deposits>) context.get("deposits");
+
+        if (deposits == null) {
+            System.out.println("Deposits list is empty.");
+            return FXCollections.observableArrayList();
+        }
+
+        return deposits;
     }
 
 
