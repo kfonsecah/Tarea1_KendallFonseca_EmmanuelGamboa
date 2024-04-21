@@ -1,4 +1,4 @@
-/**{
+*{
     -fx-letras-btn:#FFFFFF;
 
 }
@@ -15,15 +15,26 @@
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-alignment:CENTER_LEFT;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
 }
 
 .btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
     -fx-background-color: #27aab4;
 }
 .etiqueta {
-    -fx-font-size: 16px;
-    -fx-text-fill: #333;
+    -fx-font-size: 24px; /* Tamaño de la fuente */
+    -fx-text-fill: #ff0000; /* Color del texto llamativo (rojo en este caso) */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Sombra */
+    -fx-font-weight: bold; /* Fuente en negrita */
+    -fx-padding: 5px; /* Relleno para que el texto no esté pegado a los bordes */
+    -fx-background-color: #0bff00; /* Color de fondo (puede ser transparente) */
+    -fx-background-radius: 5px; /* Radio de los bordes del fondo */
+
+    /* Estilo para el texto "above" del MFXTextField
+    -mfx-unfocus-color: #00ff00; /* Color del borde al perder el foco (verde en este caso)
+    -fx-font-size: 14px;  Tamaño de la fuente del texto "above" */
 }
+
 
 
 .button{
@@ -33,6 +44,7 @@
 .txtAsoMain{
     -fx-background-color: #ffffff;
     -fx-background-radius: 20px;
+    -fx-padding: 5px;
 }
 
 .btnAssMaintenance{
@@ -126,10 +138,6 @@
       -fx-image: url("../resources/retiros.png")
 }
 
-.imageAdmin>ImageView{
-    -fx-image: url("../resources/fondo.jpeg");
-}
-
 .btnCamView{
     -fx-background-color: #005a4e;
     -fx-background-radius: 20px;
@@ -148,8 +156,6 @@
     -fx-background-color: #005a4e;
 }
 
-*/
-
 .btnAccConf{
     -fx-background-color: #3da7ff;
     -fx-background-radius: 20px;
@@ -165,7 +171,6 @@
 .btnAccConf,.btnAccConf:armed,.btnAccConf:focused{
     -fx-background-color: #3da7ff;
 }
-/*
 
 .coinFive>ImageView{
     -fx-image: url("../resources/CincoColones.png");
@@ -251,6 +256,22 @@
     -fx-opacity: 1;
 }
 
+.viewCamView{
+    -fx-background-image: url("../resources/FondoAsociate.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.viewPrincipal{
+    -fx-background-image: url("../resources/fondo.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
 .btnAdminConf{
     -fx-background-color: #001fcc;
     -fx-padding: 15px 20px;
@@ -272,7 +293,9 @@
 .confImageView{
 
 }
-*/
+
 .button:hover{
     -fx-background-color: #986ecc;
+    -fx-background-insets: 5,6,7;
+
 }

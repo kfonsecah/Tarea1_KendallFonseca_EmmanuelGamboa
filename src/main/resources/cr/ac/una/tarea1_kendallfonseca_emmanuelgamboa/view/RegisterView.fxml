@@ -18,22 +18,22 @@
                <children>
                   <VBox prefHeight="422.0" prefWidth="295.0">
                      <children>
-                        <Label text="Ingrese sus datos:">
+                        <Label styleClass="etiqueta" stylesheets="@Styles.css" text="Ingrese sus datos:">
                            <VBox.margin>
                               <Insets left="40.0" top="25.0" />
                            </VBox.margin>
                         </Label>
-                        <MFXTextField fx:id="txtName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Nombre">
+                        <MFXTextField fx:id="txtName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Nombre" styleClass="txtAsoMain" stylesheets="@Styles.css">
                            <VBox.margin>
                               <Insets bottom="10.0" left="40.0" top="20.0" />
                            </VBox.margin>
                         </MFXTextField>
-                        <MFXTextField fx:id="txtLastName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Apellido">
+                        <MFXTextField fx:id="txtLastName" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Apellido" styleClass="txtAsoMain" stylesheets="@Styles.css">
                            <VBox.margin>
                               <Insets bottom="10.0" left="40.0" top="10.0" />
                            </VBox.margin>
                         </MFXTextField>
-                        <MFXTextField fx:id="txtAge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Edad">
+                        <MFXTextField fx:id="txtAge" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="Edad" styleClass="txtAsoMain" stylesheets="@Styles.css">
                            <VBox.margin>
                               <Insets bottom="10.0" left="40.0" top="10.0" />
                            </VBox.margin>
