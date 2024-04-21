@@ -13,7 +13,7 @@
     -fx-content-display: left;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-alignment:CENTER_LEFT;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
 }
@@ -49,14 +49,17 @@
     -fx-padding: 5px;
 }
 
-.btnAssMaintenance{
-    -fx-background-color: #54ec2c;
+.btnSecondary{
+    -fx-background-color: #3fd59b;
     -fx-text-fill: #ffffff;
     -mfx-button-type: RAISED;
     -fx-content-display: left;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
     -fx-padding: 12px 15px;
+    -fx-cursor: hand;
+    -jfx-button-type: RAISED;
+    -fx-alignment:CENTER_LEFT;
 }
 
 .btnAssMaintenance,.btnAssMaintenance:armed,.btnAssMaintenance:focused{
@@ -75,9 +78,22 @@
     -fx-image: url("../resources/aceptar.png");
 }
 
-.fx-stackPane{
-    -fx-background-color: #767676;
-    -fx-background-radius: 40px;
+.btnCamView{
+    -fx-background-color: #005a4e;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER LEFT;
+    -fx-cursor: hand;
+    -fx-padding: 15px 20px;
+    -jfx-button-type: RAISED;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-size: 14px;
+}
+
+.btnCamView,.btnCamView:armed,.btnCamView:focused{
+    -fx-background-color: #005a4e;
 }
 
 .fx-hBoxMaintenance{
@@ -111,19 +127,6 @@
     -fx-image: url("../resources/User.png");
 }
 
-.btnAcceptDeposits{
-    -fx-background-color: #008e8e;
-    -fx-background-radius: 20px;
-    -fx-text-fill: #ffffff;
-    -fx-text-alignment: center;
-    -fx-font-size: 15px;
-
-}
-
-.btnAcceptDeposits,.btnAcceptDeposits:armed,.btnAcceptDeposits:focused{
-    -fx-background-color: #008e8e;
-}
-
 .btnMaintenance>ImageView{
     -fx-image: url("../resources/mantenimiento.png")
 }
@@ -138,40 +141,6 @@
 
 .btnDeposits>ImageView{
       -fx-image: url("../resources/retiros.png")
-}
-
-.btnCamView{
-    -fx-background-color: #005a4e;
-    -fx-background-radius: 20px;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-alignment: CENTER LEFT;
-    -fx-cursor: hand;
-    -fx-padding: 15px 20px;
-    -jfx-button-type: RAISED;
-    -mfx-button-type: RAISED;
-    -fx-content-display: left;
-    -fx-font-size: 14px;
-}
-
-.btnCamView,.btnCamView:armed,.btnCamView:focused{
-    -fx-background-color: #005a4e;
-}
-
-.btnAccConf{
-    -fx-background-color: #3da7ff;
-    -fx-background-radius: 20px;
-    -fx-text-fill:  #ffffff;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-    -fx-padding: 15px 20px;
-    -fx-button-type: RAISED;
-    -fx-content-display: center; /* Corregido */
-    -fx-font-size: 14px;
-}
-
-.btnAccConf,.btnAccConf:armed,.btnAccConf:focused{
-    -fx-background-color: #3da7ff;
 }
 
 .coinFive>ImageView{
@@ -234,6 +203,30 @@
     -fx-image: url("../resources/manteCuen.png");
 }
 
+.btnTakePhoto>ImageView{
+    -fx-image: url("../resources/foto.png");
+}
+
+.btnTakeAgain>ImageView{
+    -fx-image: url("../resources/tomardenuevo.png");
+}
+
+.btnSave>ImageView{
+    -fx-image: url("../resources/Guardar.png");
+}
+
+.btnOff>ImageView{
+    -fx-image: url("../resources/apagar.png");
+}
+
+.btnChangeIcon>ImageView{
+    -fx-image: url("../resources/ChangeIcon.png");
+}
+
+.btnRequest>ImageView{
+    -fx-image: url("../resources/Solicitud.png");
+}
+
 .viewWorkers{
     -fx-background-image: url("../resources/todosfondo.jpeg");
     -fx-background-size: 100% 100%;
@@ -272,29 +265,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-opacity: 1;
-}
-
-
-.btnAdminConf{
-    -fx-background-color: #001fcc;
-    -fx-padding: 15px 20px;
-    -fx-border-radius: 45px;
-    -fx-cursor: hand;
-    -jfx-button-type: RAISED;
-    -mfx-button-type: RAISED;
-    -fx-content-display: left;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-alignment:CENTER_LEFT;
-}
-
-.btnAdminConf,.btnAdminConf:armed,.btnAdminConf:focused{
-    -fx-background-color: #001fcc;
-}
-
-.confImageView{
-
 }
 
 .button:hover{

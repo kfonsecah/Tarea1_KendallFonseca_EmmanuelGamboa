@@ -3,40 +3,42 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="721.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
    <children>
-      <BorderPane prefHeight="722.0" prefWidth="1281.0">
+      <BorderPane layoutX="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="722.0" prefWidth="970.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="479.0" prefWidth="945.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+                  <Insets />
                </BorderPane.margin>
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="359.0" prefWidth="934.0">
                      <children>
                         <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes" onDragDropped="#onDragDroppedAccountTypes" onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0">
                            <HBox.margin>
-                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                              <Insets bottom="40.0" top="40.0" />
                            </HBox.margin>
                         </ListView>
-                        <Separator orientation="VERTICAL" prefHeight="462.0" prefWidth="99.0">
+                        <Separator orientation="VERTICAL" prefHeight="258.0" prefWidth="4.0">
                            <HBox.margin>
-                              <Insets bottom="50.0" top="50.0" />
+                              <Insets />
                            </HBox.margin>
                         </Separator>
                         <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts" onDragDropped="#onDragDroppedUserAccounts" onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0">
                            <HBox.margin>
-                              <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                              <Insets bottom="40.0" top="40.0" />
                            </HBox.margin>
                         </ListView>
                      </children>
@@ -45,36 +47,40 @@
             </StackPane>
          </center>
          <top>
-            <VBox prefHeight="243.0" prefWidth="1281.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="243.0" prefWidth="911.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="94.0" prefWidth="758.0">
                      <children>
                         <MFXComboBox fx:id="comboBoxFilter">
                            <HBox.margin>
-                              <Insets left="40.0" top="15.0" />
+                              <Insets />
                            </HBox.margin>
                         </MFXComboBox>
                         <MFXTextField fx:id="txtSearch" prefHeight="49.0" prefWidth="216.0">
                            <HBox.margin>
-                              <Insets left="30.0" top="10.0" />
+                              <Insets left="30.0" />
                            </HBox.margin>
                         </MFXTextField>
-                        <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch">
+                        <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" stylesheets="@Styles.css" text="Aceptar">
                            <HBox.margin>
-                              <Insets left="20.0" top="20.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="btnSecondary" />
+                              <String fx:value="btnAccept" />
+                           </styleClass>
                         </MFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="userSearchList" prefHeight="138.0" prefWidth="1201.0">
+                  <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="923.0">
                      <VBox.margin>
                         <Insets left="40.0" right="60.0" />
                      </VBox.margin>
                   </TableView>
                </children>
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
             </VBox>
          </top>
       </BorderPane>

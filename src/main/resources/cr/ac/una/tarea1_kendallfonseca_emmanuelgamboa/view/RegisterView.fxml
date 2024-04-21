@@ -38,7 +38,7 @@
                               <Insets bottom="10.0" left="40.0" top="10.0" />
                            </VBox.margin>
                         </MFXTextField>
-                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" stylesheets="@Styles.css" text="Registrar">
+                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" styleClass="btnSecondary" stylesheets="@Styles.css" text="Registrar">
                            <VBox.margin>
                               <Insets bottom="10.0" left="102.0" top="10.0" />
                            </VBox.margin>
@@ -52,7 +52,7 @@
                               <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" stylesheets="@Styles.css" text="Foto">
+                        <MFXButton fx:id="btnPhoto" onAction="#onActionBtnPhoto" styleClass="btnSecondary" stylesheets="@Styles.css" text="Foto">
                            <VBox.margin>
                               <Insets left="40.0" top="10.0" />
                            </VBox.margin>
