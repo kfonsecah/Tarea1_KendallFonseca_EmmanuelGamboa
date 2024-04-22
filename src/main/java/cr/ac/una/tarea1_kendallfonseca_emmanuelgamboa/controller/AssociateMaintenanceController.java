@@ -4,6 +4,8 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -323,34 +325,57 @@ public class AssociateMaintenanceController extends Controller implements Initia
         if (selectedIndex == -1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error");
-            alert.setContentText("No user selected.");
-            alert.showAndWait();
-            return;
-        }
-
-        String folio = txtFolio.getText();
-        if (folio.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Error");
-            alert.setContentText("Folio cannot be empty.");
+            alert.setContentText("No se ha seleccionado ningún usuario.");
             alert.showAndWait();
             return;
         }
 
         Associated associatedData = userSearchList.getItems().get(selectedIndex);
-        associatedData.setFolio(folio);
+        String folio = associatedData.getAssoFolio();
 
         AppContext appContext = AppContext.getInstance();
+        AccountUser accountUser = new AccountUser();
 
+        // Obtener las cuentas asociadas al usuario que se desea eliminar
+        ObservableList<Account> userAccounts = accountUser.getAccountsByFolio(folio);
+
+        // Verificar si alguna cuenta asociada tiene un saldo mayor que cero
+        for (Account account : userAccounts) {
+            if (account.getBalance() > 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error");
+                alert.setContentText("No se puede eliminar el usuario porque tiene una cuenta con saldo mayor que cero.");
+                alert.showAndWait();
+                return;
+            }
+        }
+
+        // Eliminar todas las cuentas asociadas al usuario del archivo JSON
+        for (Account account : userAccounts) {
+            accountUser.getAccountsObservableList().remove(account);
+            // Aquí es donde se elimina la cuenta del archivo JSON
+            try {
+                accountUser.removeAccountFromJsonFile(account);
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Manejar el error de alguna manera
+            }
+        }
+
+        // Eliminar al usuario
+        associatedData.setFolio(txtFolio.getText());
         String result = appContext.deleteAssociatedFromJsonFile(associatedData);
-
         userSearchList.getItems().remove(selectedIndex);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Result");
+        alert.setHeaderText("Resultado");
         alert.setContentText(result);
         alert.showAndWait();
     }
+
+
+
+
     @FXML
     private void onActionDeleteAssociate(ActionEvent event) {
         deleteAssociated();
