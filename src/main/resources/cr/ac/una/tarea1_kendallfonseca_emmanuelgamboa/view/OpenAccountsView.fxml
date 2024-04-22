@@ -26,7 +26,7 @@
                <children>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="359.0" prefWidth="934.0">
                      <children>
-                        <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes" onDragDropped="#onDragDroppedAccountTypes" onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0">
+                        <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes" onDragDropped="#onDragDroppedAccountTypes" onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0" styleClass="listTableView" stylesheets="@Styles.css">
                            <HBox.margin>
                               <Insets bottom="40.0" top="40.0" />
                            </HBox.margin>
@@ -36,7 +36,7 @@
                               <Insets />
                            </HBox.margin>
                         </Separator>
-                        <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts" onDragDropped="#onDragDroppedUserAccounts" onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0">
+                        <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts" onDragDropped="#onDragDroppedUserAccounts" onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0" styleClass="listTableView" stylesheets="@Styles.css">
                            <HBox.margin>
                               <Insets bottom="40.0" top="40.0" />
                            </HBox.margin>
