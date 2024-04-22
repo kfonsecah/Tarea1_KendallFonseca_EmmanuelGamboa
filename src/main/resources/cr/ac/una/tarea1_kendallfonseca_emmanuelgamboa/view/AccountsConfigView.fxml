@@ -31,7 +31,7 @@
                            <TableColumn fx:id="columnName" prefWidth="500.0" text="Tipos de cuenta:" />
                         </columns>
                      </TableView>
-                     <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre de tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0">
+                     <MFXTextField fx:id="txtNewAccountType" floatMode="BORDER" floatingText="Nombre de tipo de cuentas a agregar" prefHeight="28.0" prefWidth="438.0" styleClass="mfx-text-field" stylesheets="@Styles.css">
                         <VBox.margin>
                            <Insets />
                         </VBox.margin>
