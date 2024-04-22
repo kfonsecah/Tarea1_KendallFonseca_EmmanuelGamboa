@@ -7,6 +7,9 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -25,7 +28,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -38,12 +43,19 @@ public class WithdrawDepositsController extends Controller implements Initializa
     /**
      * Initializes the controller class.
      */
+
+    @FXML
+    private ImageView droppedCoins;
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        // Ocultar el GIF
+        droppedCoins.setVisible(false);
+        //poner pausa al gif
 
-         // Crea una instancia de AccountUser
-        // Pasa el objeto AccountUser al constructor
 
         configureSpinners();
 
@@ -80,6 +92,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     private MFXSpinner<Integer> addOneHundredC;
+
+
 
     @FXML
     private MFXSpinner<Integer> addTenBill;
@@ -126,6 +140,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
     private void configureSpinners() {
+
+
         // Create SpinnerModels for each spinner
         IntegerSpinnerModel fiftyCModel = new IntegerSpinnerModel();
         fiftyCModel.setMax(200);
@@ -182,67 +198,74 @@ public class WithdrawDepositsController extends Controller implements Initializa
         addTwentyC.setSpinnerModel(twentyCModel);
         addTwoBill.setSpinnerModel(twoBillModel);
 
-        addFiveC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(5, newValue, oldValue);
-            }
-        });
 
-        addTenC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(10, newValue, oldValue);
+            if (txtFolioSeaarch.getText().isEmpty()) {
+                btnDepositsRequest.setDisable(true);
+            } else {
+                btnDepositsRequest.setDisable(false);
             }
-        });
+            addFiveC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(5, newValue, oldValue);
+                }
+            });
 
-        addTwentyC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(25, newValue, oldValue);
-            }
-        });
+            addTenC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(10, newValue, oldValue);
+                }
+            });
 
-        addFiftyC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(50, newValue, oldValue);
-            }
-        });
+            addTwentyC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(25, newValue, oldValue);
+                }
+            });
 
-        addOneHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(100, newValue, oldValue);
-            }
-        });
-        addFiveHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(500, newValue, oldValue);
-            }
-        });
-        addOneBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(1000, newValue, oldValue);
-            }
-        });
-        addTwoBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(2000, newValue, oldValue);
-            }
-        });
-        addFiveBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(5000, newValue, oldValue);
-            }
-        });
-        addTenBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(10000, newValue, oldValue);
-            }
-        });
-        addTwentyBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue != null) {
-                uptadeTable(20000, newValue, oldValue);
-            }
-        });
+            addFiftyC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(50, newValue, oldValue);
+                }
+            });
 
-        addFiftyC.setSpinnerModel(fiftyCModel);
+            addOneHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(100, newValue, oldValue);
+                }
+            });
+            addFiveHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(500, newValue, oldValue);
+                }
+            });
+            addOneBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(1000, newValue, oldValue);
+                }
+            });
+            addTwoBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(2000, newValue, oldValue);
+                }
+            });
+            addFiveBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(5000, newValue, oldValue);
+                }
+            });
+            addTenBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(10000, newValue, oldValue);
+                }
+            });
+            addTwentyBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+                if (newValue != null) {
+                    uptadeTable(20000, newValue, oldValue);
+                }
+            });
+
+            addFiftyC.setSpinnerModel(fiftyCModel);
+
 
     }
 
@@ -367,8 +390,15 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     public void onActionRequest(ActionEvent event) {
-        // Get the selected account from userFolioList
+
         Account selectedAccount = userFolioList.getSelectionModel().getSelectedItem();
+
+        droppedCoins.setVisible(true);
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1.7), new KeyValue(droppedCoins.visibleProperty(), false))
+        );
+        timeline.play();
 
         if (selectedAccount != null) {
             // Extract folio and account type from the selected account
@@ -393,6 +423,13 @@ public class WithdrawDepositsController extends Controller implements Initializa
         } else {
             System.out.println("No account selected.");
         }
+        resetSpinners();
+        cleanTable();
+        userFolioList.getItems().clear();
+        updateTableWithNewAccount(selectedAccount);
+
+
+
     }
 
     @FXML

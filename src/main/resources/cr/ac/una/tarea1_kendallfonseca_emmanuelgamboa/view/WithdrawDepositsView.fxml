@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="765.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="765.0" prefWidth="1218.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="1250.0">
+      <BorderPane layoutX="17.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="738.0" prefWidth="1242.0" styleClass="simplePanel">
          <center>
             <StackPane prefHeight="701.0" prefWidth="965.0" BorderPane.alignment="TOP_LEFT">
                <children>
@@ -34,7 +35,7 @@
                                     <String fx:value="coinFive" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="userFolioList" prefHeight="200.0" prefWidth="200.0" />
+                                    <TableView fx:id="userFolioList" prefHeight="200.0" prefWidth="200.0" styleClass="userAccountsTable" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
@@ -288,12 +289,12 @@
          <right>
             <VBox maxHeight="-Infinity" prefHeight="700.0" prefWidth="245.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="userDepositsList" prefHeight="566.0" prefWidth="230.0">
+                  <TableView fx:id="userDepositsList" prefHeight="566.0" prefWidth="230.0" styleClass="userTransactionsTable">
                      <VBox.margin>
                         <Insets left="8.0" right="8.0" />
                      </VBox.margin>
                   </TableView>
-                  <Label fx:id="txtTotal" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #F2F2F2;">
+                  <Label fx:id="txtTotal" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: #F2F2F2;">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
@@ -301,7 +302,14 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0" />
+                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0">
+                     <children>
+                        <ImageView fx:id="droppedCoins" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/droppedCoins.gif" />
+                           </image>
+                        </ImageView>
+                     </children></HBox>
                </children>
                <BorderPane.margin>
                   <Insets left="5.0" right="15.0" />
@@ -309,7 +317,7 @@
             </VBox>
          </right>
          <top>
-            <HBox alignment="CENTER" prefHeight="89.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="81.0" prefWidth="1226.0" BorderPane.alignment="CENTER">
                <children>
                   <Label styleClass="etiqueta" stylesheets="@Styles.css" text="Ingrese el número de folio">
                      <HBox.margin>
@@ -336,18 +344,6 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Solicitar">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="btnSecondary" />
-                        <String fx:value="btnRequest" />
-                     </styleClass>
-                  </MFXButton>
                   <MFXButton fx:id="btnWhithdraw" onAction="#onActionWithdraw" prefHeight="52.0" prefWidth="106.0" stylesheets="@Styles.css" text="Retiro">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
@@ -357,12 +353,12 @@
                         <String fx:value="btnWithdraw" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" right="50.0" />
                      </HBox.margin>
                   </MFXButton>
                   <MFXButton fx:id="btnDepositsDelete" onAction="#handleDeleteButtonAction" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Eliminar">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="200.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
@@ -372,9 +368,24 @@
                         <String fx:value="btnDeleteUser" />
                      </styleClass>
                   </MFXButton>
+                  <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" prefHeight="44.0" prefWidth="124.0" stylesheets="@Styles.css" text="Solicitar">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnSecondary" />
+                        <String fx:value="btnRequest" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </MFXButton>
                </children>
             </HBox>
          </top>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </BorderPane>
    </children>
 </AnchorPane>
