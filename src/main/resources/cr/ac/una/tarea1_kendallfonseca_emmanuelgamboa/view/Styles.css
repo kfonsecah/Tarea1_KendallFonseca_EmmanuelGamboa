@@ -1,6 +1,6 @@
 
 .btnPrincipal {
-    -fx-background-color: #27aab4;
+    -fx-background-color: #a2d1f0;
     -fx-padding: 15px 20px;
     -fx-border-radius: 45px;
     -fx-cursor: hand;
@@ -246,7 +246,7 @@
 }
 
 .viewAdmin{
-    -fx-background-image: url("../resources/FondoAdmin.jpeg");
+    -fx-background-image: url("../resources/AdminBackground.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -282,3 +282,67 @@
     -fx-background-insets: 5,6,7;
 
 }
+
+
+.vboxLeft {
+    -fx-background-color: linear-gradient(to bottom, #e1f0fd, #cccccc);
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+
+
+.StackTop {
+    -fx-background-color: #e1f0fd;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+
+@font-face {
+    -fx-font-family: 'ColoringKids', sans-serif;
+    src: url("../resources/fonts/Coloringkids.ttf");
+}
+
+
+.labelInfo{
+    -fx-font-family: 'Coloringkids';
+    -fx-font-size: 40px;
+
+}
+
+.simplePanel {
+    -fx-background-color: #dfeefb;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+
+}
+
+.table-view {
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+    -fx-font-family: 'Coloringkids';
+    -fx-font-size: 20px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #ffffff; /* Color para filas impares */
+}
+
+.table-row-cell:even {
+    -fx-background-color: #cbdaf3; /* Color para filas pares */
+}
+
+.text-field .mfx-text-field {
+    -jfx-focus-color: transparent;
+    -jfx-unfocus-color: transparent;
+}
+
+

@@ -8,6 +8,8 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import java.util.Random;
 
 public class AdminController extends Controller implements Initializable {
 
@@ -43,9 +48,10 @@ public class AdminController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //setCooperativeInfo();
-       //AppContext appContext = AppContext.getInstance();
-      // ObservableList<Associated> asociados = AppContext.getAsociados();
+        Font.loadFont(getClass().getResourceAsStream("/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/fonts/Coloringkids.ttf"), 12);
+        setCompanyInfo();
+       AppContext appContext = AppContext.getInstance();
+
     }
 
     @Override
@@ -65,11 +71,8 @@ public class AdminController extends Controller implements Initializable {
 
 
 
-    private void setCooperativeInfo() {
+    private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
-        String name= cooperative.getAccountTypeName();
-        System.out.println(name);
-
 
         if (cooperative != null) {
             Image logo = cooperative.getLogo();
@@ -79,10 +82,13 @@ public class AdminController extends Controller implements Initializable {
 
             String companyName = cooperative.getName();
 
+
+
             txtCooperativeName.setText(companyName);
 
         }
     }
+
 
     @FXML
     void onActionBtnDeposits(ActionEvent event) {

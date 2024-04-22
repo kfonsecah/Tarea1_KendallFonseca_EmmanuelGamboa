@@ -34,7 +34,8 @@ public class App extends Application {
             FlowController.getInstance().goMain("WorkerView");
         }else if (accessParameter.equals("M")) {
             FlowController.getInstance().goMain("AssociateView");
-        }
+        }else
+            FlowController.getInstance().goMain("PrincipalView");
 
 
         // Asegurarse de que la escena se ajuste al tamaño de la ventana

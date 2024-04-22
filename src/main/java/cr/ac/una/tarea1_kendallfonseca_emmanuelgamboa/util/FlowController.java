@@ -71,18 +71,9 @@ public class FlowController {
         this.mainStage = stage;
         this.idioma = idioma;
 
-    }
 
-    private void goViewByAccess(String access) {
-        if (access.equals("A")) {
-            goMain("AssociateView");
-        }
-        if (access.equals("W")) {
-            goMain("WorkerView");
-        }
-        if (access.equals("M")) {
-            goMain("AdminView");
-        }
+
+
     }
 
 
@@ -114,8 +105,8 @@ public class FlowController {
             loader.getNamespace().clear(); // Clear the FXMLLoader cache
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            //MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
-            // Add the MaterialFX theme to the scene
+
+            MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
 
 
             // Set the scene and show the stage
