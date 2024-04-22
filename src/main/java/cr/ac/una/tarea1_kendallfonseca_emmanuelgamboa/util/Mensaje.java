@@ -17,7 +17,7 @@ import javafx.stage.Window;
  */
 public class Mensaje {
 
-    public void show(AlertType tipo, String titulo, String mensaje) {
+    public void show(AlertType tipo, String titulo, String mensaje, String s) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);

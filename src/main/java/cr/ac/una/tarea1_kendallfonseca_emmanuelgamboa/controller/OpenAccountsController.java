@@ -9,6 +9,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
@@ -192,21 +193,21 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            // Crear un nuevo objeto Account con los datos de la cuenta a eliminar
+            // Verificar si la cuenta tiene saldo mayor a 0
             Account accountToRemove = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+            if (accountToRemove.getBalance() == 0) {
+                // Remove the account from the JSON file only if the balance is 0
+                AppContext.removeAccountFromJsonFile(accountToRemove);
+                success = true;
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El usuario tiene dinero en esta cuenta");
 
-            // Remove the account from the JSON file
-            AppContext.removeAccountFromJsonFile(accountToRemove);
-
-            // Remove the account from the userAccounts list
-            userAccounts.getItems().removeIf(account ->
-                    account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio()));
-
-            success = true;
+            }
         }
 
         event.setDropCompleted(success);
     }
+
 
 
     @FXML
@@ -241,19 +242,19 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            // Verificar si el usuario ya tiene una cuenta del mismo tipo
-            boolean hasSameTypeAccount = false;
+            // Verificar si el usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0
+            boolean hasSameTypeAccountWithBalance = false;
             for (Account account : userAccounts.getItems()) {
-                if (account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio())) {
-                    // Si el usuario ya tiene una cuenta del mismo tipo, no permitir agregar otra cuenta
-                    System.out.println("El usuario ya tiene una cuenta del mismo tipo.");
-                    hasSameTypeAccount = true;
+                if (account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio()) && account.getBalance() > 0) {
+                    // Si el usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0, no permitir agregar otra cuenta
+                    System.out.println("El usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0.");
+                    hasSameTypeAccountWithBalance = true;
                     break;
                 }
             }
 
-            if (!hasSameTypeAccount) {
-                // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo
+            if (!hasSameTypeAccountWithBalance) {
+                // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo con saldo mayor a 0
                 Account newAccount = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
                 AppContext.addAccountToJsonFile(newAccount); // Agregar al archivo JSON
 
