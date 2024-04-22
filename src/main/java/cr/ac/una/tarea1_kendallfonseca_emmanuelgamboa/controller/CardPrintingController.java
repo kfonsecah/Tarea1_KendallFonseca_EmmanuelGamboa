@@ -99,6 +99,8 @@ public class CardPrintingController extends Controller implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        btnPrint.setDisable(true);
         AppContext appContext = AppContext.getInstance();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         loadUsersToTableView();
@@ -106,6 +108,10 @@ public class CardPrintingController extends Controller implements Initializable 
 
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
+
+        userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnPrint.setDisable(newValue == null);
+        });
     }
     @Override
     public void initialize(){
