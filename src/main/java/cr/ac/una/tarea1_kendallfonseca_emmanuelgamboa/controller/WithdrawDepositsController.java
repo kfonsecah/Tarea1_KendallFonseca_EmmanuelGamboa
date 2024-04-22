@@ -112,7 +112,9 @@ public class WithdrawDepositsController extends Controller implements Initializa
     private MFXButton btnDepositsSearch;
 
     @FXML
+    private MFXButton btnWhithdraw;
 
+    @FXML
     private Label txtTotal;
 
     @FXML
@@ -393,9 +395,10 @@ public class WithdrawDepositsController extends Controller implements Initializa
         }
     }
 
+    @FXML
+    void onActionWithdraw(ActionEvent event) {
 
-
-
+    }
 
 }
 

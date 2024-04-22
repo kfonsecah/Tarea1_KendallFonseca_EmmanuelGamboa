@@ -301,34 +301,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0">
-                     <children>
-                        <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" prefHeight="56.0" prefWidth="119.0" stylesheets="@Styles.css" text="Solicitar">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="btnSecondary" />
-                              <String fx:value="btnRequest" />
-                           </styleClass>
-                        </MFXButton>
-                        <MFXButton fx:id="btnDepositsDelete" onAction="#handleDeleteButtonAction" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Eliminar">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="btnSecondary" />
-                              <String fx:value="btnDeleteUser" />
-                           </styleClass>
-                        </MFXButton>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0" />
                </children>
                <BorderPane.margin>
                   <Insets left="5.0" right="15.0" />
@@ -338,7 +311,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="89.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="txtAsoMain" stylesheets="@Styles.css" text="Ingrese el número de folio">
+                  <Label styleClass="etiqueta" stylesheets="@Styles.css" text="Ingrese el número de folio">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -351,7 +324,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <MFXButton fx:id="btnDepositsSearch" onAction="#handleSearchButtonAction" prefHeight="56.0" prefWidth="125.0" stylesheets="@Styles.css" text="Buscar">
+                  <MFXButton fx:id="btnDepositsSearch" onAction="#handleSearchButtonAction" prefHeight="52.0" prefWidth="110.0" stylesheets="@Styles.css" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -362,6 +335,42 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Solicitar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnSecondary" />
+                        <String fx:value="btnRequest" />
+                     </styleClass>
+                  </MFXButton>
+                  <MFXButton fx:id="btnWhithdraw" onAction="#onActionWithdraw" prefHeight="52.0" prefWidth="106.0" stylesheets="@Styles.css" text="Retiro">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnSecondary" />
+                        <String fx:value="btnWithdraw" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="btnDepositsDelete" onAction="#handleDeleteButtonAction" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Eliminar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnSecondary" />
+                        <String fx:value="btnDeleteUser" />
+                     </styleClass>
                   </MFXButton>
                </children>
             </HBox>

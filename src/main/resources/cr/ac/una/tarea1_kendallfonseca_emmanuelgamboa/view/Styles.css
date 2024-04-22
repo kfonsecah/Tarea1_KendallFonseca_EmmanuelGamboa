@@ -225,9 +225,14 @@
     -fx-image: url("../resources/Solicitud.png");
 }
 
-.btnRegister>ImageView{
-    -fx-image: url("../resources/registrar.png");
+.btnPendingDeposits>ImageView{
+    -fx-image: url("../resources/pendingDeposits.png");
 }
+
+.btnWithdraw>ImageView{
+    -fx-image: url("../resources/retire.png");
+}
+
 
 .viewWorkers{
     -fx-background-image: url("../resources/todosfondo.jpeg");
