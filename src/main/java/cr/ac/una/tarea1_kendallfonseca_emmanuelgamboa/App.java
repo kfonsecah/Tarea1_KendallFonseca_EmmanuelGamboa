@@ -26,8 +26,16 @@ public class App extends Application {
         stage.setResizable(true);
 
         // Inicializar el flujo de la aplicación y establecer la vista principal
-        FlowController.getInstance().InitializeFlow(stage, null, accessParameter);
-        FlowController.getInstance().goMain("PrincipalView");
+        FlowController.getInstance().InitializeFlow(stage, null);
+
+        if (accessParameter.equals("A")) {
+            FlowController.getInstance().goMain("AdminView");
+        } else if (accessParameter.equals("W")) {
+            FlowController.getInstance().goMain("WorkerView");
+        }else if (accessParameter.equals("M")) {
+            FlowController.getInstance().goMain("AssociateView");
+        }
+
 
         // Asegurarse de que la escena se ajuste al tamaño de la ventana
         Scene scene = stage.getScene();
