@@ -21,6 +21,21 @@
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
 }
 
+.btnExit {
+    -fx-text-fill: #000000;
+    -fx-content-display: left;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 30px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ff0000;
+}
+
+.btnExit,.btnExit:armed,.btnExit:focused{
+    -fx-background-color: #ff0000;
+    -fx-background-radius: 30px;
+}
+
 .etiqueta {
     -fx-font-size: 20px;
     -fx-text-fill: #ffffff;
@@ -52,7 +67,7 @@
     -fx-content-display: left;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-padding: 12px 15px;
+    -fx-padding: 10px 15px;
     -fx-cursor: hand;
     -jfx-button-type: RAISED;
     -fx-alignment:CENTER_LEFT;
@@ -236,6 +251,10 @@
     -fx-image: url("../resources/aceptar.png");
 }
 
+.btnExit>ImageView{
+    -fx-image: url("../resources/apagar.png");
+}
+
 .viewWorkers{
     -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
@@ -371,7 +390,7 @@
     -fx-font-size: 14px;
 }
 
-.viewCloud{
+.viewCloud {
     -fx-background-image: url("../resources/AdminBackground.png");
     -fx-background-size: 30% 30%;
     -fx-background-repeat: no-repeat;
@@ -379,9 +398,10 @@
     -fx-opacity: 1;
 }
 
-.viewCloud .imageView{
+.viewCloud > .imageView {
     -fx-opacity: 1;
 }
+
 
 .userPicture {
     -fx-background-image: url("../resources/logoUser.png");

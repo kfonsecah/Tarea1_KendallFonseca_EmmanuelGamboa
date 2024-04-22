@@ -24,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.util.Random;
 
 public class AdminController extends Controller implements Initializable {
@@ -38,8 +40,11 @@ public class AdminController extends Controller implements Initializable {
     private MFXButton btnDeposits;
 
     @FXML
+    private MFXButton btnExit;
+
+    @FXML
     private AnchorPane root;
-    
+
     @FXML
     private ImageView imageLogo;
 
@@ -50,7 +55,7 @@ public class AdminController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Font.loadFont(getClass().getResourceAsStream("/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/fonts/Coloringkids.ttf"), 12);
         setCompanyInfo();
-       AppContext appContext = AppContext.getInstance();
+        AppContext appContext = AppContext.getInstance();
 
     }
 
@@ -70,7 +75,6 @@ public class AdminController extends Controller implements Initializable {
     }
 
 
-
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 
@@ -81,7 +85,6 @@ public class AdminController extends Controller implements Initializable {
             }
 
             String companyName = cooperative.getName();
-
 
 
             txtCooperativeName.setText(companyName);
@@ -95,5 +98,12 @@ public class AdminController extends Controller implements Initializable {
         FlowController.getInstance().goView("DepositsView");
     }
 
+    @FXML
+    void onActionBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
+    }
 }
+
+
 

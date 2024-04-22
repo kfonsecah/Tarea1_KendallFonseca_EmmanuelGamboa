@@ -13,7 +13,7 @@
 
 <BorderPane fx:id="BorderPane" prefHeight="800.0" prefWidth="1280.0" styleClass="viewWorkers" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WorkerController">
    <left>
-      <VBox prefHeight="720.0" prefWidth="318.0" styleClass="vboxLeft" BorderPane.alignment="CENTER">
+      <VBox prefHeight="720.0" prefWidth="318.0" styleClass="vboxLeft" stylesheets="@Styles.css" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <MFXButton fx:id="btnAssociateMaintenance" onAction="#onActionBtnAssociateMaintenance" stylesheets="@Styles.css" text="Mantenimiento de Asociados">
@@ -63,6 +63,14 @@
                   <String fx:value="btnPrincipal" />
                   <String fx:value="btnDeposits" />
                </styleClass>
+            </MFXButton>
+            <MFXButton fx:id="btnExit" onAction="#onActionBtnExit" styleClass="btnExit" stylesheets="@Styles.css" text="Salir">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
             </MFXButton>
          </children>
       </VBox>

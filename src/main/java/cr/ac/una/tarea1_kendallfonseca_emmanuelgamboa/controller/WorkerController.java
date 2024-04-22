@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -42,6 +43,10 @@ public class WorkerController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnWithdrawDeposits;
+
+    @FXML
+    private MFXButton btnExit;
+
 
     @FXML
     private ImageView imageLogo;
@@ -115,6 +120,10 @@ public class WorkerController extends Controller implements Initializable {
             System.out.println("----------------------------------");
         }
     }
-
+    @FXML
+    void onActionBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
+    }
 
 }
