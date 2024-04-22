@@ -28,11 +28,11 @@
     -fx-padding: 8px 12px;
     -fx-background-radius: 30px;
     -fx-font-weight: bold;
-    -fx-background-color: #ff0000;
+    -fx-background-color: #ee4f4f;
 }
 
 .btnExit,.btnExit:armed,.btnExit:focused{
-    -fx-background-color: #ff0000;
+    -fx-background-color: #ee4f4f;
     -fx-background-radius: 30px;
 }
 
@@ -280,7 +280,7 @@
 }
 
 .viewCamView{
-    -fx-background-image: url("../resources/CamView.jpeg");
+    -fx-background-image: url("../resources/FrameWebCam.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
