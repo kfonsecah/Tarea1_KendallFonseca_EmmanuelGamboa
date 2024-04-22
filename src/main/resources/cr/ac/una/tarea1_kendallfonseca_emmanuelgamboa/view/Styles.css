@@ -246,7 +246,7 @@
 }
 
 .viewWorkers{
-    -fx-background-image: url("../resources/todosfondo.jpeg");
+    -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
@@ -371,11 +371,11 @@
 }
 
 .listViewWithBorder {
-    -fx-border-color: #2c2b2b; /* Color del borde */
-    -fx-border-width: 2px; /* Ancho del borde */
-    -fx-border-radius: 5px; /* Radio de borde */
-    -fx-font-family: 'Aiyari', sans-serif; /* Cambia "Arial" por el nombre de la fuente que desees */
-    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-border-color: #2c2b2b;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-font-family: 'Aiyari', sans-serif;
+    -fx-font-size: 14px;
 }
 
 .viewCloud{
@@ -385,4 +385,30 @@
     -fx-background-position: top-left;
     -fx-opacity: 0;
 }
+
+.userPicture {
+    -fx-background-image: url("../resources/logoUser.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+    -fx-background-radius: 80%;
+    -fx-background-clip: round;
+    -fx-min-width: 90px;
+    -fx-min-height: 90px;
+}
+
+.userCarnetPic{
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 50%;
+    -fx-background-clip: round;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
+
+}
+
+
 

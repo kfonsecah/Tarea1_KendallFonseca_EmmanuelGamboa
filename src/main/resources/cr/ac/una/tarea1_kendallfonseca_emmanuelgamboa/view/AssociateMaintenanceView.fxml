@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1146.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1146.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
    <children>
-      <BorderPane layoutX="175.0" layoutY="42.0" prefHeight="720.0" prefWidth="1064.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="40.0" layoutY="38.0" prefHeight="720.0" prefWidth="1146.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1018.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="30.0" left="15.0" top="30.0" />
                </BorderPane.margin>
@@ -136,7 +136,7 @@
                                                 <Insets bottom="50.0" left="15.0" right="15.0" top="10.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <ImageView fx:id="userImage" fitHeight="158.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="userImage" fitHeight="158.0" fitWidth="197.0" pickOnBounds="true" styleClass="userPicture">
                                              <VBox.margin>
                                                 <Insets left="20.0" right="15.0" />
                                              </VBox.margin>
