@@ -21,7 +21,7 @@
          <center>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1018.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="30.0" left="15.0" top="30.0" />
+                  <Insets bottom="30.0" left="15.0" right="15.0" top="30.0" />
                </BorderPane.margin>
                <children>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1009.0">
@@ -38,7 +38,7 @@
                                     <Insets left="10.0" top="15.0" />
                                  </HBox.margin>
                               </MFXTextField>
-                              <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" prefHeight="56.0" prefWidth="125.0" stylesheets="@Styles.css" text="Buscar">
+                              <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" prefHeight="56.0" prefWidth="109.0" stylesheets="@Styles.css" text="Buscar">
                                  <HBox.margin>
                                     <Insets left="10.0" top="5.0" />
                                  </HBox.margin>

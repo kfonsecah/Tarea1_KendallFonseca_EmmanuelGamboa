@@ -12,19 +12,15 @@
     -fx-alignment:CENTER_LEFT;
     -fx-background-radius: 30px;
     -fx-padding: 10px 20px;
-
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
 }
 
 .btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
-
-
     -fx-background-radius: 30px;
-    -fx-padding: 10px 20px;
-    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
     -fx-background-color: #a2d1f0;
-
-
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
 }
+
 .etiqueta {
     -fx-font-size: 20px;
     -fx-text-fill: #ffffff;
@@ -41,12 +37,6 @@
 
 .listTableView{
     -fx-cursor: crosshair;
-}
-
-.button{
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
-
 }
 
 .txtAsoMain{
@@ -68,20 +58,9 @@
     -fx-alignment:CENTER_LEFT;
 }
 
-.btnAssMaintenance,.btnAssMaintenance:armed,.btnAssMaintenance:focused{
-    -fx-background-color: #54ec2c;
-}
+.btnSecondary,.btnSecondary:armed,.btnSecondary:focused{
+    -fx-background-color: #3fd59b;
 
-.btnNewPhoto>ImageView{
-    -fx-image: url("../resources/NewFoto.png");
-}
-
-.btnEdit>ImageView{
-    -fx-image: url("../resources/Editar.png");
-}
-
-.btnAccept>ImageView{
-    -fx-image: url("../resources/aceptar.png");
 }
 
 .btnCamView{
@@ -245,6 +224,18 @@
     -fx-image: url("../resources/register.png");
 }
 
+.btnNewPhoto>ImageView{
+    -fx-image: url("../resources/NewFoto.png");
+}
+
+.btnEdit>ImageView{
+    -fx-image: url("../resources/Editar.png");
+}
+
+.btnAccept>ImageView{
+    -fx-image: url("../resources/aceptar.png");
+}
+
 .viewWorkers{
     -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
@@ -288,9 +279,13 @@
 .button:hover{
     -fx-background-color: #986ecc;
     -fx-background-insets: 5,6,7;
-
+    -fx-background-radius: 30px;
 }
 
+.button{
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
+}
 
 .vboxLeft {
     -fx-background-color: linear-gradient(to bottom, #e1f0fd, #cccccc);
@@ -299,8 +294,6 @@
     -fx-border-radius: 2px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }
-
-
 
 .StackTop {
     -fx-background-color: #e1f0fd;
@@ -383,7 +376,11 @@
     -fx-background-size: 30% 30%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: top-left;
-    -fx-opacity: 0;
+    -fx-opacity: 1;
+}
+
+.viewCloud .imageView{
+    -fx-opacity: 1;
 }
 
 .userPicture {
