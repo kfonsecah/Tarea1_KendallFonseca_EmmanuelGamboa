@@ -286,7 +286,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
         if (!monedaEncontrada && newValue > 0) {
             String folio = accountsByFolioList.get(0).getFolio(); // Assuming only one account is selected
             String accountType = accountsByFolioList.get(0).getAccountType(); // Assuming only one account is selected
-            Deposits deposit = new Deposits(moneda, newValue, folio, accountType);
+            Deposits deposit = new Deposits(moneda, newValue, folio, accountType,true , "Retiro", false);
             userDepositsList.getItems().add(deposit);
         }
 
@@ -378,7 +378,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
             int total = Integer.parseInt(totalText.replaceAll("\\D", ""));
 
             // Create a new deposit object
-            Deposits newDeposit = new Deposits(total, 1, folio, accountType);
+            Deposits newDeposit = new Deposits(total, 1, folio, accountType,true, "Retiro", false);
 
             // Add the new deposit to your data store
             try {

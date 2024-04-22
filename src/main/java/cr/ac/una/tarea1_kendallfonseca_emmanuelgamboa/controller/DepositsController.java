@@ -1,91 +1,78 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
-import java.security.cert.PolicyNode;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckListView;
-import io.github.palexdev.materialfx.controls.MFXTableColumn;
-import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.cell.MFXCheckListCell;
-import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 
-/**
- * FXML Controller class
- *
- * @author Kendall Fonseca
- */
 public class DepositsController extends Controller implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private ListView<Deposits> pendingDeposits;
+
+    @FXML
+    private CheckBox ListCell;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadDeposits();
-        initializeTableView();
-        // TODO
     }
 
     private void loadDeposits() {
-        ObservableList<Deposits> deposits = AppContext.getInstance().getDeposits();
+        ObservableList<Deposits> deposits = AppContext.getDeposits();
 
         pendingDeposits.setItems(deposits);
-
-
+        pendingDeposits.setCellFactory(new Callback<ListView<Deposits>, ListCell<Deposits>>() {
+            @Override
+            public ListCell<Deposits> call(ListView<Deposits> listView) {
+                return new CheckBoxListCell();
+            }
+        });
     }
 
+    // Define a custom ListCell to display CheckBoxes for each deposit
+    private static class CheckBoxListCell extends ListCell<Deposits> {
+        private final CheckBox checkBox;
+        private final Label label;
 
+        public CheckBoxListCell() {
+            checkBox = new CheckBox();
+            label = new Label();
+            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (getItem() != null) {
+                    getItem().setSelected(newValue);
+                }
+            });
+        }
 
-    private void initializeTableView() {
-        // Initialize columns
-        MFXTableColumn<Deposits> accountNumberColumn = new MFXTableColumn<>("Account Number");
-        MFXTableColumn<Deposits> accountTypeColumn = new MFXTableColumn<>("Account Type");
+        @Override
+        protected void updateItem(Deposits deposit, boolean empty) {
+            super.updateItem(deposit, empty);
+            if (empty || deposit == null) {
+                setGraphic(null);
+            } else {
+                // Set the text of the label to display total amount and account type
+                label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta()+" | Folio del Asociado: "+deposit.getFolio());
+                checkBox.setSelected(deposit.isSelected());
 
-        MFXTableColumn<Deposits> customerNameColumn = new MFXTableColumn<>("Customer Name");
-        MFXTableColumn<Deposits> amountColumn = new MFXTableColumn<>("Amount");
-
-        // Set cell value factories
-
-
-
-
-
-
-        // Set items to the table view
-        ObservableList<Deposits> deposits = AppContext.getInstance().getDeposits();
-        pendingDeposits.setItems(deposits);
+                HBox hbox = new HBox(checkBox, label);
+                hbox.setSpacing(10); // Adjust spacing between checkBox and label
+                setGraphic(hbox);
+            }
+        }
     }
-
-
-
-
-
-
-
-
-
-    // Method to retrieve deposit
-
-
-
 
 
     @Override
@@ -94,26 +81,15 @@ public class DepositsController extends Controller implements Initializable {
     }
 
     @FXML
-    private MFXButton acceptDeposits;
-
-    @FXML
-    private MFXTableView<Deposits> pendingDeposits;
-
-    @FXML
-    private MFXButton removeDeposits;
-
-    @FXML
     private AnchorPane root;
 
     @FXML
     void onActionAcceptDeposits(ActionEvent event) {
-
+        // TODO: Implement accepting deposits
     }
 
     @FXML
     void onActionRemoveDeposits(ActionEvent event) {
-
+        // TODO: Implement removing deposits
     }
-
-
 }
