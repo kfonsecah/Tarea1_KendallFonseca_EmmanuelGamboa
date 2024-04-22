@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="1146.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
+<AnchorPane id="AnchorPane" fx:id="root" onDragDetected="#loadLastUserPhoto" prefHeight="720.0" prefWidth="1146.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
    <children>
       <BorderPane layoutX="40.0" layoutY="38.0" prefHeight="720.0" prefWidth="1146.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1018.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" onDragDetected="#loadLastUserPhoto" prefHeight="659.0" prefWidth="1018.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="30.0" left="15.0" top="30.0" />
                </BorderPane.margin>
@@ -83,7 +83,7 @@
                                                       <Insets left="60.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Nombre" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="60.0" top="10.0" />
                                                    </VBox.margin>
@@ -96,7 +96,7 @@
                                                       <Insets left="60.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtLastName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Apellido" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtLastName" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="60.0" top="10.0" />
                                                    </VBox.margin>
@@ -109,7 +109,7 @@
                                                       <Insets left="60.0" top="20.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <MFXTextField fx:id="txtAge" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Edad" styleClass="txtAsoMain" stylesheets="@Styles.css">
+                                                <MFXTextField fx:id="txtAge" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="txtAsoMain" stylesheets="@Styles.css">
                                                    <VBox.margin>
                                                       <Insets left="60.0" top="10.0" />
                                                    </VBox.margin>
@@ -136,7 +136,7 @@
                                                 <Insets bottom="50.0" left="15.0" right="15.0" top="10.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <ImageView fx:id="userImage" fitHeight="158.0" fitWidth="197.0" pickOnBounds="true" styleClass="userPicture">
+                                          <ImageView fx:id="userImage" fitHeight="158.0" fitWidth="197.0" onMouseMoved="#loadLastUserPhoto" pickOnBounds="true" styleClass="userPicture">
                                              <VBox.margin>
                                                 <Insets left="20.0" right="15.0" />
                                              </VBox.margin>
@@ -154,7 +154,19 @@
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <MFXButton fx:id="addAssociate" prefHeight="52.0" prefWidth="170.0" stylesheets="@Styles.css" text="Anadir asociado">
+                                                <MFXButton fx:id="addAssociate1" onAction="#onNewUser" prefHeight="52.0" prefWidth="225.0" stylesheets="@Styles.css" text="Nuevo Usuario">
+                                                   <graphic>
+                                                      <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </graphic>
+                                                   <styleClass>
+                                                      <String fx:value="btnSecondary" />
+                                                      <String fx:value="btnNewPhoto" />
+                                                   </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets top="40.0" />
+                                                   </HBox.margin>
+                                                </MFXButton>
+                                                <MFXButton fx:id="addAssociate" onAction="#onActionAdd" prefHeight="52.0" prefWidth="237.0" stylesheets="@Styles.css" text="Anadir asociado">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="40.0" />
                                                    </HBox.margin>
@@ -166,7 +178,7 @@
                                                       <String fx:value="btnNewPhoto" />
                                                    </styleClass>
                                                 </MFXButton>
-                                                <MFXButton fx:id="btnDeleteUser" onAction="#onActionDeleteUser" prefHeight="52.0" prefWidth="171.0" stylesheets="@Styles.css" text="Eliminar Usuario">
+                                                <MFXButton fx:id="btnDeleteUser" onAction="#onActionDeleteAssociate" prefHeight="52.0" prefWidth="89.0" stylesheets="@Styles.css" text="&lt;-">
                                                    <HBox.margin>
                                                       <Insets right="10.0" top="40.0" />
                                                    </HBox.margin>

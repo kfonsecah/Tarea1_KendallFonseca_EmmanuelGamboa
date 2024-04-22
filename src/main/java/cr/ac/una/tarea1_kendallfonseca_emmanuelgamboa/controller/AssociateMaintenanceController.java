@@ -94,14 +94,19 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnDeleteUser;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Deshabilitar los botones de editar y eliminar al inicio
         btnEditImage.setDisable(true);
         btnDeleteUser.setDisable(true);
+        btnAccept.setDisable(true);
+        btnNewPhoto.setDisable(false);
+        addAssociate.setDisable(true);
+        btnNewPhoto.setDisable(true);
 
         // Configurar la TableView y otros elementos
-        loadUsersToTableView();
+        configureTableView();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
 
@@ -110,22 +115,18 @@ public class AssociateMaintenanceController extends Controller implements Initia
             // Habilitar los botones de editar y eliminar si se selecciona un usuario
             btnEditImage.setDisable(newValue == null);
             btnDeleteUser.setDisable(newValue == null);
+            btnAccept.setDisable(newValue == null);
+            btnNewPhoto.setDisable(newValue == null);
+            addAssociate.setDisable(true);
         });
     }
 
-
-    @Override
-    public void initialize() {
-        // TODO
-    }
-
-    private void loadUsersToTableView() {
+    private void configureTableView() {
         // Create columns
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
         TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
         TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
         TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
-
 
         // Set cell value factories
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
@@ -137,6 +138,10 @@ public class AssociateMaintenanceController extends Controller implements Initia
         userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
 
         // Load data
+        loadUsersToTableView();
+    }
+
+    private void loadUsersToTableView() {
         ObservableList<Associated> asociados = AppContext.getAsociados();
         userSearchList.setItems(asociados);
 
@@ -144,6 +149,13 @@ public class AssociateMaintenanceController extends Controller implements Initia
             populateTextFieldValues();
         });
     }
+
+
+    @Override
+    public void initialize() {
+        // TODO
+    }
+
 
     @FXML
     private void onActionBtnSearch(ActionEvent event) {
@@ -237,7 +249,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @FXML
     private void onActionNewPhoto() {
-        //TODO
+        FlowController.getInstance().goViewInWindow("WebCamView");
     }
 
     @FXML
@@ -340,10 +352,119 @@ public class AssociateMaintenanceController extends Controller implements Initia
         alert.showAndWait();
     }
     @FXML
-    private void onActionDeleteUser(ActionEvent event) {
+    private void onActionDeleteAssociate(ActionEvent event) {
         deleteAssociated();
         updateTableView();
+
+        txtName.setText("");
+        txtLastName.setText("");
+        txtAge.setText("");
+        userImage.setImage(null);
+        txtFolio.setText("");
+        userSearchList.getSelectionModel().clearSelection();
+
     }
+
+    @FXML
+    void onActionAdd(ActionEvent event) {
+        try {
+            if (txtName.getText().isEmpty()  || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
+            } else if (userImage.getImage() == null) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
+            } else  {
+
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "", "", "");
+
+                associated.createIban();
+                associated.setIban(associated.getIban());
+
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Registro", root.getScene().getWindow(), "Registro exitoso, Su numero de asociado es:" + associated.createFolio());
+
+                Associated.AssociatedData associatedData = new Associated.AssociatedData(
+                        associated.getAssoName(),
+                        associated.getAssoLastName(),
+                        associated.getAssoAge(),
+                        associated.getAssoFolio(),
+                        associated.getAssoPhoto(),
+                        associated.getIban()
+                );
+
+
+                AppContext.getAsociados().add(associated);
+                renameLastUserPhoto(associated.getAssoFolio());
+                updateTableView();
+                userSearchList.refresh();
+
+                try {
+                    Associated.addAssociatedToJsonFile(associatedData);
+                    // Limpiar los campos de texto y la imagen
+                    txtName.setText("");
+                    txtLastName.setText("");
+                    txtAge.setText("");
+                    userImage.setImage(null);
+                    txtFolio.setText("");
+                    userSearchList.getSelectionModel().clearSelection();
+
+                    loadUsersToTableView();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Error al agregar usuario");
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private void renameLastUserPhoto(String folio) {
+        File photoFile = new File("userphotos/photo1.png");
+        if (photoFile.exists()) {
+            String filePath = photoFile.getParent();
+            String newFileName = folio + ".png";
+            File newFile = new File(filePath, newFileName);
+
+            if (photoFile.renameTo(newFile)) {
+                System.out.println("La foto 'photo1.png' se ha renombrado correctamente a: " + newFileName);
+                loadLastUserPhoto();
+            } else {
+                System.out.println("No se pudo renombrar la foto 'photo1.png'.");
+            }
+        } else {
+
+        }
+    }
+    @FXML
+    private void loadLastUserPhoto() {
+        File photoFile = new File("userphotos/photo1.png");
+
+        if (photoFile.exists()) {
+            Image image = new Image(photoFile.toURI().toString());
+            userImage.setImage(image);
+        } else {
+            System.out.println("No se pudo cargar la foto 'photo1.png'.");
+        }
+    }
+    @FXML
+    private void onNewUser(ActionEvent event) {
+        txtName.setText("");
+        txtLastName.setText("");
+        txtAge.setText("");
+        userImage.setImage(null);
+        txtFolio.setText("");
+        userSearchList.getSelectionModel().clearSelection();
+        btnAccept.setDisable(true);
+        btnEditImage.setDisable(true);
+        btnDeleteUser.setDisable(true);
+        btnNewPhoto.setDisable(false);
+        addAssociate.setDisable(false);
+    }
+
+
 }
+
+
 
 
