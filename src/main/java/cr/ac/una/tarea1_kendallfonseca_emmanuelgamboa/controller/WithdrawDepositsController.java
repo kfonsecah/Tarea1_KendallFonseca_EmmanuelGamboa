@@ -7,6 +7,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -23,10 +24,7 @@ import io.github.palexdev.materialfx.controls.MFXSpinner;
 import io.github.palexdev.materialfx.controls.models.spinner.IntegerSpinnerModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -60,6 +58,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
         configureSpinners();
 
         initializeTableView();
+
+        enableSpinners(false);
 
 
     }
@@ -372,13 +372,44 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
                 // Refrescar la TableView para asegurarse de que se actualice en la interfaz de usuario
                 userFolioList.refresh();
+
+                // Habilitar los spinners ya que hay una cuenta seleccionada
+                enableSpinners(true);
+
+                // Habilitar el botón "Solicitar" ya que hay una cuenta seleccionada
+                btnDepositsRequest.setDisable(false);
             } else {
                 // Si no se encontraron cuentas, mostrar un mensaje
-                System.out.println("No se encontraron cuentas asociadas al folio: " + folio);
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "No se encontraron cuentas asociadas al folio proporcionado.");
+
+                // Deshabilitar los spinners ya que no hay una cuenta seleccionada
+                enableSpinners(false);
+
+                // Deshabilitar el botón "Solicitar" ya que no hay una cuenta seleccionada
+                btnDepositsRequest.setDisable(true);
             }
         } else {
-            System.out.println("Folio vacío");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, ingrese un folio antes de continuar.");
+
+            // Deshabilitar los spinners ya que no hay una cuenta seleccionada
+            enableSpinners(false);
+
+            // Deshabilitar el botón "Solicitar" ya que no hay una cuenta seleccionada
+            btnDepositsRequest.setDisable(true);
         }
+    }
+    private void enableSpinners(boolean enable) {
+        addFiftyC.setDisable(!enable);
+        addFiveBill.setDisable(!enable);
+        addFiveC.setDisable(!enable);
+        addFiveHundredC.setDisable(!enable);
+        addOneBill.setDisable(!enable);
+        addOneHundredC.setDisable(!enable);
+        addTenBill.setDisable(!enable);
+        addTenC.setDisable(!enable);
+        addTwentyBill.setDisable(!enable);
+        addTwentyC.setDisable(!enable);
+        addTwoBill.setDisable(!enable);
     }
 
     public void updateTableWithNewAccount(Account newAccount) {
@@ -390,46 +421,49 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     public void onActionRequest(ActionEvent event) {
-
         Account selectedAccount = userFolioList.getSelectionModel().getSelectedItem();
 
-        droppedCoins.setVisible(true);
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1.7), new KeyValue(droppedCoins.visibleProperty(), false))
-        );
-        timeline.play();
-
-        if (selectedAccount != null) {
-            // Extract folio and account type from the selected account
-            String folio = selectedAccount.getFolio();
-            String accountType = selectedAccount.getAccountType();
-
-            // Extract the total amount from txtTotal
-            String totalText = txtTotal.getText();
-            int total = Integer.parseInt(totalText.replaceAll("\\D", ""));
-
-            // Create a new deposit object
-            Deposits newDeposit = new Deposits(total, 1, folio, accountType,true, "Retiro", false);
-
-            // Add the new deposit to your data store
-            try {
-                AppContext.addDepositToJsonFile(newDeposit);
-                System.out.println("Deposit created successfully.");
-            } catch (IOException e) {
-                System.out.println("Error creating deposit: " + e.getMessage());
-                e.printStackTrace();
-            }
+        // Verificar si hay una cuenta seleccionada y si el total es mayor que cero
+        if (selectedAccount != null && getTotal() > 0) {
+            // Realizar el depósito
+            makeDeposit(selectedAccount);
         } else {
-            System.out.println("No account selected.");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, seleccione una cuenta y agregue al menos una moneda antes de continuar.");
         }
+    }
+    private int getTotal() {
+        int total = 0;
+        for (Deposits deposit : userDepositsList.getItems()) {
+            total += deposit.getMoneda() * deposit.getCantidad();
+        }
+        return total;
+    }
+
+    private void makeDeposit(Account selectedAccount) {
+        // Extract folio and account type from the selected account
+        String folio = selectedAccount.getFolio();
+        String accountType = selectedAccount.getAccountType();
+
+        // Extract the total amount from txtTotal
+        int total = getTotal();
+
+        // Create a new deposit object
+        Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false);
+
+        // Add the new deposit to your data store
+        try {
+            AppContext.addDepositToJsonFile(newDeposit);
+            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El deposito se realizó con éxito.");
+        } catch (IOException e) {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el deposito.");
+            e.printStackTrace();
+        }
+
+        // Reiniciar los spinners y limpiar la tabla
         resetSpinners();
         cleanTable();
         userFolioList.getItems().clear();
         updateTableWithNewAccount(selectedAccount);
-
-
-
     }
 
     @FXML

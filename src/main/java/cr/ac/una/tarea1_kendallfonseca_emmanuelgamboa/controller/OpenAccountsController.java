@@ -162,13 +162,16 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @FXML
     public void onDragDetectedAccountTypes(MouseEvent event) {
-        AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
-        if (selectedAccountType != null) {
-            Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.ANY);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(selectedAccountType.getName());
-            dragboard.setContent(content);
-            event.consume();
+        // Verificar si hay un usuario seleccionado
+        if (userSearchList.getSelectionModel().getSelectedItem() != null) {
+            AccountType selectedAccountType = accountTypes.getSelectionModel().getSelectedItem();
+            if (selectedAccountType != null) {
+                Dragboard dragboard = accountTypes.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(selectedAccountType.getName());
+                dragboard.setContent(content);
+                event.consume();
+            }
         }
     }
 
@@ -208,13 +211,16 @@ public class OpenAccountsController extends Controller implements Initializable 
 
     @FXML
     public void onDragDetectedUserAccounts(MouseEvent event) {
-        Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
-        if (selectedAccount != null) {
-            Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(selectedAccount.getAccountType());
-            dragboard.setContent(content);
-            event.consume();
+        // Verificar si hay un usuario seleccionado
+        if (userSearchList.getSelectionModel().getSelectedItem() != null) {
+            Account selectedAccount = userAccounts.getSelectionModel().getSelectedItem();
+            if (selectedAccount != null) {
+                Dragboard dragboard = userAccounts.startDragAndDrop(TransferMode.MOVE);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(selectedAccount.getAccountType());
+                dragboard.setContent(content);
+                event.consume();
+            }
         }
     }
 
