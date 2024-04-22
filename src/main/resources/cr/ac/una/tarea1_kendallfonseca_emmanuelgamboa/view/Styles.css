@@ -25,9 +25,9 @@
     -fx-padding: 5px;
     -fx-background-color: #5afff1;
     -fx-background-radius: 5px;
-    -fx-border-width: 2px;
+    -fx-border-width: 3px;
     -fx-border-color: #8080ff;
-    -fx-border-style: ridge;
+    -fx-border-style: solid;
     -fx-font-family: "Chalkduster";
 }
 
