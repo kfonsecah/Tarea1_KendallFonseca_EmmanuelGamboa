@@ -1,9 +1,11 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,8 +86,25 @@ public class DepositsController extends Controller implements Initializable {
     private AnchorPane root;
 
     @FXML
-    void onActionAcceptDeposits(ActionEvent event) {
-        // TODO: Implement accepting deposits
+    void onActionAcceptDeposits(ActionEvent event) throws IOException {
+        // Obtener el depósito seleccionado
+        Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
+        System.out.println("Deposito seleccionado: "+selectedDeposit);
+        if (selectedDeposit != null) {
+            // Realizar el depósito enviando la cantidad de moneda como monto
+            realizarDeposito(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
+
+        }
+    }
+
+    private void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
+    AccountUser accountUser = AppContext.getInstance().getAccountUser();
+            Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
+            accountUser.realizarDeposito(folio, tipoCuenta, monto);
+            // Actualizar la lista de depósitos después de realizar el depósito
+            AppContext.getDeposits().removeIf(Deposits::isSelected);
+            accountUser.acceptDeposit(selectedDeposit, AppContext.getInstance().getAccounts());
+            loadDeposits();
     }
 
     @FXML

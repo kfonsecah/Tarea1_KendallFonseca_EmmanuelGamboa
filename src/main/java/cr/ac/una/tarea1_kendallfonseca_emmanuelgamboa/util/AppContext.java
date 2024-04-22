@@ -68,7 +68,7 @@ public class AppContext {
         throw new CloneNotSupportedException();
     }
 
-    public Object get(String parameter){
+    public Object get(String parameter) {
         return context.get(parameter);
     }
 
@@ -150,7 +150,6 @@ public class AppContext {
     }
 
 
-
     // CRUD Operations for Account Types
     public static void loadAccountTypesFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -189,7 +188,8 @@ public class AppContext {
         File jsonFile = new File("account_types.json");
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            accountTypes = objectMapper.readValue(jsonFile, new TypeReference<List<AccountType>>() {});
+            accountTypes = objectMapper.readValue(jsonFile, new TypeReference<List<AccountType>>() {
+            });
         } else {
             accountTypes = new ArrayList<>();
         }
@@ -249,16 +249,19 @@ public class AppContext {
         }
         return accountTypes;
     }
+
     public void setSelectedAssociated(Associated associated) {
         this.selectedAssociated = associated;
     }
+
     public Associated getSelectedAssociated() {
         return selectedAssociated;
     }
+
     public boolean addAccountToSelectedUser(Account newAccount) {
-        if (newAccount != null)  {
+        if (newAccount != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
 
@@ -301,7 +304,8 @@ public class AppContext {
         File jsonFile = new File("accounts.json");
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            accounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {});
+            accounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {
+            });
         } else {
             accounts = new ArrayList<>();
         }
@@ -331,7 +335,8 @@ public class AppContext {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("accounts.json");
         if (file.exists()) {
-            List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {});
+            List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {
+            });
             System.out.println("Cuentas antes de la eliminación: " + accounts);
 
             // Iterar sobre todas las cuentas en el archivo JSON
@@ -388,7 +393,8 @@ public class AppContext {
         File jsonFile = new File("deposits.json");
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {});
+            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {
+            });
         } else {
             deposits = new ArrayList<>();
         }
@@ -410,12 +416,12 @@ public class AppContext {
     }
 
 
+    public void setAccountsObservableList(ObservableList<Account> accountsObservableList) {
+        this.accounts = accountsObservableList;
+    }
 
-
-
-
-
-
-
+    public AccountUser getAccountUser() {
+        return new AccountUser();
+    }
 }
 

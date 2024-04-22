@@ -190,7 +190,7 @@ public class OpenAccountsController extends Controller implements Initializable 
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
             // Crear un nuevo objeto Account con los datos de la cuenta a eliminar
-            Account accountToRemove = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+            Account accountToRemove = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
 
             // Remove the account from the JSON file
             AppContext.removeAccountFromJsonFile(accountToRemove);
@@ -204,11 +204,6 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         event.setDropCompleted(success);
     }
-
-
-
-
-
 
 
     @FXML
@@ -253,7 +248,7 @@ public class OpenAccountsController extends Controller implements Initializable 
 
             if (!hasSameTypeAccount) {
                 // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo
-                Account newAccount = new Account(0.0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
+                Account newAccount = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
                 AppContext.addAccountToJsonFile(newAccount); // Agregar al archivo JSON
 
                 // Reload accounts after adding the new account
@@ -268,10 +263,6 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         event.setDropCompleted(success);
     }
-
-
-
-
 
     private void updateListView() {
         // Get the selected user
