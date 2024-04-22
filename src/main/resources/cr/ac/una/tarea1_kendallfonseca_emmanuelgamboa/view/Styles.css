@@ -233,6 +233,9 @@
     -fx-image: url("../resources/retire.png");
 }
 
+.btnRegister>ImageView{
+    -fx-image: url("../resources/register.png");
+}
 
 .viewWorkers{
     -fx-background-image: url("../resources/todosfondo.jpeg");

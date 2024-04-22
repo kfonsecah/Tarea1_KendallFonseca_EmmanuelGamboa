@@ -32,7 +32,10 @@ public class AssociateController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnRegister;
-    
+
+    @FXML
+    private MFXButton btnDeposits;
+
     @FXML
     private ImageView imageLogo;
 
@@ -69,7 +72,11 @@ public class AssociateController extends Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void onActionBtnDeposits(ActionEvent event) {
+        FlowController.getInstance().goView("AssociateDepositsView");
 
+    }
 }
 
 
