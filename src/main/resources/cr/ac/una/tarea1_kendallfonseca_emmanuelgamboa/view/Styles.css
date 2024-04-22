@@ -1,25 +1,33 @@
 
 .btnPrincipal {
     -fx-background-color: #a2d1f0;
-    -fx-padding: 15px 20px;
     -fx-border-radius: 45px;
     -fx-cursor: hand;
     -jfx-button-type: RAISED;
     -mfx-button-type: RAISED;
     -fx-content-display: left;
-    -fx-text-fill: white;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
     -fx-alignment:CENTER_LEFT;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
+    -fx-background-radius: 30px;
+    -fx-padding: 10px 20px;
+
 }
 
 .btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
-    -fx-background-color: #27aab4;
+
+
+    -fx-background-radius: 30px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
+    -fx-background-color: #a2d1f0;
+
+
 }
 .etiqueta {
     -fx-font-size: 20px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
     -fx-effect: dropshadow(gaussian, rgb(0, 255, 248), 8, 0, 0, 8);
     -fx-font-weight: bold;
     -fx-padding: 5px;
@@ -304,15 +312,26 @@
 
 
 @font-face {
-    -fx-font-family: 'ColoringKids', sans-serif;
+    -fx-font-family: 'ColoringKids', sans-serif , Arial, Helvetica;
     src: url("../resources/fonts/Coloringkids.ttf");
+}
+
+@font-face {
+    -fx-font-family: 'Aiyari', sans-serif , Arial, Helvetica;
+    src: url("../resources/fonts/Aiyari - Tropika Island Int.otf");
+}
+
+@font-face {
+        -fx-font-family: 'Onion', sans-serif , Arial, Helvetica;
+    src: url("../resources/fonts/Onion soup.ttf");
 }
 
 
 .labelInfo{
-    -fx-font-family: 'Coloringkids';
-    -fx-font-size: 40px;
-
+    -fx-font-family: 'ColoringKids';
+    -fx-font-size: 35px;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #000000, 3, 3, 2, 1);
 }
 
 .simplePanel {
@@ -328,7 +347,7 @@
     -fx-background-radius: 20px;
     -fx-padding: 5px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
-    -fx-font-family: 'Coloringkids';
+    -fx-font-family: 'ColoringKids';
     -fx-font-size: 20px;
 }
 
@@ -345,4 +364,25 @@
     -jfx-unfocus-color: transparent;
 }
 
+.adminImage{
+    -fx-background-image: url("../resources/AdminImage.png");
+    -fx-background-size: 40% 30%;
+    -fx-opacity: 0;
+}
+
+.listViewWithBorder {
+    -fx-border-color: #2c2b2b; /* Color del borde */
+    -fx-border-width: 2px; /* Ancho del borde */
+    -fx-border-radius: 5px; /* Radio de borde */
+    -fx-font-family: 'Aiyari', sans-serif; /* Cambia "Arial" por el nombre de la fuente que desees */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+}
+
+.viewCloud{
+    -fx-background-image: url("../resources/AdminBackground.png");
+    -fx-background-size: 30% 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: top-left;
+    -fx-opacity: 0;
+}
 
