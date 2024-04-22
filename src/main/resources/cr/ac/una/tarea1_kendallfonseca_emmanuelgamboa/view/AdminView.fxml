@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="viewAdmin" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AdminController">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="599.0" prefWidth="348.0" styleClass="vboxLeft" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="599.0" prefWidth="348.0" styleClass="vboxLeft" stylesheets="@Styles.css" BorderPane.alignment="CENTER">
          <children>
             <MFXButton fx:id="btnBankConfig" onAction="#onActionBtnBankConfig" prefHeight="58.0" prefWidth="330.0" stylesheets="@Styles.css" text="Mantenimiento de la Cooperativa">
                <VBox.margin>
@@ -59,10 +59,13 @@
                   <Insets bottom="40.0" left="75.0" right="40.0" top="70.0" />
                </VBox.margin>
             </ImageView>
-            <MFXButton text="Salir">
+            <MFXButton fx:id="btnExit" onAction="#onActionBtnExit" prefHeight="44.0" prefWidth="97.0" styleClass="btnExit" stylesheets="@Styles.css" text="Salir">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
             </MFXButton>
          </children>
          <BorderPane.margin>

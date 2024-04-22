@@ -54,6 +54,14 @@
                   <String fx:value="btnDeposits" />
                </styleClass>
             </MFXButton>
+            <MFXButton fx:id="btnExit" onAction="#onActionBtnExit" styleClass="btnExit" text="Salir">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <VBox.margin>
+                  <Insets right="100.0" top="400.0" />
+               </VBox.margin>
+            </MFXButton>
          </children>
       </VBox>
    </left>

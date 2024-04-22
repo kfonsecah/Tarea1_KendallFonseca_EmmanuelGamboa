@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -35,6 +36,9 @@ public class AssociateController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnDeposits;
+
+    @FXML
+    private MFXButton btnExit;
 
     @FXML
     private ImageView imageLogo;
@@ -77,6 +81,13 @@ public class AssociateController extends Controller implements Initializable {
         FlowController.getInstance().goView("AssociateDepositsView");
 
     }
+    @FXML
+    void onActionBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
+    }
+
+
 }
 
 

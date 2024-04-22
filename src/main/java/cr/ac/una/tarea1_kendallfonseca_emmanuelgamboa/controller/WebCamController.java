@@ -6,6 +6,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import javafx.event.ActionEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -91,7 +92,6 @@ public class WebCamController extends Controller implements Initializable {
         getStage().close();
 
     }
-
 
 
     @FXML
