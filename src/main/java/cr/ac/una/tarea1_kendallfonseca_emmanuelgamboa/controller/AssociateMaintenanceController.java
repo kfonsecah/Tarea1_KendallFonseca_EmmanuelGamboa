@@ -96,14 +96,23 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        AppContext appContext = AppContext.getInstance();
-        ObservableList<Associated> asociados = AppContext.getAsociados();
+        // Deshabilitar los botones de editar y eliminar al inicio
+        btnEditImage.setDisable(true);
+        btnDeleteUser.setDisable(true);
+
+        // Configurar la TableView y otros elementos
         loadUsersToTableView();
-        populateTextFieldValues();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
 
+        // Configurar el listener para la selección de elementos en la TableView
+        userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Habilitar los botones de editar y eliminar si se selecciona un usuario
+            btnEditImage.setDisable(newValue == null);
+            btnDeleteUser.setDisable(newValue == null);
+        });
     }
+
 
     @Override
     public void initialize() {
