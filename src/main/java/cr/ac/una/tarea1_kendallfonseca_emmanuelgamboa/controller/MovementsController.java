@@ -7,6 +7,8 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -32,6 +34,9 @@ public class MovementsController extends Controller implements Initializable {
     }
 
     @FXML
+    private MFXButton btnSearch;
+
+    @FXML
     private AnchorPane root;
 
     @FXML
@@ -49,4 +54,8 @@ public class MovementsController extends Controller implements Initializable {
     @FXML
     private Label txtName;
 
+    @FXML
+    void onActionBtnSearch(ActionEvent event) {
+
+    }
 }

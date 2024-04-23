@@ -60,7 +60,7 @@
                                                       </MFXTextField>
                                                    </children>
                                                 </VBox>
-                                                <MFXButton stylesheets="@Styles.css" text="Buscar">
+                                                <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" stylesheets="@Styles.css" text="Buscar">
                                                    <graphic>
                                                       <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                                                    </graphic>
