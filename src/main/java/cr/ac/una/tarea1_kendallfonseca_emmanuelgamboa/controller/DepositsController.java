@@ -44,7 +44,7 @@ public class DepositsController extends Controller implements Initializable {
         });
     }
 
-    // Define a custom ListCell to display CheckBoxes for each deposit
+    // Definir una account Ceel para mostrar un CheckBox y un Label
     private static class CheckBoxListCell extends ListCell<Deposits> {
         private final CheckBox checkBox;
         private final Label label;
@@ -65,12 +65,11 @@ public class DepositsController extends Controller implements Initializable {
             if (empty || deposit == null) {
                 setGraphic(null);
             } else {
-                // Set the text of the label to display total amount and account type
                 label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta()+" | Folio del Asociado: "+deposit.getFolio());
                 checkBox.setSelected(deposit.isSelected());
 
                 HBox hbox = new HBox(checkBox, label);
-                hbox.setSpacing(10); // Adjust spacing between checkBox and label
+                hbox.setSpacing(10);
                 setGraphic(hbox);
             }
         }
@@ -109,6 +108,6 @@ public class DepositsController extends Controller implements Initializable {
 
     @FXML
     void onActionRemoveDeposits(ActionEvent event) {
-        // TODO: Implement removing deposits
+        // TODO
     }
 }

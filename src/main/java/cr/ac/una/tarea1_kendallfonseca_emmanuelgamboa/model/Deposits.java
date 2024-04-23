@@ -72,12 +72,12 @@ public class Deposits {
         this.selected = selected;
     }
     public boolean isSelected() {
-        // Check if the selected property is null
+
         if (selected != null) {
-            // If not null, return its boolean value
+
             return selected.booleanValue();
         } else {
-            // If null, return false or handle it in another appropriate way
+
             return false;
         }
     }

@@ -111,7 +111,7 @@ public class Cooperative {
 
     public void createFiles() {
         try {
-            // Create inactiveAccounts.txt file
+
             File depositsFile = new File("deposits.json");
             if (!depositsFile.exists()) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -120,7 +120,6 @@ public class Cooperative {
 
             }
 
-            // Create activeAccounts.txt file
             File accountsFile = new File("accounts.json");
             if (!accountsFile.exists()) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -129,7 +128,6 @@ public class Cooperative {
 
             }
 
-            // Create account_types.txt file
             File accountTypesFile = new File("account_types.json");
             if (!accountTypesFile.exists()) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -137,7 +135,6 @@ public class Cooperative {
                 Files.write(Paths.get(accountTypesFile.getPath()), jsonString.getBytes());
             }
 
-            // Create Associates.json file
             File associatesFile = new File("associateds.json");
             if (!associatesFile.exists()) {
                 ObjectMapper objectMapper = new ObjectMapper();

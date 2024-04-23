@@ -121,7 +121,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
 
     private void configureTableView() {
-        // Create columns
+
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
         TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
         TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");

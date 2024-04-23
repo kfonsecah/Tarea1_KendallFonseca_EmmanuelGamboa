@@ -53,7 +53,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         // Ocultar el GIF
         droppedCoins.setVisible(false);
-        //poner pausa al gif
+
 
 
         configureSpinners();
@@ -143,7 +143,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
     private void configureSpinners() {
 
 
-        // Create SpinnerModels for each spinner
+        //Crear los modelos de los spinners
         IntegerSpinnerModel fiftyCModel = new IntegerSpinnerModel();
         fiftyCModel.setMax(200);
         fiftyCModel.setMin(0);
@@ -185,7 +185,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
 
-        // Set the SpinnerModels to their respective MFXSpinners
+        // Asignar los modelos a los spinners
         addFiftyC.setSpinnerModel(fiftyCModel);
 
         addFiveBill.setSpinnerModel(fiveBillModel);
@@ -450,17 +450,17 @@ public class WithdrawDepositsController extends Controller implements Initializa
         // Obtener la fecha y hora actual
         LocalDateTime dateTime = LocalDateTime.now();
 
-        // Extract folio and account type from the selected account
+
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
 
-        // Extract the total amount from txtTotal
+
         int total = getTotal();
 
-        // Create a new deposit object with date and time
+
         Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false, dateTime);
 
-        // Add the new deposit to your data store
+
         try {
             AppContext.addDepositToJsonFile(newDeposit);
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El deposito se realizó con éxito.");
@@ -504,14 +504,14 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
     private void makeWithdrawal(Account selectedAccount, int total) {
-        // Extract folio and account type from the selected account
+        // Obtener el folio y el tipo de cuenta de la cuenta seleccionada
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
 
-        // Create a new withdrawal object
+        // Crear un nuevo retiro con el total del retiro, el folio y el tipo de cuenta
         Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false, LocalDateTime.now());
 
-        // Add the new withdrawal to your data store
+        // Agregar el retiro al archivo JSON
         try {
             AppContext.addDepositToJsonFile(newWithdrawal);
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El retiro se realizó con éxito.");
