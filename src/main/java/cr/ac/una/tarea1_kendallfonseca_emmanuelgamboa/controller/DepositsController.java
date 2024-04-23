@@ -33,9 +33,12 @@ public class DepositsController extends Controller implements Initializable {
     }
 
     private void loadDeposits() {
-        ObservableList<Deposits> deposits = AppContext.getDeposits();
+        ObservableList<Deposits> allDeposits = AppContext.getDeposits();
 
-        pendingDeposits.setItems(deposits);
+        // Filtrar los depósitos que tienen inProcess=true
+        ObservableList<Deposits> filteredDeposits = allDeposits.filtered(Deposits::isInProcess);
+
+        pendingDeposits.setItems(filteredDeposits);
         pendingDeposits.setCellFactory(new Callback<ListView<Deposits>, ListCell<Deposits>>() {
             @Override
             public ListCell<Deposits> call(ListView<Deposits> listView) {
@@ -43,6 +46,7 @@ public class DepositsController extends Controller implements Initializable {
             }
         });
     }
+
 
     // Definir una account Ceel para mostrar un CheckBox y un Label
     private static class CheckBoxListCell extends ListCell<Deposits> {
@@ -65,7 +69,17 @@ public class DepositsController extends Controller implements Initializable {
             if (empty || deposit == null) {
                 setGraphic(null);
             } else {
-                label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta()+" | Folio del Asociado: "+deposit.getFolio());
+                label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta() + " | Folio del Asociado: " + deposit.getFolio() + " | " + deposit.getTipoMovimiento());
+
+                // Establecer el color del texto basado en el tipo de movimiento
+                if ("Deposito".equals(deposit.getTipoMovimiento())) {
+                    label.setStyle("-fx-text-fill: green;");
+                } else if ("Retiro".equals(deposit.getTipoMovimiento())) {
+                    label.setStyle("-fx-text-fill: red;");
+                } else {
+                    label.setStyle(""); // Revertir a color predeterminado
+                }
+
                 checkBox.setSelected(deposit.isSelected());
 
                 HBox hbox = new HBox(checkBox, label);
@@ -73,10 +87,12 @@ public class DepositsController extends Controller implements Initializable {
                 setGraphic(hbox);
             }
         }
+
     }
 
 
-    @Override
+
+        @Override
     public void initialize() {
         // TODO
     }
@@ -97,14 +113,22 @@ public class DepositsController extends Controller implements Initializable {
     }
 
     private void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
-    AccountUser accountUser = AppContext.getInstance().getAccountUser();
-            Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
-            accountUser.realizarDeposito(folio, tipoCuenta, monto);
-            // Actualizar la lista de depósitos después de realizar el depósito
-            AppContext.getDeposits().removeIf(Deposits::isSelected);
-            accountUser.acceptDeposit(selectedDeposit, AppContext.getInstance().getAccounts());
-            loadDeposits();
+        AccountUser accountUser = AppContext.getInstance().getAccountUser();
+        Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
+
+        // Realizar el depósito
+        accountUser.realizarDeposito(folio, tipoCuenta, monto);
+
+        // Cambiar el estado inProcess del depósito seleccionado a false
+        if (selectedDeposit != null) {
+            accountUser.setDepositInProcessFalse(selectedDeposit);
+        }
+
+        // Actualizar la lista de depósitos después de realizar el depósito
+        loadDeposits();
     }
+
+
 
     @FXML
     void onActionRemoveDeposits(ActionEvent event) {

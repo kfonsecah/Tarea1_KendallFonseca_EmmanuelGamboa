@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Deposits {
     private String dateTimeString; // Campo para la fecha y hora como String
@@ -85,10 +86,25 @@ public class Deposits {
     }
 
     public void setInProcess(boolean inProcess) {
-        this.inProcess = true;
+        this.inProcess = inProcess;
     }
 
     public boolean isInProcess() {
         return inProcess;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Deposits other = (Deposits) obj;
+        return Objects.equals(this.folio, other.folio) &&
+                Objects.equals(this.tipoCuenta, other.tipoCuenta) &&
+                this.moneda == other.moneda;
+    }
+
 }

@@ -138,7 +138,7 @@ public class AccountUser {
             }
         }
 
-        // Save the updated balance back to the JSON file
+
         removeDepositFromJsonFile(deposit);
         AppContext.addDepositToJsonFile(deposit);
     }
@@ -194,6 +194,22 @@ public class AccountUser {
             objectMapper.writeValue(file, accounts);
         }
     }
+
+    public void setDepositInProcessFalse(Deposits deposit) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("deposits.json");
+        if (file.exists()) {
+            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {});
+            for (Deposits d : deposits) {
+                if (d.equals(deposit)) {
+                    d.setInProcess(false);
+                    break;
+                }
+            }
+            objectMapper.writeValue(file, deposits);
+        }
+    }
+
 
 }
 
