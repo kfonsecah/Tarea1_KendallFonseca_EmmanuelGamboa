@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="721.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
    <children>
-      <BorderPane layoutX="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="722.0" prefWidth="970.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <BorderPane layoutX="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="722.0" prefWidth="970.0" styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <center>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="479.0" prefWidth="945.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
@@ -31,7 +31,7 @@
                               <Insets bottom="40.0" top="40.0" />
                            </HBox.margin>
                         </ListView>
-                        <Separator orientation="VERTICAL" prefHeight="258.0" prefWidth="4.0">
+                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="275.0" prefWidth="3.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -56,7 +56,7 @@
                               <Insets />
                            </HBox.margin>
                         </MFXComboBox>
-                        <MFXTextField fx:id="txtSearch" prefHeight="49.0" prefWidth="216.0">
+                        <MFXTextField fx:id="txtSearch" prefHeight="10.0" prefWidth="140.0">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
@@ -75,7 +75,7 @@
                         </MFXButton>
                      </children>
                   </HBox>
-                  <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="923.0">
+                  <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="923.0" styleClass="listTableView" stylesheets="@Styles.css">
                      <VBox.margin>
                         <Insets left="40.0" right="60.0" />
                      </VBox.margin>

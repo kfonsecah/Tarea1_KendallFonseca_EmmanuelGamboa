@@ -70,7 +70,7 @@
                                              <children>
                                                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
                                                    <children>
-                                                      <Label prefHeight="51.0" prefWidth="294.0" styleClass="labelInfo" stylesheets="@Styles.css" text="Ingrese su número" />
+                                                      <Label styleClass="labelInfo" stylesheets="@Styles.css" text="Ingrese su número" />
                                                       <Label styleClass="labelInfo" stylesheets="@Styles.css" text="de folio:" />
                                                       <MFXTextField fx:id="txtSearch" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" translateX="140.0" translateY="-65.0">
                                                          <VBox.margin>
