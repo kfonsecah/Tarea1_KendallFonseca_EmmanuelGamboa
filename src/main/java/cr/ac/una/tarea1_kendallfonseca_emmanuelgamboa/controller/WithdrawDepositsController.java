@@ -4,6 +4,8 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
@@ -17,6 +19,8 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
@@ -47,13 +51,11 @@ public class WithdrawDepositsController extends Controller implements Initializa
     private ImageView droppedCoins;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         // Ocultar el GIF
         droppedCoins.setVisible(false);
-
 
 
         configureSpinners();
@@ -69,6 +71,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
     public void initialize() {
 
     }
+
     private ObservableList<Account> accountsByFolioList;
     AccountUser accountUser = new AccountUser();
 
@@ -93,7 +96,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     private MFXSpinner<Integer> addOneHundredC;
-
 
 
     @FXML
@@ -136,10 +138,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
     private AnchorPane root;
 
 
-
-
-
-
     private void configureSpinners() {
 
 
@@ -151,12 +149,12 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         IntegerSpinnerModel fiveBillModel = new IntegerSpinnerModel();
         fiveBillModel.setMax(100);
-          fiveBillModel.setMin(0);
+        fiveBillModel.setMin(0);
 
 
         IntegerSpinnerModel fiveCModel = new IntegerSpinnerModel();
-           fiveCModel.setMax(100);
-            fiveCModel.setMin(0);
+        fiveCModel.setMax(100);
+        fiveCModel.setMin(0);
 
         IntegerSpinnerModel fiveHundredCModel = new IntegerSpinnerModel();
         fiveHundredCModel.setMax(100);
@@ -184,7 +182,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
         twoBillModel.setMin(0);
 
 
-
         // Asignar los modelos a los spinners
         addFiftyC.setSpinnerModel(fiftyCModel);
 
@@ -200,72 +197,72 @@ public class WithdrawDepositsController extends Controller implements Initializa
         addTwoBill.setSpinnerModel(twoBillModel);
 
 
-            if (txtFolioSeaarch.getText().isEmpty()) {
-                btnDepositsRequest.setDisable(true);
-            } else {
-                btnDepositsRequest.setDisable(false);
+        if (txtFolioSeaarch.getText().isEmpty()) {
+            btnDepositsRequest.setDisable(true);
+        } else {
+            btnDepositsRequest.setDisable(false);
+        }
+        addFiveC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(5, newValue, oldValue);
             }
-            addFiveC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(5, newValue, oldValue);
-                }
-            });
+        });
 
-            addTenC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(10, newValue, oldValue);
-                }
-            });
+        addTenC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(10, newValue, oldValue);
+            }
+        });
 
-            addTwentyC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(25, newValue, oldValue);
-                }
-            });
+        addTwentyC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(25, newValue, oldValue);
+            }
+        });
 
-            addFiftyC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(50, newValue, oldValue);
-                }
-            });
+        addFiftyC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(50, newValue, oldValue);
+            }
+        });
 
-            addOneHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(100, newValue, oldValue);
-                }
-            });
-            addFiveHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(500, newValue, oldValue);
-                }
-            });
-            addOneBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(1000, newValue, oldValue);
-                }
-            });
-            addTwoBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(2000, newValue, oldValue);
-                }
-            });
-            addFiveBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(5000, newValue, oldValue);
-                }
-            });
-            addTenBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(10000, newValue, oldValue);
-                }
-            });
-            addTwentyBill.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    uptadeTable(20000, newValue, oldValue);
-                }
-            });
+        addOneHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(100, newValue, oldValue);
+            }
+        });
+        addFiveHundredC.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(500, newValue, oldValue);
+            }
+        });
+        addOneBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(1000, newValue, oldValue);
+            }
+        });
+        addTwoBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(2000, newValue, oldValue);
+            }
+        });
+        addFiveBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(5000, newValue, oldValue);
+            }
+        });
+        addTenBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(10000, newValue, oldValue);
+            }
+        });
+        addTwentyBill.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                updateTable(20000, newValue, oldValue);
+            }
+        });
 
-            addFiftyC.setSpinnerModel(fiftyCModel);
+        addFiftyC.setSpinnerModel(fiftyCModel);
 
 
     }
@@ -291,33 +288,37 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
 
-    private void uptadeTable(int moneda, Integer newValue, Integer oldValue) {
+
+    private void updateTable(int moneda, Integer newValue, Integer oldValue) {
         boolean monedaEncontrada = false;
 
+        // Buscar el depósito correspondiente a la moneda
         for (Deposits deposit : userDepositsList.getItems()) {
             if (deposit.getMoneda() == moneda) {
-                if (newValue > oldValue) {
-                    deposit.setCantidad(deposit.getCantidad() + (newValue - oldValue));
-                } else if (newValue < oldValue) {
-                    deposit.setCantidad(deposit.getCantidad() - (oldValue - newValue));
-                    if (deposit.getCantidad() == 0) {
-                        userDepositsList.getItems().remove(deposit);
-                    }
-                }
                 monedaEncontrada = true;
+                if (newValue > oldValue) {
+                    deposit.setCantidad(newValue); // Actualizar la cantidad directamente
+                } else if (newValue < oldValue) {
+                    deposit.setCantidad(newValue); // Actualizar la cantidad directamente
+                }
                 break;
             }
         }
 
+        // Si no se encuentra la moneda y el nuevo valor es mayor que cero, agregar un nuevo depósito
         if (!monedaEncontrada && newValue > 0) {
-            String folio = accountsByFolioList.get(0).getFolio(); // Assuming only one account is selected
-            String accountType = accountsByFolioList.get(0).getAccountType(); // Assuming only one account is selected
-            Deposits deposit = new Deposits(moneda, newValue, folio, accountType,true , "Retiro", false, LocalDateTime.now());
-            userDepositsList.getItems().add(deposit);
+            // Crear un nuevo depósito con la moneda y la cantidad
+            Deposits newDeposit = new Deposits(moneda, newValue, "", "", true, "", false, "");
+            userDepositsList.getItems().add(newDeposit);
         }
 
+        // Calcular el total después de actualizar la tabla
         calculateTotal();
     }
+
+
+
+
 
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
@@ -447,28 +448,28 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
     private void makeDeposit(Account selectedAccount) {
-        // Obtener la fecha y hora actual
-        LocalDateTime dateTime = LocalDateTime.now();
-
+        // Obtener la fecha y hora actual como String
+        String dateTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
-
-
         int total = getTotal();
 
+        // Crear un nuevo depósito con el total del depósito, el folio y el tipo de cuenta
+        Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false, dateTimeString);
 
-        Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false, dateTime);
-
-
+        // Agregar el depósito al archivo JSON
         try {
             AppContext.addDepositToJsonFile(newDeposit);
-            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El deposito se realizó con éxito.");
+            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El depósito se realizó con éxito.");
         } catch (IOException e) {
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el deposito.");
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el depósito.");
             e.printStackTrace();
         }
     }
+
+
+
 
     @FXML
     void onActionWithdraw(ActionEvent event) {
@@ -504,12 +505,15 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
     private void makeWithdrawal(Account selectedAccount, int total) {
+        // Obtener la fecha y hora actual como String
+        String dateTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
         // Obtener el folio y el tipo de cuenta de la cuenta seleccionada
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
 
         // Crear un nuevo retiro con el total del retiro, el folio y el tipo de cuenta
-        Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false, LocalDateTime.now());
+        Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false, dateTimeString);
 
         // Agregar el retiro al archivo JSON
         try {
@@ -526,6 +530,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
         userFolioList.getItems().clear();
         updateTableWithNewAccount(selectedAccount);
     }
+
 
 
 }

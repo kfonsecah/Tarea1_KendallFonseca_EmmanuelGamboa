@@ -3,6 +3,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -386,6 +387,7 @@ public class AppContext {
 
     public static void addDepositToJsonFile(Deposits deposit) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         List<Deposits> deposits;
@@ -393,8 +395,7 @@ public class AppContext {
         File jsonFile = new File("deposits.json");
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {
-            });
+            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {});
         } else {
             deposits = new ArrayList<>();
         }
@@ -403,6 +404,7 @@ public class AppContext {
 
         objectMapper.writeValue(jsonFile, deposits);
     }
+
 
     public static ObservableList<Deposits> getDeposits() {
         ObservableList<Deposits> deposits = (ObservableList<Deposits>) context.get("deposits");

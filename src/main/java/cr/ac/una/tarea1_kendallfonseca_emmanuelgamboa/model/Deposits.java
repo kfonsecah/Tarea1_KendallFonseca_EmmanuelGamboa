@@ -1,27 +1,25 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.collections.ObservableList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
 
 public class Deposits {
-
+    private String dateTimeString; // Campo para la fecha y hora como String
 
     private int moneda;
     private int cantidad;
     private String folio;
     private String tipoCuenta;
-    private String tipoMovimiento; // Nuevo atributo para el tipo de movimiento (retiro o depósito)
+    private String tipoMovimiento;
     private boolean inProcess;
     private Boolean selected;
-    private LocalDateTime dateTime;
+    public Deposits() {
+    }
 
-
-
-
-    public Deposits(int moneda, int cantidad, String folio, String tipoCuenta, boolean inProcess, String tipoMovimiento, boolean selected, LocalDateTime dateTime) {
+    public Deposits(int moneda, int cantidad, String folio, String tipoCuenta, boolean inProcess, String tipoMovimiento, boolean selected, String dateTimeString) {
         this.moneda = moneda;
         this.cantidad = cantidad;
         this.folio = folio;
@@ -29,11 +27,7 @@ public class Deposits {
         this.inProcess = true;
         this.tipoMovimiento = tipoMovimiento;
         this.selected = false;
-        this.dateTime = LocalDateTime.now(); // Inicializar con la fecha y hora actual
-    }
-
-    public Deposits() {
-
+        this.dateTimeString = dateTimeString; // Utilizar la cadena de fecha y hora proporcionada
     }
 
 
@@ -48,9 +42,11 @@ public class Deposits {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
     public String getFolio() {
         return folio;
     }
+
     public String getTipoCuenta() {
         return tipoCuenta;
     }
@@ -68,31 +64,30 @@ public class Deposits {
     public Boolean getSelected() {
         return selected;
     }
+
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }
+
     public boolean isSelected() {
-
         if (selected != null) {
-
             return selected.booleanValue();
         } else {
-
             return false;
         }
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public String getDateTimeString() {
+        return dateTimeString;
     }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTimeString(String dateTimeString) {
+        this.dateTimeString = dateTimeString;
     }
 
     public void setInProcess(boolean inProcess) {
         this.inProcess = true;
     }
+
     public boolean isInProcess() {
         return inProcess;
     }
