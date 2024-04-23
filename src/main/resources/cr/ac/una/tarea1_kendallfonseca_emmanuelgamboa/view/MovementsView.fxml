@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.MovementsController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="720.0" prefWidth="923.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.MovementsController">
    <children>
       <BorderPane layoutX="184.0" layoutY="204.0" prefHeight="720.0" prefWidth="925.0" styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="847.0" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="640.0" prefWidth="847.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                </BorderPane.margin>
@@ -31,11 +31,30 @@
                                     <Insets left="40.0" />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="tableViewMovements" prefHeight="594.0" prefWidth="479.0" styleClass="listTableView" stylesheets="@Styles.css">
+                              <TableView fx:id="tableViewAccounts" prefHeight="594.0" prefWidth="479.0" styleClass="listTableView" stylesheets="@Styles.css">
                                  <VBox.margin>
                                     <Insets bottom="40.0" left="40.0" right="10.0" top="15.0" />
                                  </VBox.margin>
                               </TableView>
+                              <TableView fx:id="TableViewMovements" prefHeight="594.0" prefWidth="479.0" styleClass="listTableView" stylesheets="@Styles.css">
+                                 <VBox.margin>
+                                    <Insets bottom="40.0" left="40.0" right="10.0" top="15.0" />
+                                 </VBox.margin>
+                              </TableView>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <MFXButton onAction="#onActionResumed" text="Resumido">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="50.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                    <MFXButton onAction="#onActionDetail" text="Detallado">
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </MFXButton>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                         <VBox prefHeight="630.0" prefWidth="480.0">
@@ -53,7 +72,7 @@
                                                    <children>
                                                       <Label prefHeight="51.0" prefWidth="294.0" styleClass="labelInfo" stylesheets="@Styles.css" text="Ingrese su número" />
                                                       <Label styleClass="labelInfo" stylesheets="@Styles.css" text="de folio:" />
-                                                      <MFXTextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" translateX="140.0" translateY="-65.0">
+                                                      <MFXTextField fx:id="txtSearch" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" translateX="140.0" translateY="-65.0">
                                                          <VBox.margin>
                                                             <Insets top="10.0" />
                                                          </VBox.margin>
@@ -78,22 +97,22 @@
                                                 <ImageView fitHeight="138.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" />
                                                 <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
                                                    <children>
-                                                      <Label fx:id="txtName" text="Nombre:">
+                                                      <Label text="Nombre:">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtLastName" text="Apellido:">
+                                                      <Label text="Apellido:">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtAge" text="Edad:">
+                                                      <Label text="Edad:">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtFolio" text="Folio:" />
+                                                      <Label text="Folio:" />
                                                    </children>
                                                 </VBox>
                                                 <VBox prefHeight="171.0" prefWidth="66.0">

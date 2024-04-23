@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
@@ -311,7 +312,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
         if (!monedaEncontrada && newValue > 0) {
             String folio = accountsByFolioList.get(0).getFolio(); // Assuming only one account is selected
             String accountType = accountsByFolioList.get(0).getAccountType(); // Assuming only one account is selected
-            Deposits deposit = new Deposits(moneda, newValue, folio, accountType,true , "Retiro", false);
+            Deposits deposit = new Deposits(moneda, newValue, folio, accountType,true , "Retiro", false, LocalDateTime.now());
             userDepositsList.getItems().add(deposit);
         }
 
@@ -446,6 +447,9 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
     private void makeDeposit(Account selectedAccount) {
+        // Obtener la fecha y hora actual
+        LocalDateTime dateTime = LocalDateTime.now();
+
         // Extract folio and account type from the selected account
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
@@ -453,8 +457,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
         // Extract the total amount from txtTotal
         int total = getTotal();
 
-        // Create a new deposit object
-        Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false);
+        // Create a new deposit object with date and time
+        Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false, dateTime);
 
         // Add the new deposit to your data store
         try {
@@ -464,12 +468,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el deposito.");
             e.printStackTrace();
         }
-
-        // Reiniciar los spinners y limpiar la tabla
-        resetSpinners();
-        cleanTable();
-        userFolioList.getItems().clear();
-        updateTableWithNewAccount(selectedAccount);
     }
 
     @FXML
@@ -511,7 +509,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
         String accountType = selectedAccount.getAccountType();
 
         // Create a new withdrawal object
-        Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false);
+        Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false, LocalDateTime.now());
 
         // Add the new withdrawal to your data store
         try {

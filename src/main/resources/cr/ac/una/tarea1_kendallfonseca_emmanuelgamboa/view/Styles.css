@@ -39,10 +39,10 @@
 .etiqueta {
     -fx-font-size: 20px;
     -fx-text-fill: #ffffff;
-    -fx-effect: dropshadow(gaussian, rgb(0, 255, 248), 8, 0, 0, 8);
+    -fx-effect: dropshadow(gaussian, rgb(200, 245, 239), 8, 0, 0, 8);
     -fx-font-weight: bold;
     -fx-padding: 5px;
-    -fx-background-color: #5afff1;
+    -fx-background-color: #b5eae6;
     -fx-background-radius: 5px;
     -fx-border-width: 3px;
     -fx-border-color: #8080ff;
