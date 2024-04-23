@@ -6,11 +6,8 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;

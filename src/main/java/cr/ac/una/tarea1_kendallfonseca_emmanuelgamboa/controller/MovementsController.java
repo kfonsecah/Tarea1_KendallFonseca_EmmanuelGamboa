@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author gambo
  */
-public class MovementsController implements Initializable {
+public class MovementsController extends Controller implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -21,6 +21,11 @@ public class MovementsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    @Override
+    public void initialize() {
+    }
+
+
     
 }
