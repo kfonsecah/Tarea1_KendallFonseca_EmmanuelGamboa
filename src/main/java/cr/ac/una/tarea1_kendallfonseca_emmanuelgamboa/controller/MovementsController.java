@@ -1,44 +1,68 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author gambo
- */
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class MovementsController extends Controller implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    private TableView<?> TableViewMovements;
+
+    @FXML
+    private MFXButton btnSearch;
+
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private TableView<?> tableViewAccounts;
+
+    @FXML
+    private Label txtAge;
+
+    @FXML
+    private Label txtFolio;
+
+    @FXML
+    private Label txtLastName;
+
+    @FXML
+    private Label txtName;
+
+    @FXML
+    private MFXTextField txtSearch;
+
+    @FXML
+    void onActionBtnSearch(ActionEvent event) {
+
     }
+
+    @FXML
+    void onActionDetail(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionResumed(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize() {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

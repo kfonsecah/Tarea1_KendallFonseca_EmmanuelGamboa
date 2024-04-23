@@ -311,7 +311,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="89.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="etiqueta" stylesheets="@Styles.css" text="Ingrese el número de folio">
+                  <Label styleClass="labelInfo" stylesheets="@Styles.css" text="Ingrese el número de folio">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

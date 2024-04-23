@@ -15,7 +15,7 @@
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
 }
 
-.btnPrincipal.btnPrincipal:armed,.btnPrincipal:focused{
+.btnPrincipal:armed,.btnPrincipal:focused{
     -fx-background-radius: 30px;
     -fx-background-color: #a2d1f0;
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
@@ -301,7 +301,8 @@
 
 .button:hover{
     -fx-background-color: #986ecc;
-    -fx-background-insets: 5,6,7;
+    /*-fx-background-insets: 5,6,7;*/
+
     -fx-background-radius: 30px;
 }
 
