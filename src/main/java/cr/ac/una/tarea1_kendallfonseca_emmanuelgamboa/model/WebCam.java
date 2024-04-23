@@ -21,6 +21,7 @@ public class WebCam {
     private boolean photoTaken = false;
     private Consumer<String> onImageCapturedListener;
 
+
     public void setOnImageCapturedListener(Consumer<String> listener) {
         this.onImageCapturedListener = listener;
     }

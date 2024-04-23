@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -44,6 +45,8 @@ public class WebCamController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -51,6 +54,8 @@ public class WebCamController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+
+
         btnRetakePhoto.setVisible(false);
         btnSavePhoto.setVisible(false);
         btnTakePhoto.setVisible(true);
@@ -58,6 +63,9 @@ public class WebCamController extends Controller implements Initializable {
         webcam = new WebCam(imageView);
         webcam.start();
         webcam.updateImageView();
+
+        // Limitar la resolución de la imagen en la vista imageView
+
     }
 
     @FXML

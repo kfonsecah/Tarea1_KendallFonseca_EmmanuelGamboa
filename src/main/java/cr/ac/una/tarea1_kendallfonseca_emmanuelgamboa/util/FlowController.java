@@ -184,6 +184,10 @@ public class FlowController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        stage = (Stage) root.getScene().getWindow();
+
+        // Desactivar la capacidad de redimensionamiento
+        stage.setResizable(false);
 
     }
 
