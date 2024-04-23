@@ -6,7 +6,12 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -26,6 +31,22 @@ public class MovementsController extends Controller implements Initializable {
     public void initialize() {
     }
 
+    @FXML
+    private AnchorPane root;
 
-    
+    @FXML
+    private TableView<?> tableViewMovements;
+
+    @FXML
+    private Label txtAge;
+
+    @FXML
+    private Label txtFolio;
+
+    @FXML
+    private Label txtLastName;
+
+    @FXML
+    private Label txtName;
+
 }
