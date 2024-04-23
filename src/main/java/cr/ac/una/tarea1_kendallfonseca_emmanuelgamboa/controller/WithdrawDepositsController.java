@@ -421,6 +421,12 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     public void onActionRequest(ActionEvent event) {
+        droppedCoins.setVisible(true);
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1.7), new KeyValue(droppedCoins.visibleProperty(), false))
+        );
+        timeline.play();
         Account selectedAccount = userFolioList.getSelectionModel().getSelectedItem();
 
         // Verificar si hay una cuenta seleccionada y si el total es mayor que cero
@@ -472,25 +478,32 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         // Verificar si hay una cuenta seleccionada
         if (selectedAccount != null) {
-            // Obtener el saldo de la cuenta seleccionada
-            double accountBalance = selectedAccount.getBalance();
-
             // Obtener el total del retiro
             int total = getTotal();
 
-            // Verificar si el total es mayor que el saldo de la cuenta
-            if (total > accountBalance) {
-                // Mostrar un mensaje de error si el total es mayor que el saldo
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El total del retiro supera el saldo de la cuenta seleccionada.");
+            // Verificar si el total es mayor que cero
+            if (total > 0) {
+                // Obtener el saldo de la cuenta seleccionada
+                double accountBalance = selectedAccount.getBalance();
+
+                // Verificar si el total es mayor que el saldo de la cuenta
+                if (total > accountBalance) {
+                    // Mostrar un mensaje de error si el total es mayor que el saldo
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El total del retiro supera el saldo de la cuenta seleccionada.");
+                } else {
+                    // Realizar el retiro si el total es menor o igual que el saldo de la cuenta
+                    makeWithdrawal(selectedAccount, total);
+                }
             } else {
-                // Realizar el retiro si el total es menor o igual que el saldo de la cuenta
-                makeWithdrawal(selectedAccount, total);
+                // Mostrar un mensaje de error si el total es igual a cero
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El total del retiro debe ser mayor que cero.");
             }
         } else {
             // Mostrar un mensaje de error si no hay una cuenta seleccionada
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, seleccione una cuenta antes de realizar un retiro.");
         }
     }
+
 
     private void makeWithdrawal(Account selectedAccount, int total) {
         // Extract folio and account type from the selected account
