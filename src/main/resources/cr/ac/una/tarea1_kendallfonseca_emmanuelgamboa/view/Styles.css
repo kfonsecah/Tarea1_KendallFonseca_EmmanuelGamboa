@@ -9,13 +9,13 @@
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
-    -fx-alignment:CENTER_LEFT;
+    -fx-alignment: CENTER_LEFT;
     -fx-background-radius: 30px;
     -fx-padding: 10px 20px;
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
 }
 
-.btnPrincipal:armed,.btnPrincipal:focused{
+.btnPrincipal:armed, .btnPrincipal:focused {
     -fx-background-radius: 30px;
     -fx-background-color: #a2d1f0;
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
@@ -31,7 +31,7 @@
     -fx-background-color: #ee4f4f;
 }
 
-.btnExit,.btnExit:armed,.btnExit:focused{
+.btnExit, .btnExit:armed, .btnExit:focused {
     -fx-background-color: #ee4f4f;
     -fx-background-radius: 30px;
 }
@@ -50,17 +50,17 @@
     -fx-font-family: "Chalkduster";
 }
 
-.listTableView{
+.listTableView {
     -fx-cursor: crosshair;
 }
 
-.txtAsoMain{
+.txtAsoMain {
     -fx-background-color: #ffffff;
     -fx-background-radius: 20px;
     -fx-padding: 5px;
 }
 
-.btnSecondary{
+.btnSecondary {
     -fx-background-color: #3fd59b;
     -fx-text-fill: #ffffff;
     -mfx-button-type: RAISED;
@@ -70,15 +70,16 @@
     -fx-padding: 10px 15px;
     -fx-cursor: hand;
     -jfx-button-type: RAISED;
-    -fx-alignment:CENTER_LEFT;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 30px;
 }
 
-.btnSecondary,.btnSecondary:armed,.btnSecondary:focused{
+.btnSecondary, .btnSecondary:armed, .btnSecondary:focused {
     -fx-background-color: #3fd59b;
-
+    -fx-background-radius: 30px;
 }
 
-.btnCamView{
+.btnCamView {
     -fx-background-color: #005a4e;
     -fx-background-radius: 20px;
     -fx-text-fill: white;
@@ -92,174 +93,174 @@
     -fx-font-size: 14px;
 }
 
-.btnCamView,.btnCamView:armed,.btnCamView:focused{
+.btnCamView, .btnCamView:armed, .btnCamView:focused {
     -fx-background-color: #005a4e;
 }
 
-.fx-hBoxMaintenance{
+.fx-hBoxMaintenance {
     -fx-background-color: white;
     -fx-background-radius: 4px;
     -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
     -fx-padding: 5 5 5 5;
 }
 
-.spBills{
+.spBills {
     -fx-background-color: #ababab;
     -fx-background-radius: 10px;
 }
 
-.fx-vBoxBills{
+.fx-vBoxBills {
     -fx-background-color: white;
     -fx-background-radius: 4px;
     -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
     -fx-padding: 5 5 5 5;
 }
 
-.btnAdmin>ImageView{
+.btnAdmin > ImageView {
     -fx-image: url("../resources/Admin.png");
 }
 
-.btnEmployee>ImageView{
+.btnEmployee > ImageView {
     -fx-image: url("../resources/Funcionario.png");
 }
 
-.btnUser>ImageView{
+.btnUser > ImageView {
     -fx-image: url("../resources/User.png");
 }
 
-.btnMaintenance>ImageView{
+.btnMaintenance > ImageView {
     -fx-image: url("../resources/mantenimiento.png")
 }
 
-.btnPrint>ImageView{
+.btnPrint > ImageView {
     -fx-image: url("../resources/imprimir.png")
 }
 
-.btnOpenAccounts>ImageView{
-     -fx-image: url("../resources/apertura.png")
+.btnOpenAccounts > ImageView {
+    -fx-image: url("../resources/apertura.png")
 }
 
-.btnDeposits>ImageView{
-      -fx-image: url("../resources/retiros.png")
+.btnDeposits > ImageView {
+    -fx-image: url("../resources/retiros.png")
 }
 
-.coinFive>ImageView{
+.coinFive > ImageView {
     -fx-image: url("../resources/CincoColones.png");
 }
 
-.coinTen>ImageView{
+.coinTen > ImageView {
     -fx-image: url("../resources/DiezColones.png");
 }
 
-.coinTFive>ImageView{
+.coinTFive > ImageView {
     -fx-image: url("../resources/VeinticincoColones.jpg");
 }
 
-.coinFifty>ImageView{
+.coinFifty > ImageView {
     -fx-image: url("../resources/CincuentaColones.png");
 }
 
-.coinOneH>ImageView{
+.coinOneH > ImageView {
     -fx-image: url("../resources/CienColones.png");
 }
 
-.coinFiveH>ImageView{
+.coinFiveH > ImageView {
     -fx-image: url("../resources/QuinientosColones.png");
 }
 
-.billOne>ImageView{
+.billOne > ImageView {
     -fx-image: url("../resources/UnRojo.jpg");
 }
 
-.billTwo>ImageView{
+.billTwo > ImageView {
     -fx-image: url("../resources/DosRojos.jpg");
 }
 
-.billFive>ImageView{
+.billFive > ImageView {
     -fx-image: url("../resources/CincoRojos.jpg");
 }
 
-.billTen>ImageView{
+.billTen > ImageView {
     -fx-image: url("../resources/DiezRojos.jpg");
 }
 
-.billTwenty>ImageView{
+.billTwenty > ImageView {
     -fx-image: url("../resources/VeinteRojos.jpg");
 }
 
-.btnDeleteUser>ImageView{
+.btnDeleteUser > ImageView {
     -fx-image: url("../resources/delete.png");
 }
 
-.btnSearch>ImageView{
+.btnSearch > ImageView {
     -fx-image: url("../resources/search.png");
 }
 
-.btnManteCoop>ImageView{
+.btnManteCoop > ImageView {
     -fx-image: url("../resources/manteCop.png");
 }
 
-.btnManteAcc>ImageView{
+.btnManteAcc > ImageView {
     -fx-image: url("../resources/manteCuen.png");
 }
 
-.btnTakePhoto>ImageView{
+.btnTakePhoto > ImageView {
     -fx-image: url("../resources/foto.png");
 }
 
-.btnTakeAgain>ImageView{
+.btnTakeAgain > ImageView {
     -fx-image: url("../resources/tomardenuevo.png");
 }
 
-.btnSave>ImageView{
+.btnSave > ImageView {
     -fx-image: url("../resources/Guardar.png");
 }
 
-.btnOff>ImageView{
+.btnOff > ImageView {
     -fx-image: url("../resources/apagar.png");
 }
 
-.btnChangeIcon>ImageView{
+.btnChangeIcon > ImageView {
     -fx-image: url("../resources/ChangeIcon.png");
 }
 
-.btnRequest>ImageView{
+.btnRequest > ImageView {
     -fx-image: url("../resources/Solicitud.png");
 }
 
-.btnPendingDeposits>ImageView{
+.btnPendingDeposits > ImageView {
     -fx-image: url("../resources/pendingDeposits.png");
 }
 
-.btnWithdraw>ImageView{
+.btnWithdraw > ImageView {
     -fx-image: url("../resources/retire.png");
 }
 
-.btnRegister>ImageView{
+.btnRegister > ImageView {
     -fx-image: url("../resources/register.png");
 }
 
-.btnNewPhoto>ImageView{
+.btnNewPhoto > ImageView {
     -fx-image: url("../resources/NewFoto.png");
 }
 
-.btnEdit>ImageView{
+.btnEdit > ImageView {
     -fx-image: url("../resources/Editar.png");
 }
 
-.btnAccept>ImageView{
+.btnAccept > ImageView {
     -fx-image: url("../resources/aceptar.png");
 }
 
-.btnExit>ImageView{
+.btnExit > ImageView {
     -fx-image: url("../resources/apagar.png");
 }
 
-.btnDecline>ImageView{
+.btnDecline > ImageView {
     -fx-image: url("../resources/rechazar.png");
 }
 
-.viewWorkers{
+.viewWorkers {
     -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
@@ -267,7 +268,7 @@
     -fx-opacity: 1;
 }
 
-.viewAdmin{
+.viewAdmin {
     -fx-background-image: url("../resources/AdminBackground.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
@@ -275,7 +276,7 @@
     -fx-opacity: 1;
 }
 
-.viewAssociate{
+.viewAssociate {
     -fx-background-image: url("../resources/FondoAsociate.jpeg");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
@@ -283,7 +284,7 @@
     -fx-opacity: 1;
 }
 
-.viewCamView{
+.viewCamView {
     -fx-background-image: url("../resources/FrameWebCam.png");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
@@ -291,7 +292,7 @@
     -fx-opacity: 1;
 }
 
-.viewPrincipal{
+.viewPrincipal {
     -fx-background-image: url("../resources/fondo.jpeg");
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;
@@ -299,16 +300,16 @@
     -fx-opacity: 1;
 }
 
-.button:hover{
+.button:hover {
     -fx-background-color: #986ecc;
     /*-fx-background-insets: 5,6,7;*/
 
     -fx-background-radius: 30px;
 }
 
-.button{
+.button {
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 10);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 10, 0, 0, 10);
 }
 
 .vboxLeft {
@@ -316,7 +317,7 @@
     -fx-border-color: #cccccc;
     -fx-border-width: 1px;
     -fx-border-radius: 2px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
 }
 
 .StackTop {
@@ -324,27 +325,27 @@
     -fx-border-color: #cccccc;
     -fx-border-width: 1px;
     -fx-border-radius: 0px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
 }
 
 
 @font-face {
-    -fx-font-family: 'ColoringKids', sans-serif , Arial, Helvetica;
+    -fx-font-family: 'ColoringKids', sans-serif, Arial, Helvetica;
     src: url("../resources/fonts/Coloringkids.ttf");
 }
 
 @font-face {
-    -fx-font-family: 'Aiyari', sans-serif , Arial, Helvetica;
+    -fx-font-family: 'Aiyari', sans-serif, Arial, Helvetica;
     src: url("../resources/fonts/Aiyari - Tropika Island Int.otf");
 }
 
 @font-face {
-        -fx-font-family: 'Onion', sans-serif , Arial, Helvetica;
+    -fx-font-family: 'Onion', sans-serif, Arial, Helvetica;
     src: url("../resources/fonts/Onion soup.ttf");
 }
 
 
-.labelInfo{
+.labelInfo {
     -fx-font-family: 'ColoringKids';
     -fx-font-size: 35px;
     -fx-text-fill: #ffffff;
@@ -355,7 +356,7 @@
     -fx-background-color: #dfeefb;
     -fx-background-radius: 20px;
     -fx-padding: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
 
 }
 
@@ -363,7 +364,7 @@
     -fx-background-color: #eaeaea;
     -fx-background-radius: 20px;
     -fx-padding: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
     -fx-font-family: 'ColoringKids';
     -fx-font-size: 20px;
 }
@@ -381,7 +382,7 @@
     -jfx-unfocus-color: transparent;
 }
 
-.adminImage{
+.adminImage {
     -fx-background-image: url("../resources/AdminImage.png");
     -fx-background-size: 40% 30%;
     -fx-opacity: 0;
@@ -420,7 +421,7 @@
     -fx-min-height: 90px;
 }
 
-.userCarnetPic{
+.userCarnetPic {
 
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
@@ -431,12 +432,12 @@
     -fx-min-height: 100px;
 }
 
-.userAccountsTable{
+.userAccountsTable {
 
     -fx-background-color: #eaeaea;
     -fx-background-radius: 20px;
     -fx-padding: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
     -fx-font-family: Arial;
     -fx-font-size: 11px;
 }
@@ -446,7 +447,7 @@
     -fx-background-color: #eaeaea;
     -fx-background-radius: 20px;
     -fx-padding: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 5, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
     -fx-font-family: Arial;
     -fx-font-size: 13px;
 
