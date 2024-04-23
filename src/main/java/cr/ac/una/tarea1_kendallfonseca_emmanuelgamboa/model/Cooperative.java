@@ -25,6 +25,8 @@ public class Cooperative {
 
     public Cooperative() {
         createFiles();
+        deletePhotoOnExit();
+        deletePhotoOnStartup();
     }
 
     public ObservableList<Associated> getAssociatedList() {
@@ -143,6 +145,33 @@ public class Cooperative {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void deletePhotoOnExit() {
+        String filePath = "userphotos/photo1.png";
+        File file = new File(filePath);
+
+        // Verificar si el archivo existe y es un archivo
+        if (file.exists() && file.isFile()) {
+            // Solicitar que el archivo se elimine cuando el programa finalice
+            file.deleteOnExit();
+
+        } else {
+        }
+    }
+
+    public void deletePhotoOnStartup() {
+        String filePath = "userphotos/photo1.png";
+        File file = new File(filePath);
+
+        // Verificar si el archivo existe y es un archivo
+        if (file.exists() && file.isFile()) {
+            // Eliminar el archivo
+            if (file.delete()) {
+            } else {
+            }
+        } else {
         }
     }
 }

@@ -3,6 +3,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,7 @@ public class WebCam {
     private final Webcam webcam;
     private BufferedImage lastImage;
     private final ImageView imageView;
+    private Image capturedImage;
     private boolean photoTaken = false;
     private Consumer<String> onImageCapturedListener;
 
@@ -54,41 +56,23 @@ public class WebCam {
 
     public void takePhoto() {
         if (lastImage != null) {
+            capturedImage = SwingFXUtils.toFXImage(lastImage, null);
             photoTaken = true;
+            lastImage = null; // Limpiar lastImage después de tomar la foto
         }
     }
+
     public void retakePhoto() {
         photoTaken = false;
     }
 
-    public void savePhoto() {
-        if (photoTaken) {
-            try {
-                String filePath = "userphotos/";
-                File folder = new File(filePath);
-                if (!folder.exists()) {
-                    folder.mkdirs();
-                }
 
-                int count = 1;
-                String fileName = "photo" + count + ".png";
-                File file = new File(folder, fileName);
-                while (file.exists()) {
-                    count++;
-                    fileName = "photo" + count + ".png";
-                    file = new File(folder, fileName);
-                }
 
-                ImageIO.write(lastImage, "PNG", file);
-                System.out.println("Photo saved successfully!");
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Failed to save photo!");
-            }
-        } else {
-            System.out.println("No photo taken to save!");
-        }
+    public Image getCapturedImage() {
+        return capturedImage;
     }
+
+
 
     public void stop() {
         webcam.close();
