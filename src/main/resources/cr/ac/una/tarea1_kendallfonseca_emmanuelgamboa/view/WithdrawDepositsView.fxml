@@ -16,19 +16,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="765.0" prefWidth="1218.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="765.0" prefWidth="1190.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.WithdrawDepositsController">
    <children>
-      <BorderPane layoutX="17.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="738.0" prefWidth="1242.0" styleClass="simplePanel">
+      <BorderPane layoutX="17.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="759.0" prefWidth="1170.0" styleClass="simplePanel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <center>
-            <StackPane prefHeight="701.0" prefWidth="965.0" BorderPane.alignment="TOP_LEFT">
+            <StackPane maxWidth="-Infinity" prefHeight="656.0" prefWidth="898.0" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <VBox maxWidth="-Infinity" prefHeight="701.0" prefWidth="964.0" StackPane.alignment="TOP_LEFT">
+                  <VBox maxWidth="-Infinity" prefHeight="656.0" prefWidth="900.0" StackPane.alignment="TOP_LEFT">
                      <children>
-                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
+                        <HBox maxWidth="-Infinity" prefHeight="186.0" prefWidth="896.0">
                            <children>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -40,7 +40,7 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -58,9 +58,9 @@
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefWidth="210.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -69,18 +69,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                          <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addFiveHundredC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="210.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -103,11 +103,11 @@
                               <Insets bottom="25.0" top="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
+                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="895.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -116,18 +116,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                          <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addFiveC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -136,18 +136,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                          <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addFiftyC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="210.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -156,18 +156,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="5.0" top="20.0" />
+                                          <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addOneBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="210.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -190,11 +190,11 @@
                               <Insets bottom="25.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="965.0">
+                        <HBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="895.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -203,18 +203,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                          <Insets bottom="10.0" left="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addTenC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -223,18 +223,18 @@
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="46.0" top="20.0" />
+                                          <Insets bottom="10.0" top="20.0" />
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addOneHundredC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="6.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" right="20.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                                  <styleClass>
                                     <String fx:value="fx-vBoxBills" />
@@ -247,14 +247,14 @@
                                        </VBox.margin></ImageView>
                                     <MFXSpinner fx:id="addTwoBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="8.0" top="10.0" />
+                                          <Insets top="10.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="209.0" stylesheets="@Styles.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="210.0" stylesheets="@Styles.css">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -264,7 +264,7 @@
                                     </ImageView>
                                     <MFXSpinner fx:id="addTwentyBill" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0">
                                        <VBox.margin>
-                                          <Insets left="8.0" top="18.0" />
+                                          <Insets top="18.0" />
                                        </VBox.margin>
                                     </MFXSpinner>
                                  </children>
@@ -287,11 +287,11 @@
             </StackPane>
          </center>
          <right>
-            <VBox maxHeight="-Infinity" prefHeight="700.0" prefWidth="245.0" BorderPane.alignment="CENTER">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="666.0" prefWidth="254.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="userDepositsList" prefHeight="566.0" prefWidth="230.0" styleClass="userTransactionsTable">
+                  <TableView fx:id="userDepositsList" prefHeight="485.0" prefWidth="233.0" styleClass="userTransactionsTable">
                      <VBox.margin>
-                        <Insets left="8.0" right="8.0" />
+                        <Insets left="8.0" right="5.0" />
                      </VBox.margin>
                   </TableView>
                   <Label fx:id="txtTotal" prefHeight="42.0" prefWidth="95.0" style="-fx-background-color: #F2F2F2;">
@@ -302,7 +302,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="246.0">
+                  <HBox alignment="CENTER" prefHeight="150.0" prefWidth="198.0">
                      <children>
                         <ImageView fx:id="droppedCoins" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -317,9 +317,9 @@
             </VBox>
          </right>
          <top>
-            <HBox alignment="CENTER" prefHeight="81.0" prefWidth="1226.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="69.0" prefWidth="1140.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="etiqueta" stylesheets="@Styles.css" text="Ingrese el número de folio">
+                  <Label styleClass="labelInfo" stylesheets="@Styles.css" text="Ingrese el número de folio:">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -327,12 +327,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtFolioSeaarch" prefHeight="33.0" prefWidth="169.0">
+                  <TextField fx:id="txtFolioSeaarch">
                      <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="10.0" right="10.0" top="8.0" />
                      </HBox.margin>
                   </TextField>
-                  <MFXButton fx:id="btnDepositsSearch" onAction="#handleSearchButtonAction" prefHeight="52.0" prefWidth="110.0" stylesheets="@Styles.css" text="Buscar">
+                  <MFXButton fx:id="btnDepositsSearch" onAction="#handleSearchButtonAction" stylesheets="@Styles.css" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -344,7 +344,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnWhithdraw" onAction="#onActionWithdraw" prefHeight="52.0" prefWidth="106.0" stylesheets="@Styles.css" text="Retiro">
+                  <MFXButton fx:id="btnWhithdraw" onAction="#onActionWithdraw" stylesheets="@Styles.css" text="Retiro">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -353,22 +353,10 @@
                         <String fx:value="btnWithdraw" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="10.0" right="50.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </MFXButton>
-                  <MFXButton fx:id="btnDepositsDelete" onAction="#handleDeleteButtonAction" prefHeight="52.0" prefWidth="117.0" stylesheets="@Styles.css" text="Eliminar">
-                     <HBox.margin>
-                        <Insets left="200.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="btnSecondary" />
-                        <String fx:value="btnDeleteUser" />
-                     </styleClass>
-                  </MFXButton>
-                  <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" prefHeight="44.0" prefWidth="124.0" stylesheets="@Styles.css" text="Solicitar">
+                  <MFXButton fx:id="btnDepositsRequest" onAction="#onActionRequest" stylesheets="@Styles.css" text="Solicitar">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
@@ -377,8 +365,20 @@
                         <String fx:value="btnRequest" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="40.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
+                  </MFXButton>
+                  <MFXButton fx:id="btnDepositsDelete" onAction="#handleDeleteButtonAction" stylesheets="@Styles.css" text="Eliminar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="btnSecondary" />
+                        <String fx:value="btnDeleteUser" />
+                     </styleClass>
                   </MFXButton>
                </children>
             </HBox>
