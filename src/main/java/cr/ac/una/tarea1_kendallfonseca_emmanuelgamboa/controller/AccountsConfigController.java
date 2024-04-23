@@ -1,38 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.AccountType;
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * FXML Controller class
- *
- * @author Kendall Fonseca
+ * Controller class for managing account configurations.
  */
 public class AccountsConfigController extends Controller implements Initializable {
 
@@ -54,26 +42,19 @@ public class AccountsConfigController extends Controller implements Initializabl
     @FXML
     private MFXButton btnDelete;
 
-
     private ObservableList<AccountType> accountTypes;
 
     private AppContext appContext;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         appContext = AppContext.getInstance();
         loadAccountTypes();
-
-
     }
 
     @Override
-    public void initialize() {
-
-
-    }
+    public void initialize() {}
 
     private void loadAccountTypes() {
         accountTypes = appContext.getAccountTypes();
@@ -84,11 +65,6 @@ public class AccountsConfigController extends Controller implements Initializabl
         tableTypesAccount.setItems(accountTypes);
     }
 
-    private void initializeTableView() {
-
-    }
-
-
     @FXML
     void onActionBtnDelete(ActionEvent event) {
         AccountType selectedAccountType = tableTypesAccount.getSelectionModel().getSelectedItem();
@@ -96,11 +72,10 @@ public class AccountsConfigController extends Controller implements Initializabl
             appContext.deleteAccountTypeFromJsonFile(selectedAccountType);
             accountTypes.remove(selectedAccountType);
             tableTypesAccount.setItems(accountTypes);
-        }else
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta para eliminar.");
+        }
     }
-
-
 
     @FXML
     void onActionBtnAdd(ActionEvent event) {
@@ -113,17 +88,9 @@ public class AccountsConfigController extends Controller implements Initializabl
                 txtNewAccountType.clear();
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
-        }else {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor ingrese un nombre para el tipo de cuenta.");
         }
     }
-
-
-
-
 }
-
-
-
