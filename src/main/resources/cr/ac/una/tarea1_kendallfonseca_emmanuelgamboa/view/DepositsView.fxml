@@ -50,7 +50,7 @@
                                  </graphic>
                                  <styleClass>
                                     <String fx:value="btnSecondary" />
-                                    <String fx:value="btn" />
+                                    <String fx:value="btnDecline" />
                                  </styleClass>
                               </MFXButton>
                            </children>

@@ -255,6 +255,10 @@
     -fx-image: url("../resources/apagar.png");
 }
 
+.btnDecline>ImageView{
+    -fx-image: url("../resources/rechazar.png");
+}
+
 .viewWorkers{
     -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
