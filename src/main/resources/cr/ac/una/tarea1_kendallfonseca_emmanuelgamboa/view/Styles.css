@@ -71,11 +71,12 @@
     -fx-cursor: hand;
     -jfx-button-type: RAISED;
     -fx-alignment:CENTER_LEFT;
+    -fx-background-radius: 30px;
 }
 
 .btnSecondary,.btnSecondary:armed,.btnSecondary:focused{
     -fx-background-color: #3fd59b;
-
+    -fx-background-radius: 30px;
 }
 
 .btnCamView{
