@@ -63,9 +63,34 @@ public class MovementsController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TableColumn<Account, Integer> balanceColumn = new TableColumn<>("Balance");
+        balanceColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
+        TableColumn<Account, String> currencyColumn = new TableColumn<>("Currency");
+        currencyColumn.setCellValueFactory(new PropertyValueFactory<>("currency"));
+
+        TableColumn<Account, String> accountTypeColumn = new TableColumn<>("Account Type");
+        accountTypeColumn.setCellValueFactory(new PropertyValueFactory<>("accountType"));
+
+        TableColumn<Account, String> accountHolderColumn = new TableColumn<>("Account Holder");
+        accountHolderColumn.setCellValueFactory(new PropertyValueFactory<>("accountHolder"));
+
+        TableColumn<Account, String> folioColumn = new TableColumn<>("Folio");
+        folioColumn.setCellValueFactory(new PropertyValueFactory<>("folio"));
+
+        tableViewAccounts.getColumns().addAll(balanceColumn, currencyColumn, accountTypeColumn, accountHolderColumn, folioColumn);
+
+        TableColumn<Deposits, String> accountTypeColumnMovements = new TableColumn<>("Account Type");
+        accountTypeColumnMovements.setCellValueFactory(new PropertyValueFactory<>("accountType"));
+
+        TableColumn<Deposits, String> folioColumnMovements = new TableColumn<>("Folio");
+        folioColumnMovements.setCellValueFactory(new PropertyValueFactory<>("folio"));
+
+        TableColumn<Deposits, Integer> amountColumn = new TableColumn<>("Amount");
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        tableViewMovements.getColumns().addAll(accountTypeColumnMovements, folioColumnMovements, amountColumn);
     }
-
 
     @Override
     public void initialize() {
@@ -113,6 +138,7 @@ public class MovementsController extends Controller implements Initializable {
         if (selectedAccount != null) {
             String folio = selectedAccount.getFolio();
             String accountType = selectedAccount.getAccountType();
+
             AccountUser accountUser = new AccountUser();
             ObservableList<Deposits> accountMovements = accountUser.getAccountMovements(folio, accountType);
             tableViewMovements.setItems(accountMovements);

@@ -44,7 +44,7 @@ public class DepositsController extends Controller implements Initializable {
         });
     }
 
-    // Define una cell para cada deposito
+    // Define a custom ListCell to display CheckBoxes for each deposit
     private static class CheckBoxListCell extends ListCell<Deposits> {
         private final CheckBox checkBox;
         private final Label label;
@@ -65,12 +65,12 @@ public class DepositsController extends Controller implements Initializable {
             if (empty || deposit == null) {
                 setGraphic(null);
             } else {
-
+                // Set the text of the label to display total amount and account type
                 label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta()+" | Folio del Asociado: "+deposit.getFolio());
                 checkBox.setSelected(deposit.isSelected());
 
                 HBox hbox = new HBox(checkBox, label);
-                hbox.setSpacing(10);
+                hbox.setSpacing(10); // Adjust spacing between checkBox and label
                 setGraphic(hbox);
             }
         }
@@ -98,13 +98,13 @@ public class DepositsController extends Controller implements Initializable {
     }
 
     private void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
-        AccountUser accountUser = AppContext.getInstance().getAccountUser();
-        Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
-        accountUser.realizarDeposito(folio, tipoCuenta, monto);
-        // Actualizar la lista de depósitos después de realizar el depósito
-        AppContext.getDeposits().removeIf(Deposits::isSelected);
-        accountUser.acceptDeposit(selectedDeposit, AppContext.getInstance().getAccounts());
-        loadDeposits();
+    AccountUser accountUser = AppContext.getInstance().getAccountUser();
+            Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
+            accountUser.realizarDeposito(folio, tipoCuenta, monto);
+            // Actualizar la lista de depósitos después de realizar el depósito
+            AppContext.getDeposits().removeIf(Deposits::isSelected);
+            accountUser.acceptDeposit(selectedDeposit, AppContext.getInstance().getAccounts());
+            loadDeposits();
     }
 
     @FXML
