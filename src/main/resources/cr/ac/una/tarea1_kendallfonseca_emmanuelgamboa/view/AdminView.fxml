@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="viewAdmin" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="viewAdmin" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AdminController">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="599.0" prefWidth="348.0" styleClass="vboxLeft" stylesheets="@Styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +42,7 @@
                   <String fx:value="btnManteAcc" />
                </styleClass>
             </MFXButton>
-            <MFXButton fx:id="btnDeposits" onAction="#onActionBtnDeposits" prefHeight="58.0" prefWidth="354.0" stylesheets="@Styles.css" text="Depositos Pendientes">
+            <MFXButton fx:id="btnDeposits" onAction="#onActionBtnDeposits" prefHeight="58.0" prefWidth="354.0" stylesheets="@Styles.css" text="Depositos y Retiros Pendientes">
                <VBox.margin>
                   <Insets left="10.0" right="20.0" top="40.0" />
                </VBox.margin>

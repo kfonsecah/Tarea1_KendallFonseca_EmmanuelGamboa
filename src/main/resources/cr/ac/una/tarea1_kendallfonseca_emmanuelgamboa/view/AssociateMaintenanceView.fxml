@@ -17,7 +17,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" onDragDetected="#loadLastUserPhoto" prefHeight="720.0" prefWidth="1146.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.AssociateMaintenanceController">
    <children>
-      <BorderPane layoutX="40.0" layoutY="38.0" prefHeight="720.0" prefWidth="1146.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="40.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1146.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <center>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" onDragDetected="#loadLastUserPhoto" prefHeight="659.0" prefWidth="1018.0" styleClass="simplePanel" BorderPane.alignment="CENTER">
                <BorderPane.margin>

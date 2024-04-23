@@ -48,7 +48,7 @@
                               <Insets bottom="10.0" left="15.0" top="10.0" />
                            </VBox.margin>
                         </MFXTextField>
-                        <MFXButton fx:id="btnRegister" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onActionBtnRegister" onMouseClicked="#loadLastUserPhoto" onMouseMoved="#loadLastUserPhoto" prefHeight="48.0" prefWidth="127.0" stylesheets="@Styles.css" text="Registrar">
+                        <MFXButton fx:id="btnRegister" onAction="#onActionBtnRegister" onMouseClicked="#loadLastUserPhoto" onMouseMoved="#loadLastUserPhoto" stylesheets="@Styles.css" text="Registrar">
                            <VBox.margin>
                               <Insets bottom="10.0" left="25.0" top="10.0" />
                            </VBox.margin>
