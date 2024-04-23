@@ -73,7 +73,7 @@
                         <Insets bottom="120.0" left="170.0" right="120.0" top="230.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="248.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imagePrev" fitHeight="248.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets top="220.0" />
                      </HBox.margin>

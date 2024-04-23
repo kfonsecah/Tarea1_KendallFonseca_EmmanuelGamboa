@@ -196,7 +196,6 @@ public class OpenAccountsController extends Controller implements Initializable 
             // Verificar si la cuenta tiene saldo mayor a 0
             Account accountToRemove = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
             if (accountToRemove.getBalance() == 0) {
-                // Remove the account from the JSON file only if the balance is 0
                 AppContext.removeAccountFromJsonFile(accountToRemove);
                 success = true;
             } else {
@@ -258,10 +257,8 @@ public class OpenAccountsController extends Controller implements Initializable 
                 Account newAccount = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
                 AppContext.addAccountToJsonFile(newAccount); // Agregar al archivo JSON
 
-                // Reload accounts after adding the new account
                 AppContext.loadAccountsFromJsonFile();
 
-                // Reload the associated accounts for the selected user
                 loadAssociatedAccounts(associated);
 
                 success = true;
@@ -272,19 +269,16 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
     private void updateListView() {
-        // Get the selected user
+
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         Associated associated = userSearchList.getItems().get(selectedIndex);
 
-        // Get the accounts of the selected user
         AccountUser accountUser = new AccountUser();
         ObservableList<Account> associatedAccounts = accountUser.getAccountsByFolio(associated.getFolio());
 
-        // Update the list of accounts with all accounts from the application context
         associatedAccounts.clear();
         associatedAccounts.addAll(AppContext.getAccounts());
 
-        // Refresh the ListView to reflect the changes
         userAccounts.refresh();
     }
 

@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
-
-
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 import javax.imageio.ImageIO;
 
@@ -18,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -27,7 +19,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
-
 
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
 
@@ -93,7 +84,7 @@ public class CardPrintingController extends Controller implements Initializable 
 
     @FXML
     private ImageView imageCardLogo;
-    
+
     @FXML
     private Label txtCardCooperativeName;
 

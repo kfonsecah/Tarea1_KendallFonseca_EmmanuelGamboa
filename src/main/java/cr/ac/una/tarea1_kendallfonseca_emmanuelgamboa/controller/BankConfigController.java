@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -125,4 +120,3 @@ public class BankConfigController extends Controller implements Initializable {
         }
     }
 }
-

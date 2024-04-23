@@ -4,7 +4,6 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,8 +51,7 @@ public class AssociateController extends Controller implements Initializable {
     }
 
     @Override
-    public void initialize() {
-    }
+    public void initialize() {}
 
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
@@ -71,7 +69,7 @@ public class AssociateController extends Controller implements Initializable {
 
             String companyName = cooperative.getName();
 
-           txtCooperativeName.setText(companyName);
+            txtCooperativeName.setText(companyName);
 
         }
     }
@@ -87,7 +85,4 @@ public class AssociateController extends Controller implements Initializable {
         stage.close();
     }
 
-
 }
-
-

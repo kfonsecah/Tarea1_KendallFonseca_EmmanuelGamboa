@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
@@ -39,12 +35,6 @@ import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 
-
-/**
- * FXML Controller class
- *
- * @author Kendall Fonseca
- */
 public class AssociateMaintenanceController extends Controller implements Initializable {
 
     @FXML
@@ -78,7 +68,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private ImageView userImage;
 
     @FXML
-    private TableView<Associated> userSearchList;
+    private TableView < Associated > userSearchList;
 
     @FXML
     private MFXTextField txtSearch;
@@ -87,16 +77,13 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnSearch;
 
     @FXML
-    private MFXComboBox<String> comboBoxFilter;
+    private MFXComboBox < String > comboBoxFilter;
 
     @FXML
     private MFXButton btnDeleteUser;
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Deshabilitar los botones de editar y eliminar al inicio
         btnEditImage.setDisable(true);
         btnDeleteUser.setDisable(true);
         btnAccept.setDisable(true);
@@ -104,14 +91,11 @@ public class AssociateMaintenanceController extends Controller implements Initia
         addAssociate.setDisable(true);
         btnNewPhoto.setDisable(true);
 
-        // Configurar la TableView y otros elementos
         configureTableView();
         comboBoxFilter.getItems().addAll("Todo", "Nombre", "Apellido", "Folio", "Edad");
         comboBoxFilter.setValue("Todo");
 
-        // Configurar el listener para la selección de elementos en la TableView
         userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            // Habilitar los botones de editar y eliminar si se selecciona un usuario
             btnEditImage.setDisable(newValue == null);
             btnDeleteUser.setDisable(newValue == null);
             btnAccept.setDisable(newValue == null);
@@ -121,27 +105,23 @@ public class AssociateMaintenanceController extends Controller implements Initia
     }
 
     private void configureTableView() {
-        // Create columns
-        TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
-        TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
-        TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
-        TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
+        TableColumn < Associated, String > folioColumn = new TableColumn < > ("Folio");
+        TableColumn < Associated, String > nameColumn = new TableColumn < > ("Nombre");
+        TableColumn < Associated, String > lastNameColumn = new TableColumn < > ("Apellido");
+        TableColumn < Associated, Integer > ageColumn = new TableColumn < > ("Edad");
 
-        // Set cell value factories
-        folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("assoName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("assoLastName"));
-        ageColumn.setCellValueFactory(new PropertyValueFactory<>("assoAge"));
+        folioColumn.setCellValueFactory(new PropertyValueFactory < > ("assoFolio"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory < > ("assoName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory < > ("assoLastName"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory < > ("assoAge"));
 
-        // Set columns
         userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
 
-        // Load data
         loadUsersToTableView();
     }
 
     private void loadUsersToTableView() {
-        ObservableList<Associated> asociados = AppContext.getAsociados();
+        ObservableList < Associated > asociados = AppContext.getAsociados();
         userSearchList.setItems(asociados);
 
         userSearchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -149,27 +129,22 @@ public class AssociateMaintenanceController extends Controller implements Initia
         });
     }
 
-
     @Override
-    public void initialize() {
-        // TODO
-    }
-
+    public void initialize() {}
 
     @FXML
     private void onActionBtnSearch(ActionEvent event) {
-
         String filter = comboBoxFilter.getValue();
         if (!txtSearch.getText().isEmpty()) {
-            ObservableList<Associated> filteredData = FXCollections.observableArrayList();
-            ObservableList<Associated> list = AppContext.getAsociados();
+            ObservableList < Associated > filteredData = FXCollections.observableArrayList();
+            ObservableList < Associated > list = AppContext.getAsociados();
 
             for (int i = 0; i < list.size(); i++) {
                 Associated data = list.get(i);
-                if(filter.equals("Todo")&& data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                if (filter.equals("Todo") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
-                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())){
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
                     filteredData.add(data);
                 } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
                     filteredData.add(data);
@@ -196,7 +171,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
             txtFolio.setText(selectedUser.getAssoFolio());
             txtAge.setText(String.valueOf(selectedUser.getAssoAge()));
 
-
             String imageFileName = selectedUser.getAssoFolio() + ".png";
             String imagePath = "userphotos/" + imageFileName;
             File imageFile = new File(imagePath);
@@ -204,8 +178,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
             if (imageFile.exists()) {
                 Image image = new Image(imageFile.toURI().toString());
                 userImage.setImage(image);
-            } else {
-
             }
         }
     }
@@ -272,7 +244,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
             selectedUser.setAssoAge(newAge);
 
             String newImagePath = selectedUser.getAssoPhoto();
-            if (newImagePath!= null &&!newImagePath.isEmpty()) {
+            if (newImagePath != null && !newImagePath.isEmpty()) {
                 String imageFileName = selectedUser.getAssoFolio() + ".png";
                 String destinationPath = "userphotos/" + imageFileName;
                 Path destination = new File(destinationPath).toPath();
@@ -288,7 +260,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 );
 
                 try {
-                   AppContext.addAssociatedToJsonFile(associatedData);
+                    AppContext.addAssociatedToJsonFile(associatedData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -308,9 +280,8 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
     private void updateTableView() {
 
-        ObservableList<Associated> asociados = AppContext.getAsociados();
+        ObservableList < Associated > asociados = AppContext.getAsociados();
 
-        // Update the TableView with the updated Associated objects
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         userSearchList.setItems(asociados);
         userSearchList.getSelectionModel().select(selectedIndex);
@@ -333,11 +304,9 @@ public class AssociateMaintenanceController extends Controller implements Initia
         AppContext appContext = AppContext.getInstance();
         AccountUser accountUser = new AccountUser();
 
-        // Obtener las cuentas asociadas al usuario que se desea eliminar
-        ObservableList<Account> userAccounts = accountUser.getAccountsByFolio(folio);
+        ObservableList < Account > userAccounts = accountUser.getAccountsByFolio(folio);
 
-        // Verificar si alguna cuenta asociada tiene un saldo mayor que cero
-        for (Account account : userAccounts) {
+        for (Account account: userAccounts) {
             if (account.getBalance() > 0) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Error");
@@ -347,19 +316,15 @@ public class AssociateMaintenanceController extends Controller implements Initia
             }
         }
 
-        // Eliminar todas las cuentas asociadas al usuario del archivo JSON
-        for (Account account : userAccounts) {
+        for (Account account: userAccounts) {
             accountUser.getAccountsObservableList().remove(account);
-            // Aquí es donde se elimina la cuenta del archivo JSON
             try {
                 accountUser.removeAccountFromJsonFile(account);
             } catch (IOException e) {
                 e.printStackTrace();
-                // Manejar el error de alguna manera
             }
         }
 
-        // Eliminar al usuario
         associatedData.setFolio(txtFolio.getText());
         String result = appContext.deleteAssociatedFromJsonFile(associatedData);
         userSearchList.getItems().remove(selectedIndex);
@@ -369,9 +334,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
         alert.setContentText(result);
         alert.showAndWait();
     }
-
-
-
 
     @FXML
     private void onActionDeleteAssociate(ActionEvent event) {
@@ -390,11 +352,11 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     void onActionAdd(ActionEvent event) {
         try {
-            if (txtName.getText().isEmpty()  || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
             } else if (userImage.getImage() == null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
-            } else  {
+            } else {
 
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "", "", "");
 
@@ -412,7 +374,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
                         associated.getIban()
                 );
 
-
                 AppContext.getAsociados().add(associated);
                 renameLastUserPhoto(associated.getAssoFolio());
                 updateTableView();
@@ -420,7 +381,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
                 try {
                     Associated.addAssociatedToJsonFile(associatedData);
-                    // Limpiar los campos de texto y la imagen
                     txtName.setText("");
                     txtLastName.setText("");
                     txtAge.setText("");
@@ -439,7 +399,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
             throw new RuntimeException(e);
         }
     }
-
 
     private void renameLastUserPhoto(String folio) {
         File photoFile = new File("userphotos/photo1.png");
@@ -484,9 +443,4 @@ public class AssociateMaintenanceController extends Controller implements Initia
         addAssociate.setDisable(false);
     }
 
-
 }
-
-
-
-

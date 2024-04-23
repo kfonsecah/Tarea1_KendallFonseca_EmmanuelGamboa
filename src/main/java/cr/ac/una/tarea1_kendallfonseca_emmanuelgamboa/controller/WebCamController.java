@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
@@ -27,6 +23,9 @@ public class WebCamController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnTakePhoto;
+
+    @FXML
+    private ImageView imagePrev;
 
     @FXML
     private MFXButton btnSavePhoto;
@@ -83,19 +82,15 @@ public class WebCamController extends Controller implements Initializable {
 
     }
 
-
     @FXML
     private void onActionBtnSavePhoto(ActionEvent event) {
         webcam.savePhoto();
         webcam.stop();
         new Mensaje().showModal(Alert.AlertType.INFORMATION, "Foto guardada", root.getScene().getWindow(), "La foto ha sido guardada con éxito");
         getStage().close();
-
     }
-
 
     @FXML
     private void onActionBtnStopCam(ActionEvent event) {
     }
 }
-
