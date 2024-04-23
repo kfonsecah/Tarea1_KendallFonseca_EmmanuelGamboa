@@ -125,9 +125,6 @@ public class AccountUser {
 
 
 
-
-
-
     public void acceptDeposit(Deposits deposit, ObservableList<Account> accounts) throws IOException {
         // Update the account balance
         for (Account account : accounts) {

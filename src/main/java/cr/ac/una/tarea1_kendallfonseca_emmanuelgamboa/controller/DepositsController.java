@@ -104,29 +104,28 @@ public class DepositsController extends Controller implements Initializable {
     void onActionAcceptDeposits(ActionEvent event) throws IOException {
         // Obtener el depósito seleccionado
         Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
-        System.out.println("Deposito seleccionado: "+selectedDeposit);
+        System.out.println("Deposito seleccionado: " + selectedDeposit);
         if (selectedDeposit != null) {
             // Realizar el depósito enviando la cantidad de moneda como monto
-            realizarDeposito(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
-
+            realizarDeposito(selectedDeposit);
         }
     }
 
-    private void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
+    private void realizarDeposito(Deposits selectedDeposit) {
         AccountUser accountUser = AppContext.getInstance().getAccountUser();
-        Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
 
         // Realizar el depósito
-        accountUser.realizarDeposito(folio, tipoCuenta, monto);
+        accountUser.realizarDeposito(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
 
         // Cambiar el estado inProcess del depósito seleccionado a false
-        if (selectedDeposit != null) {
-            accountUser.setDepositInProcessFalse(selectedDeposit);
+        if (pendingDeposits.getItems().contains(selectedDeposit)) {
+            selectedDeposit.setInProcess(false);
         }
 
         // Actualizar la lista de depósitos después de realizar el depósito
         loadDeposits();
     }
+
 
 
 
