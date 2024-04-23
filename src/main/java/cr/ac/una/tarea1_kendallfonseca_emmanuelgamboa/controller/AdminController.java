@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
@@ -13,7 +9,6 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,10 +18,9 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 
-import java.util.Random;
 
 public class AdminController extends Controller implements Initializable {
 
@@ -74,7 +68,6 @@ public class AdminController extends Controller implements Initializable {
         FlowController.getInstance().goView("AccountsConfigView");
     }
 
-
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 
@@ -86,12 +79,10 @@ public class AdminController extends Controller implements Initializable {
 
             String companyName = cooperative.getName();
 
-
             txtCooperativeName.setText(companyName);
 
         }
     }
-
 
     @FXML
     void onActionBtnDeposits(ActionEvent event) {
@@ -104,6 +95,3 @@ public class AdminController extends Controller implements Initializable {
         stage.close();
     }
 }
-
-
-

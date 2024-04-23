@@ -23,6 +23,20 @@ public class AccountUser {
         cuentasPorFolioYTipo = new HashMap<>();
         actualizarCuentasPorFolioYTipo();
     }
+    public ObservableList<Deposits> getAccountMovements(String folio, String type) throws IOException {
+        ObservableList<Deposits> movements = FXCollections.observableArrayList();
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("deposits.json");
+        if (file.exists()) {
+            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {});
+            for (Deposits deposit : deposits) {
+                if (deposit.getFolio().equals(folio) && deposit.getTipoCuenta().equals(type)) {
+                    movements.add(deposit);
+                }
+            }
+        }
+        return movements;
+    }
 
     public AccountUser(String userName) {
         this.userName = userName;
