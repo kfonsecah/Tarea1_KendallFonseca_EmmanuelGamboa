@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,13 +35,16 @@ public class MovementsController extends Controller implements Initializable {
     }
 
     @FXML
+    private TableView<?> TableViewMovements;
+
+    @FXML
     private MFXButton btnSearch;
 
     @FXML
     private AnchorPane root;
 
     @FXML
-    private TableView<?> tableViewMovements;
+    private TableView<?> tableViewAccounts;
 
     @FXML
     private Label txtAge;
@@ -55,7 +59,20 @@ public class MovementsController extends Controller implements Initializable {
     private Label txtName;
 
     @FXML
+    private MFXTextField txtSearch;
+
+    @FXML
     void onActionBtnSearch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionDetail(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionResumed(ActionEvent event) {
 
     }
 }

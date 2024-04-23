@@ -3,6 +3,8 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDateTime;
+
 
 public class Deposits {
 
@@ -14,11 +16,12 @@ public class Deposits {
     private String tipoMovimiento; // Nuevo atributo para el tipo de movimiento (retiro o depósito)
     private boolean inProcess;
     private Boolean selected;
+    private LocalDateTime dateTime;
 
 
 
 
-    public Deposits(int moneda, int cantidad, String folio, String tipoCuenta, boolean inProcess, String tipoMovimiento, boolean selected) {
+    public Deposits(int moneda, int cantidad, String folio, String tipoCuenta, boolean inProcess, String tipoMovimiento, boolean selected, LocalDateTime dateTime) {
         this.moneda = moneda;
         this.cantidad = cantidad;
         this.folio = folio;
@@ -26,6 +29,7 @@ public class Deposits {
         this.inProcess = true;
         this.tipoMovimiento = tipoMovimiento;
         this.selected = false;
+        this.dateTime = LocalDateTime.now(); // Inicializar con la fecha y hora actual
     }
 
     public Deposits() {
@@ -76,6 +80,14 @@ public class Deposits {
             // If null, return false or handle it in another appropriate way
             return false;
         }
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public void setInProcess(boolean inProcess) {
