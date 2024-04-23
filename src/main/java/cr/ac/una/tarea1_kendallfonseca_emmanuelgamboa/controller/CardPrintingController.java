@@ -17,10 +17,12 @@ import javax.imageio.ImageIO;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -243,11 +245,14 @@ public class CardPrintingController extends Controller implements Initializable 
             // Guardar el documento como un archivo PDF
             document.save("card_" + txtFolio.getText() + ".pdf");
             // Se guarda el documento PDF en el disco con el nombre "card" seguido del texto del campo de folio
+            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Exito", root.getScene().getWindow(), "El pdf con su Carnet ha sido creado correctamente");
+
         } catch (IOException e) {
             e.printStackTrace();
             // Si ocurre una excepción de entrada/salida, se imprime la pila de trazas de la excepción
         }
     }
+    //metodo para setear la info de la cooperativa
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 

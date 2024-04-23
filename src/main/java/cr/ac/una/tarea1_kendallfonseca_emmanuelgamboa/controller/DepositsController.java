@@ -44,7 +44,7 @@ public class DepositsController extends Controller implements Initializable {
         });
     }
 
-    // Definir una account Ceel para mostrar un CheckBox y un Label
+    // Definir una account Cell para mostrar un CheckBox y un Label
     private static class CheckBoxListCell extends ListCell<Deposits> {
         private final CheckBox checkBox;
         private final Label label;
