@@ -59,15 +59,6 @@
                   <Insets right="100.0" top="400.0" />
                </VBox.margin>
             </MFXButton>
-            <MFXButton fx:id="btnUserDeposits" layoutX="64.0" layoutY="100.0" onAction="#onActionBtnUserDeposits" stylesheets="@Styles.css" text="Dépositos">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-               <styleClass>
-                  <String fx:value="btnPrincipal" />
-                  <String fx:value="btnDeposits" />
-               </styleClass>
-            </MFXButton>
          </children>
       </VBox>
    </left>
