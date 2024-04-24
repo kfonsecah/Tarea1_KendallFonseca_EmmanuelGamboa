@@ -114,13 +114,14 @@ public class Associated {
 
     public String createFolio() {
         Random random = new Random();
-        char firstLetter = AssoName.charAt(0);
-        char firstLetterLT = AssoLastName.charAt(0);
+        char firstLetter = Character.toUpperCase(AssoName.charAt(0)); // Convertir primera letra del nombre a mayuscula
+        char firstLetterLT = Character.toUpperCase(AssoLastName.charAt(0)); // Convertir primera letra del apellido a mayuscula
         int randomNumber = random.nextInt(1000);
         String folio = String.valueOf(firstLetter) + String.valueOf(firstLetterLT) + String.format("%04d", randomNumber);
-        this.AssoFolio = folio;
-        return folio;
+        this.AssoFolio = folio.toUpperCase(); // Convertir el folio completo a mayusculas
+        return folio.toUpperCase();
     }
+
 
     public static class AssociatedData {
         public String name;

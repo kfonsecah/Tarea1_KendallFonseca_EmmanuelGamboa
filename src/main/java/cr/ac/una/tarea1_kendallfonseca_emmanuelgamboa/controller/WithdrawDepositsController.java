@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -69,6 +70,17 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @Override
     public void initialize() {
+
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String text = change.getText();
+            if (text.matches("[a-z]")) {
+                change.setText(text.toUpperCase());
+            }
+            return change;
+        };
+
+        txtFolioSeaarch.setTextFormatter(new TextFormatter<>(filter));
+
 
     }
 
@@ -139,6 +151,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
     private void configureSpinners() {
+
+
 
 
         //Crear los modelos de los spinners
@@ -293,28 +307,37 @@ public class WithdrawDepositsController extends Controller implements Initializa
         boolean monedaEncontrada = false;
 
         // Buscar el depósito correspondiente a la moneda
-        for (Deposits deposit : userDepositsList.getItems()) {
+        Iterator<Deposits> iterator = userDepositsList.getItems().iterator();
+        while (iterator.hasNext()) {
+            Deposits deposit = iterator.next();
             if (deposit.getMoneda() == moneda) {
                 monedaEncontrada = true;
-                if (newValue > oldValue) {
-                    deposit.setCantidad(newValue); // Actualizar la cantidad directamente
-                } else if (newValue < oldValue) {
-                    deposit.setCantidad(newValue); // Actualizar la cantidad directamente
+                if (newValue > 0) {
+                    // Actualizar la cantidad si la nueva cantidad es mayor que 0
+                    deposit.setCantidad(newValue);
+                } else {
+                    // Si la nueva cantidad es 0, eliminar la fila de la tabla
+                    iterator.remove();
                 }
                 break;
             }
         }
 
-        // Si no se encuentra la moneda y el nuevo valor es mayor que cero, agregar un nuevo depósito
+        // Si no se encuentra la moneda y la nueva cantidad es mayor que 0,
+        // agregar un nuevo depósito con la cantidad actual
         if (!monedaEncontrada && newValue > 0) {
-            // Crear un nuevo depósito con la moneda y la cantidad
             Deposits newDeposit = new Deposits(moneda, newValue, "", "", true, "", false, "");
             userDepositsList.getItems().add(newDeposit);
         }
 
+        // Refrescar la TableView para reflejar los cambios
+        userDepositsList.refresh();
+
         // Calcular el total después de actualizar la tabla
         calculateTotal();
     }
+
+
 
 
 
@@ -466,6 +489,10 @@ public class WithdrawDepositsController extends Controller implements Initializa
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el depósito.");
             e.printStackTrace();
         }
+        resetSpinners();
+        cleanTable();
+        userFolioList.getItems().clear();
+        updateTableWithNewAccount(selectedAccount);
     }
 
 

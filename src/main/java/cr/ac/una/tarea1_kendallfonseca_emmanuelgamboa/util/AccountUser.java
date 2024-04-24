@@ -23,12 +23,14 @@ public class AccountUser {
         cuentasPorFolioYTipo = new HashMap<>();
         actualizarCuentasPorFolioYTipo();
     }
+
     public ObservableList<Deposits> getAccountMovements(String folio, String type) throws IOException {
         ObservableList<Deposits> movements = FXCollections.observableArrayList();
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("deposits.json");
         if (file.exists()) {
-            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {});
+            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {
+            });
             for (Deposits deposit : deposits) {
                 if (deposit.getFolio().equals(folio) && deposit.getTipoCuenta().equals(type)) {
                     movements.add(deposit);
@@ -79,31 +81,50 @@ public class AccountUser {
         return cuentasPorFolioYTipo.getOrDefault(clave, FXCollections.observableArrayList());
     }
 
-    public void realizarDeposito(String folio, String tipoCuenta, int monto) {
-        String clave = folio + "_" + tipoCuenta;
-        ObservableList<Account> cuentas = cuentasPorFolioYTipo.get(clave);
-        if (cuentas == null || cuentas.isEmpty()) {
-            throw new IllegalArgumentException("No se encontraron cuentas asociadas con el folio y tipo de cuenta proporcionados.");
+    public void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
+        // Iterar sobre todas las cuentas disponibles
+        for (Account cuenta : accountsObservableList) {
+            // Verificar si la cuenta coincide con el folio y tipo de cuenta especificados
+            if (cuenta.getFolio().equals(folio) && cuenta.getAccountType().equals(tipoCuenta)) {
+                // Realizar el depósito en la cuenta encontrada
+                int saldoActual = (int) cuenta.getBalance();
+                int nuevoSaldo = saldoActual + monto;
+                cuenta.setBalance(nuevoSaldo);
+            }
         }
-        for (Account cuenta : cuentas) {
-            int saldoActual = (int) cuenta.getBalance();
-            int nuevoSaldo = saldoActual + monto;
-            cuenta.setBalance(nuevoSaldo);
-        }
+
         // Actualizar la lista observable después de realizar el depósito
-        accountsObservableList.setAll(cuentas);
-        // Escribir la información de la cuenta actualizada de vuelta al archivo JSON
         saveAccountsToJsonFile();
+
         // También actualizamos el contexto de la aplicación
         AppContext.getInstance().setAccountsObservableList(accountsObservableList);
     }
+
+
+    public void setDepositInProcessFalseForDeposit(Deposits deposit) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("deposits.json");
+        if (file.exists()) {
+            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {
+            });
+            for (Deposits d : deposits) {
+                if (d.equals(deposit)) {
+                    d.setInProcess(false);
+                    break;
+                }
+            }
+            objectMapper.writeValue(file, deposits);
+        }
+    }
+
 
     private void saveAccountsToJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File jsonFile = new File("accounts.json");
         try {
             // Read existing accounts from JSON file
-            List<Account> existingAccounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {});
+            List<Account> existingAccounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {
+            });
 
             // Update balances in existing accounts
             for (Account updatedAccount : accountsObservableList) {
@@ -122,7 +143,6 @@ public class AccountUser {
             e.printStackTrace();
         }
     }
-
 
 
     public void acceptDeposit(Deposits deposit, ObservableList<Account> accounts) throws IOException {
@@ -168,18 +188,24 @@ public class AccountUser {
 
 
     private void actualizarCuentasPorFolioYTipo() {
-        cuentasPorFolioYTipo.clear();
         for (Account account : accountsObservableList) {
             String clave = account.getFolio() + "_" + account.getAccountType();
-            cuentasPorFolioYTipo.putIfAbsent(clave, FXCollections.observableArrayList());
-            cuentasPorFolioYTipo.get(clave).add(account);
+            if (cuentasPorFolioYTipo.containsKey(clave)) {
+                cuentasPorFolioYTipo.get(clave).add(account);
+            } else {
+                ObservableList<Account> newList = FXCollections.observableArrayList();
+                newList.add(account);
+                cuentasPorFolioYTipo.put(clave, newList);
+            }
         }
     }
+
     public void removeAccountFromJsonFile(Account accountToRemove) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("accounts.json");
         if (file.exists()) {
-            List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {});
+            List<Account> accounts = objectMapper.readValue(file, new TypeReference<List<Account>>() {
+            });
             Iterator<Account> iterator = accounts.iterator();
             while (iterator.hasNext()) {
                 Account account = iterator.next();
@@ -196,7 +222,8 @@ public class AccountUser {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("deposits.json");
         if (file.exists()) {
-            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {});
+            List<Deposits> deposits = objectMapper.readValue(file, new TypeReference<List<Deposits>>() {
+            });
             for (Deposits d : deposits) {
                 if (d.equals(deposit)) {
                     d.setInProcess(false);
@@ -207,7 +234,31 @@ public class AccountUser {
         }
     }
 
+    public void realizarRetiro(String folio, String tipoCuenta, int monto) throws IOException {
 
+        for (Account cuenta : accountsObservableList) {
+            if (cuenta.getFolio().equals(folio) && cuenta.getAccountType().equals(tipoCuenta)) {
+                // Realizar el retiro en la cuenta encontrada
+                int saldoActual = (int) cuenta.getBalance();
+                int nuevoSaldo = saldoActual - monto;
+                if (nuevoSaldo >= 0) {
+                    cuenta.setBalance(nuevoSaldo);
+                    System.out.println("Retiro realizado correctamente. Nuevo saldo: " + nuevoSaldo);
+                } else {
+                    System.out.println("Error: Fondos insuficientes para realizar el retiro.");
+                }
+                break;
+            }
+        }
+
+        // Actualizar la lista observable después de realizar el retiro
+        saveAccountsToJsonFile();
+
+        // También actualizamos el contexto de la aplicación
+        AppContext.getInstance().setAccountsObservableList(accountsObservableList);
+
+
+    }
 }
 
 

@@ -425,5 +425,21 @@ public class AppContext {
     public AccountUser getAccountUser() {
         return new AccountUser();
     }
+
+    public static void removeDepositFromJsonFile(Deposits depositToRemove) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("deposits.json");
+        if (file.exists()) {
+            List<Deposits> deposits = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, Deposits.class));
+
+            // Iterar sobre todas los depósitos en el archivo JSON
+            deposits.removeIf(deposit -> deposit.equals(depositToRemove));
+
+            objectMapper.writeValue(file, deposits);
+        }
+    }
+
+
+
 }
 

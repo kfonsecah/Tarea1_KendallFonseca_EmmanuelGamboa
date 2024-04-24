@@ -11,25 +11,25 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.util.Callback;
 
 public class DepositsController extends Controller implements Initializable {
 
     @FXML
     private ListView<Deposits> pendingDeposits;
 
-    @FXML
-    private CheckBox ListCell;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadDeposits();
+    }
+
+    @Override
+    public void initialize() {
+
     }
 
     private void loadDeposits() {
@@ -39,98 +39,110 @@ public class DepositsController extends Controller implements Initializable {
         ObservableList<Deposits> filteredDeposits = allDeposits.filtered(Deposits::isInProcess);
 
         pendingDeposits.setItems(filteredDeposits);
-        pendingDeposits.setCellFactory(new Callback<ListView<Deposits>, ListCell<Deposits>>() {
+        pendingDeposits.setCellFactory(param -> new ListCell<Deposits>() {
+            private final Label label;
+
+            {
+                label = new Label();
+            }
+
             @Override
-            public ListCell<Deposits> call(ListView<Deposits> listView) {
-                return new CheckBoxListCell();
+            protected void updateItem(Deposits deposit, boolean empty) {
+                super.updateItem(deposit, empty);
+                if (empty || deposit == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta() + " | Folio del Asociado: " + deposit.getFolio() + " | " + deposit.getTipoMovimiento());
+
+                    // Establecer el color del texto basado en el tipo de movimiento
+                    if ("Deposito".equals(deposit.getTipoMovimiento())) {
+                        label.setStyle("-fx-text-fill: green;");
+                    } else if ("Retiro".equals(deposit.getTipoMovimiento())) {
+                        label.setStyle("-fx-text-fill: red;");
+                    } else {
+                        label.setStyle(""); // Revertir a color predeterminado
+                    }
+
+                    setGraphic(label);
+                }
             }
         });
     }
-
-
-    // Definir una account Ceel para mostrar un CheckBox y un Label
-    private static class CheckBoxListCell extends ListCell<Deposits> {
-        private final CheckBox checkBox;
-        private final Label label;
-
-        public CheckBoxListCell() {
-            checkBox = new CheckBox();
-            label = new Label();
-            checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-                if (getItem() != null) {
-                    getItem().setSelected(newValue);
-                }
-            });
-        }
-
-        @Override
-        protected void updateItem(Deposits deposit, boolean empty) {
-            super.updateItem(deposit, empty);
-            if (empty || deposit == null) {
-                setGraphic(null);
-            } else {
-                label.setText("Total: " + deposit.getMoneda() + " | Tipo de cuenta: " + deposit.getTipoCuenta() + " | Folio del Asociado: " + deposit.getFolio() + " | " + deposit.getTipoMovimiento());
-
-                // Establecer el color del texto basado en el tipo de movimiento
-                if ("Deposito".equals(deposit.getTipoMovimiento())) {
-                    label.setStyle("-fx-text-fill: green;");
-                } else if ("Retiro".equals(deposit.getTipoMovimiento())) {
-                    label.setStyle("-fx-text-fill: red;");
-                } else {
-                    label.setStyle(""); // Revertir a color predeterminado
-                }
-
-                checkBox.setSelected(deposit.isSelected());
-
-                HBox hbox = new HBox(checkBox, label);
-                hbox.setSpacing(10);
-                setGraphic(hbox);
-            }
-        }
-
-    }
-
-
-
-        @Override
-    public void initialize() {
-        // TODO
-    }
-
-    @FXML
-    private AnchorPane root;
 
     @FXML
     void onActionAcceptDeposits(ActionEvent event) throws IOException {
         // Obtener el depósito seleccionado
         Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
-        System.out.println("Deposito seleccionado: " + selectedDeposit);
+        System.out.println("Depósito seleccionado: " + selectedDeposit);
         if (selectedDeposit != null) {
-            // Realizar el depósito enviando la cantidad de moneda como monto
-            realizarDeposito(selectedDeposit);
+            if ("Deposito".equals(selectedDeposit.getTipoMovimiento())) {
+                // Realizar el depósito
+                realizarDeposito(selectedDeposit);
+            } else if ("Retiro".equals(selectedDeposit.getTipoMovimiento())) {
+                // Realizar el retiro
+                realizarRetiro(selectedDeposit);
+            }
+
+            // Eliminar el depósito de la lista de depósitos
+            AppContext.getDeposits().remove(selectedDeposit);
+
+            // Recargar la lista de depósitos
+            loadDeposits();
         }
     }
-
-    private void realizarDeposito(Deposits selectedDeposit) {
+    public void realizarRetiro(Deposits selectedDeposit) {
         AccountUser accountUser = AppContext.getInstance().getAccountUser();
 
-        // Realizar el depósito
-        accountUser.realizarDeposito(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
+        try {
+            // Realizar el retiro
+            accountUser.realizarRetiro(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
 
-        // Cambiar el estado inProcess del depósito seleccionado a false
-        if (pendingDeposits.getItems().contains(selectedDeposit)) {
-            selectedDeposit.setInProcess(false);
+            // Cambiar el estado inProcess del depósito seleccionado a false
+            accountUser.setDepositInProcessFalseForDeposit(selectedDeposit);
+
+            System.out.println("Retiro realizado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al realizar el retiro: " + e.getMessage());
         }
-
-        // Actualizar la lista de depósitos después de realizar el depósito
-        loadDeposits();
     }
 
+    public void realizarDeposito(Deposits selectedDeposit) {
+        AccountUser accountUser = AppContext.getInstance().getAccountUser();
 
+        try {
+            // Realizar el depósito
+            accountUser.realizarDeposito(selectedDeposit.getFolio(), selectedDeposit.getTipoCuenta(), selectedDeposit.getMoneda());
 
+            // Cambiar el estado inProcess del depósito seleccionado a false
+            accountUser.setDepositInProcessFalseForDeposit(selectedDeposit);
+
+            System.out.println("Depósito realizado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al realizar el depósito: " + e.getMessage());
+        }
+    }
 
     @FXML
     void onActionRemoveDeposits(ActionEvent event) {
-        // TODO
+        // Obtener el depósito seleccionado
+        Deposits selectedDeposit = pendingDeposits.getSelectionModel().getSelectedItem();
+        System.out.println("Deposito seleccionado: " + selectedDeposit);
+        if (selectedDeposit != null) {
+            try {
+                // Eliminar el depósito del archivo JSON
+                AppContext.removeDepositFromJsonFile(selectedDeposit);
+
+                // Eliminar el depósito de la lista de depósitos en memoria
+                AppContext.getDeposits().remove(selectedDeposit);
+
+                // Recargar la lista de depósitos
+                loadDeposits();
+                System.out.println("Depósito eliminado correctamente.");
+            } catch (IOException e) {
+                System.out.println("Error al eliminar el depósito: " + e.getMessage());
+            }
+        }
     }
+
 }
