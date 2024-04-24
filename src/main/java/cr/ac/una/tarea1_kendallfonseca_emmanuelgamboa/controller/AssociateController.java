@@ -39,6 +39,9 @@ public class AssociateController extends Controller implements Initializable {
     private MFXButton btnAccountStatements;
 
     @FXML
+    private MFXButton btnUserDeposits;
+
+    @FXML
     private MFXButton btnExit;
 
     @FXML
@@ -77,6 +80,11 @@ public class AssociateController extends Controller implements Initializable {
            txtCooperativeName.setText(companyName);
 
         }
+    }
+    @FXML
+    void onActionBtnUserDeposits(ActionEvent event) {
+        FlowController.getInstance().goView("WithdrawDepositeView");
+
     }
     @FXML
     void onActionBtnAccountStatements(ActionEvent event) {

@@ -27,7 +27,7 @@
                   <String fx:value="btnPrincipal" />
                   <String fx:value="btnRegister" />
                </styleClass></MFXButton>
-            <MFXButton fx:id="btnUserDeposits" onAction="#onAction" stylesheets="@Styles.css" text="Dépositos">
+            <MFXButton fx:id="btnUserDeposits" onAction="#onActionBtnUserDeposits" stylesheets="@Styles.css" text="Dépositos">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
