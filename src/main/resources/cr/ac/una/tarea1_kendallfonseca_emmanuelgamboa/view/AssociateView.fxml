@@ -27,7 +27,7 @@
                   <String fx:value="btnPrincipal" />
                   <String fx:value="btnRegister" />
                </styleClass></MFXButton>
-            <MFXButton fx:id="btnAccountStatements" onAction="#onActionBtnAccountStatements" stylesheets="@Styles.css" text="Estados de cuenta">
+            <MFXButton fx:id="btnUserDeposits" onAction="#onAction" stylesheets="@Styles.css" text="Dépositos">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
@@ -39,6 +39,18 @@
                   <String fx:value="btnDeposits" />
                </styleClass>
             </MFXButton>
+            <MFXButton fx:id="btnAccountStatements" onAction="#onActionBtnAccountStatements" stylesheets="@Styles.css" text="Estados de cuenta">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="btnPrincipal" />
+                  <String fx:value="btnStatements" />
+               </styleClass>
+            </MFXButton>
             <MFXButton fx:id="btnExit" onAction="#onActionBtnExit" styleClass="btnExit" text="Salir" translateY="-40.0">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
@@ -46,6 +58,15 @@
                <VBox.margin>
                   <Insets right="100.0" top="400.0" />
                </VBox.margin>
+            </MFXButton>
+            <MFXButton fx:id="btnUserDeposits" layoutX="64.0" layoutY="100.0" onAction="#onActionBtnUserDeposits" stylesheets="@Styles.css" text="Dépositos">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnPrincipal" />
+                  <String fx:value="btnDeposits" />
+               </styleClass>
             </MFXButton>
          </children>
       </VBox>

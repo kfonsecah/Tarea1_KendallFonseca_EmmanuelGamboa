@@ -3,13 +3,10 @@
     -fx-background-color: #a2d1f0;
     -fx-border-radius: 45px;
     -fx-cursor: hand;
-    -jfx-button-type: RAISED;
-    -mfx-button-type: RAISED;
     -fx-content-display: left;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
-    -fx-alignment: CENTER_LEFT;
     -fx-background-radius: 30px;
     -fx-padding: 10px 20px;
     -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
@@ -232,6 +229,10 @@
     -fx-image: url("../resources/pendingDeposits.png");
 }
 
+.btnStatements>ImageView{
+    -fx-image: url("../resources/states.png");
+}
+
 .btnWithdraw > ImageView {
     -fx-image: url("../resources/retire.png");
 }
@@ -303,7 +304,6 @@
 .button:hover {
     -fx-background-color: #986ecc;
     /*-fx-background-insets: 5,6,7;*/
-
     -fx-background-radius: 30px;
 }
 
