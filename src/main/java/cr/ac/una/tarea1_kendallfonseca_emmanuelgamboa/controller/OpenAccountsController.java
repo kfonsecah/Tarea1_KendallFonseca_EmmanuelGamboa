@@ -240,19 +240,17 @@ public class OpenAccountsController extends Controller implements Initializable 
             int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
             Associated associated = userSearchList.getItems().get(selectedIndex);
 
-            // Verificar si el usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0
-            boolean hasSameTypeAccountWithBalance = false;
+            // Verificar si el usuario ya tiene una cuenta del mismo tipo
+            boolean hasSameTypeAccount = false;
             for (Account account : userAccounts.getItems()) {
-                if (account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio()) && account.getBalance() > 0) {
-                    // Si el usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0, no permitir agregar otra cuenta
-                    System.out.println("El usuario ya tiene una cuenta del mismo tipo con saldo mayor a 0.");
-                    hasSameTypeAccountWithBalance = true;
+                if (account.getAccountType().equals(accountTypeName) && account.getFolio().equals(associated.getAssoFolio())) {
+                    hasSameTypeAccount = true;
                     break;
                 }
             }
 
-            if (!hasSameTypeAccountWithBalance) {
-                // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo con saldo mayor a 0
+            if (!hasSameTypeAccount) {
+                // Crear una nueva cuenta solo si el usuario no tiene una cuenta del mismo tipo
                 Account newAccount = new Account(0, "Colones", accountTypeName, associated.getAssoName(), associated.getAssoFolio());
                 AppContext.addAccountToJsonFile(newAccount); // Agregar al archivo JSON
 
@@ -261,6 +259,8 @@ public class OpenAccountsController extends Controller implements Initializable 
                 loadAssociatedAccounts(associated);
 
                 success = true;
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El usuario ya tiene una cuenta del mismo tipo.");
             }
         }
 
