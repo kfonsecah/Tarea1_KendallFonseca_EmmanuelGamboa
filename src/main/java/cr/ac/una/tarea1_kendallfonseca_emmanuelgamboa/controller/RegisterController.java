@@ -13,6 +13,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -26,6 +27,7 @@ import javafx.scene.image.Image;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.function.UnaryOperator;
 
 
 /**
@@ -60,8 +62,18 @@ public class RegisterController extends Controller implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb){
+
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String text = change.getText();
+            if (text.matches("\\d*")) {
+                return change;
+            }
+            return null;
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+        txtAge.setTextFormatter(textFormatter);
     }
 
     @Override

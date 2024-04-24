@@ -251,6 +251,13 @@ public class AccountUser {
             }
         }
 
+
+
+
+
+
+
+
         // Actualizar la lista observable después de realizar el retiro
         saveAccountsToJsonFile();
 

@@ -94,7 +94,7 @@
                                           </HBox>
                                           <HBox prefHeight="171.0" prefWidth="437.0">
                                              <children>
-                                                <ImageView fitHeight="138.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="userPhoto" fitHeight="138.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" />
                                                 <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
                                                    <children>
                                                       <Label text="Nombre:">

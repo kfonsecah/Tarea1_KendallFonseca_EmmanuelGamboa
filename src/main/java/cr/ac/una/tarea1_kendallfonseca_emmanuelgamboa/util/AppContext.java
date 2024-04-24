@@ -441,5 +441,18 @@ public class AppContext {
 
 
 
+    public Associated getAssociatedByFolio(String folio) {
+        ObservableList<Associated> associatedList = (ObservableList<Associated>) context.get("asociados");
+        if (associatedList != null) {
+            for (Associated associated : associatedList) {
+                if (associated.getAssoFolio().equals(folio)) {
+                    return associated;
+                }
+            }
+        }
+        return null; // Retorna null si no se encuentra el asociado con el folio dado
+    }
+
+
 }
 
