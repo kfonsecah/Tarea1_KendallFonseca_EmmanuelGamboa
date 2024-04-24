@@ -453,6 +453,14 @@ public class AppContext {
         return null; // Retorna null si no se encuentra el asociado con el folio dado
     }
 
+    //metodo para settear el nivel de ingreso del usuario admin, funcionario, asociado
+    public void setIncomeLevel(String incomeLevel) {
+        context.put("incomeLevel", incomeLevel);
+    }
+    public String getIncomeLevel() {
+        return (String) context.get("incomeLevel");
+    }
+
 
 }
 

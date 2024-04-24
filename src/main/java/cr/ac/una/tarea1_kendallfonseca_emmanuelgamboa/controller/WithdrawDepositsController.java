@@ -55,6 +55,10 @@ public class WithdrawDepositsController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        if (AppContext.getInstance().getIncomeLevel().equals("Associate")) {
+            btnWhithdraw.setDisable(true);
+        }
+
         // Ocultar el GIF
         droppedCoins.setVisible(false);
 
