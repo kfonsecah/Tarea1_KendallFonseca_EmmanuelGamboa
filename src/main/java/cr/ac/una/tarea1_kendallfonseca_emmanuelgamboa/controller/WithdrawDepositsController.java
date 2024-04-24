@@ -57,6 +57,8 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         if (AppContext.getInstance().getIncomeLevel().equals("Associate")) {
             btnWhithdraw.setVisible(false);
+        }else{
+            btnWhithdraw.setVisible(true);
         }
 
         // Ocultar el GIF

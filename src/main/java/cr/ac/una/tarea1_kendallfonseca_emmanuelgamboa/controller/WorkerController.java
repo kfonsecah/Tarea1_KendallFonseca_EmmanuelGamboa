@@ -65,6 +65,7 @@ public class WorkerController extends Controller implements Initializable {
         AppContext.readAssociatedsFromJsonFile();
         ObservableList<Associated> asociados = AppContext.getAsociados();
         System.out.println("Asociados list: " + asociados);
+        AppContext.getInstance().setIncomeLevel("Worker");
     }
 
     @Override
