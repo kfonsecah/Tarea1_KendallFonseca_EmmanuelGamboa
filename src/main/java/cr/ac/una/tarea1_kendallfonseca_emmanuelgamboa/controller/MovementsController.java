@@ -5,7 +5,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Deposits;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
-import io.github.palexdev.materialfx.controls.MFXButton;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,9 +30,6 @@ public class MovementsController extends Controller implements Initializable {
     private TableView<Deposits> TableViewMovements;
 
     @FXML
-    private MFXButton btnSearch;
-
-    @FXML
     private AnchorPane root;
 
     @FXML
@@ -45,20 +42,13 @@ public class MovementsController extends Controller implements Initializable {
     private Label txtFolio;
 
     @FXML
+    private MFXTextField txtSearch;
+
+    @FXML
     private Label txtLastName;
 
     @FXML
     private Label txtName;
-
-    @FXML
-    private MFXTextField txtSearch;
-
-
-    @FXML
-    private TableColumn<Deposits, Double> movementsColumn;
-
-
-
 
     @FXML
     private ImageView userPhoto;
@@ -81,20 +71,8 @@ public class MovementsController extends Controller implements Initializable {
                 userPhoto.setImage(image);
 
                 // Cargar las cuentas del usuario en la tableViewAccounts
-                tableViewAccounts.setItems(accountUser.getAccountsByFolio(folio));
-
-                // Obtener los movimientos asociados al folio y tipo de cuenta seleccionado
-                String tipoCuentaSeleccionado = ""; // Obtén el tipo de cuenta seleccionado
-                ObservableList<Deposits> movements = null;
-                try {
-                    movements = accountUser.getAccountMovements(folio, tipoCuentaSeleccionado);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                // Establecer los movimientos en la otra TableView
-                movementsColumn.setCellValueFactory(new PropertyValueFactory<>("amount")); // Ajusta el nombre de la propiedad según corresponda
-                TableViewMovements.setItems(movements);
+                ObservableList<Account> userAccounts = accountUser.getAccountsByFolio(folio);
+                tableViewAccounts.setItems(userAccounts);
             } else {
                 clearFields();
             }
@@ -111,7 +89,60 @@ public class MovementsController extends Controller implements Initializable {
         txtFolio.setText("");
         userPhoto.setImage(null);
         tableViewAccounts.getItems().clear();
+        TableViewMovements.getItems().clear();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Configurar las columnas de la TableViewMovements
+        TableColumn<Deposits, String> dateTimeColumn = new TableColumn<>("Fecha y Hora");
+        TableColumn<Deposits, Integer> monedaColumn = new TableColumn<>("Moneda");
+        TableColumn<Deposits, String> folioColumn = new TableColumn<>("Folio");
+        TableColumn<Deposits, String> tipoCuentaColumn = new TableColumn<>("Tipo de Cuenta");
+        TableColumn<Deposits, String> tipoMovimientoColumn = new TableColumn<>("Tipo de Movimiento");
+
+        // Asignar los valores de las propiedades de Deposits a las columnas
+        dateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("dateTimeString"));
+        monedaColumn.setCellValueFactory(new PropertyValueFactory<>("moneda"));
+        folioColumn.setCellValueFactory(new PropertyValueFactory<>("folio"));
+        tipoCuentaColumn.setCellValueFactory(new PropertyValueFactory<>("tipoCuenta"));
+        tipoMovimientoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoMovimiento"));
+
+        TableColumn<Account, String> accountNumberColumn = new TableColumn<>("Account Number");
+        TableColumn<Account, String> accountTypeColumn = new TableColumn<>("Account Type");
+        // Add more columns as needed
+
+        // Bind cell value factories to properties of the Account class
+        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
+        accountTypeColumn.setCellValueFactory(new PropertyValueFactory<>("accountType"));
+        // Add more cell value factories for additional columns
+
+        // Add columns to the tableViewAccounts
+        tableViewAccounts.getColumns().addAll(accountNumberColumn, accountTypeColumn);
+
+        // Agregar las columnas a la TableViewMovements
+        TableViewMovements.getColumns().addAll(dateTimeColumn, monedaColumn, folioColumn, tipoCuentaColumn, tipoMovimientoColumn);
+
+        // Establecer un listener para cargar los movimientos al seleccionar una cuenta
+        tableViewAccounts.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, selectedAccount) -> {
+            if (selectedAccount != null) {
+                String folio = selectedAccount.getFolio();
+                String tipoCuentaSeleccionado = selectedAccount.getAccountType();
+                try {
+                    AccountUser accountUser = new AccountUser();
+                    ObservableList<Deposits> movements = accountUser.getAccountMovements(folio, tipoCuentaSeleccionado);
+                    TableViewMovements.setItems(movements);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    @Override
+    public void initialize() {
+    }
+
+
 
     @FXML
     void onActionDetail(ActionEvent event) {
@@ -123,17 +154,4 @@ public class MovementsController extends Controller implements Initializable {
 
     }
 
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn<Account, String> colAccountNumber = new TableColumn<>("Número de Cuenta");
-        TableColumn<Account, String> colBalance = new TableColumn<>("Saldo");
-        colBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        tableViewAccounts.getColumns().addAll(colAccountNumber, colBalance);
-    }
-    @Override
-    public void initialize() {
-
-    }
 }

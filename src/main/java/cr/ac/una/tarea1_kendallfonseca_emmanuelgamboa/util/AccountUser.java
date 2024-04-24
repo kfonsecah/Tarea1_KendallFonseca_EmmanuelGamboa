@@ -53,6 +53,7 @@ public class AccountUser {
         actualizarCuentasPorFolioYTipo();
     }
 
+
     public String getUserName() {
         return userName;
     }
