@@ -83,7 +83,7 @@ public class AssociateController extends Controller implements Initializable {
     }
     @FXML
     void onActionBtnUserDeposits(ActionEvent event) {
-        FlowController.getInstance().goView("WithdrawDepositeView");
+        FlowController.getInstance().goView("WithdrawDepositsView");
 
     }
     @FXML
