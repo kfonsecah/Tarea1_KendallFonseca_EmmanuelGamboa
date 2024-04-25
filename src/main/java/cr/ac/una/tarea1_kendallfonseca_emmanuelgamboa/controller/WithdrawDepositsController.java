@@ -344,11 +344,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
 
-
-
-
-
-
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
        cleanTable();
@@ -391,41 +386,27 @@ public class WithdrawDepositsController extends Controller implements Initializa
                 accountUser = new AccountUser();
             }
 
-            // Obtener la lista de cuentas asociadas al folio
             accountsByFolioList = accountUser.getAccountsByFolio(folio);
 
             // Verificar si la lista no está vacía antes de agregarla a la tabla
             if (!accountsByFolioList.isEmpty()) {
-                // Limpiar la tabla antes de agregar nuevos elementos
                 userFolioList.getItems().clear();
-                // Agregar las cuentas a la tabla
                 userFolioList.setItems(accountsByFolioList);
-
-                // Refrescar la TableView para asegurarse de que se actualice en la interfaz de usuario
                 userFolioList.refresh();
 
-                // Habilitar los spinners ya que hay una cuenta seleccionada
                 enableSpinners(true);
 
-                // Habilitar el botón "Solicitar" ya que hay una cuenta seleccionada
                 btnDepositsRequest.setDisable(false);
             } else {
-                // Si no se encontraron cuentas, mostrar un mensaje
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "No se encontraron cuentas asociadas al folio proporcionado.");
 
-                // Deshabilitar los spinners ya que no hay una cuenta seleccionada
                 enableSpinners(false);
 
-                // Deshabilitar el botón "Solicitar" ya que no hay una cuenta seleccionada
                 btnDepositsRequest.setDisable(true);
             }
         } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, ingrese un folio antes de continuar.");
-
-            // Deshabilitar los spinners ya que no hay una cuenta seleccionada
             enableSpinners(false);
-
-            // Deshabilitar el botón "Solicitar" ya que no hay una cuenta seleccionada
             btnDepositsRequest.setDisable(true);
         }
     }
@@ -459,10 +440,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
         );
         timeline.play();
         Account selectedAccount = userFolioList.getSelectionModel().getSelectedItem();
-
-        // Verificar si hay una cuenta seleccionada y si el total es mayor que cero
         if (selectedAccount != null && getTotal() > 0) {
-            // Realizar el depósito
             makeDeposit(selectedAccount);
         } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, seleccione una cuenta y agregue al menos una moneda antes de continuar.");
@@ -477,7 +455,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
     private void makeDeposit(Account selectedAccount) {
-        // Obtener la fecha y hora actual como String
         String dateTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
         String folio = selectedAccount.getFolio();
@@ -487,7 +464,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
         // Crear un nuevo depósito con el total del depósito, el folio y el tipo de cuenta
         Deposits newDeposit = new Deposits(total, 1, folio, accountType, true, "Deposito", false, dateTimeString);
 
-        // Agregar el depósito al archivo JSON
         try {
             AppContext.addDepositToJsonFile(newDeposit);
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El depósito se realizó con éxito.");
@@ -510,45 +486,32 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         // Verificar si hay una cuenta seleccionada
         if (selectedAccount != null) {
-            // Obtener el total del retiro
             int total = getTotal();
-
-            // Verificar si el total es mayor que cero
             if (total > 0) {
-                // Obtener el saldo de la cuenta seleccionada
                 double accountBalance = selectedAccount.getBalance();
 
-                // Verificar si el total es mayor que el saldo de la cuenta
                 if (total > accountBalance) {
-                    // Mostrar un mensaje de error si el total es mayor que el saldo
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El total del retiro supera el saldo de la cuenta seleccionada.");
                 } else {
-                    // Realizar el retiro si el total es menor o igual que el saldo de la cuenta
                     makeWithdrawal(selectedAccount, total);
                 }
             } else {
-                // Mostrar un mensaje de error si el total es igual a cero
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "El total del retiro debe ser mayor que cero.");
             }
         } else {
-            // Mostrar un mensaje de error si no hay una cuenta seleccionada
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, seleccione una cuenta antes de realizar un retiro.");
         }
     }
 
 
     private void makeWithdrawal(Account selectedAccount, int total) {
-        // Obtener la fecha y hora actual como String
         String dateTimeString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-        // Obtener el folio y el tipo de cuenta de la cuenta seleccionada
         String folio = selectedAccount.getFolio();
         String accountType = selectedAccount.getAccountType();
 
-        // Crear un nuevo retiro con el total del retiro, el folio y el tipo de cuenta
         Deposits newWithdrawal = new Deposits(total, 1, folio, accountType, true, "Retiro", false, dateTimeString);
 
-        // Agregar el retiro al archivo JSON
         try {
             AppContext.addDepositToJsonFile(newWithdrawal);
             new Mensaje().showModal(Alert.AlertType.INFORMATION, "Éxito", root.getScene().getWindow(), "El retiro se realizó con éxito.");
@@ -556,8 +519,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ocurrió un error al realizar el retiro.");
             e.printStackTrace();
         }
-
-        // Limpiar la tabla y reiniciar los spinners
         resetSpinners();
         cleanTable();
         userFolioList.getItems().clear();

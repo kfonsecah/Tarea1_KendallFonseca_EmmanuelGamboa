@@ -19,7 +19,6 @@ import java.io.IOException;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.Mensaje;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
@@ -29,7 +28,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.WritableImage;
-
 
 import io.github.palexdev.materialfx.utils.SwingFXUtils;
 
@@ -119,22 +117,18 @@ public class CardPrintingController extends Controller implements Initializable 
     public void initialize(){
     }
     private void loadUsersToTableView() {
-        // Create columns
+
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
         TableColumn<Associated, String> nameColumn = new TableColumn<>("Nombre");
         TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
         TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
 
-        // Set cell value factories
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("assoName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("assoLastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("assoAge"));
-
-        // Set columns
         userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
 
-        // Load data
         ObservableList<Associated> asociados = AppContext.getAsociados();
         userSearchList.setItems(asociados);
 
@@ -179,7 +173,6 @@ public class CardPrintingController extends Controller implements Initializable 
 
         ObservableList<Associated> asociados = AppContext.getAsociados();
 
-        // Update the TableView with the updated Associated objects
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         userSearchList.setItems(asociados);
         userSearchList.getSelectionModel().select(selectedIndex);

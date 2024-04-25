@@ -33,7 +33,6 @@ public class AppContext {
         loadDepositsFromJsonFile();
     }
 
-    // Singleton Instance Management
     private static void createInstance() {
         if (INSTANCE == null) {
             synchronized (AppContext.class) {
@@ -81,8 +80,7 @@ public class AppContext {
         context.put(parameter, null);
     }
 
-
-    // CRUD Operations for Associated
+    //CRUD
     public static void readAssociatedsFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -151,7 +149,7 @@ public class AppContext {
     }
 
 
-    // CRUD Operations for Account Types
+    // CRUD
     public static void loadAccountTypesFromJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -232,7 +230,6 @@ public class AppContext {
         }
     }
 
-    // Getters for Associated and Account Types
     public static ObservableList<Associated> getAsociados() {
         ObservableList<Associated> associateds = (ObservableList<Associated>) context.get("asociados");
         if (associateds == null) {
@@ -311,7 +308,7 @@ public class AppContext {
             accounts = new ArrayList<>();
         }
 
-        // Inicializar la propiedad currency como SimpleStringProperty
+        // Inicializar la propiedad currency como SimpleStringProperty, el string normal no queria funcionar
         account.setCurrency(String.valueOf(new SimpleStringProperty(account.getCurrency())));
 
         accounts.add(account);
@@ -319,7 +316,6 @@ public class AppContext {
         objectMapper.writeValue(jsonFile, accounts);
     }
 
-    // Getters for Accounts
 
     public static ObservableList<Account> getAccounts() {
         ObservableList<Account> accounts = (ObservableList<Account>) context.get("accounts");
@@ -348,7 +344,7 @@ public class AppContext {
                 if (account.getAccountType().equals(accountToRemove.getAccountType()) && account.getFolio().equals(accountToRemove.getFolio())) {
                     iterator.remove(); // Eliminar la cuenta del usuario específico
                     System.out.println("Cuenta eliminada: " + account);
-                    break; // Salir del bucle después de eliminar la cuenta deseada
+                    break;
                 }
             }
 

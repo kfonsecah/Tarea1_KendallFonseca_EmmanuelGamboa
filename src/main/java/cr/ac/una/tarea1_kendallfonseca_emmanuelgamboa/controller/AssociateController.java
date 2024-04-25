@@ -4,11 +4,9 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.App;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import javafx.fxml.Initializable;

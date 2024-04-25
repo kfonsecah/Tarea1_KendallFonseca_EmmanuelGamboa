@@ -26,9 +26,6 @@ public class Account {
         this.Folio = folio;
     }
 
-
-
-
     public int getBalance() {
         return balance;
     }

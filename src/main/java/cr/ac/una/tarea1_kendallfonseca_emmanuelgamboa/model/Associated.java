@@ -17,9 +17,6 @@ public class Associated {
     public String AssoFolio;
     private String iban;
 
-    //list for the accounts
-
-
     public Associated() {
     }
     public Associated(String name, String lastName, int age, String folio, String photo, String iban) {
@@ -121,7 +118,6 @@ public class Associated {
         this.AssoFolio = folio.toUpperCase(); // Convertir el folio completo a mayusculas
         return folio.toUpperCase();
     }
-
 
     public static class AssociatedData {
         public String name;

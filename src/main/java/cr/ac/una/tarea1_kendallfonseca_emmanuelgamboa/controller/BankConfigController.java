@@ -4,8 +4,6 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.net.URL;
@@ -23,13 +21,11 @@ import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import java.io.File;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**

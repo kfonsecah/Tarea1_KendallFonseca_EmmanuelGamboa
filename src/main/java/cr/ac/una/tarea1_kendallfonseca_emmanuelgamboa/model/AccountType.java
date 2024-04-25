@@ -3,13 +3,11 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model;
 import java.io.*;
 import java.util.Objects;
 
-
 public class AccountType {
     private String name;
 
 
     public AccountType() {
-
     }
 
     public AccountType(String name) {

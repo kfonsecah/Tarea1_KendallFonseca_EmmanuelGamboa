@@ -59,8 +59,6 @@ public class RegisterController extends Controller implements Initializable {
     private ImageView userPhotoPrev;
 
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb){
 

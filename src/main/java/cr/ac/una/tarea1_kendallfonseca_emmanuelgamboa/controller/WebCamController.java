@@ -45,8 +45,6 @@ public class WebCamController extends Controller implements Initializable {
     @FXML
     private AnchorPane root;
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

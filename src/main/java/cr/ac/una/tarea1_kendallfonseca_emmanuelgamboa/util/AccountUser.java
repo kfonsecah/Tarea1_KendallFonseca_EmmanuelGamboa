@@ -85,19 +85,13 @@ public class AccountUser {
     public void realizarDeposito(String folio, String tipoCuenta, int monto) throws IOException {
         // Iterar sobre todas las cuentas disponibles
         for (Account cuenta : accountsObservableList) {
-            // Verificar si la cuenta coincide con el folio y tipo de cuenta especificados
             if (cuenta.getFolio().equals(folio) && cuenta.getAccountType().equals(tipoCuenta)) {
-                // Realizar el depósito en la cuenta encontrada
                 int saldoActual = (int) cuenta.getBalance();
                 int nuevoSaldo = saldoActual + monto;
                 cuenta.setBalance(nuevoSaldo);
             }
         }
-
-        // Actualizar la lista observable después de realizar el depósito
         saveAccountsToJsonFile();
-
-        // También actualizamos el contexto de la aplicación
         AppContext.getInstance().setAccountsObservableList(accountsObservableList);
     }
 
@@ -118,16 +112,12 @@ public class AccountUser {
         }
     }
 
-
     private void saveAccountsToJsonFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File jsonFile = new File("accounts.json");
         try {
-            // Read existing accounts from JSON file
             List<Account> existingAccounts = objectMapper.readValue(jsonFile, new TypeReference<List<Account>>() {
             });
-
-            // Update balances in existing accounts
             for (Account updatedAccount : accountsObservableList) {
                 for (Account existingAccount : existingAccounts) {
                     if (existingAccount.getFolio().equals(updatedAccount.getFolio()) && existingAccount.getAccountType().equals(updatedAccount.getAccountType())) {
@@ -136,8 +126,7 @@ public class AccountUser {
                     }
                 }
             }
-
-            // Write the updated accounts back to the JSON file
+            //REESCRIBIRLAS DE NUEVO
             objectMapper.writeValue(jsonFile, existingAccounts);
         } catch (IOException e) {
             System.out.println("Error saving accounts to JSON file: " + e.getMessage());
@@ -145,9 +134,7 @@ public class AccountUser {
         }
     }
 
-
     public void acceptDeposit(Deposits deposit, ObservableList<Account> accounts) throws IOException {
-        // Update the account balance
         for (Account account : accounts) {
             if (account.getAccountType().equals(deposit.getTipoCuenta()) && account.getFolio().equals(deposit.getFolio())) {
                 account.setBalance((int) (account.getBalance() + deposit.getMoneda()));
@@ -155,8 +142,6 @@ public class AccountUser {
                 break;
             }
         }
-
-
         removeDepositFromJsonFile(deposit);
         AppContext.addDepositToJsonFile(deposit);
     }
@@ -170,23 +155,20 @@ public class AccountUser {
             });
             System.out.println("Deposits before removal: " + deposits);
 
-            // Iterate over all deposits in the JSON file
+    //iterar sobre todos los depositos
             Iterator<Deposits> iterator = deposits.iterator();
             while (iterator.hasNext()) {
                 Deposits deposit = iterator.next();
-                // Check if the deposit matches the deposit to remove
                 if (deposit.getTipoCuenta().equals(depositToRemove.getTipoCuenta()) && deposit.getFolio().equals(depositToRemove.getFolio()) && deposit.getMoneda() == depositToRemove.getMoneda()) {
-                    iterator.remove(); // Remove the deposit from the list
+                    iterator.remove();
                     System.out.println("Deposit removed: " + deposit);
-                    break; // Exit the loop after removing the deposit
+                    break;
                 }
             }
-
             objectMapper.writeValue(file, deposits);
             System.out.println("Deposits after removal: " + deposits);
         }
     }
-
 
     private void actualizarCuentasPorFolioYTipo() {
         for (Account account : accountsObservableList) {
@@ -251,20 +233,8 @@ public class AccountUser {
                 break;
             }
         }
-
-
-
-
-
-
-
-
-
-
-        // Actualizar la lista observable después de realizar el retiro
+        // Actualizar la lista observable despues de realizar el retiro
         saveAccountsToJsonFile();
-
-        // También actualizamos el contexto de la aplicación
         AppContext.getInstance().setAccountsObservableList(accountsObservableList);
 
 

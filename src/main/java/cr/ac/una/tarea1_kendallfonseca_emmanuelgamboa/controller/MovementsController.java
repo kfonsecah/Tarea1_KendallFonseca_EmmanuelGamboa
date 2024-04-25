@@ -85,8 +85,6 @@ public class MovementsController extends Controller implements Initializable {
         }
     }
 
-
-
     private void clearFields() {
         txtName.setText("");
         txtLastName.setText("");
@@ -117,7 +115,6 @@ public class MovementsController extends Controller implements Initializable {
         TableColumn<Deposits, String> tipoCuentaColumn = new TableColumn<>("Tipo de Cuenta");
         TableColumn<Deposits, String> tipoMovimientoColumn = new TableColumn<>("Tipo de Movimiento");
 
-        // Asignar los valores de las propiedades de Deposits a las columnas
         dateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("dateTimeString"));
         monedaColumn.setCellValueFactory(new PropertyValueFactory<>("moneda"));
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("folio"));
@@ -203,30 +200,21 @@ public class MovementsController extends Controller implements Initializable {
         // Eliminar todas las columnas existentes
         TableViewMovements.getColumns().clear();
 
-        // Crear las nuevas columnas para la TableViewMovements
         TableColumn<Deposits, Integer> monedaColumn = new TableColumn<>("Moneda");
         TableColumn<Deposits, String> tipoCuentaColumn = new TableColumn<>("Tipo de Cuenta");
         TableColumn<Deposits, String> tipoMovimientoColumn = new TableColumn<>("Tipo de Movimiento");
 
-        // Asignar las propiedades de celda para mostrar la moneda, tipo de cuenta y tipo de movimiento
         monedaColumn.setCellValueFactory(new PropertyValueFactory<>("moneda"));
         tipoCuentaColumn.setCellValueFactory(new PropertyValueFactory<>("tipoCuenta"));
         tipoMovimientoColumn.setCellValueFactory(new PropertyValueFactory<>("tipoMovimiento"));
 
-        // Agregar las columnas a la TableViewMovements
         TableViewMovements.getColumns().addAll(monedaColumn, tipoCuentaColumn, tipoMovimientoColumn);
 
-        // Obtener la lista de movimientos seleccionados
         ObservableList<Deposits> selectedMovements = TableViewMovements.getItems();
 
-        // Limpiar la selección actual
         TableViewMovements.getSelectionModel().clearSelection();
 
-        // Seleccionar todos los movimientos
         TableViewMovements.getSelectionModel().selectAll();
     }
-
-
-
 
 }

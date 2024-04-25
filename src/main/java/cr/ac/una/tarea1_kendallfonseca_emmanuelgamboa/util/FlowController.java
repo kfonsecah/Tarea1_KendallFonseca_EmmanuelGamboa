@@ -196,8 +196,6 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        //stage.getIcons().add(new Image("cr/ac/una/tareaprogra/resources/logo.png"));
-        //stage.setTitle("UNA PLANILLA");
 
         stage.getIcons().clear();
 

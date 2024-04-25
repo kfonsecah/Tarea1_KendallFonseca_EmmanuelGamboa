@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Deposits {
+
     private String dateTimeString; // Campo para la fecha y hora como String
 
     private int moneda;
@@ -52,12 +53,10 @@ public class Deposits {
         return tipoCuenta;
     }
 
-    // Nuevo método para obtener el tipo de movimiento
     public String getTipoMovimiento() {
         return tipoMovimiento;
     }
 
-    // Nuevo método para establecer el tipo de movimiento
     public void setTipoMovimiento(String tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
     }

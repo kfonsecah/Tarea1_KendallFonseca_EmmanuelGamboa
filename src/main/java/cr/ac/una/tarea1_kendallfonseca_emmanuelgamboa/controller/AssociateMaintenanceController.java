@@ -127,16 +127,14 @@ public class AssociateMaintenanceController extends Controller implements Initia
         TableColumn<Associated, String> lastNameColumn = new TableColumn<>("Apellido");
         TableColumn<Associated, Integer> ageColumn = new TableColumn<>("Edad");
 
-        // Set cell value factories
         folioColumn.setCellValueFactory(new PropertyValueFactory<>("assoFolio"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("assoName"));
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("assoLastName"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("assoAge"));
 
-        // Set columns
+
         userSearchList.getColumns().addAll(folioColumn, nameColumn, lastNameColumn, ageColumn);
 
-        // Load data
         loadUsersToTableView();
     }
 
@@ -310,7 +308,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
         ObservableList<Associated> asociados = AppContext.getAsociados();
 
-        // Update the TableView with the updated Associated objects
         int selectedIndex = userSearchList.getSelectionModel().getSelectedIndex();
         userSearchList.setItems(asociados);
         userSearchList.getSelectionModel().select(selectedIndex);
@@ -355,7 +352,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 accountUser.removeAccountFromJsonFile(account);
             } catch (IOException e) {
                 e.printStackTrace();
-                // Manejar el error de alguna manera
             }
         }
 
@@ -369,9 +365,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
         alert.setContentText(result);
         alert.showAndWait();
     }
-
-
-
 
     @FXML
     private void onActionDeleteAssociate(ActionEvent event) {

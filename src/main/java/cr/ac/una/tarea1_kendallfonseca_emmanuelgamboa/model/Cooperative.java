@@ -164,10 +164,7 @@ public class Cooperative {
     public void deletePhotoOnStartup() {
         String filePath = "userphotos/photo1.png";
         File file = new File(filePath);
-
-        // Verificar si el archivo existe y es un archivo
         if (file.exists() && file.isFile()) {
-            // Eliminar el archivo
             if (file.delete()) {
             } else {
             }
