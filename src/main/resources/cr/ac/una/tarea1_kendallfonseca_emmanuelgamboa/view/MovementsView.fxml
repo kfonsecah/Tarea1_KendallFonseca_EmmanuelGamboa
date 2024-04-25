@@ -98,52 +98,56 @@
                                                    <HBox.margin>
                                                       <Insets top="20.0" />
                                                    </HBox.margin></ImageView>
-                                                <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="fx-vBoxBills">
                                                    <children>
-                                                      <Label text="Nombre:">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Apellido:">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Edad:">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label text="Folio:" />
+                                                      <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
+                                                         <children>
+                                                            <Label text="Nombre:">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="Apellido:">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="Edad:">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="Folio:" />
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets left="30.0" />
+                                                         </HBox.margin>
+                                                      </VBox>
+                                                      <VBox prefHeight="171.0" prefWidth="66.0">
+                                                         <children>
+                                                            <Label fx:id="txtName">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="txtLastName">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="txtAge">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="30.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="txtFolio" />
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                      </VBox>
                                                    </children>
-                                                   <HBox.margin>
-                                                      <Insets left="30.0" />
-                                                   </HBox.margin>
-                                                </VBox>
-                                                <VBox prefHeight="171.0" prefWidth="66.0">
-                                                   <children>
-                                                      <Label fx:id="txtName">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label fx:id="txtLastName">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label fx:id="txtAge">
-                                                         <VBox.margin>
-                                                            <Insets bottom="30.0" />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label fx:id="txtFolio" />
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets left="30.0" />
-                                                   </HBox.margin>
-                                                </VBox>
+                                                </HBox>
                                              </children>
                                           </HBox>
                                        </children>
