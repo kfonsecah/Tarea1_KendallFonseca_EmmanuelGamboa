@@ -25,7 +25,7 @@ public class App extends Application {
         // Permitir el redimensionamiento de la ventana
         stage.setResizable(true);
 
-        // Inicializar el flujo de la aplicación y establecer la vista principal
+        // Inicializar el flujo de la aplicacion y establecer la vista principal
         FlowController.getInstance().InitializeFlow(stage, null);
 
         if (accessParameter.equals("A")) {
@@ -44,7 +44,8 @@ public class App extends Application {
             scene.setFill(null); // Opcional: Hacer que el fondo de la escena sea transparente
             stage.sizeToScene(); // Ajustar el tamaño de la ventana a la escena
         }
-
+        stage.setWidth(1420);
+        stage.setHeight(920);
         // Mostrar la ventana
         stage.show();
     }
