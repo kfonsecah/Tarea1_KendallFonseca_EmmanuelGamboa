@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.util.Currency;
 import java.util.ResourceBundle;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -79,16 +78,13 @@ public class SavingsCalculatorController extends Controller implements Initializ
         String deposit = comboBoxDeposits.getSelectionModel().getSelectedItem();
         String time = comboBoxTime.getSelectionModel().getSelectedItem();
 
-        // Reemplazar el separador decimal por un punto y eliminar el símbolo de moneda
         deposit = deposit.replace("₡", "").replace(",", "");
 
-        // Parsear el valor del depósito utilizando NumberFormat
         NumberFormat format = NumberFormat.getNumberInstance(Locale.forLanguageTag("cr-CR"));
         Number number = null;
         try {
             number = format.parse(deposit);
         } catch (ParseException e) {
-            // Manejar la excepción si el valor no se puede parsear
             System.out.println("Error al parsear el valor del depósito");
         }
 
