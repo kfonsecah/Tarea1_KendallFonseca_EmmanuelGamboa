@@ -185,7 +185,6 @@ public class CardPrintingController extends Controller implements Initializable 
             txtFolio.setText(selectedUser.getAssoFolio());
             txtAge.setText(String.valueOf(selectedUser.getAssoAge()));
 
-
             String imageFileName = selectedUser.getAssoFolio() + ".png";
             String imagePath = "userphotos/" + imageFileName;
             File imageFile = new File(imagePath);
