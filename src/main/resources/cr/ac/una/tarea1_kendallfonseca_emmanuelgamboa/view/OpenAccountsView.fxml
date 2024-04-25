@@ -15,74 +15,92 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="721.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
-   <children>
-      <BorderPane layoutX="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="722.0" prefWidth="970.0" styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="479.0" prefWidth="945.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="359.0" prefWidth="934.0">
-                     <children>
-                        <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes" onDragDropped="#onDragDroppedAccountTypes" onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0" styleClass="listTableView" stylesheets="@Styles.css">
-                           <HBox.margin>
-                              <Insets bottom="40.0" top="40.0" />
-                           </HBox.margin>
-                        </ListView>
-                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="275.0" prefWidth="3.0">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Separator>
-                        <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts" onDragDropped="#onDragDroppedUserAccounts" onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0" styleClass="listTableView" stylesheets="@Styles.css">
-                           <HBox.margin>
-                              <Insets bottom="40.0" top="40.0" />
-                           </HBox.margin>
-                        </ListView>
-                     </children>
-                  </HBox>
-               </children>
-            </StackPane>
-         </center>
-         <top>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="243.0" prefWidth="911.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="94.0" prefWidth="758.0">
-                     <children>
-                        <MFXComboBox fx:id="comboBoxFilter">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </MFXComboBox>
-                        <MFXTextField fx:id="txtSearch" prefHeight="10.0" prefWidth="140.0">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </MFXTextField>
-                        <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" stylesheets="@Styles.css" text="Aceptar">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="btnSecondary" />
-                              <String fx:value="btnAccept" />
-                           </styleClass>
-                        </MFXButton>
-                     </children>
-                  </HBox>
-                  <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="923.0" styleClass="listTableView" stylesheets="@Styles.css">
-                     <VBox.margin>
-                        <Insets left="40.0" right="60.0" />
-                     </VBox.margin>
-                  </TableView>
-               </children>
-            </VBox>
-         </top>
-      </BorderPane>
-   </children>
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="721.0" prefWidth="953.0"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.OpenAccountsController">
+    <children>
+        <BorderPane layoutX="312.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="722.0" prefWidth="970.0"
+                    styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="10.0"
+                    AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <center>
+                <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="479.0" prefWidth="945.0"
+                           BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets/>
+                    </BorderPane.margin>
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="359.0"
+                              prefWidth="934.0">
+                            <children>
+                                <ListView fx:id="accountTypes" onDragDetected="#onDragDetectedAccountTypes"
+                                          onDragDropped="#onDragDroppedAccountTypes"
+                                          onDragOver="#onDragOverAccountTypes" prefHeight="325.0" prefWidth="451.0"
+                                          styleClass="listTableView" stylesheets="@Styles.css">
+                                    <HBox.margin>
+                                        <Insets bottom="40.0" top="40.0"/>
+                                    </HBox.margin>
+                                </ListView>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="275.0" prefWidth="3.0">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Separator>
+                                <ListView fx:id="userAccounts" onDragDetected="#onDragDetectedUserAccounts"
+                                          onDragDropped="#onDragDroppedUserAccounts"
+                                          onDragOver="#onDragOverUserAccounts" prefHeight="522.0" prefWidth="447.0"
+                                          styleClass="listTableView" stylesheets="@Styles.css">
+                                    <HBox.margin>
+                                        <Insets bottom="40.0" top="40.0"/>
+                                    </HBox.margin>
+                                </ListView>
+                            </children>
+                        </HBox>
+                    </children>
+                </StackPane>
+            </center>
+            <top>
+                <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="243.0"
+                      prefWidth="911.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="94.0"
+                              prefWidth="758.0">
+                            <children>
+                                <MFXComboBox fx:id="comboBoxFilter">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </MFXComboBox>
+                                <MFXTextField fx:id="txtSearch" prefHeight="10.0" prefWidth="140.0">
+                                    <HBox.margin>
+                                        <Insets left="30.0"/>
+                                    </HBox.margin>
+                                </MFXTextField>
+                                <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch" stylesheets="@Styles.css"
+                                           text="Aceptar">
+                                    <HBox.margin>
+                                        <Insets left="20.0"/>
+                                    </HBox.margin>
+                                    <graphic>
+                                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                                   preserveRatio="true"/>
+                                    </graphic>
+                                    <styleClass>
+                                        <String fx:value="btnSecondary"/>
+                                        <String fx:value="btnAccept"/>
+                                    </styleClass>
+                                </MFXButton>
+                            </children>
+                        </HBox>
+                        <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0"
+                                   prefWidth="923.0" styleClass="listTableView" stylesheets="@Styles.css">
+                            <VBox.margin>
+                                <Insets left="40.0" right="60.0"/>
+                            </VBox.margin>
+                        </TableView>
+                    </children>
+                </VBox>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>

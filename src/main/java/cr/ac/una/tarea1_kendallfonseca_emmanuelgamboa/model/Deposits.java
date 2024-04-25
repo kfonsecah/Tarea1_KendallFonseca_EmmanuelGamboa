@@ -18,6 +18,7 @@ public class Deposits {
     private String tipoMovimiento;
     private boolean inProcess;
     private Boolean selected;
+
     public Deposits() {
     }
 
@@ -80,6 +81,7 @@ public class Deposits {
     public String getDateTimeString() {
         return dateTimeString;
     }
+
     public void setDateTimeString(String dateTimeString) {
         this.dateTimeString = dateTimeString;
     }

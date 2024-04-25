@@ -8,71 +8,81 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="BorderPane" fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1283.0" styleClass="viewPrincipal" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.PrincipalController">
-   <right>
-      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="310.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="408.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <MFXButton id="btnPrincipal" fx:id="btnAdmin" onAction="#onActionBtnAdmin" stylesheets="@Styles.css" text="Admin" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="btnPrincipal" />
-                        <String fx:value="btnAdmin" />
-                     </styleClass>
-                  </MFXButton>
-                  <MFXButton id="btnPrincipal" fx:id="btnWorker" onAction="#onActionBtnWorker" stylesheets="@Styles.css" text="Funcionario" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="btnPrincipal" />
-                        <String fx:value="btnEmployee" />
-                     </styleClass>
-                  </MFXButton>
-                  <MFXButton id="btnPrincipal" fx:id="btnAssociate" onAction="#onActionBtnAssociate" stylesheets="@Styles.css" text="Asociados" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="btnPrincipal" />
-                        <String fx:value="btnUser" />
-                     </styleClass>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </MFXButton>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </right>
-   <center>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="965.0" styleClass="imageAdmin" stylesheets="@Styles.css" BorderPane.alignment="BOTTOM_RIGHT">
-         <children>
-            <ImageView fitHeight="740.0" fitWidth="973.0" pickOnBounds="true">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ImageView>
-         </children></VBox>
-   </center>
+<BorderPane id="BorderPane" fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1283.0" styleClass="viewPrincipal"
+            stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.PrincipalController">
+    <right>
+        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="740.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="261.0" prefWidth="408.0"/>
+                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <MFXButton id="btnPrincipal" fx:id="btnAdmin" onAction="#onActionBtnAdmin"
+                                   stylesheets="@Styles.css" text="Admin" VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                            <VBox.margin>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                            </VBox.margin>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true"/>
+                            </graphic>
+                            <styleClass>
+                                <String fx:value="btnPrincipal"/>
+                                <String fx:value="btnAdmin"/>
+                            </styleClass>
+                        </MFXButton>
+                        <MFXButton id="btnPrincipal" fx:id="btnWorker" onAction="#onActionBtnWorker"
+                                   stylesheets="@Styles.css" text="Funcionario" VBox.vgrow="ALWAYS">
+                            <VBox.margin>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true"/>
+                            </graphic>
+                            <styleClass>
+                                <String fx:value="btnPrincipal"/>
+                                <String fx:value="btnEmployee"/>
+                            </styleClass>
+                        </MFXButton>
+                        <MFXButton id="btnPrincipal" fx:id="btnAssociate" onAction="#onActionBtnAssociate"
+                                   stylesheets="@Styles.css" text="Asociados" VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                            <VBox.margin>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                            </VBox.margin>
+                            <styleClass>
+                                <String fx:value="btnPrincipal"/>
+                                <String fx:value="btnUser"/>
+                            </styleClass>
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true"/>
+                            </graphic>
+                        </MFXButton>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </right>
+    <center>
+        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="965.0" styleClass="imageAdmin"
+              stylesheets="@Styles.css" BorderPane.alignment="BOTTOM_RIGHT">
+            <children>
+                <ImageView fitHeight="740.0" fitWidth="973.0" pickOnBounds="true">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </ImageView>
+            </children>
+        </VBox>
+    </center>
 </BorderPane>

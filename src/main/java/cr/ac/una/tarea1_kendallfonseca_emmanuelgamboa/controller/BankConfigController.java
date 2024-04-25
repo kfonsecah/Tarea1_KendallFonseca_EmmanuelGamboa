@@ -21,11 +21,15 @@ import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.scene.image.ImageView;
+
 import java.io.File;
+
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
+
 import javafx.stage.Stage;
 
 /**
@@ -89,7 +93,7 @@ public class BankConfigController extends Controller implements Initializable {
     private void onActionBtnAceptar(ActionEvent event) {
         Mensaje mensaje = new Mensaje();
         String newName = txtBankName.getText();
-        if (!newName.isEmpty() && previewLogo.getImage()!=null) {
+        if (!newName.isEmpty() && previewLogo.getImage() != null) {
             try {
                 String imagePath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
 
@@ -114,9 +118,9 @@ public class BankConfigController extends Controller implements Initializable {
                 e.printStackTrace();
                 mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Ha ocurrido un error al guardar la información.");
             }
-        } else if(newName.isEmpty()) {
+        } else if (newName.isEmpty()) {
             mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete el campo de nombre.");
-        }else if(previewLogo.getImage()==null){
+        } else if (previewLogo.getImage() == null) {
             mensaje.showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un logo.");
         }
     }

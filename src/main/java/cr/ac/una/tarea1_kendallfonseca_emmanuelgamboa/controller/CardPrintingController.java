@@ -5,7 +5,6 @@
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
@@ -113,9 +112,11 @@ public class CardPrintingController extends Controller implements Initializable 
             btnPrint.setDisable(newValue == null);
         });
     }
+
     @Override
-    public void initialize(){
+    public void initialize() {
     }
+
     private void loadUsersToTableView() {
 
         TableColumn<Associated, String> folioColumn = new TableColumn<>("Folio");
@@ -147,10 +148,10 @@ public class CardPrintingController extends Controller implements Initializable 
 
             for (int i = 0; i < list.size(); i++) {
                 Associated data = list.get(i);
-                if(filter.equals("Todo")&& data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                if (filter.equals("Todo") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
-                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())){
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
                     filteredData.add(data);
                 } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
                     filteredData.add(data);
@@ -178,10 +179,11 @@ public class CardPrintingController extends Controller implements Initializable 
         userSearchList.getSelectionModel().select(selectedIndex);
         userSearchList.refresh();
     }
+
     private void populateTextFieldValues() {
         Associated selectedUser = userSearchList.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            txtName.setText(selectedUser.getAssoName()+" "+selectedUser.getAssoLastName());
+            txtName.setText(selectedUser.getAssoName() + " " + selectedUser.getAssoLastName());
             txtFolio.setText(selectedUser.getAssoFolio());
             txtAge.setText(String.valueOf(selectedUser.getAssoAge()));
 
@@ -197,6 +199,7 @@ public class CardPrintingController extends Controller implements Initializable 
             }
         }
     }
+
     @FXML
     private void onActionBtnPrint(ActionEvent event) {
         // Tomar una captura de pantalla de la StackPane
@@ -244,6 +247,7 @@ public class CardPrintingController extends Controller implements Initializable 
             // Si ocurre una excepción de entrada/salida, se imprime la pila de trazas de la excepción
         }
     }
+
     //metodo para setear la info de la cooperativa
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");

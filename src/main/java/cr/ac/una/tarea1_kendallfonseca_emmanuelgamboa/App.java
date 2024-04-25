@@ -8,6 +8,7 @@ import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 /**
@@ -32,9 +33,9 @@ public class App extends Application {
             FlowController.getInstance().goMain("AdminView");
         } else if (accessParameter.equals("W")) {
             FlowController.getInstance().goMain("WorkerView");
-        }else if (accessParameter.equals("M")) {
+        } else if (accessParameter.equals("M")) {
             FlowController.getInstance().goMain("AssociateView");
-        }else
+        } else
             FlowController.getInstance().goMain("PrincipalView");
 
 

@@ -7,6 +7,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Account;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AccountUser;
 import javafx.event.ActionEvent;
+
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
@@ -93,7 +94,6 @@ public class AssociateMaintenanceController extends Controller implements Initia
     private MFXButton btnDeleteUser;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Deshabilitar los botones de editar y eliminar al inicio
@@ -164,10 +164,10 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
             for (int i = 0; i < list.size(); i++) {
                 Associated data = list.get(i);
-                if(filter.equals("Todo")&& data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
+                if (filter.equals("Todo") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoLastName().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
                         data.getAssoFolio().toLowerCase().contains(txtSearch.getText().toLowerCase()) ||
-                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())){
+                        Integer.toString(data.getAssoAge()).contains(txtSearch.getText())) {
                     filteredData.add(data);
                 } else if (filter.equals("Nombre") && data.getAssoName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
                     filteredData.add(data);
@@ -270,7 +270,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
             selectedUser.setAssoAge(newAge);
 
             String newImagePath = selectedUser.getAssoPhoto();
-            if (newImagePath!= null &&!newImagePath.isEmpty()) {
+            if (newImagePath != null && !newImagePath.isEmpty()) {
                 String imageFileName = selectedUser.getAssoFolio() + ".png";
                 String destinationPath = "userphotos/" + imageFileName;
                 Path destination = new File(destinationPath).toPath();
@@ -286,7 +286,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
                 );
 
                 try {
-                   AppContext.addAssociatedToJsonFile(associatedData);
+                    AppContext.addAssociatedToJsonFile(associatedData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -383,11 +383,11 @@ public class AssociateMaintenanceController extends Controller implements Initia
     @FXML
     void onActionAdd(ActionEvent event) {
         try {
-            if (txtName.getText().isEmpty()  || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
             } else if (userImage.getImage() == null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
-            } else  {
+            } else {
 
                 Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "", "", "");
 
@@ -451,6 +451,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
 
         }
     }
+
     @FXML
     private void loadLastUserPhoto() {
         File photoFile = new File("userphotos/photo1.png");
@@ -462,6 +463,7 @@ public class AssociateMaintenanceController extends Controller implements Initia
             System.out.println("No se pudo cargar la foto 'photo1.png'.");
         }
     }
+
     @FXML
     private void onNewUser(ActionEvent event) {
         txtName.setText("");

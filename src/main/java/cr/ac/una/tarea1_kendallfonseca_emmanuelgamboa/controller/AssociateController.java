@@ -81,15 +81,17 @@ public class AssociateController extends Controller implements Initializable {
 
             String companyName = cooperative.getName();
 
-           txtCooperativeName.setText(companyName);
+            txtCooperativeName.setText(companyName);
 
         }
     }
+
     @FXML
     void onActionBtnUserDeposits(ActionEvent event) {
         FlowController.getInstance().goView("WithdrawDepositsView");
 
     }
+
     @FXML
     void onActionBtnAccountStatements(ActionEvent event) {
         FlowController.getInstance().goView("MovementsView");
@@ -113,6 +115,7 @@ public class AssociateController extends Controller implements Initializable {
             FlowController.getInstance().goView("SavingsCalculatorView");
         }
     }
+
     @FXML
     void onActionBtnExit(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

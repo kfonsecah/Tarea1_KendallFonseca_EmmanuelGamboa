@@ -96,10 +96,9 @@ public class AccountsConfigController extends Controller implements Initializabl
             appContext.deleteAccountTypeFromJsonFile(selectedAccountType);
             accountTypes.remove(selectedAccountType);
             tableTypesAccount.setItems(accountTypes);
-        }else
+        } else
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor seleccione un tipo de cuenta para eliminar.");
     }
-
 
 
     @FXML
@@ -115,12 +114,10 @@ public class AccountsConfigController extends Controller implements Initializabl
                 e.printStackTrace();
 
             }
-        }else {
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor ingrese un nombre para el tipo de cuenta.");
         }
     }
-
-
 
 
 }

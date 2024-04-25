@@ -265,11 +265,11 @@
     -fx-image: url("../resources/Calculator.png");
 }
 
-.btnSaveBU>ImageView{
+.btnSaveBU > ImageView {
     -fx-image: url("../resources/savebackup.png");
 }
 
-.btnChargeBU>ImageView{
+.btnChargeBU > ImageView {
     -fx-image: url("../resources/chargebackup.png");
 }
 
@@ -363,7 +363,7 @@
     -fx-effect: dropshadow(three-pass-box, #000000, 3, 3, 2, 1);
 }
 
-.lblInnovation{
+.lblInnovation {
     -fx-font-size: 18px;
     -fx-font-family: 'ColoringKids';
     -fx-text-fill: #ffffff;
@@ -470,6 +470,3 @@
     -fx-font-size: 13px;
 
 }
-
-
-

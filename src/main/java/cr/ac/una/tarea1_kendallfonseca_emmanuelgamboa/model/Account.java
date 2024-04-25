@@ -20,7 +20,7 @@ public class Account {
     public Account(int balance, String currency, String accountType, String accountHolder, String folio) {
 
         this.balance = balance;
-        this.currency= "Colones";
+        this.currency = "Colones";
         this.accountType = accountType;
         this.accountHolder = accountHolder;
         this.Folio = folio;
@@ -46,6 +46,7 @@ public class Account {
     public String getAccountHolder() {
         return accountHolder;
     }
+
     public void setAccountHolder(String accountHolder) {
         this.accountHolder = accountHolder;
     }
@@ -57,9 +58,11 @@ public class Account {
     public void setFolio(String folio) {
         Folio = folio;
     }
+
     public String getAccountType() {
         return accountType;
     }
+
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }

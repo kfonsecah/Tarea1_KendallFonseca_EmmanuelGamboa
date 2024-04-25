@@ -10,11 +10,11 @@ import java.text.ParsePosition;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.regex.Pattern;
+
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputControl;
 
 /**
- *
  * @author ccarranza
  */
 public class Formato {
@@ -113,7 +113,7 @@ public class Formato {
                 }
             }
             c.setText(c.getText().replaceAll("[^a-zA-Z0-9-]", ""));
-            if(c.getControlNewText().matches(".*-{2,}.*")){
+            if (c.getControlNewText().matches(".*-{2,}.*")) {
                 return null;
             }
             return c;
@@ -136,7 +136,7 @@ public class Formato {
                 }
             }
             c.setText(c.getText().replaceAll("[^a-zA-Z ]", ""));
-            if(c.getControlNewText().matches(".*\\s{2,}.*")){
+            if (c.getControlNewText().matches(".*\\s{2,}.*")) {
                 return null;
             }
             return c;

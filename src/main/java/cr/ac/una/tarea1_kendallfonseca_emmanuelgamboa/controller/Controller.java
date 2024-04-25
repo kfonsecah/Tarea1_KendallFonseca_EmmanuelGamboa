@@ -40,10 +40,12 @@ public abstract class Controller {
     }
 
     public abstract void initialize();
-    public static void nameChanger(Stage stage, String name){
+
+    public static void nameChanger(Stage stage, String name) {
         stage.setTitle(name);
     }
-    public static void iconChanger(Stage stage, Image image){
+
+    public static void iconChanger(Stage stage, Image image) {
         stage.getIcons().clear();
         stage.getIcons().add(image);
     }

@@ -155,7 +155,7 @@ public class AccountUser {
             });
             System.out.println("Deposits before removal: " + deposits);
 
-    //iterar sobre todos los depositos
+            //iterar sobre todos los depositos
             Iterator<Deposits> iterator = deposits.iterator();
             while (iterator.hasNext()) {
                 Deposits deposit = iterator.next();
@@ -239,10 +239,6 @@ public class AccountUser {
 
 
     }
-
-
-
-
 
 
 }

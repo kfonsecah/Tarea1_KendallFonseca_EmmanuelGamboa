@@ -70,6 +70,7 @@ public class WebCamController extends Controller implements Initializable {
     private void onBtnActivateCamera(ActionEvent event) {
 
     }
+
     // Método para tomar una foto
     @FXML
     private void onActionBtnTakePhoto(ActionEvent event) {

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 /**
  * FXML Controller class
  *
@@ -46,6 +47,7 @@ public class BackupsController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @Override
     public void initialize() {
 

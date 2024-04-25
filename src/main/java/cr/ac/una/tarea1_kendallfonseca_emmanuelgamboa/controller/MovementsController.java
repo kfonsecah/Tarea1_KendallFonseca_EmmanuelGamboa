@@ -155,10 +155,10 @@ public class MovementsController extends Controller implements Initializable {
             }
         });
     }
+
     @Override
     public void initialize() {
     }
-
 
 
     @FXML

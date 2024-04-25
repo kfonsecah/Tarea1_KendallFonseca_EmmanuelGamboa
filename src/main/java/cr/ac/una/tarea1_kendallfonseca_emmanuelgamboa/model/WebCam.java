@@ -25,6 +25,7 @@ public class WebCam {
     public void setOnImageCapturedListener(Consumer<String> listener) {
         this.onImageCapturedListener = listener;
     }
+
     public WebCam(ImageView imageView) {
         webcam = Webcam.getDefault();
         this.imageView = imageView;
@@ -68,11 +69,9 @@ public class WebCam {
     }
 
 
-
     public Image getCapturedImage() {
         return capturedImage;
     }
-
 
 
     public void stop() {

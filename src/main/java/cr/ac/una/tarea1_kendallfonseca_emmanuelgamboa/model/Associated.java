@@ -19,6 +19,7 @@ public class Associated {
 
     public Associated() {
     }
+
     public Associated(String name, String lastName, int age, String folio, String photo, String iban) {
         this.AssoName = name;
         this.AssoLastName = lastName;
@@ -38,40 +39,50 @@ public class Associated {
     }
 
 
-
     public String getAssoName() {
         return AssoName;
     }
+
     public void setAssoName(String name) {
         this.AssoName = name;
     }
+
     public String getAssoLastName() {
         return AssoLastName;
     }
+
     public void setAssoLastName(String lastName) {
         this.AssoLastName = lastName;
     }
+
     public int getAssoAge() {
         return AssoAge;
     }
+
     public void setAssoAge(int age) {
         this.AssoAge = age;
     }
+
     public String getAssoPhoto() {
-        return getAssoFolio()+".png";
+        return getAssoFolio() + ".png";
     }
+
     public void setAssoPhoto(String photo) {
-        this.AssoPhoto = getAssoFolio()+".png";
+        this.AssoPhoto = getAssoFolio() + ".png";
     }
+
     public String getAssoFolio() {
         return AssoFolio;
     }
+
     public void setAssoFolio(String folio) {
         this.AssoFolio = folio;
     }
+
     public String getIban() {
         return iban;
     }
+
     public void setIban(String iban) {
         this.iban = iban;
     }
@@ -83,27 +94,35 @@ public class Associated {
     public void setName(String name) {
         AssoName = name;
     }
+
     public String getLastName() {
         return AssoLastName;
     }
+
     public void setLastName(String lastName) {
         AssoLastName = lastName;
     }
+
     public int getAge() {
         return AssoAge;
     }
+
     public void setAge(int age) {
         AssoAge = age;
     }
+
     public String getPhoto() {
-        return getAssoFolio()+".png";
+        return getAssoFolio() + ".png";
     }
+
     public void setPhoto(String photo) {
-        this.AssoPhoto = getAssoFolio()+".png";
+        this.AssoPhoto = getAssoFolio() + ".png";
     }
+
     public String getFolio() {
         return AssoFolio;
     }
+
     public void setFolio(String folio) {
         this.AssoFolio = folio;
     }
@@ -136,42 +155,54 @@ public class Associated {
             this.photo = photo;
             this.iban = iban;
         }
+
         public AssociatedData() {
         }
 
         public String getName() {
             return name;
         }
+
         public void setName(String name) {
             this.name = name;
         }
+
         public String getLastName() {
             return lastName;
         }
+
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
+
         public int getAge() {
             return age;
         }
+
         public void setAge(int age) {
             this.age = age;
         }
+
         public String getFolio() {
             return folio;
         }
+
         public void setFolio(String folio) {
             this.folio = folio;
         }
+
         public String getPhoto() {
             return photo;
         }
+
         public void setPhoto(String photo) {
             this.photo = photo;
         }
+
         public String getIban() {
             return iban;
         }
+
         public void setIban(String iban) {
             this.iban = iban;
         }

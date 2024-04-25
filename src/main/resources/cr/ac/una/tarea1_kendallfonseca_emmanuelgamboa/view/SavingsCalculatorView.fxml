@@ -13,77 +13,91 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.SavingsCalculatorController">
-   <children>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="553.0" prefWidth="690.0" styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-         <children>
-            <HBox prefHeight="540.0" prefWidth="680.0">
-               <children>
-                  <VBox prefHeight="540.0" prefWidth="258.0">
-                     <children>
-                        <Label styleClass="lblInnovation" text="Ingrese monto del depósito:">
-                           <VBox.margin>
-                              <Insets top="25.0" />
-                           </VBox.margin></Label>
-                        <MFXFilterComboBox fx:id="comboBoxDeposits">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin></MFXFilterComboBox>
-                        <Label styleClass="lblInnovation" text="Tiempo de depósito (meses):">
-                           <VBox.margin>
-                              <Insets top="25.0" />
-                           </VBox.margin></Label>
-                        <MFXFilterComboBox fx:id="comboBoxTime">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin></MFXFilterComboBox>
-                        <MFXButton fx:id="btnAccept" onAction="#onActionBtnAccept" stylesheets="@Styles.css" text="Aceptar">
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="btnSecondary" />
-                              <String fx:value="btnAccept" />
-                           </styleClass>
-                           <VBox.margin>
-                              <Insets top="25.0" />
-                           </VBox.margin>
-                        </MFXButton>
-                     </children>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox prefHeight="540.0" prefWidth="405.0">
-                     <children>
-                        <TableView fx:id="tableTypesSavings" prefHeight="464.0" prefWidth="428.0" styleClass="listTableView" stylesheets="@Styles.css">
-                          <columns>
-                            <TableColumn fx:id="columnDeposit" prefWidth="104.79998636245728" text="Depósito" />
-                            <TableColumn fx:id="columnTime" prefWidth="83.19995880126953" text="Tiempo" />
-                              <TableColumn fx:id="columnInterest" prefWidth="95.20001220703125" text="Interés" />
-                              <TableColumn fx:id="columnTotal" prefWidth="112.0" text="Total" />
-                          </columns>
-                        </TableView>
-                        <MFXButton fx:id="btnDelete" onAction="#onActionBtnDelete" text="Eliminar">
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <styleClass>
-                              <String fx:value="btnSecondary" />
-                              <String fx:value="btnDeleteUser" />
-                           </styleClass>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </MFXButton>
-                     </children>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </StackPane>
-   </children>
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="720.0"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.SavingsCalculatorController">
+    <children>
+        <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="553.0" prefWidth="690.0"
+                   styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="15.0"
+                   AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <children>
+                <HBox prefHeight="540.0" prefWidth="680.0">
+                    <children>
+                        <VBox prefHeight="540.0" prefWidth="258.0">
+                            <children>
+                                <Label styleClass="lblInnovation" text="Ingrese monto del depósito:">
+                                    <VBox.margin>
+                                        <Insets top="25.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <MFXFilterComboBox fx:id="comboBoxDeposits">
+                                    <VBox.margin>
+                                        <Insets top="15.0"/>
+                                    </VBox.margin>
+                                </MFXFilterComboBox>
+                                <Label styleClass="lblInnovation" text="Tiempo de depósito (meses):">
+                                    <VBox.margin>
+                                        <Insets top="25.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <MFXFilterComboBox fx:id="comboBoxTime">
+                                    <VBox.margin>
+                                        <Insets top="15.0"/>
+                                    </VBox.margin>
+                                </MFXFilterComboBox>
+                                <MFXButton fx:id="btnAccept" onAction="#onActionBtnAccept" stylesheets="@Styles.css"
+                                           text="Aceptar">
+                                    <graphic>
+                                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                                   preserveRatio="true"/>
+                                    </graphic>
+                                    <styleClass>
+                                        <String fx:value="btnSecondary"/>
+                                        <String fx:value="btnAccept"/>
+                                    </styleClass>
+                                    <VBox.margin>
+                                        <Insets top="25.0"/>
+                                    </VBox.margin>
+                                </MFXButton>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="540.0" prefWidth="405.0">
+                            <children>
+                                <TableView fx:id="tableTypesSavings" prefHeight="464.0" prefWidth="428.0"
+                                           styleClass="listTableView" stylesheets="@Styles.css">
+                                    <columns>
+                                        <TableColumn fx:id="columnDeposit" prefWidth="104.79998636245728"
+                                                     text="Depósito"/>
+                                        <TableColumn fx:id="columnTime" prefWidth="83.19995880126953" text="Tiempo"/>
+                                        <TableColumn fx:id="columnInterest" prefWidth="95.20001220703125"
+                                                     text="Interés"/>
+                                        <TableColumn fx:id="columnTotal" prefWidth="112.0" text="Total"/>
+                                    </columns>
+                                </TableView>
+                                <MFXButton fx:id="btnDelete" onAction="#onActionBtnDelete" text="Eliminar">
+                                    <graphic>
+                                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                                   preserveRatio="true"/>
+                                    </graphic>
+                                    <styleClass>
+                                        <String fx:value="btnSecondary"/>
+                                        <String fx:value="btnDeleteUser"/>
+                                    </styleClass>
+                                    <VBox.margin>
+                                        <Insets top="15.0"/>
+                                    </VBox.margin>
+                                </MFXButton>
+                            </children>
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </StackPane>
+    </children>
 </AnchorPane>

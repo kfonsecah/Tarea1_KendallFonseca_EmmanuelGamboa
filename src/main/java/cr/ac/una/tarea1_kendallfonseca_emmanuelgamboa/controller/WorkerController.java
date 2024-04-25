@@ -4,23 +4,23 @@
  */
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
-import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -55,8 +55,6 @@ public class WorkerController extends Controller implements Initializable {
     private Label txtCooperativeName;
 
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         printAppContextUsersInfo();
@@ -72,6 +70,7 @@ public class WorkerController extends Controller implements Initializable {
     public void initialize() {
 
     }
+
     private void setCompanyInfo() {
         Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
 
@@ -121,6 +120,7 @@ public class WorkerController extends Controller implements Initializable {
             System.out.println("----------------------------------");
         }
     }
+
     @FXML
     void onActionBtnExit(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

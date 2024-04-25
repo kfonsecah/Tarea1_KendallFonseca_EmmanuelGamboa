@@ -391,7 +391,8 @@ public class AppContext {
         File jsonFile = new File("deposits.json");
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {});
+            deposits = objectMapper.readValue(jsonFile, new TypeReference<List<Deposits>>() {
+            });
         } else {
             deposits = new ArrayList<>();
         }
@@ -436,7 +437,6 @@ public class AppContext {
     }
 
 
-
     public Associated getAssociatedByFolio(String folio) {
         ObservableList<Associated> associatedList = (ObservableList<Associated>) context.get("asociados");
         if (associatedList != null) {
@@ -453,6 +453,7 @@ public class AppContext {
     public void setIncomeLevel(String incomeLevel) {
         context.put("incomeLevel", incomeLevel);
     }
+
     public String getIncomeLevel() {
         return (String) context.get("incomeLevel");
     }

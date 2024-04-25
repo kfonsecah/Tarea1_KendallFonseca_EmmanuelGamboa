@@ -57,7 +57,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
         if (AppContext.getInstance().getIncomeLevel().equals("Associate")) {
             btnWhithdraw.setVisible(false);
-        }else{
+        } else {
             btnWhithdraw.setVisible(true);
         }
 
@@ -157,8 +157,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
 
     private void configureSpinners() {
-
-
 
 
         //Crear los modelos de los spinners
@@ -308,7 +306,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
     }
 
 
-
     private void updateTable(int moneda, Integer newValue, Integer oldValue) {
         boolean monedaEncontrada = false;
 
@@ -346,13 +343,14 @@ public class WithdrawDepositsController extends Controller implements Initializa
 
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
-       cleanTable();
-         resetSpinners();
+        cleanTable();
+        resetSpinners();
     }
 
     private void cleanTable() {
         userDepositsList.getItems().clear();
     }
+
     private void resetSpinners() {
         addFiftyC.setValue(0);
         addFiveBill.setValue(0);
@@ -410,6 +408,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
             btnDepositsRequest.setDisable(true);
         }
     }
+
     private void enableSpinners(boolean enable) {
         addFiftyC.setDisable(!enable);
         addFiveBill.setDisable(!enable);
@@ -446,6 +445,7 @@ public class WithdrawDepositsController extends Controller implements Initializa
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor, seleccione una cuenta y agregue al menos una moneda antes de continuar.");
         }
     }
+
     private int getTotal() {
         int total = 0;
         for (Deposits deposit : userDepositsList.getItems()) {
@@ -476,8 +476,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
         userFolioList.getItems().clear();
         updateTableWithNewAccount(selectedAccount);
     }
-
-
 
 
     @FXML
@@ -524,7 +522,6 @@ public class WithdrawDepositsController extends Controller implements Initializa
         userFolioList.getItems().clear();
         updateTableWithNewAccount(selectedAccount);
     }
-
 
 
 }

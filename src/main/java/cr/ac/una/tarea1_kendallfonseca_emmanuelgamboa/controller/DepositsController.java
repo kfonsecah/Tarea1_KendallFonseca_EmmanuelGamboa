@@ -89,6 +89,7 @@ public class DepositsController extends Controller implements Initializable {
             loadDeposits();
         }
     }
+
     public void realizarRetiro(Deposits selectedDeposit) {
         AccountUser accountUser = AppContext.getInstance().getAccountUser();
 

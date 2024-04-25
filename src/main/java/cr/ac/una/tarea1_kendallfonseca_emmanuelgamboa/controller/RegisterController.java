@@ -60,7 +60,7 @@ public class RegisterController extends Controller implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb){
+    public void initialize(URL url, ResourceBundle rb) {
 
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String text = change.getText();
@@ -82,14 +82,12 @@ public class RegisterController extends Controller implements Initializable {
     @FXML
     private void onActionBtnRegister(ActionEvent event) {
         try {
-            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()){
+            if (txtName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAge.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor complete todos los campos");
-            }
-            else if(userPhotoPrev.getImage() == null){
+            } else if (userPhotoPrev.getImage() == null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Por favor tome su fotografia");
-            }
-            else{
-                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "","", "");
+            } else {
+                Associated associated = new Associated(txtName.getText(), txtLastName.getText(), Integer.parseInt(txtAge.getText()), "", "", "");
 
                 associated.createIban();
                 associated.setIban(associated.getIban());
@@ -129,7 +127,7 @@ public class RegisterController extends Controller implements Initializable {
     private void onActionBtnPhoto(ActionEvent event) {
         if (userPhotoPrev.getImage() == null) {
             FlowController.getInstance().goViewInWindow("WebCamView");
-        }else{
+        } else {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Error", root.getScene().getWindow(), "Su fotografia ya ha sido tomada");
         }
 
@@ -164,7 +162,6 @@ public class RegisterController extends Controller implements Initializable {
 
         }
     }
-
 
 
 }

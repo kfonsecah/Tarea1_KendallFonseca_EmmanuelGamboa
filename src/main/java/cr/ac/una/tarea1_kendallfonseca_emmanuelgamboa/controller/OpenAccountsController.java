@@ -58,7 +58,6 @@ public class OpenAccountsController extends Controller implements Initializable 
     public void initialize(URL url, ResourceBundle rb) {
 
 
-
         ObservableList<Associated> asociados = AppContext.getAsociados();
         ObservableList<AccountType> tiposCuenta = AppContext.getAccountTypes();
 
@@ -207,7 +206,6 @@ public class OpenAccountsController extends Controller implements Initializable 
     }
 
 
-
     @FXML
     public void onDragDetectedUserAccounts(MouseEvent event) {
         // Verificar si hay un usuario seleccionado
@@ -280,7 +278,6 @@ public class OpenAccountsController extends Controller implements Initializable 
 
         userAccounts.refresh();
     }
-
 
 
 }
