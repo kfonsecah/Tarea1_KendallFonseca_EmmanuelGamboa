@@ -44,8 +44,7 @@ public class App extends Application {
             scene.setFill(null); // Opcional: Hacer que el fondo de la escena sea transparente
             stage.sizeToScene(); // Ajustar el tamaño de la ventana a la escena
         }
-        stage.setWidth(1420);
-        stage.setHeight(920);
+
         // Mostrar la ventana
         stage.show();
     }

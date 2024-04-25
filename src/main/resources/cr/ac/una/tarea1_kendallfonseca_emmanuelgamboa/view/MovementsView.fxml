@@ -94,7 +94,10 @@
                                           </HBox>
                                           <HBox prefHeight="171.0" prefWidth="437.0">
                                              <children>
-                                                <ImageView fx:id="userPhoto" fitHeight="138.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="userPhoto" fitHeight="138.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                                                   <HBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </HBox.margin></ImageView>
                                                 <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
                                                    <children>
                                                       <Label text="Nombre:">
@@ -114,26 +117,32 @@
                                                       </Label>
                                                       <Label text="Folio:" />
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="30.0" />
+                                                   </HBox.margin>
                                                 </VBox>
                                                 <VBox prefHeight="171.0" prefWidth="66.0">
                                                    <children>
-                                                      <Label fx:id="txtName" text="Nombre">
+                                                      <Label fx:id="txtName">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" top="5.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtLastName" text="Apellido">
+                                                      <Label fx:id="txtLastName">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtAge" text="Edad">
+                                                      <Label fx:id="txtAge">
                                                          <VBox.margin>
                                                             <Insets bottom="30.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Label fx:id="txtFolio" text="Folio" />
+                                                      <Label fx:id="txtFolio" />
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="30.0" />
+                                                   </HBox.margin>
                                                 </VBox>
                                              </children>
                                           </HBox>
