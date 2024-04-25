@@ -98,9 +98,9 @@
                                                    <HBox.margin>
                                                       <Insets top="20.0" />
                                                    </HBox.margin></ImageView>
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="fx-vBoxBills">
+                                                <HBox prefHeight="176.0" prefWidth="214.0" styleClass="fx-vBoxBills">
                                                    <children>
-                                                      <VBox prefHeight="171.0" prefWidth="66.0" styleClass="fx-vBoxBills" stylesheets="@Styles.css">
+                                                      <VBox prefHeight="171.0" prefWidth="66.0" stylesheets="@Styles.css">
                                                          <children>
                                                             <Label text="Nombre:">
                                                                <VBox.margin>
@@ -120,7 +120,7 @@
                                                             <Label text="Folio:" />
                                                          </children>
                                                          <HBox.margin>
-                                                            <Insets left="30.0" />
+                                                            <Insets left="10.0" />
                                                          </HBox.margin>
                                                       </VBox>
                                                       <VBox prefHeight="171.0" prefWidth="66.0">
@@ -147,6 +147,9 @@
                                                          </HBox.margin>
                                                       </VBox>
                                                    </children>
+                                                   <HBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </HBox.margin>
                                                 </HBox>
                                              </children>
                                           </HBox>
