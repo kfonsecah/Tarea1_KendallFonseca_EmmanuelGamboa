@@ -1,11 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.SavingsCalculatorController">
-    
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.SavingsCalculatorController">
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="553.0" prefWidth="690.0" styleClass="simplePanel" stylesheets="@Styles.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <HBox prefHeight="540.0" prefWidth="680.0">
+               <children>
+                  <VBox prefHeight="540.0" prefWidth="258.0">
+                     <children>
+                        <Label text="Ingrese cuanto dinero quere depositar:" />
+                        <MFXFilterComboBox fx:id="comboBoxDeposits" />
+                        <Label text="¿Cuanto tiempo desea depositarlo en el banco?" />
+                        <MFXFilterComboBox fx:id="comboBoxTime" />
+                        <MFXButton fx:id="btnAccept" onAction="#onActionBtnAccept" stylesheets="@Styles.css" text="Aceptar">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="btnSecondary" />
+                              <String fx:value="btnAccept" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="540.0" prefWidth="405.0">
+                     <children>
+                        <TableView fx:id="tableTypesSavings" prefHeight="464.0" prefWidth="428.0" styleClass="listTableView" stylesheets="@Styles.css">
+                          <columns>
+                            <TableColumn fx:id="columnDeposit" prefWidth="92.79998636245728" text="Depósito" />
+                            <TableColumn fx:id="columnTime" prefWidth="80.79993438720703" text="Tiempo" />
+                              <TableColumn fx:id="columnInterest" prefWidth="78.39996337890625" text="Interés" />
+                              <TableColumn fx:id="columnTotal" prefWidth="65.60003662109375" text="Total" />
+                          </columns>
+                        </TableView>
+                        <MFXButton text="Eliminar">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="btnSecondary" />
+                              <String fx:value="btnDeleteUser" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </MFXButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </children>
 </AnchorPane>
