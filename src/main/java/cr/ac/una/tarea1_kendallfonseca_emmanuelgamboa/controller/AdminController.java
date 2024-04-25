@@ -31,6 +31,9 @@ public class AdminController extends Controller implements Initializable {
     private MFXButton btnBankConfig;
 
     @FXML
+    private MFXButton btnBackUps;
+
+    @FXML
     private MFXButton btnDeposits;
 
     @FXML
@@ -93,5 +96,11 @@ public class AdminController extends Controller implements Initializable {
     void onActionBtnExit(ActionEvent event) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    void onActionBtnBackups(ActionEvent event) {
+        FlowController.getInstance().goView("BackupsView");
+
     }
 }
