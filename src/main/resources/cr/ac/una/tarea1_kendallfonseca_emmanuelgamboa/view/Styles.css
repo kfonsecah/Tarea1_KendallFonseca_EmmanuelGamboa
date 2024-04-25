@@ -265,6 +265,14 @@
     -fx-image: url("../resources/Calculator.png");
 }
 
+.btnSaveBU>ImageView{
+    -fx-image: url("../resources/savebackup.png");
+}
+
+.btnChargeBU>ImageView{
+    -fx-image: url("../resources/chargebackup.png");
+}
+
 .viewWorkers {
     -fx-background-image: url("../resources/coinsBackground.png");
     -fx-background-size: 100% 100%;
