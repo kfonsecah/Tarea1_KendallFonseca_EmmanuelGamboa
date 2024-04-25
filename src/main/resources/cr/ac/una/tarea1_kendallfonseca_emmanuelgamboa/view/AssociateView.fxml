@@ -51,12 +51,24 @@
                   <String fx:value="btnStatements" />
                </styleClass>
             </MFXButton>
+            <MFXButton fx:id="btnCalculator" onAction="#onActionBtnCalculator" stylesheets="@Styles.css" text="Calculadora Ahorros">
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="btnPrincipal" />
+                  <String fx:value="btnCalculator" />
+               </styleClass>
+            </MFXButton>
             <MFXButton fx:id="btnExit" onAction="#onActionBtnExit" styleClass="btnExit" text="Salir" translateY="-40.0">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
                <VBox.margin>
-                  <Insets right="100.0" top="400.0" />
+                  <Insets right="100.0" top="320.0" />
                </VBox.margin>
             </MFXButton>
          </children>
