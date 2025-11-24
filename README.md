@@ -1,107 +1,107 @@
-# Sistema de Gestión de Cooperativa
+# Cooperative Management System
 
-Sistema de gestión integral para cooperativas de ahorro y crédito desarrollado con JavaFX y Maven.
+Comprehensive management system for savings and credit cooperatives developed with JavaFX and Maven.
 
-## Autores
+## Authors
 
 - Kendall Fonseca
 - Emmanuel Gamboa
 
-## Descripción
+## Description
 
-Aplicación de escritorio para la administración de cooperativas que permite gestionar asociados, cuentas bancarias, depósitos, retiros y movimientos financieros. El sistema cuenta con diferentes niveles de acceso (administrador, trabajador y asociado) y funcionalidades de respaldo de datos.
+Desktop application for cooperative management that allows handling associates, bank accounts, deposits, withdrawals, and financial transactions. The system features different access levels (administrator, worker, and associate) and data backup functionalities.
 
-## Características Principales
+## Key Features
 
-- **Gestión de Asociados**: Registro y mantenimiento de información de asociados con captura fotográfica
-- **Cuentas Bancarias**: Administración de diferentes tipos de cuentas
-- **Transacciones**: Procesamiento de depósitos y retiros
-- **Reportes**: Generación de reportes en PDF de movimientos y estados de cuenta
-- **Respaldos**: Sistema de backup y restauración de datos en formato JSON
-- **Interfaz Moderna**: Diseño basado en MaterialFX con interfaz intuitiva
-- **Control de Acceso**: Diferentes vistas según el tipo de usuario
+- **Associate Management**: Registration and maintenance of associate information with photo capture
+- **Bank Accounts**: Administration of different account types
+- **Transactions**: Processing of deposits and withdrawals
+- **Reports**: PDF report generation for transactions and account statements
+- **Backups**: Backup and restore system in JSON format
+- **Modern Interface**: MaterialFX-based design with intuitive interface
+- **Access Control**: Different views according to user type
 
-## Requisitos del Sistema
+## System Requirements
 
-- **Java**: JDK 11 o superior
-- **Maven**: 3.6 o superior
-- **JavaFX**: 21 (incluido en las dependencias)
+- **Java**: JDK 11 or higher
+- **Maven**: 3.6 or higher
+- **JavaFX**: 21 (included in dependencies)
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-- JavaFX 21 - Framework de interfaz gráfica
-- MaterialFX 11.16.1 - Componentes de interfaz Material Design
-- Apache PDFBox 2.0.24 - Generación de documentos PDF
-- Jackson 2.17.0 - Serialización/deserialización JSON
-- Webcam Capture 0.3.12 - Captura de imágenes desde webcam
+- JavaFX 21 - Graphical interface framework
+- MaterialFX 11.16.1 - Material Design interface components
+- Apache PDFBox 2.0.24 - PDF document generation
+- Jackson 2.17.0 - JSON serialization/deserialization
+- Webcam Capture 0.3.12 - Image capture from webcam
 
-## Instalación
+## Installation
 
-1. Clonar el repositorio:
+1. Clone the repository:
 ```bash
 git clone https://github.com/kfonsecah/Tarea1_KendallFonseca_EmmanuelGamboa.git
 cd Tarea1_KendallFonseca_EmmanuelGamboa
 ```
 
-2. Compilar el proyecto:
+2. Compile the project:
 ```bash
 mvn clean compile
 ```
 
-3. Ejecutar la aplicación:
+3. Run the application:
 ```bash
 mvn javafx:run
 ```
 
-## Uso
+## Usage
 
-### Perfiles de Usuario
+### User Profiles
 
-El sistema soporta tres tipos de acceso:
+The system supports three types of access:
 
-- **Administrador (A)**: Acceso completo a todas las funcionalidades
-- **Trabajador (W)**: Gestión de asociados y transacciones
-- **Asociado (M)**: Consulta de movimientos y saldos personales
+- **Administrator (A)**: Full access to all functionalities
+- **Worker (W)**: Associate and transaction management
+- **Associate (M)**: Personal transaction and balance queries
 
-### Acceso Directo a Perfiles
+### Direct Profile Access
 
-Para iniciar con un perfil específico:
+To start with a specific profile:
 
 ```bash
-mvn javafx:run -Dexec.args="A"  # Administrador
-mvn javafx:run -Dexec.args="W"  # Trabajador
-mvn javafx:run -Dexec.args="M"  # Asociado
+mvn javafx:run -Dexec.args="A"  # Administrator
+mvn javafx:run -Dexec.args="W"  # Worker
+mvn javafx:run -Dexec.args="M"  # Associate
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 src/main/java/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/
-├── controller/     # Controladores de las vistas
-├── model/          # Modelos de datos (Cooperative, Account, Associated, etc.)
-├── util/           # Utilidades y helpers
-└── App.java        # Clase principal de la aplicación
+├── controller/     # View controllers
+├── model/          # Data models (Cooperative, Account, Associated, etc.)
+├── util/           # Utilities and helpers
+└── App.java        # Main application class
 
 src/main/resources/
-└── view/           # Archivos FXML de las interfaces
+└── view/           # FXML interface files
 ```
 
-## Generación de Ejecutable
+## Executable Generation
 
-Para crear un JAR ejecutable:
+To create an executable JAR:
 
 ```bash
 mvn clean package
 ```
 
-El archivo JAR se generará en el directorio `target/`.
+The JAR file will be generated in the `target/` directory.
 
-## Licencia
+## License
 
-Este proyecto es parte de un trabajo académico para la Universidad Nacional de Costa Rica (UNA).
+This project is part of academic work for the National University of Costa Rica (UNA).
 
 ---
 
-**Institución**: Universidad Nacional de Costa Rica (UNA)  
-**Curso**: Programación Avanzada  
-**Versión**: 1.0
+**Institution**: National University of Costa Rica (UNA)  
+**Course**: Advanced Programming  
+**Version**: 1.0
