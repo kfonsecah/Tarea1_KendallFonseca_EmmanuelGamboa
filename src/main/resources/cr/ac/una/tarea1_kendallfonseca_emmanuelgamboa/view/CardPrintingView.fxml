@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1043.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.CardPrintingController">
+    <children>
+        <BorderPane layoutX="207.2" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0"
+                    prefWidth="1049.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                    AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <center>
+                <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="660.0" prefWidth="1005.0"
+                           styleClass="simplePanel" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="30.0" left="25.0" right="30.0" top="30.0"/>
+                    </BorderPane.margin>
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0"
+                              prefWidth="1007.0">
+                            <children>
+                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="630.0" prefWidth="548.0">
+                                    <children>
+                                        <StackPane fx:id="printPDF" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                   prefHeight="344.0" prefWidth="526.0"
+                                                   style="-fx-background-color: #F2F2F2; -fx-border-radius: 45;">
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                            <VBox.margin>
+                                                <Insets left="10.0" top="60.0"/>
+                                            </VBox.margin>
+                                            <children>
+                                                <ImageView fx:id="imageID" fitHeight="323.0" fitWidth="767.0"
+                                                           pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../resources/plantillaCarnet.png"/>
+                                                    </image>
+                                                    <StackPane.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                    </StackPane.margin>
+                                                </ImageView>
+                                                <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0"
+                                                      prefWidth="200.0">
+                                                    <children>
+                                                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+                                                                    minHeight="-Infinity" minWidth="-Infinity"
+                                                                    prefHeight="344.0" prefWidth="346.0">
+                                                            <top>
+                                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity"
+                                                                      minHeight="-Infinity" minWidth="-Infinity"
+                                                                      prefHeight="71.0" prefWidth="245.0"
+                                                                      BorderPane.alignment="TOP_LEFT">
+                                                                    <BorderPane.margin>
+                                                                        <Insets left="50.0" top="45.0"/>
+                                                                    </BorderPane.margin>
+                                                                    <children>
+                                                                        <ImageView fx:id="imageCardLogo"
+                                                                                   fitHeight="65.0" fitWidth="125.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <HBox.margin>
+                                                                                <Insets bottom="5.0" left="5.0"
+                                                                                        right="5.0" top="5.0"/>
+                                                                            </HBox.margin>
+                                                                        </ImageView>
+                                                                        <Label fx:id="txtCardCooperativeName"
+                                                                               maxHeight="-Infinity"
+                                                                               maxWidth="-Infinity"
+                                                                               minHeight="-Infinity"
+                                                                               minWidth="-Infinity" prefHeight="67.0"
+                                                                               prefWidth="104.0">
+                                                                            <font>
+                                                                                <Font name="Book Antiqua" size="19.0"/>
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </HBox>
+                                                            </top>
+                                                            <left>
+                                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity"
+                                                                      minHeight="-Infinity" minWidth="-Infinity"
+                                                                      prefHeight="101.0" prefWidth="126.0"
+                                                                      BorderPane.alignment="TOP_LEFT">
+                                                                    <children>
+                                                                        <Label fx:id="txtFolio" maxHeight="-Infinity"
+                                                                               maxWidth="-Infinity"
+                                                                               minHeight="-Infinity"
+                                                                               minWidth="-Infinity" prefHeight="18.0"
+                                                                               prefWidth="71.0">
+                                                                            <VBox.margin>
+                                                                                <Insets left="5.0"/>
+                                                                            </VBox.margin>
+                                                                        </Label>
+                                                                        <Label fx:id="txtName" alignment="TOP_LEFT"
+                                                                               minHeight="-Infinity"
+                                                                               minWidth="-Infinity" prefHeight="17.0"
+                                                                               prefWidth="122.0">
+                                                                            <VBox.margin>
+                                                                                <Insets left="5.0" top="27.0"/>
+                                                                            </VBox.margin>
+                                                                        </Label>
+                                                                        <Label fx:id="txtAge" maxHeight="-Infinity"
+                                                                               maxWidth="-Infinity"
+                                                                               minHeight="-Infinity"
+                                                                               minWidth="-Infinity" prefHeight="18.0"
+                                                                               prefWidth="115.0">
+                                                                            <VBox.margin>
+                                                                                <Insets left="5.0" top="17.0"/>
+                                                                            </VBox.margin>
+                                                                        </Label>
+                                                                    </children>
+                                                                    <BorderPane.margin>
+                                                                        <Insets left="65.0" top="24.0"/>
+                                                                    </BorderPane.margin>
+                                                                </VBox>
+                                                            </left>
+                                                        </BorderPane>
+                                                        <VBox maxHeight="-Infinity" maxWidth="-Infinity"
+                                                              minHeight="-Infinity" minWidth="-Infinity"
+                                                              prefHeight="152.0" prefWidth="131.0">
+                                                            <children>
+                                                                <ImageView fx:id="imagePreview" fitHeight="155.0"
+                                                                           fitWidth="133.0" nodeOrientation="INHERIT"
+                                                                           pickOnBounds="true" preserveRatio="true"
+                                                                           styleClass="userCarnetPic"/>
+                                                            </children>
+                                                            <HBox.margin>
+                                                                <Insets left="2.9" top="50.0"/>
+                                                            </HBox.margin>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </StackPane>
+                                        <MFXButton fx:id="btnPrint" onAction="#onActionBtnPrint"
+                                                   stylesheets="@Styles.css" text="Imprimir">
+                                            <VBox.margin>
+                                                <Insets left="55.0" top="40.0"/>
+                                            </VBox.margin>
+                                            <styleClass>
+                                                <String fx:value="btnSecondary"/>
+                                                <String fx:value="btnPrint"/>
+                                            </styleClass>
+                                            <graphic>
+                                                <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                                           preserveRatio="true"/>
+                                            </graphic>
+                                        </MFXButton>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="639.0"
+                                      prefWidth="458.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <MFXFilterComboBox fx:id="comboBoxFilter">
+                                                    <HBox.margin>
+                                                        <Insets left="20.0"/>
+                                                    </HBox.margin>
+                                                </MFXFilterComboBox>
+                                                <MFXTextField fx:id="txtSearch" prefHeight="50.0" prefWidth="118.0"
+                                                              HBox.hgrow="ALWAYS">
+                                                    <HBox.margin>
+                                                        <Insets left="10.0"/>
+                                                    </HBox.margin>
+                                                </MFXTextField>
+                                                <MFXButton fx:id="btnSearch" onAction="#onActionBtnSearch"
+                                                           stylesheets="@Styles.css" text="Buscar">
+                                                    <HBox.margin>
+                                                        <Insets left="10.0"/>
+                                                    </HBox.margin>
+                                                    <padding>
+                                                        <Insets bottom="20.0" top="20.0"/>
+                                                    </padding>
+                                                    <graphic>
+                                                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                                                   preserveRatio="true"/>
+                                                    </graphic>
+                                                    <styleClass>
+                                                        <String fx:value="btnSecondary"/>
+                                                        <String fx:value="btnSearch"/>
+                                                    </styleClass>
+                                                </MFXButton>
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="userSearchList" maxHeight="-Infinity" maxWidth="-Infinity"
+                                                   prefHeight="474.0" prefWidth="366.0">
+                                            <VBox.margin>
+                                                <Insets left="30.0"/>
+                                            </VBox.margin>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0"/>
+                            </padding>
+                        </HBox>
+                    </children>
+                </StackPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

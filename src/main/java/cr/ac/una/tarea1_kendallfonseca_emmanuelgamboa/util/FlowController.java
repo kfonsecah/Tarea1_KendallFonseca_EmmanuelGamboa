@@ -7,10 +7,17 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util;
 
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.App;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller.Controller;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,8 +35,12 @@ public class FlowController {
     private static Stage mainStage;
     private static ResourceBundle idioma;
     private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
+    Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
 
     private FlowController() {
+
+
     }
 
     private static void createInstance() {
@@ -56,9 +67,13 @@ public class FlowController {
 
     public void InitializeFlow(Stage stage, ResourceBundle idioma) {
         getInstance();
+
         this.mainStage = stage;
         this.idioma = idioma;
+
+
     }
+
 
     private FXMLLoader getLoader(String name) {
         FXMLLoader loader = loaders.get(name);
@@ -69,6 +84,7 @@ public class FlowController {
                         loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), this.idioma);
                         loader.load();
                         loaders.put(name, loader);
+
                     } catch (Exception ex) {
                         loader = null;
                         java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Creando loader [" + name + "].", ex);
@@ -80,10 +96,27 @@ public class FlowController {
     }
 
 
-    public void goMain() {
+    public void goMain(String viewname) {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/PrincipalView.fxml"), this.idioma)));
+            // Load the FXML file and set it as the scene's root
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("view/" + viewname + ".fxml"), this.idioma);
+            loader.getNamespace().clear(); // Clear the FXMLLoader cache
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
+
+
+            // Set the scene and show the stage
+            this.mainStage.setScene(scene);
             this.mainStage.show();
+            String logoPath = "src/main/resources/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/newLogo.png";
+            File logoFile = new File(logoPath);
+            Image logoImage = new Image(logoFile.toURI().toString());
+
+            this.mainStage.getIcons().clear();
+            this.mainStage.getIcons().add(cooperative.getLogo());
+
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
@@ -138,7 +171,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = new Stage();
         //stage.getIcons().add(new Image("cr/ac/una/tareap/resources/logo.png"));
-        stage.setTitle("La monedita feliz");
+        stage.setTitle("UNA");
         stage.setOnHidden((WindowEvent event) -> {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
@@ -149,6 +182,10 @@ public class FlowController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        stage = (Stage) root.getScene().getWindow();
+
+        // Desactivar la capacidad de redimensionamiento
+        stage.setResizable(false);
 
     }
 
@@ -157,8 +194,6 @@ public class FlowController {
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        //stage.getIcons().add(new Image("cr/ac/una/tareaprogra/resources/logo.png"));
-        //stage.setTitle("UNA PLANILLA");
 
         stage.getIcons().clear();
 
@@ -194,13 +229,4 @@ public class FlowController {
     public void salir() {
         this.mainStage.close();
     }
-
-    public static void iconChanger(Stage stage, Image image){
-        stage.getIcons().clear();
-        stage.getIcons().add(image);
-    }
-    public static void nameChanger(Stage stage, String name){
-        stage.setTitle(name);
-    }
-
 }

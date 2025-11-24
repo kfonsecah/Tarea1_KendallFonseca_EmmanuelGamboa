@@ -1,29 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-
 package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
+
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Associated;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.model.Cooperative;
+import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.AppContext;
 import cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.util.FlowController;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+
+import javafx.stage.Stage;
 
 
-
-/**
- * FXML Controller class
- *
- * @author Kendall Fonseca
- */
 public class AdminController extends Controller implements Initializable {
-
 
     @FXML
     private MFXButton btnAccountsConfig;
@@ -32,17 +31,34 @@ public class AdminController extends Controller implements Initializable {
     private MFXButton btnBankConfig;
 
     @FXML
+    private MFXButton btnBackUps;
+
+    @FXML
+    private MFXButton btnDeposits;
+
+    @FXML
+    private MFXButton btnExit;
+
+    @FXML
     private AnchorPane root;
 
+    @FXML
+    private ImageView imageLogo;
 
+    @FXML
+    private Label txtCooperativeName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Font.loadFont(getClass().getResourceAsStream("/cr/ac/una/tarea1_kendallfonseca_emmanuelgamboa/resources/fonts/Coloringkids.ttf"), 12);
+        setCompanyInfo();
+        AppContext appContext = AppContext.getInstance();
+
     }
+
     @Override
     public void initialize() {
-
+        // TODO
     }
 
     @FXML
@@ -54,5 +70,37 @@ public class AdminController extends Controller implements Initializable {
     private void onActionBtnAccountsConfig(ActionEvent event) {
         FlowController.getInstance().goView("AccountsConfigView");
     }
-    
+
+    private void setCompanyInfo() {
+        Cooperative cooperative = (Cooperative) AppContext.getInstance().get("cooperative");
+
+        if (cooperative != null) {
+            Image logo = cooperative.getLogo();
+            if (logo != null) {
+                imageLogo.setImage(cooperative.getLogo());
+            }
+
+            String companyName = cooperative.getName();
+
+            txtCooperativeName.setText(companyName);
+
+        }
+    }
+
+    @FXML
+    void onActionBtnDeposits(ActionEvent event) {
+        FlowController.getInstance().goView("DepositsView");
+    }
+
+    @FXML
+    void onActionBtnExit(ActionEvent event) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void onActionBtnBackups(ActionEvent event) {
+        FlowController.getInstance().goView("BackupsView");
+
+    }
 }

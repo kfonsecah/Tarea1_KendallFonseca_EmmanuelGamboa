@@ -7,6 +7,7 @@ package cr.ac.una.tarea1_kendallfonseca_emmanuelgamboa.controller;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -39,4 +40,16 @@ public abstract class Controller {
     }
 
     public abstract void initialize();
+
+    public static void nameChanger(Stage stage, String name) {
+        stage.setTitle(name);
+    }
+
+    public static void iconChanger(Stage stage, Image image) {
+        stage.getIcons().clear();
+        stage.getIcons().add(image);
+    }
+
 }
+
+

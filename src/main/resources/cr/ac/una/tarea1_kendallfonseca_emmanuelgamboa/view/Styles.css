@@ -1,0 +1,472 @@
+
+.btnPrincipal {
+    -fx-background-color: #a2d1f0;
+    -fx-border-radius: 45px;
+    -fx-cursor: hand;
+    -fx-content-display: left;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 30px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
+}
+
+.btnPrincipal:armed, .btnPrincipal:focused {
+    -fx-background-radius: 30px;
+    -fx-background-color: #a2d1f0;
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 10, 0, 0, 0);
+}
+
+.btnExit {
+    -fx-text-fill: #000000;
+    -fx-content-display: left;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 30px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ee4f4f;
+}
+
+.btnExit, .btnExit:armed, .btnExit:focused {
+    -fx-background-color: #ee4f4f;
+    -fx-background-radius: 30px;
+}
+
+.etiqueta {
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgb(200, 245, 239), 8, 0, 0, 8);
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-background-color: #b5eae6;
+    -fx-background-radius: 5px;
+    -fx-border-width: 3px;
+    -fx-border-color: #8080ff;
+    -fx-border-style: solid;
+    -fx-font-family: "Chalkduster";
+}
+
+.listTableView {
+    -fx-cursor: crosshair;
+}
+
+.txtAsoMain {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+}
+
+.btnSecondary {
+    -fx-background-color: #3fd59b;
+    -fx-text-fill: #ffffff;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 15px;
+    -fx-cursor: hand;
+    -jfx-button-type: RAISED;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 30px;
+}
+
+.btnSecondary, .btnSecondary:armed, .btnSecondary:focused {
+    -fx-background-color: #3fd59b;
+    -fx-background-radius: 30px;
+}
+
+.btnCamView {
+    -fx-background-color: #005a4e;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER LEFT;
+    -fx-cursor: hand;
+    -fx-padding: 15px 20px;
+    -jfx-button-type: RAISED;
+    -mfx-button-type: RAISED;
+    -fx-content-display: left;
+    -fx-font-size: 14px;
+}
+
+.btnCamView, .btnCamView:armed, .btnCamView:focused {
+    -fx-background-color: #005a4e;
+}
+
+.fx-hBoxMaintenance {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+    -fx-padding: 5 5 5 5;
+}
+
+.spBills {
+    -fx-background-color: #ababab;
+    -fx-background-radius: 10px;
+}
+
+.fx-vBoxBills {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 10.0, 0.7, 0.0, 1.5);
+    -fx-padding: 5 5 5 5;
+}
+
+.btnAdmin > ImageView {
+    -fx-image: url("../resources/Admin.png");
+}
+
+.btnEmployee > ImageView {
+    -fx-image: url("../resources/Funcionario.png");
+}
+
+.btnUser > ImageView {
+    -fx-image: url("../resources/User.png");
+}
+
+.btnMaintenance > ImageView {
+    -fx-image: url("../resources/mantenimiento.png")
+}
+
+.btnPrint > ImageView {
+    -fx-image: url("../resources/imprimir.png")
+}
+
+.btnOpenAccounts > ImageView {
+    -fx-image: url("../resources/apertura.png")
+}
+
+.btnDeposits > ImageView {
+    -fx-image: url("../resources/retiros.png")
+}
+
+.coinFive > ImageView {
+    -fx-image: url("../resources/CincoColones.png");
+}
+
+.coinTen > ImageView {
+    -fx-image: url("../resources/DiezColones.png");
+}
+
+.coinTFive > ImageView {
+    -fx-image: url("../resources/VeinticincoColones.jpg");
+}
+
+.coinFifty > ImageView {
+    -fx-image: url("../resources/CincuentaColones.png");
+}
+
+.coinOneH > ImageView {
+    -fx-image: url("../resources/CienColones.png");
+}
+
+.coinFiveH > ImageView {
+    -fx-image: url("../resources/QuinientosColones.png");
+}
+
+.billOne > ImageView {
+    -fx-image: url("../resources/UnRojo.jpg");
+}
+
+.billTwo > ImageView {
+    -fx-image: url("../resources/DosRojos.jpg");
+}
+
+.billFive > ImageView {
+    -fx-image: url("../resources/CincoRojos.jpg");
+}
+
+.billTen > ImageView {
+    -fx-image: url("../resources/DiezRojos.jpg");
+}
+
+.billTwenty > ImageView {
+    -fx-image: url("../resources/VeinteRojos.jpg");
+}
+
+.btnDeleteUser > ImageView {
+    -fx-image: url("../resources/delete.png");
+}
+
+.btnSearch > ImageView {
+    -fx-image: url("../resources/search.png");
+}
+
+.btnManteCoop > ImageView {
+    -fx-image: url("../resources/manteCop.png");
+}
+
+.btnManteAcc > ImageView {
+    -fx-image: url("../resources/manteCuen.png");
+}
+
+.btnTakePhoto > ImageView {
+    -fx-image: url("../resources/foto.png");
+}
+
+.btnTakeAgain > ImageView {
+    -fx-image: url("../resources/tomardenuevo.png");
+}
+
+.btnSave > ImageView {
+    -fx-image: url("../resources/Guardar.png");
+}
+
+.btnOff > ImageView {
+    -fx-image: url("../resources/apagar.png");
+}
+
+.btnChangeIcon > ImageView {
+    -fx-image: url("../resources/ChangeIcon.png");
+}
+
+.btnRequest > ImageView {
+    -fx-image: url("../resources/Solicitud.png");
+}
+
+.btnPendingDeposits > ImageView {
+    -fx-image: url("../resources/pendingDeposits.png");
+}
+
+.btnStatements > ImageView {
+    -fx-image: url("../resources/states.png");
+}
+
+.btnWithdraw > ImageView {
+    -fx-image: url("../resources/retire.png");
+}
+
+.btnRegister > ImageView {
+    -fx-image: url("../resources/register.png");
+}
+
+.btnNewPhoto > ImageView {
+    -fx-image: url("../resources/NewFoto.png");
+}
+
+.btnEdit > ImageView {
+    -fx-image: url("../resources/Editar.png");
+}
+
+.btnAccept > ImageView {
+    -fx-image: url("../resources/aceptar.png");
+}
+
+.btnExit > ImageView {
+    -fx-image: url("../resources/apagar.png");
+}
+
+.btnDecline > ImageView {
+    -fx-image: url("../resources/rechazar.png");
+}
+
+.btnCalculator > ImageView {
+    -fx-image: url("../resources/Calculator.png");
+}
+
+.btnSaveBU > ImageView {
+    -fx-image: url("../resources/savebackup.png");
+}
+
+.btnChargeBU > ImageView {
+    -fx-image: url("../resources/chargebackup.png");
+}
+
+.viewWorkers {
+    -fx-background-image: url("../resources/coinsBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.viewAdmin {
+    -fx-background-image: url("../resources/AdminBackground.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.viewAssociate {
+    -fx-background-image: url("../resources/FondoAsociate.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.viewCamView {
+    -fx-background-image: url("../resources/FrameWebCam.png");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.viewPrincipal {
+    -fx-background-image: url("../resources/fondo.jpeg");
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+}
+
+.button:hover {
+    -fx-background-color: #986ecc;
+    /*-fx-background-insets: 5,6,7;*/
+    -fx-background-radius: 30px;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 10, 0, 0, 10);
+}
+
+.vboxLeft {
+    -fx-background-color: linear-gradient(to bottom, #e1f0fd, #cccccc);
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0);
+}
+
+.StackTop {
+    -fx-background-color: #e1f0fd;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+
+
+@font-face {
+    -fx-font-family: 'ColoringKids', sans-serif, Arial, Helvetica;
+    src: url("../resources/fonts/Coloringkids.ttf");
+}
+
+@font-face {
+    -fx-font-family: 'Aiyari', sans-serif, Arial, Helvetica;
+    src: url("../resources/fonts/Aiyari - Tropika Island Int.otf");
+}
+
+@font-face {
+    -fx-font-family: 'Onion', sans-serif, Arial, Helvetica;
+    src: url("../resources/fonts/Onion soup.ttf");
+}
+
+.labelInfo {
+    -fx-font-family: 'ColoringKids';
+    -fx-font-size: 35px;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #000000, 3, 3, 2, 1);
+}
+
+.lblInnovation {
+    -fx-font-size: 18px;
+    -fx-font-family: 'ColoringKids';
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #000000, 3, 3, 2, 1);
+}
+
+.simplePanel {
+    -fx-background-color: #dfeefb;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
+
+}
+
+.table-view {
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
+    -fx-font-family: 'ColoringKids';
+    -fx-font-size: 16px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #ffffff; /* Color para filas impares */
+}
+
+.table-row-cell:even {
+    -fx-background-color: #cbdaf3; /* Color para filas pares */
+}
+
+.text-field .mfx-text-field {
+    -jfx-focus-color: transparent;
+    -jfx-unfocus-color: transparent;
+}
+
+.adminImage {
+    -fx-background-image: url("../resources/AdminImage.png");
+    -fx-background-size: 40% 30%;
+    -fx-opacity: 0;
+}
+
+.listViewWithBorder {
+    -fx-border-color: #2c2b2b;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-font-family: 'Aiyari', sans-serif;
+    -fx-font-size: 14px;
+}
+
+.viewCloud {
+    -fx-background-image: url("../resources/AdminBackground.png");
+    -fx-background-size: 30% 30%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: top-left;
+    -fx-opacity: 1;
+}
+
+.viewCloud > .imageView {
+    -fx-opacity: 1;
+}
+
+
+.userPicture {
+    -fx-background-image: url("../resources/logoUser.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-opacity: 1;
+    -fx-background-radius: 80%;
+    -fx-background-clip: round;
+    -fx-min-width: 90px;
+    -fx-min-height: 90px;
+}
+
+.userCarnetPic {
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 50%;
+    -fx-background-clip: round;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
+}
+
+.userAccountsTable {
+
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
+    -fx-font-family: Arial;
+    -fx-font-size: 11px;
+}
+
+.userTransactionsTable {
+
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 20px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 5, 5);
+    -fx-font-family: Arial;
+    -fx-font-size: 13px;
+
+}
